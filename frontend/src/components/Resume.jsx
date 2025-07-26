@@ -292,6 +292,15 @@ const Resume = () => {
                   <Github className="w-4 h-4 mr-2" />
                   GitHub
                 </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden"
+                  onClick={() => window.open(profileData.personalInfo.website)}
+                >
+                  <Globe className="w-4 h-4 mr-2" />
+                  Portfolio Completo
+                </Button>
               </motion.div>
             </div>
           </motion.div>
