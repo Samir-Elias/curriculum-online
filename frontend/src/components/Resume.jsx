@@ -114,7 +114,7 @@ const profileData = {
       duracion: "1.5 años (3 horas diarias, L-V)",
       descripcion: "Formación intensiva en desarrollo Full-Stack con Java. Metodología práctica con Sprints, trabajo en equipos rotativos de 10 personas simulando entorno startup real.",
       competencias: ["Java avanzado", "Spring Framework", "JPA", "Maven", "SQL", "Metodologías Ágiles", "Trabajo en equipo", "Git colaborativo"],
-      certificaciones: "Disponible en perfil"
+      certificaciones: "Disponible en portfolio completo"
     },
     {
       titulo: "Argentina Programa 4.0 - Programación desde cero",
