@@ -5,6 +5,9 @@
   "author": "Samir Elias Salatino <samireliassalatino@gmail.com>",
   "homepage": "https://samir-elias-cv.netlify.app",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
     "@radix-ui/react-accordion": "^1.2.8",
