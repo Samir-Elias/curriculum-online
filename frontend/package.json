@@ -1,6 +1,9 @@
 {
-  "name": "frontend",
-  "version": "0.1.0",
+  "name": "samir-elias-cv",
+  "version": "1.0.0",
+  "description": "CV Digital de Samir Elias Salatino - Desarrollador Backend Java",
+  "author": "Samir Elias Salatino <samireliassalatino@gmail.com>",
+  "homepage": "https://samir-elias-cv.netlify.app",
   "private": true,
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
@@ -31,11 +34,9 @@
     "@radix-ui/react-toggle": "^1.1.6",
     "@radix-ui/react-toggle-group": "^1.1.7",
     "@radix-ui/react-tooltip": "^1.2.4",
-    "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
-    "cra-template": "1.2.0",
     "date-fns": "^4.1.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.23.9",
@@ -58,7 +59,9 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test"
+    "test": "craco test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -80,8 +83,20 @@
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
     "eslint-plugin-react": "7.37.4",
+    "gh-pages": "^6.1.1",
     "globals": "15.15.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17"
-  }
+  },
+  "keywords": [
+    "cv",
+    "resume",
+    "portfolio",
+    "java",
+    "spring-boot",
+    "react",
+    "developer",
+    "backend",
+    "fullstack"
+  ]
 }
