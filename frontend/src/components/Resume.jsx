@@ -36,7 +36,7 @@ const profileData = {
     ubicacion: "Mendoza, Argentina",
     email: "samireliassalatino@gmail.com",
     telefono: "+54 9 261 466-6991",
-    foto: "frontend/public/perfil.jpg",
+    foto: "public/perfil.jpg",
     titulo: "Desarrollador Backend Java | Full-Stack Developer",
     experiencia: "4 años como Developer Autodidacta",
     bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack. Más información y certificados disponibles en mi portfolio.",
