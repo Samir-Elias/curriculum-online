@@ -197,19 +197,19 @@ const Resume = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 print:bg-white">
+    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-blue-50 print:bg-white overflow-x-hidden">
       {/* Hero Section */}
       <motion.section 
         id="hero"
-        className="relative overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white print:bg-gray-800"
+        className="relative w-full overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white print:bg-gray-800"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="container mx-auto px-6 py-20 relative z-10">
+        <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
           <motion.div 
-            className="flex flex-col lg:flex-row items-center gap-12"
+            className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 max-w-7xl mx-auto"
             variants={itemVariants}
           >
             <motion.div 
@@ -217,126 +217,129 @@ const Resume = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              <Avatar className="w-48 h-48 border-4 border-white shadow-2xl">
+              <Avatar className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 border-4 border-white shadow-2xl">
                 <AvatarImage src={profileData.personalInfo.foto} alt="Samir Salatino" className="object-cover" />
-                <AvatarFallback className="text-4xl bg-white text-blue-600">
+                <AvatarFallback className="text-2xl sm:text-3xl lg:text-4xl bg-white text-blue-600">
                   SS
                 </AvatarFallback>
               </Avatar>
             </motion.div>
             
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left flex-1 max-w-none">
               <motion.h1 
-                className="text-5xl lg:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent"
+                className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent leading-tight"
                 variants={itemVariants}
               >
                 {profileData.personalInfo.nombre}
               </motion.h1>
               <motion.h2 
-                className="text-xl lg:text-2xl mb-4 text-blue-100 font-semibold"
+                className="text-lg sm:text-xl lg:text-2xl mb-4 text-blue-100 font-semibold"
                 variants={itemVariants}
               >
                 {profileData.personalInfo.titulo}
               </motion.h2>
               <motion.p 
-                className="text-lg mb-6 text-blue-100 max-w-2xl"
+                className="text-base sm:text-lg mb-6 text-blue-100 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
                 variants={itemVariants}
               >
                 {profileData.personalInfo.bio}
               </motion.p>
               <motion.div 
-                className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8"
+                className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8"
                 variants={itemVariants}
               >
-                <div className="flex items-center gap-2 text-blue-100">
-                  <MapPin size={18} />
+                <div className="flex items-center gap-2 text-blue-100 text-sm sm:text-base">
+                  <MapPin size={16} className="sm:w-5 sm:h-5" />
                   <span>{profileData.personalInfo.ubicacion}</span>
                 </div>
-                <div className="flex items-center gap-2 text-blue-100">
-                  <Code size={18} />
+                <div className="flex items-center gap-2 text-blue-100 text-sm sm:text-base">
+                  <Code size={16} className="sm:w-5 sm:h-5" />
                   <span>{profileData.personalInfo.experiencia}</span>
                 </div>
-                <div className="flex items-center gap-2 text-blue-100">
-                  <Globe size={18} />
+                <div className="flex items-center gap-2 text-blue-100 text-sm sm:text-base">
+                  <Globe size={16} className="sm:w-5 sm:h-5" />
                   <span>Disponible para remoto</span>
                 </div>
               </motion.div>
               <motion.div 
-                className="flex flex-wrap justify-center lg:justify-start gap-4"
+                className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4"
                 variants={itemVariants}
               >
                 <Button 
                   variant="secondary" 
-                  size="lg"
-                  className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg print:hidden"
+                  size="sm"
+                  className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={() => window.open(`mailto:${profileData.personalInfo.email}`)}
                 >
-                  <Mail className="w-4 h-4 mr-2" />
-                  {profileData.personalInfo.email}
+                  <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">{profileData.personalInfo.email}</span>
+                  <span className="sm:hidden">Email</span>
                 </Button>
                 <Button 
                   variant="outline" 
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden"
+                  size="sm"
+                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={downloadPDF}
                 >
-                  <Download className="w-4 h-4 mr-2" />
-                  Descargar PDF
+                  <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Descargar PDF</span>
+                  <span className="sm:hidden">PDF</span>
                 </Button>
                 <Button 
                   variant="outline" 
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden"
+                  size="sm"
+                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={() => window.open(profileData.personalInfo.github)}
                 >
-                  <Github className="w-4 h-4 mr-2" />
+                  <Github className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                   GitHub
                 </Button>
                 <Button 
                   variant="outline" 
-                  size="lg"
-                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden"
+                  size="sm"
+                  className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={() => window.open(profileData.personalInfo.website)}
                 >
-                  <Globe className="w-4 h-4 mr-2" />
-                  Portfolio Completo
+                  <Globe className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <span className="hidden sm:inline">Portfolio</span>
+                  <span className="sm:hidden">Web</span>
                 </Button>
               </motion.div>
             </div>
           </motion.div>
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent print:hidden"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-t from-white to-transparent print:hidden"></div>
       </motion.section>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Tecnologías Core */}
         <motion.section 
           id="technologies"
-          className="mb-16"
+          className="mb-12 sm:mb-16"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible.technologies ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-4xl font-bold mb-8 text-center text-gray-800"
+            className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-gray-800"
             variants={itemVariants}
           >
-            <Zap className="inline-block w-8 h-8 mr-3 text-yellow-600" />
+            <Zap className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-yellow-600" />
             Stack Tecnológico
           </motion.h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
             <motion.div variants={itemVariants}>
-              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-red-500">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-lg text-red-700 flex items-center">
-                    <Server className="w-5 h-5 mr-2" />
+              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-red-500 h-full">
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="text-base sm:text-lg text-red-700 flex items-center">
+                    <Server className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Backend
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {profileData.tecnologiasCore.backend.map((tech, index) => (
-                      <Badge key={index} className="bg-red-100 text-red-800 border-red-200 hover:bg-red-200 transition-colors">
+                      <Badge key={index} className="bg-red-100 text-red-800 border-red-200 hover:bg-red-200 transition-colors text-xs">
                         {tech}
                       </Badge>
                     ))}
@@ -346,17 +349,17 @@ const Resume = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-lg text-blue-700 flex items-center">
-                    <Layout className="w-5 h-5 mr-2" />
+              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500 h-full">
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="text-base sm:text-lg text-blue-700 flex items-center">
+                    <Layout className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Frontend
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {profileData.tecnologiasCore.frontend.map((tech, index) => (
-                      <Badge key={index} className="bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200 transition-colors">
+                      <Badge key={index} className="bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200 transition-colors text-xs">
                         {tech}
                       </Badge>
                     ))}
@@ -366,17 +369,17 @@ const Resume = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-lg text-green-700 flex items-center">
-                    <Database className="w-5 h-5 mr-2" />
+              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500 h-full">
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="text-base sm:text-lg text-green-700 flex items-center">
+                    <Database className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Herramientas
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {profileData.tecnologiasCore.herramientas.map((tech, index) => (
-                      <Badge key={index} className="bg-green-100 text-green-800 border-green-200 hover:bg-green-200 transition-colors">
+                      <Badge key={index} className="bg-green-100 text-green-800 border-green-200 hover:bg-green-200 transition-colors text-xs">
                         {tech}
                       </Badge>
                     ))}
@@ -386,17 +389,17 @@ const Resume = () => {
             </motion.div>
 
             <motion.div variants={itemVariants}>
-              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-500">
-                <CardHeader className="pb-4">
-                  <CardTitle className="text-lg text-purple-700 flex items-center">
-                    <Users className="w-5 h-5 mr-2" />
+              <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-500 h-full">
+                <CardHeader className="pb-3 sm:pb-4">
+                  <CardTitle className="text-base sm:text-lg text-purple-700 flex items-center">
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                     Metodologías
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2">
                     {profileData.tecnologiasCore.metodologias.map((tech, index) => (
-                      <Badge key={index} className="bg-purple-100 text-purple-800 border-purple-200 hover:bg-purple-200 transition-colors">
+                      <Badge key={index} className="bg-purple-100 text-purple-800 border-purple-200 hover:bg-purple-200 transition-colors text-xs">
                         {tech}
                       </Badge>
                     ))}
@@ -410,19 +413,19 @@ const Resume = () => {
         {/* Proyectos Destacados */}
         <motion.section 
           id="projects"
-          className="mb-16"
+          className="mb-12 sm:mb-16"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible.projects ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-4xl font-bold mb-8 text-center text-gray-800"
+            className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-gray-800"
             variants={itemVariants}
           >
-            <Code className="inline-block w-8 h-8 mr-3 text-indigo-600" />
+            <Code className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-indigo-600" />
             Proyectos Destacados
           </motion.h2>
-          <div className="grid gap-8">
+          <div className="grid gap-6 sm:gap-8 max-w-7xl mx-auto">
             {profileData.proyectosDestacados.map((proyecto, index) => (
               <motion.div
                 key={index}
@@ -437,23 +440,23 @@ const Resume = () => {
                   'border-l-purple-500 bg-gradient-to-r from-purple-50 to-white'
                 } ${expandedProject === index ? 'ring-2 ring-blue-300' : ''}`}>
                   <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <CardTitle className={`text-xl flex items-center ${
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className={`text-lg sm:text-xl flex items-center ${
                           index === 0 ? 'text-red-800' :
                           index === 1 ? 'text-blue-800' :
                           index === 2 ? 'text-green-800' :
                           'text-purple-800'
                         }`}>
-                          <GitBranch className="mr-2 w-5 h-5" />
-                          {proyecto.nombre}
+                          <GitBranch className="mr-2 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+                          <span className="break-words">{proyecto.nombre}</span>
                         </CardTitle>
-                        <CardDescription className="text-gray-600 mt-2">
+                        <CardDescription className="text-gray-600 mt-2 text-sm sm:text-base">
                           {proyecto.descripcion}
                         </CardDescription>
                       </div>
-                      <div className="flex flex-col items-end gap-2">
-                        <Badge variant="outline" className={`${
+                      <div className="flex flex-row sm:flex-col items-center sm:items-end gap-2 flex-shrink-0">
+                        <Badge variant="outline" className={`text-xs ${
                           proyecto.estado === 'Completado y Funcional' || proyecto.estado === 'Completado' ? 
                           'bg-green-100 text-green-800 border-green-200' :
                           'bg-orange-100 text-orange-800 border-orange-200'
@@ -467,9 +470,9 @@ const Resume = () => {
                             e.stopPropagation();
                             window.open(proyecto.repositorio);
                           }}
-                          className="print:hidden"
+                          className="print:hidden text-xs"
                         >
-                          <ExternalLink className="w-4 h-4 mr-1" />
+                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                           Ver Repo
                         </Button>
                       </div>
@@ -477,10 +480,10 @@ const Resume = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="mb-4">
-                      <h4 className="font-semibold text-gray-700 mb-2">Tecnologías:</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <h4 className="font-semibold text-gray-700 mb-2 text-sm sm:text-base">Tecnologías:</h4>
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
                         {proyecto.tecnologias.map((tech, techIndex) => (
-                          <Badge key={techIndex} variant="outline" className={`${
+                          <Badge key={techIndex} variant="outline" className={`text-xs ${
                             index === 0 ? 'bg-red-100 text-red-800 border-red-200' :
                             index === 1 ? 'bg-blue-100 text-blue-800 border-blue-200' :
                             index === 2 ? 'bg-green-100 text-green-800 border-green-200' :
@@ -500,17 +503,17 @@ const Resume = () => {
                         transition={{ duration: 0.3 }}
                         className="border-t pt-4 mt-4"
                       >
-                        <h4 className="font-semibold text-gray-700 mb-3">Características principales:</h4>
+                        <h4 className="font-semibold text-gray-700 mb-3 text-sm sm:text-base">Características principales:</h4>
                         <ul className="space-y-2">
                           {proyecto.caracteristicas.map((caracteristica, charIndex) => (
                             <li key={charIndex} className="flex items-start">
-                              <div className={`w-2 h-2 rounded-full mr-3 mt-2 ${
+                              <div className={`w-2 h-2 rounded-full mr-3 mt-2 flex-shrink-0 ${
                                 index === 0 ? 'bg-red-500' :
                                 index === 1 ? 'bg-blue-500' :
                                 index === 2 ? 'bg-green-500' :
                                 'bg-purple-500'
                               }`}></div>
-                              <span className="text-gray-600">{caracteristica}</span>
+                              <span className="text-gray-600 text-sm sm:text-base">{caracteristica}</span>
                             </li>
                           ))}
                         </ul>
@@ -526,19 +529,19 @@ const Resume = () => {
         {/* Formación Técnica */}
         <motion.section 
           id="education"
-          className="mb-16"
+          className="mb-12 sm:mb-16"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible.education ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-4xl font-bold mb-8 text-center text-gray-800"
+            className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-gray-800"
             variants={itemVariants}
           >
-            <BookOpen className="inline-block w-8 h-8 mr-3 text-blue-600" />
+            <BookOpen className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-blue-600" />
             Formación Técnica Especializada
           </motion.h2>
-          <div className="grid gap-6">
+          <div className="grid gap-6 max-w-7xl mx-auto">
             {profileData.formacionTecnica.map((formacion, index) => (
               <motion.div
                 key={index}
@@ -548,35 +551,37 @@ const Resume = () => {
               >
                 <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500">
                   <CardHeader>
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <CardTitle className="text-xl text-gray-800">{formacion.titulo}</CardTitle>
-                        <CardDescription className="text-lg text-blue-600 font-semibold">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
+                      <div className="flex-1 min-w-0">
+                        <CardTitle className="text-lg sm:text-xl text-gray-800 break-words">{formacion.titulo}</CardTitle>
+                        <CardDescription className="text-base sm:text-lg text-blue-600 font-semibold">
                           {formacion.institucion}
                         </CardDescription>
-                        <CardDescription className="text-sm text-gray-500 mt-1">
+                        <CardDescription className="text-xs sm:text-sm text-gray-500 mt-1">
                           {formacion.duracion} {formacion.modalidad && `• ${formacion.modalidad}`}
                         </CardDescription>
                       </div>
-                      {formacion.estado && (
-                        <Badge className="bg-green-100 text-green-800 border-green-200">
-                          {formacion.estado}
-                        </Badge>
-                      )}
-                      {formacion.periodo && (
-                        <Badge variant="outline" className="bg-gray-100 text-gray-800">
-                          {formacion.periodo}
-                        </Badge>
-                      )}
+                      <div className="flex flex-row gap-2 flex-shrink-0">
+                        {formacion.estado && (
+                          <Badge className="bg-green-100 text-green-800 border-green-200 text-xs">
+                            {formacion.estado}
+                          </Badge>
+                        )}
+                        {formacion.periodo && (
+                          <Badge variant="outline" className="bg-gray-100 text-gray-800 text-xs">
+                            {formacion.periodo}
+                          </Badge>
+                        )}
+                      </div>
                     </div>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 mb-4 leading-relaxed">{formacion.descripcion}</p>
+                    <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base">{formacion.descripcion}</p>
                     <div>
-                      <h4 className="font-semibold text-gray-700 mb-2">Competencias desarrolladas:</h4>
-                      <div className="flex flex-wrap gap-2">
+                      <h4 className="font-semibold text-gray-700 mb-2 text-sm sm:text-base">Competencias desarrolladas:</h4>
+                      <div className="flex flex-wrap gap-1 sm:gap-2">
                         {formacion.competencias.map((competencia, compIndex) => (
-                          <Badge key={compIndex} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+                          <Badge key={compIndex} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
                             {competencia}
                           </Badge>
                         ))}
@@ -592,34 +597,34 @@ const Resume = () => {
         {/* Objetivo Profesional */}
         <motion.section 
           id="objective"
-          className="mb-16"
+          className="mb-12 sm:mb-16"
           variants={containerVariants}
           initial="hidden"
           animate={isVisible.objective ? "visible" : "hidden"}
         >
           <motion.h2 
-            className="text-4xl font-bold mb-8 text-center text-gray-800"
+            className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-gray-800"
             variants={itemVariants}
           >
-            <Award className="inline-block w-8 h-8 mr-3 text-green-600" />
+            <Award className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-green-600" />
             Objetivo Profesional
           </motion.h2>
           <motion.div 
-            className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-8 shadow-lg border-l-4 border-l-green-500"
+            className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 sm:p-8 shadow-lg border-l-4 border-l-green-500 max-w-7xl mx-auto"
             variants={itemVariants}
           >
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">{profileData.objetivoProfesional.titulo}</h3>
-            <p className="text-gray-600 mb-6 leading-relaxed text-lg">{profileData.objetivoProfesional.descripcion}</p>
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 break-words">{profileData.objetivoProfesional.titulo}</h3>
+            <p className="text-gray-600 mb-6 leading-relaxed text-base sm:text-lg">{profileData.objetivoProfesional.descripcion}</p>
             
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 className="font-semibold text-gray-700 mb-3 flex items-center">
-                  <Globe className="w-4 h-4 mr-2 text-green-600" />
+                <h4 className="font-semibold text-gray-700 mb-3 flex items-center text-sm sm:text-base">
+                  <Globe className="w-4 h-4 mr-2 text-green-600 flex-shrink-0" />
                   Modalidades preferidas:
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1 sm:gap-2">
                   {profileData.objetivoProfesional.modalidades.map((modalidad, index) => (
-                    <Badge key={index} className="bg-green-100 text-green-800 border-green-200 hover:bg-green-200">
+                    <Badge key={index} className="bg-green-100 text-green-800 border-green-200 hover:bg-green-200 text-xs">
                       {modalidad}
                     </Badge>
                   ))}
@@ -627,13 +632,13 @@ const Resume = () => {
               </div>
               
               <div>
-                <h4 className="font-semibold text-gray-700 mb-3 flex items-center">
-                  <Building className="w-4 h-4 mr-2 text-blue-600" />
+                <h4 className="font-semibold text-gray-700 mb-3 flex items-center text-sm sm:text-base">
+                  <Building className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
                   Niveles de interés:
                 </h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1 sm:gap-2">
                   {profileData.objetivoProfesional.niveles.map((nivel, index) => (
-                    <Badge key={index} className="bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200">
+                    <Badge key={index} className="bg-blue-100 text-blue-800 border-blue-200 hover:bg-blue-200 text-xs">
                       {nivel}
                     </Badge>
                   ))}
@@ -645,48 +650,50 @@ const Resume = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 print:hidden">
-        <div className="container mx-auto px-6 text-center">
+      <footer className="bg-gray-800 text-white py-8 sm:py-12 print:hidden w-full">
+        <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-4xl mx-auto"
           >
-            <h3 className="text-2xl font-bold mb-4">¿Listo para el próximo desafío?</h3>
-            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">¿Listo para el próximo desafío?</h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
               4 años de experiencia autodidacta me han preparado para contribuir desde el día uno. 
               Busco un equipo donde pueda aplicar mi pasión por el desarrollo Backend y seguir creciendo.
             </p>
-            <div className="flex justify-center gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6">
               <Button 
                 variant="secondary" 
-                size="lg"
+                size="sm"
+                className="text-xs sm:text-sm px-3 sm:px-4"
                 onClick={() => window.open(`mailto:${profileData.personalInfo.email}`)}
               >
-                <Mail className="w-4 h-4 mr-2" />
-                {profileData.personalInfo.email}
+                <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="break-all sm:break-normal">{profileData.personalInfo.email}</span>
               </Button>
               <Button 
                 variant="outline" 
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-gray-800"
+                size="sm"
+                className="border-white text-white hover:bg-white hover:text-gray-800 text-xs sm:text-sm px-3 sm:px-4"
                 onClick={() => window.open(`tel:${profileData.personalInfo.telefono}`)}
               >
-                <Phone className="w-4 h-4 mr-2" />
+                <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 {profileData.personalInfo.telefono}
               </Button>
               <Button 
                 variant="outline" 
-                size="lg"
-                className="border-white text-white hover:bg-white hover:text-gray-800"
+                size="sm"
+                className="border-white text-white hover:bg-white hover:text-gray-800 text-xs sm:text-sm px-3 sm:px-4"
                 onClick={() => window.open(profileData.personalInfo.linkedin)}
               >
-                <Linkedin className="w-4 h-4 mr-2" />
+                <Linkedin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 LinkedIn
               </Button>
             </div>
-            <div className="flex justify-center items-center gap-2 text-sm text-gray-400">
-              <Coffee className="w-4 h-4" />
+            <div className="flex justify-center items-center gap-2 text-xs sm:text-sm text-gray-400">
+              <Coffee className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
               <span>Desarrollado con pasión desde Mendoza, Argentina</span>
             </div>
           </motion.div>
