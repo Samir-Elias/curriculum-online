@@ -197,19 +197,19 @@ const Resume = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-slate-50 via-white to-blue-50 print:bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 print:bg-white">
       {/* Hero Section */}
       <motion.section 
         id="hero"
-        className="relative w-full overflow-hidden bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white print:bg-gray-800"
+        className="relative bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 text-white print:bg-gray-800"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         <div className="absolute inset-0 bg-black/10"></div>
-        <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
           <motion.div 
-            className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 max-w-7xl mx-auto"
+            className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12"
             variants={itemVariants}
           >
             <motion.div 
@@ -225,7 +225,7 @@ const Resume = () => {
               </Avatar>
             </motion.div>
             
-            <div className="text-center lg:text-left flex-1 max-w-none">
+            <div className="text-center lg:text-left flex-1">
               <motion.h1 
                 className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent leading-tight"
                 variants={itemVariants}
@@ -249,15 +249,15 @@ const Resume = () => {
                 variants={itemVariants}
               >
                 <div className="flex items-center gap-2 text-blue-100 text-sm sm:text-base">
-                  <MapPin size={16} className="sm:w-5 sm:h-5" />
+                  <MapPin size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
                   <span>{profileData.personalInfo.ubicacion}</span>
                 </div>
                 <div className="flex items-center gap-2 text-blue-100 text-sm sm:text-base">
-                  <Code size={16} className="sm:w-5 sm:h-5" />
+                  <Code size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
                   <span>{profileData.personalInfo.experiencia}</span>
                 </div>
                 <div className="flex items-center gap-2 text-blue-100 text-sm sm:text-base">
-                  <Globe size={16} className="sm:w-5 sm:h-5" />
+                  <Globe size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
                   <span>Disponible para remoto</span>
                 </div>
               </motion.div>
@@ -271,7 +271,7 @@ const Resume = () => {
                   className="bg-white text-blue-600 hover:bg-blue-50 shadow-lg print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={() => window.open(`mailto:${profileData.personalInfo.email}`)}
                 >
-                  <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                   <span className="hidden sm:inline">{profileData.personalInfo.email}</span>
                   <span className="sm:hidden">Email</span>
                 </Button>
@@ -281,7 +281,7 @@ const Resume = () => {
                   className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={downloadPDF}
                 >
-                  <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                   <span className="hidden sm:inline">Descargar PDF</span>
                   <span className="sm:hidden">PDF</span>
                 </Button>
@@ -291,7 +291,7 @@ const Resume = () => {
                   className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={() => window.open(profileData.personalInfo.github)}
                 >
-                  <Github className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <Github className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                   GitHub
                 </Button>
                 <Button 
@@ -300,7 +300,7 @@ const Resume = () => {
                   className="border-white text-white hover:bg-white hover:text-blue-600 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
                   onClick={() => window.open(profileData.personalInfo.website)}
                 >
-                  <Globe className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                  <Globe className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                   <span className="hidden sm:inline">Portfolio</span>
                   <span className="sm:hidden">Web</span>
                 </Button>
@@ -311,7 +311,7 @@ const Resume = () => {
         <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-t from-white to-transparent print:hidden"></div>
       </motion.section>
 
-      <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         {/* Tecnologías Core */}
         <motion.section 
           id="technologies"
@@ -327,12 +327,12 @@ const Resume = () => {
             <Zap className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-yellow-600" />
             Stack Tecnológico
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             <motion.div variants={itemVariants}>
               <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-red-500 h-full">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="text-base sm:text-lg text-red-700 flex items-center">
-                    <Server className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    <Server className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
                     Backend
                   </CardTitle>
                 </CardHeader>
@@ -352,7 +352,7 @@ const Resume = () => {
               <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-500 h-full">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="text-base sm:text-lg text-blue-700 flex items-center">
-                    <Layout className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    <Layout className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
                     Frontend
                   </CardTitle>
                 </CardHeader>
@@ -372,7 +372,7 @@ const Resume = () => {
               <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-green-500 h-full">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="text-base sm:text-lg text-green-700 flex items-center">
-                    <Database className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    <Database className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
                     Herramientas
                   </CardTitle>
                 </CardHeader>
@@ -392,7 +392,7 @@ const Resume = () => {
               <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-purple-500 h-full">
                 <CardHeader className="pb-3 sm:pb-4">
                   <CardTitle className="text-base sm:text-lg text-purple-700 flex items-center">
-                    <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                    <Users className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
                     Metodologías
                   </CardTitle>
                 </CardHeader>
@@ -425,7 +425,7 @@ const Resume = () => {
             <Code className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-indigo-600" />
             Proyectos Destacados
           </motion.h2>
-          <div className="grid gap-6 sm:gap-8 max-w-7xl mx-auto">
+          <div className="grid gap-6 sm:gap-8">
             {profileData.proyectosDestacados.map((proyecto, index) => (
               <motion.div
                 key={index}
@@ -472,7 +472,7 @@ const Resume = () => {
                           }}
                           className="print:hidden text-xs"
                         >
-                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 mr-1 flex-shrink-0" />
                           Ver Repo
                         </Button>
                       </div>
@@ -541,7 +541,7 @@ const Resume = () => {
             <BookOpen className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-blue-600" />
             Formación Técnica Especializada
           </motion.h2>
-          <div className="grid gap-6 max-w-7xl mx-auto">
+          <div className="grid gap-6">
             {profileData.formacionTecnica.map((formacion, index) => (
               <motion.div
                 key={index}
@@ -610,7 +610,7 @@ const Resume = () => {
             Objetivo Profesional
           </motion.h2>
           <motion.div 
-            className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 sm:p-8 shadow-lg border-l-4 border-l-green-500 max-w-7xl mx-auto"
+            className="bg-gradient-to-r from-green-50 to-blue-50 rounded-lg p-6 sm:p-8 shadow-lg border-l-4 border-l-green-500"
             variants={itemVariants}
           >
             <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 break-words">{profileData.objetivoProfesional.titulo}</h3>
@@ -650,15 +650,15 @@ const Resume = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-8 sm:py-12 print:hidden w-full">
-        <div className="w-full max-w-full mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <footer className="bg-gray-800 text-white py-8 sm:py-12 print:hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
-            <h3 className="text-xl sm:text-2xl font-bold mb-4">¿Listo para el próximo desafío?</h3>
+            <h3 className="text-xl sm:text-2xl font-bold mb-4">Conectemos y creemos algo increíble juntos</h3>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
               4 años de experiencia autodidacta me han preparado para contribuir desde el día uno. 
               Busco un equipo donde pueda aplicar mi pasión por el desarrollo Backend y seguir creciendo.
@@ -670,7 +670,7 @@ const Resume = () => {
                 className="text-xs sm:text-sm px-3 sm:px-4"
                 onClick={() => window.open(`mailto:${profileData.personalInfo.email}`)}
               >
-                <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                 <span className="break-all sm:break-normal">{profileData.personalInfo.email}</span>
               </Button>
               <Button 
@@ -679,7 +679,7 @@ const Resume = () => {
                 className="border-white text-white hover:bg-white hover:text-gray-800 text-xs sm:text-sm px-3 sm:px-4"
                 onClick={() => window.open(`tel:${profileData.personalInfo.telefono}`)}
               >
-                <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <Phone className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                 {profileData.personalInfo.telefono}
               </Button>
               <Button 
@@ -688,7 +688,7 @@ const Resume = () => {
                 className="border-white text-white hover:bg-white hover:text-gray-800 text-xs sm:text-sm px-3 sm:px-4"
                 onClick={() => window.open(profileData.personalInfo.linkedin)}
               >
-                <Linkedin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <Linkedin className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
                 LinkedIn
               </Button>
             </div>
