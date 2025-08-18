@@ -163,7 +163,7 @@ const profileData = {
         {
           nombre: "Google UX Design Certificate (3/7 módulos)",
           url: "https://coursera.org/share/7d8616f9e8180543317cd30604b4cbcf", // Reemplazar con URL real
-          imagen: "certificado-ux.png",
+          imagen: "/images/certificates/certificado-ux.png",
           emisor: "Google Career Certificates",
           tipo: "imagen"
         }
