@@ -38,12 +38,31 @@ import { Separator } from "./ui/separator";
 const ImageSlider = ({ images, alt, className = "" }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   
-  // Si solo hay una imagen, no mostrar controles
-  if (!images || images.length <= 1) {
-    const singleImage = images?.[0] || images;
+  // Normalizar las imágenes a un array
+  const normalizedImages = React.useMemo(() => {
+    if (!images) return [];
+    if (typeof images === 'string') return [images];
+    if (Array.isArray(images)) return images;
+    return [];
+  }, [images]);
+  
+  // Si no hay imágenes, mostrar placeholder
+  if (normalizedImages.length === 0) {
     return (
       <img 
-        src={singleImage} 
+        src="https://via.placeholder.com/800x600/e2e8f0/64748b?text=Imagen+no+disponible"
+        alt={alt}
+        className={className}
+        loading="lazy"
+      />
+    );
+  }
+  
+  // Si solo hay una imagen, no mostrar controles
+  if (normalizedImages.length === 1) {
+    return (
+      <img 
+        src={normalizedImages[0]} 
         alt={alt}
         className={className}
         loading="lazy"
@@ -55,11 +74,11 @@ const ImageSlider = ({ images, alt, className = "" }) => {
   }
   
   const nextImage = () => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
+    setCurrentIndex((prev) => (prev + 1) % normalizedImages.length);
   };
   
   const prevImage = () => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setCurrentIndex((prev) => (prev - 1 + normalizedImages.length) % normalizedImages.length);
   };
   
   const goToImage = (index) => {
@@ -70,8 +89,8 @@ const ImageSlider = ({ images, alt, className = "" }) => {
     <div className="relative group">
       {/* Imagen principal */}
       <img 
-        src={images[currentIndex]} 
-        alt={`${alt} - ${currentIndex + 1}/${images.length}`}
+        src={normalizedImages[currentIndex]} 
+        alt={`${alt} - ${currentIndex + 1}/${normalizedImages.length}`}
         className={className}
         loading="lazy"
         onError={(e) => {
@@ -81,7 +100,7 @@ const ImageSlider = ({ images, alt, className = "" }) => {
       
       {/* Contador de imágenes */}
       <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded-full text-xs font-medium">
-        {currentIndex + 1}/{images.length}
+        {currentIndex + 1}/{normalizedImages.length}
       </div>
       
       {/* Controles de navegación */}
@@ -103,7 +122,7 @@ const ImageSlider = ({ images, alt, className = "" }) => {
       
       {/* Indicadores de página (dots) */}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
-        {images.map((_, index) => (
+        {normalizedImages.map((_, index) => (
           <button
             key={index}
             onClick={() => goToImage(index)}
@@ -625,7 +644,7 @@ const Resume = () => {
                       <div className="lg:w-1/3 flex-shrink-0">
                         <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 relative group">
                           <ImageSlider 
-                            images={Array.isArray(proyecto.imagenes) ? proyecto.imagenes : [proyecto.imagenes]}
+                            images={proyecto.imagenes}
                             alt={`Captura de pantalla de ${proyecto.nombre}`}
                             className="w-full h-full object-cover transition-all duration-500"
                           />
@@ -827,7 +846,7 @@ const Resume = () => {
                                   <div className="sm:w-24 sm:h-16 w-full h-32 bg-gray-100 flex-shrink-0 relative overflow-hidden cursor-pointer"
                                        onClick={() => setSelectedCertificate(cert)}>
                                     <ImageSlider 
-                                      images={Array.isArray(cert.imagenes) ? cert.imagenes : (cert.imagen ? [cert.imagen] : cert.imagenes)}
+                                      images={cert.imagenes}
                                       alt={`Certificado ${cert.nombre}`}
                                       className="w-full h-full object-cover"
                                     />
@@ -1043,7 +1062,7 @@ const Resume = () => {
             <div className="flex items-center justify-center bg-gray-50 p-4">
               <div className="max-w-full max-h-[70vh] relative">
                 <ImageSlider 
-                  images={Array.isArray(selectedCertificate.imagenes) ? selectedCertificate.imagenes : (selectedCertificate.imagen ? [selectedCertificate.imagen] : selectedCertificate.imagenes)}
+                  images={selectedCertificate.imagenes}
                   alt={`Certificado ${selectedCertificate.nombre}`}
                   className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg"
                 />
