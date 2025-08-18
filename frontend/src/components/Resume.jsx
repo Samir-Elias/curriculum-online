@@ -162,8 +162,8 @@ const profileData = {
       certificaciones: [
         {
           nombre: "Google UX Design Certificate (3/7 módulos)",
-          url: "https://coursera.org/verify/professional-cert/tu-certificado-aqui", // Reemplazar con URL real
-          imagen: "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Design+Certificate",
+          url: "https://coursera.org/share/7d8616f9e8180543317cd30604b4cbcf", // Reemplazar con URL real
+          imagen: "certificado-ux.png",
           emisor: "Google Career Certificates",
           tipo: "imagen"
         }
