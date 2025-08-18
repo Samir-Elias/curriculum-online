@@ -153,6 +153,67 @@ footer {
     margin-right: -50vw;
 }
 
+/* Responsive images - Asegurar que todas las imágenes sean responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Aspect ratio containers para imágenes de proyectos */
+.aspect-video {
+    aspect-ratio: 16 / 9;
+}
+
+@supports not (aspect-ratio: 16 / 9) {
+    .aspect-video::before {
+        content: "";
+        display: block;
+        padding-top: 56.25%; /* 16:9 aspect ratio */
+    }
+    
+    .aspect-video img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+/* Responsive images in certificates */
+.certificate-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Modal responsive */
+@media (max-width: 768px) {
+    .certificate-modal {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+    
+    .certificate-modal img {
+        max-height: calc(100vh - 8rem);
+    }
+}
+
+/* Ensure images don't break layout on small screens */
+@media (max-width: 640px) {
+    .project-image-container {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .certificate-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
@@ -168,5 +229,10 @@ code {
         right: auto;
         margin-left: 0;
         margin-right: 0;
+    }
+    
+    /* Hide modal in print */
+    .certificate-modal {
+        display: none !important;
     }
 }
