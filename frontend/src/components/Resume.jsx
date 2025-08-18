@@ -24,13 +24,101 @@ import {
   BookOpen,
   Eye,
   FileText,
-  Image
+  Image,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Separator } from "./ui/separator";
+
+// Componente Slider Universal para imágenes
+const ImageSlider = ({ images, alt, className = "" }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  // Si solo hay una imagen, no mostrar controles
+  if (!images || images.length <= 1) {
+    const singleImage = images?.[0] || images;
+    return (
+      <img 
+        src={singleImage} 
+        alt={alt}
+        className={className}
+        loading="lazy"
+        onError={(e) => {
+          e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Imagen+no+disponible";
+        }}
+      />
+    );
+  }
+  
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+  
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+  
+  const goToImage = (index) => {
+    setCurrentIndex(index);
+  };
+  
+  return (
+    <div className="relative group">
+      {/* Imagen principal */}
+      <img 
+        src={images[currentIndex]} 
+        alt={`${alt} - ${currentIndex + 1}/${images.length}`}
+        className={className}
+        loading="lazy"
+        onError={(e) => {
+          e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Imagen+no+disponible";
+        }}
+      />
+      
+      {/* Contador de imágenes */}
+      <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded-full text-xs font-medium">
+        {currentIndex + 1}/{images.length}
+      </div>
+      
+      {/* Controles de navegación */}
+      <button
+        onClick={prevImage}
+        className="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        aria-label="Imagen anterior"
+      >
+        <ChevronLeft className="w-4 h-4" />
+      </button>
+      
+      <button
+        onClick={nextImage}
+        className="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+        aria-label="Imagen siguiente"
+      >
+        <ChevronRight className="w-4 h-4" />
+      </button>
+      
+      {/* Indicadores de página (dots) */}
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1">
+        {images.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToImage(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex 
+                ? 'bg-white scale-110' 
+                : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+            }`}
+            aria-label={`Ir a imagen ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const profileData = {
   personalInfo: {
@@ -58,7 +146,11 @@ const profileData = {
       nombre: "CV Digital Interactivo - React Portfolio",
       descripcion: "CV digital moderno desarrollado con React y Tailwind CSS. Diseño responsive con animaciones fluidas, paleta profesional y optimizado para conversión. Incluye secciones interactivas, descarga PDF y enlaces directos.",
       tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "Responsive Design"],
-      imagen: "https://via.placeholder.com/1200x630/1e293b/3b82f6?text=CV+Digital+React+Portfolio",
+      imagenes: [
+        "https://via.placeholder.com/1200x630/1e293b/3b82f6?text=CV+Portfolio+Desktop",
+        "https://via.placeholder.com/1200x630/1e293b/64748b?text=CV+Portfolio+Mobile",
+        "https://via.placeholder.com/1200x630/1e293b/94a3b8?text=CV+Portfolio+Features"
+      ], // Array de imágenes - puedes agregar más
       demoUrl: "https://samir-elias-cv.netlify.app",
       caracteristicas: [
         "Diseño responsive optimizado para móviles y desktop",
@@ -75,7 +167,12 @@ const profileData = {
       nombre: "ServiceBook - Sistema de Gestión Integral",
       descripcion: "Proyecto Full-Stack más grande desarrollado colaborativamente. Sistema completo de gestión para servicios con chat en tiempo real, sistema de agenda, administración de usuarios y proveedores. Arquitectura robusta con Spring Boot y base de datos relacional.",
       tecnologias: ["Java", "Spring Boot", "JPA", "Thymeleaf", "MySQL", "HTML/CSS", "JavaScript"],
-      imagen: "https://via.placeholder.com/1200x630/1e293b/64748b?text=ServiceBook+Sistema+de+Gestión",
+      imagenes: [
+        "https://via.placeholder.com/1200x630/1e293b/64748b?text=ServiceBook+Dashboard",
+        "https://via.placeholder.com/1200x630/1e293b/94a3b8?text=ServiceBook+Chat",
+        "https://via.placeholder.com/1200x630/1e293b/cbd5e1?text=ServiceBook+Calendar",
+        "https://via.placeholder.com/1200x630/1e293b/e2e8f0?text=ServiceBook+Admin"
+      ], // Múltiples capturas del sistema
       demoUrl: null,
       caracteristicas: [
         "Sistema de chat integrado con usuarios",
@@ -92,7 +189,11 @@ const profileData = {
       nombre: "TeloApp - Marketplace de Moteles",
       descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
       tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
-      imagen: "https://via.placeholder.com/1200x630/0f172a/3b82f6?text=TeloApp+Marketplace",
+      imagenes: [
+        "https://via.placeholder.com/1200x630/0f172a/3b82f6?text=TeloApp+Home",
+        "https://via.placeholder.com/1200x630/0f172a/60a5fa?text=TeloApp+Maps",
+        "https://via.placeholder.com/1200x630/0f172a/93c5fd?text=TeloApp+Search"
+      ],
       demoUrl: null,
       caracteristicas: [
         "Interfaz moderna inspirada en PedidosYa",
@@ -108,7 +209,7 @@ const profileData = {
       nombre: "Rick & Morty Explorer App",
       descripcion: "Aplicación web interactiva que consume la API de Rick & Morty. Desarrollada para practicar integración de APIs REST y manejo de datos dinámicos.",
       tecnologias: ["JavaScript", "HTML/CSS", "API REST", "JSON"],
-      imagen: "https://via.placeholder.com/1200x630/065f46/10b981?text=Rick+%26+Morty+Explorer",
+      imagenes: "https://via.placeholder.com/1200x630/065f46/10b981?text=Rick+%26+Morty+Explorer", // Una sola imagen
       demoUrl: null,
       caracteristicas: [
         "Consumo de API REST externa",
@@ -123,7 +224,7 @@ const profileData = {
       nombre: "Caminito Verde ONG - Web Institucional",
       descripcion: "Sitio web institucional para ONG ambientalista. Diseño moderno con SCSS y estructura semántica para optimización SEO.",
       tecnologias: ["HTML5", "SCSS", "CSS3", "JavaScript"],
-      imagen: "https://via.placeholder.com/1200x630/166534/22c55e?text=Caminito+Verde+ONG",
+      imagenes: "https://via.placeholder.com/1200x630/166534/22c55e?text=Caminito+Verde+ONG", // Una sola imagen
       demoUrl: null,
       caracteristicas: [
         "Diseño responsive y accesible",
@@ -146,7 +247,7 @@ const profileData = {
         {
           nombre: "Certificado Java Full-Stack",
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
-          imagen: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Certificado+Java+Full-Stack",
+          imagenes: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Certificado+Java+Full-Stack", // Una sola imagen
           emisor: "Programa Autodidacta",
           tipo: "imagen"
         }
@@ -162,8 +263,12 @@ const profileData = {
       certificaciones: [
         {
           nombre: "Google UX Design Certificate (3/7 módulos)",
-          url: "https://coursera.org/share/7d8616f9e8180543317cd30604b4cbcf", // Reemplazar con URL real
-          imagen: "/images/certificates/certificado-ux.png",
+          url: "https://coursera.org/verify/professional-cert/tu-certificado-aqui", // Reemplazar con URL real
+          imagenes: [
+            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+1",
+            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+2", 
+            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+3"
+          ], // Array para los 3 módulos completados
           emisor: "Google Career Certificates",
           tipo: "imagen"
         }
@@ -181,7 +286,7 @@ const profileData = {
         {
           nombre: "Certificado Argentina Programa 4.0",
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
-          imagen: "https://via.placeholder.com/800x600/065f46/10b981?text=Argentina+Programa+4.0",
+          imagenes: "https://via.placeholder.com/800x600/065f46/10b981?text=Argentina+Programa+4.0",
           emisor: "Argentina Programa",
           tipo: "imagen"
         }
@@ -198,7 +303,7 @@ const profileData = {
         {
           nombre: "Certificado Diseño Web",
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
-          imagen: "https://via.placeholder.com/800x600/7c3aed/a855f7?text=Certificado+Diseño+Web",
+          imagenes: "https://via.placeholder.com/800x600/7c3aed/a855f7?text=Certificado+Diseño+Web",
           emisor: "Escuelas Newton",
           tipo: "imagen"
         }
@@ -519,17 +624,13 @@ const Resume = () => {
                       {/* Imagen del proyecto */}
                       <div className="lg:w-1/3 flex-shrink-0">
                         <div className="aspect-video rounded-lg overflow-hidden bg-gray-100 border-2 border-gray-200 relative group">
-                          <img 
-                            src={proyecto.imagen} 
+                          <ImageSlider 
+                            images={Array.isArray(proyecto.imagenes) ? proyecto.imagenes : [proyecto.imagenes]}
                             alt={`Captura de pantalla de ${proyecto.nombre}`}
-                            className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
-                            loading="lazy"
-                            onError={(e) => {
-                              e.target.src = "https://via.placeholder.com/1200x630/e2e8f0/64748b?text=Imagen+no+disponible";
-                            }}
+                            className="w-full h-full object-cover transition-all duration-500"
                           />
                           {/* Overlay para hover effect */}
-                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center pointer-events-none">
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                               <Image className="w-8 h-8 text-white" />
                             </div>
@@ -725,16 +826,12 @@ const Resume = () => {
                                   {/* Thumbnail de la certificación */}
                                   <div className="sm:w-24 sm:h-16 w-full h-32 bg-gray-100 flex-shrink-0 relative overflow-hidden cursor-pointer"
                                        onClick={() => setSelectedCertificate(cert)}>
-                                    <img 
-                                      src={cert.imagen}
+                                    <ImageSlider 
+                                      images={Array.isArray(cert.imagenes) ? cert.imagenes : (cert.imagen ? [cert.imagen] : cert.imagenes)}
                                       alt={`Certificado ${cert.nombre}`}
-                                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                                      loading="lazy"
-                                      onError={(e) => {
-                                        e.target.src = "https://via.placeholder.com/200x150/e2e8f0/64748b?text=Certificado";
-                                      }}
+                                      className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center">
+                                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center pointer-events-none">
                                       <Eye className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
                                   </div>
@@ -944,14 +1041,13 @@ const Resume = () => {
             
             {/* Imagen de la certificación */}
             <div className="flex items-center justify-center bg-gray-50 p-4">
-              <img 
-                src={selectedCertificate.imagen}
-                alt={`Certificado ${selectedCertificate.nombre}`}
-                className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg"
-                onError={(e) => {
-                  e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Error+al+cargar+certificado";
-                }}
-              />
+              <div className="max-w-full max-h-[70vh] relative">
+                <ImageSlider 
+                  images={Array.isArray(selectedCertificate.imagenes) ? selectedCertificate.imagenes : (selectedCertificate.imagen ? [selectedCertificate.imagen] : selectedCertificate.imagenes)}
+                  alt={`Certificado ${selectedCertificate.nombre}`}
+                  className="max-w-full max-h-[70vh] object-contain rounded-lg shadow-lg"
+                />
+              </div>
             </div>
           </div>
         </div>
