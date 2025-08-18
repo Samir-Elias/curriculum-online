@@ -282,9 +282,9 @@ const profileData = {
       certificaciones: [
         {
           nombre: "Google UX Design Certificate (3/7 módulos)",
-          url: "https://coursera.org/verify/professional-cert/tu-certificado-aqui", // Reemplazar con URL real
+          url: "https://coursera.org/share/7d8616f9e8180543317cd30604b4cbcf", // Reemplazar con URL real
           imagenes: [
-            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+1",
+            "/images/certificates/certificado-ux.png",
             "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+2", 
             "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+3"
           ], // Array para los 3 módulos completados
