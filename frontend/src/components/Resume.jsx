@@ -50,8 +50,8 @@ const profileData = {
   tecnologiasCore: {
     backend: ["Java", "Spring Framework", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
     frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
-    herramientas: ["Git", "GitHub", "IntelliJ IDEA", "Eclipse", "Postman", "Docker"],
-    metodologias: ["Scrum", "Agile", "Sprints", "Trabajo en equipo"]
+    herramientas: ["Git", "GitHub", "IntelliJ IDEA", "Eclipse", "Postman", "Docker", "Figma"],
+    metodologias: ["Scrum", "Agile", "Sprints", "Trabajo en equipo", "UX/UI Design", "User Research"]
   },
   proyectosDestacados: [
     {
@@ -152,6 +152,24 @@ const profileData = {
         }
       ],
       estado: "Completado"
+    },
+    {
+      titulo: "Google UX Design Certificate - Aspectos Básicos del Diseño UX",
+      institucion: "Google Career Certificates (Coursera)",
+      duracion: "3 de 7 cursos completados - Modalidad Online",
+      descripcion: "Certificación profesional de Google en Diseño de Experiencia del Usuario. Formación práctica en metodologías UX, investigación de usuarios, prototipado y herramientas de diseño. Curso impartido completamente en inglés.",
+      competencias: ["UX/UI Design", "User Research", "Figma", "Prototipos de baja fidelidad", "Design Thinking", "User-Centered Design", "Wireframing", "Usability Testing"],
+      certificaciones: [
+        {
+          nombre: "Google UX Design Certificate (3/7 módulos)",
+          url: "https://coursera.org/verify/professional-cert/tu-certificado-aqui", // Reemplazar con URL real
+          imagen: "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Design+Certificate",
+          emisor: "Google Career Certificates",
+          tipo: "imagen"
+        }
+      ],
+      estado: "Parcialmente Completado (3/7)",
+      periodo: "2023-2024"
     },
     {
       titulo: "Argentina Programa 4.0 - Programación desde cero",
