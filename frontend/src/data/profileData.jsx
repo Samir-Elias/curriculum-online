@@ -7,7 +7,7 @@ export const profileData = {
     telefono: "+54 9 261 466-6991",
     foto: "/perfil.jpg",
     titulo: "Desarrollador Backend Java | Full-Stack Developer",
-    experiencia: "4 años como Developer Autodidacta",
+    experiencia: "6 años como Developer Autodidacta",
     bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack. Más información y certificados disponibles en mi portfolio.",
     linkedin: "https://www.linkedin.com/in/samir-elías",
     github: "https://github.com/Samir-Elias",
@@ -15,9 +15,9 @@ export const profileData = {
   },
   
   tecnologiasCore: {
-    backend: ["Java", "Spring Framework", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
+    backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
     frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
-    herramientas: ["Git", "GitHub", "IntelliJ IDEA", "Eclipse", "Postman", "Docker", "Figma"],
+    herramientas: ["Git", "GitHub", "IntelliJ IDEA", "Eclipse", "Postman", "Docker", "Figma", "Claude", "Gemini", "N8N"],
     metodologias: ["Scrum", "Agile", "Sprints", "Trabajo en equipo", "UX/UI Design", "User Research"]
   },
   
@@ -27,9 +27,9 @@ export const profileData = {
       descripcion: "CV digital moderno desarrollado con React y Tailwind CSS. Diseño responsive con animaciones fluidas, paleta profesional y optimizado para conversión. Incluye secciones interactivas, descarga PDF y enlaces directos.",
       tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "Responsive Design"],
       imagenes: [
-        "https://via.placeholder.com/1200x630/1e293b/3b82f6?text=CV+Portfolio+Desktop",
-        "https://via.placeholder.com/1200x630/1e293b/64748b?text=CV+Portfolio+Mobile",
-        "https://via.placeholder.com/1200x630/1e293b/94a3b8?text=CV+Portfolio+Features"
+        "/images/Cv_1erFoto.png",
+        "/images/Cv_2daFoto.png",
+        "/images/Cv_3erFoto.png"
       ],
       demoUrl: "https://samir-elias-cv.netlify.app",
       caracteristicas: [
