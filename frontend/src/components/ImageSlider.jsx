@@ -35,7 +35,7 @@ const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
         onClick={(e) => {
           if (onImageClick) {
             e.stopPropagation();
-            onImageClick(normalizedImages[0]);
+            onImageClick(normalizedImages[0], 0, normalizedImages);
           }
         }}
         onError={(e) => {
@@ -63,7 +63,7 @@ const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
   const handleImageClick = (e) => {
     if (onImageClick) {
       e.stopPropagation(); // Evitar que se propague al card padre
-      onImageClick(normalizedImages[currentIndex]);
+      onImageClick(normalizedImages[currentIndex], currentIndex, normalizedImages);
     }
   };
   

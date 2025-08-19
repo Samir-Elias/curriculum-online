@@ -89,7 +89,11 @@ const ProjectsSection = ({
                           images={proyecto.imagenes}
                           alt={`Captura de pantalla de ${proyecto.nombre}`}
                           className="w-full h-full object-cover transition-all duration-500"
-                          onImageClick={(imageUrl, currentIndex, allImages) => handleImageClick(allImages, currentIndex)}
+                          onImageClick={(imageUrl, currentIndex, allImages) => {
+                            if (allImages && allImages.length > 0) {
+                              handleImageClick(allImages, currentIndex);
+                            }
+                          }}
                         />
                         {/* Overlay para hover effect */}
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center pointer-events-none">
