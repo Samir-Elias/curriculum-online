@@ -5,7 +5,9 @@ import {
   Eye,
   Github,
   GitBranch,
-  Image
+  Image,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -20,10 +22,31 @@ const ProjectsSection = ({
   expandedProject, 
   setExpandedProject 
 }) => {
-  const [selectedProjectImage, setSelectedProjectImage] = useState(null);
+  const [selectedProjectImages, setSelectedProjectImages] = useState(null);
+  const [modalImageIndex, setModalImageIndex] = useState(0);
 
-  const handleImageClick = (imageUrl) => {
-    setSelectedProjectImage(imageUrl);
+  const handleImageClick = (images, currentIndex) => {
+    // Normalizar las imágenes a un array
+    const normalizedImages = Array.isArray(images) ? images : [images];
+    setSelectedProjectImages(normalizedImages);
+    setModalImageIndex(currentIndex);
+  };
+
+  const nextModalImage = () => {
+    setModalImageIndex((prev) => (prev + 1) % selectedProjectImages.length);
+  };
+
+  const prevModalImage = () => {
+    setModalImageIndex((prev) => (prev - 1 + selectedProjectImages.length) % selectedProjectImages.length);
+  };
+
+  const goToModalImage = (index) => {
+    setModalImageIndex(index);
+  };
+
+  const closeModal = () => {
+    setSelectedProjectImages(null);
+    setModalImageIndex(0);
   };
 
   return (
@@ -66,7 +89,7 @@ const ProjectsSection = ({
                           images={proyecto.imagenes}
                           alt={`Captura de pantalla de ${proyecto.nombre}`}
                           className="w-full h-full object-cover transition-all duration-500"
-                          onImageClick={handleImageClick}
+                          onImageClick={(imageUrl, currentIndex, allImages) => handleImageClick(allImages, currentIndex)}
                         />
                         {/* Overlay para hover effect */}
                         <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center pointer-events-none">
@@ -186,39 +209,85 @@ const ProjectsSection = ({
         </div>
       </motion.section>
 
-      {/* Modal para imágenes de proyectos */}
-      {selectedProjectImage && (
+      {/* Modal para imágenes de proyectos con slider completo */}
+      {selectedProjectImages && (
         <div 
-          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4"
-          onClick={() => setSelectedProjectImage(null)}
+          className="fixed inset-0 bg-black bg-opacity-95 flex items-center justify-center z-50 p-4"
+          onClick={closeModal}
         >
           <div 
-            className="relative max-w-6xl max-h-[90vh] bg-white rounded-lg overflow-hidden"
+            className="relative max-w-7xl max-h-[95vh] w-full"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header del modal */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
-              <h3 className="text-lg font-semibold text-gray-800">Vista ampliada del proyecto</h3>
+            <div className="flex items-center justify-between p-4 bg-black bg-opacity-75 rounded-t-lg">
+              <div className="text-white">
+                <h3 className="text-lg font-semibold">Vista ampliada del proyecto</h3>
+                <p className="text-sm text-gray-300">
+                  {modalImageIndex + 1} de {selectedProjectImages.length}
+                </p>
+              </div>
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setSelectedProjectImage(null)}
-                className="text-xs"
+                onClick={closeModal}
+                className="text-xs bg-white text-black hover:bg-gray-200"
               >
                 ✕ Cerrar
               </Button>
             </div>
             
-            {/* Imagen ampliada */}
-            <div className="flex items-center justify-center bg-gray-50 p-4">
-              <img 
-                src={selectedProjectImage}
-                alt="Vista ampliada del proyecto"
-                className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-lg"
-                onError={(e) => {
-                  e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Error+al+cargar+imagen";
-                }}
-              />
+            {/* Contenedor de imagen con controles */}
+            <div className="relative bg-white rounded-b-lg overflow-hidden">
+              {/* Imagen principal */}
+              <div className="flex items-center justify-center bg-gray-50 p-4 min-h-[60vh]">
+                <img 
+                  src={selectedProjectImages[modalImageIndex]}
+                  alt={`Vista ampliada - Imagen ${modalImageIndex + 1}`}
+                  className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-lg"
+                  onError={(e) => {
+                    e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Error+al+cargar+imagen";
+                  }}
+                />
+              </div>
+
+              {/* Controles de navegación solo si hay múltiples imágenes */}
+              {selectedProjectImages.length > 1 && (
+                <>
+                  {/* Flechas de navegación */}
+                  <button
+                    onClick={prevModalImage}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-70 hover:bg-opacity-90 text-white p-3 rounded-full transition-all duration-300"
+                    aria-label="Imagen anterior"
+                  >
+                    <ChevronLeft className="w-6 h-6" />
+                  </button>
+                  
+                  <button
+                    onClick={nextModalImage}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 bg-black bg-opacity-70 hover:bg-opacity-90 text-white p-3 rounded-full transition-all duration-300"
+                    aria-label="Imagen siguiente"
+                  >
+                    <ChevronRight className="w-6 h-6" />
+                  </button>
+
+                  {/* Indicadores inferiores */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-black bg-opacity-70 px-4 py-2 rounded-full">
+                    {selectedProjectImages.map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => goToModalImage(index)}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                          index === modalImageIndex 
+                            ? 'bg-white scale-125' 
+                            : 'bg-white bg-opacity-50 hover:bg-opacity-75'
+                        }`}
+                        aria-label={`Ir a imagen ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
           </div>
         </div>
