@@ -7,9 +7,9 @@ import {
   GitBranch,
   Image
 } from "lucide-react";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { Badge } from "../ui/badge";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Badge } from "./ui/badge";
 import ImageSlider from "./ImageSlider";
 
 const ProjectsSection = ({ 
