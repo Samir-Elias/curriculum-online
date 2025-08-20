@@ -31,7 +31,7 @@ export const profileData = {
         "/images/Cv_2daFoto.png",
         "/images/Cv_3erFoto.png"
       ],
-      demoUrl: "https://samir-elias-cv.netlify.app",
+      demoUrl: "https://curriculum-online2.netlify.app",
       caracteristicas: [
         "Diseño responsive optimizado para móviles y desktop",
         "Animaciones suaves con Framer Motion",
@@ -119,17 +119,24 @@ export const profileData = {
   
   formacionTecnica: [
     {
-      titulo: "Cursado Full-Stack Java Intensivo",
-      institucion: "Programa Autodidacta Estructurado",
+      titulo: "Full-Stack Java - Argentina Programa 4.0 - Programación desde cero ",
+      institucion: "Egg Education - Cursado Full-Stack Java Intensivo",
       duracion: "1.5 años (3 horas diarias, L-V)",
-      descripcion: "Formación intensiva en desarrollo Full-Stack con Java. Metodología práctica con Sprints, trabajo en equipos rotativos de 10 personas simulando entorno startup real.",
+      descripcion: "Formación intensiva en desarrollo Full-Stack con Java. Metodología práctica con Sprints, trabajo en equipos rotativos de 10 personas simulando entorno startup real. Programa gubernamental de formación en programación con metodología Scrum aplicada. Fundamentos sólidos de programación y mejores prácticas.",
       competencias: ["Java avanzado", "Spring Framework", "JPA", "Maven", "SQL", "Metodologías Ágiles", "Trabajo en equipo", "Git colaborativo"],
       certificaciones: [
         {
           nombre: "Certificado Java Full-Stack",
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
-          imagenes: "https://via.placeholder.com/800x600/1e293b/3b82f6?text=Certificado+Java+Full-Stack",
-          emisor: "Programa Autodidacta",
+          imagenes: [
+            "/images/certificates/Egg_FullStack.png", 
+            "/images/certificates/Tramo1.jpeg",
+            "/images/certificates/Backend_Tramo2.png",
+            "/images/certificates/Cuarto_Tramo.png",
+            "/images/certificates/4Tramos.png",
+            "/images/certificates/Proyecto_Scrum.png"
+          ],
+          emisor: "Argentina Programa 4.0 - Programación desde cero",
           tipo: "imagen"
         }
       ],
@@ -146,9 +153,9 @@ export const profileData = {
           nombre: "Google UX Design Certificate (3/7 módulos)",
           url: "https://coursera.org/verify/professional-cert/tu-certificado-aqui",
           imagenes: [
-            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+1",
-            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+2", 
-            "https://via.placeholder.com/800x600/4285f4/ffffff?text=Google+UX+Modulo+3"
+            "/images/certificates/certificado-ux.png",
+            "/images/certificates/certificado-ux2.png",
+            "/images/certificates/certificado-ux3.png"
           ],
           emisor: "Google Career Certificates",
           tipo: "imagen"
@@ -157,23 +164,7 @@ export const profileData = {
       estado: "Parcialmente Completado (3/7)",
       periodo: "2023-2024"
     },
-    {
-      titulo: "Argentina Programa 4.0 - Programación desde cero",
-      institucion: "Argentina Programa",
-      duracion: "300 horas - Modalidad Scrum",
-      descripcion: "Programa gubernamental de formación en programación con metodología Scrum aplicada. Fundamentos sólidos de programación y mejores prácticas.",
-      competencias: ["Lógica de programación", "Metodología Scrum", "Fundamentos de desarrollo", "Resolución de problemas"],
-      certificaciones: [
-        {
-          nombre: "Certificado Argentina Programa 4.0",
-          url: "https://sites.google.com/view/samir-elias-salatino/inicio",
-          imagenes: "https://via.placeholder.com/800x600/065f46/10b981?text=Argentina+Programa+4.0",
-          emisor: "Argentina Programa",
-          tipo: "imagen"
-        }
-      ],
-      estado: "Completado"
-    },
+  
     {
       titulo: "Diseño de Páginas Web",
       institucion: "Escuelas Newton",
@@ -203,7 +194,7 @@ export const profileData = {
   
   objetivoProfesional: {
     titulo: "Desarrollador Backend Java | Full-Stack Developer",
-    descripcion: "Busco incorporarme como desarrollador en un equipo dinámico donde pueda aplicar mis 4 años de experiencia en Java y Spring Framework. Especializado en Backend con sólidos conocimientos Frontend. Disponible para trabajo remoto o presencial en Mendoza.",
+    descripcion: "Busco incorporarme como desarrollador en un equipo dinámico donde pueda aplicar mis 6 años de experiencia en Java y Spring Framework. Especializado en Backend con sólidos conocimientos Frontend. Disponible para trabajo remoto o presencial en Mendoza.",
     modalidades: ["Remoto", "Híbrido", "Presencial en Mendoza"],
     niveles: ["Junior Developer", "Trainee", "Developer Jr/SSr"]
   }
