@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Resume from "./components/Resume";
-import "./styles/enhanced-styles.css"; 
+
 
 function App() {
   return (
