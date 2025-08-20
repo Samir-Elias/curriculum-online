@@ -48,10 +48,11 @@ export const profileData = {
       descripcion: "Proyecto Full-Stack más grande desarrollado colaborativamente. Sistema completo de gestión para servicios con chat en tiempo real, sistema de agenda, administración de usuarios y proveedores. Arquitectura robusta con Spring Boot y base de datos relacional.",
       tecnologias: ["Java", "Spring Boot", "JPA", "Thymeleaf", "MySQL", "HTML/CSS", "JavaScript"],
       imagenes: [
-        "https://via.placeholder.com/1200x630/1e293b/64748b?text=ServiceBook+Dashboard",
-        "https://via.placeholder.com/1200x630/1e293b/94a3b8?text=ServiceBook+Chat",
-        "https://via.placeholder.com/1200x630/1e293b/cbd5e1?text=ServiceBook+Calendar",
-        "https://via.placeholder.com/1200x630/1e293b/e2e8f0?text=ServiceBook+Admin"
+        "/images/serviceBook_inicio.png",
+        "/images/serviceBook_datos.png",
+        "/images/serviceBook_altaprov.png",
+        "/images/serviceBook_register.png",
+        "/images/serviceBook_excepciones.png"        
       ],
       demoUrl: null,
       caracteristicas: [
@@ -110,7 +111,7 @@ export const profileData = {
       repositorio: "https://github.com/Samir-Elias/Rick-Morty-app",
       estado: "Completado"
     },
-    {
+    /*{
       nombre: "Caminito Verde ONG - Web Institucional",
       descripcion: "Sitio web institucional para ONG ambientalista. Diseño moderno con SCSS y estructura semántica para optimización SEO.",
       tecnologias: ["HTML5", "SCSS", "CSS3", "JavaScript"],
@@ -124,7 +125,7 @@ export const profileData = {
       ],
       repositorio: "https://github.com/Samir-Elias/Caminito-Verde-ONG",
       estado: "Completado"
-    }
+    }*/
   ],
   
   formacionTecnica: [
@@ -173,6 +174,23 @@ export const profileData = {
       ],
       estado: "Parcialmente Completado (3/7)",
       periodo: "2023-2024"
+    },
+    {
+      titulo: "JavaScript Algorithm and Data Structures ",
+      institucion: "FreeCodeCamp",
+      duracion: "300hs of work - Modalidad Online",
+      descripcion: "Certificación JavaScript Algorithm and Data Structures",
+      competencias: ["Javascript", "Data Structures", "Algorithms"],
+      certificaciones: [
+        {
+          nombre: "JavaScript Algorithm and Data Structures",
+          imagenes:"/images/certificates/FreeCodeCamp.png",
+          emisor: "FreeCodeCamp",
+          tipo: "imagen"
+        }
+      ],
+      estado: "Completado",
+      periodo: "2023"
     },
   
     {
