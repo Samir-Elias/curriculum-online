@@ -7,6 +7,8 @@ import EducationSection from "./EducationSection";
 import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
+// Opcional: Solo si quieres usar el debugger de imágenes
+// import ImageDebugger from "./ImageDebugger";
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
