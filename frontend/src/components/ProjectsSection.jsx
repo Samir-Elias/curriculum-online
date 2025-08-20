@@ -49,6 +49,66 @@ const ProjectsSection = ({
     setModalImageIndex(0);
   };
 
+  // Función para obtener las clases de estilo según el índice del proyecto
+  const getProjectCardClasses = (index) => {
+    const baseClasses = "shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-r-2";
+    
+    switch(index) {
+      case 0:
+        return `${baseClasses} border-l-slate-600 border-r-slate-300 bg-gradient-to-r from-slate-50 to-white shadow-slate-200/50`;
+      case 1:
+        return `${baseClasses} border-l-slate-600 border-r-slate-300 bg-gradient-to-r from-slate-50 to-white shadow-slate-200/50`;
+      case 2:
+        return `${baseClasses} border-l-blue-600 border-r-blue-300 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50`;
+      case 3:
+        return `${baseClasses} border-l-emerald-600 border-r-emerald-300 bg-gradient-to-r from-emerald-50 to-white shadow-emerald-200/50`;
+      default:
+        return `${baseClasses} border-l-indigo-600 border-r-indigo-300 bg-gradient-to-r from-indigo-50 to-white shadow-indigo-200/50`;
+    }
+  };
+
+  const getBadgeClasses = (index) => {
+    switch(index) {
+      case 0:
+      case 1:
+        return 'bg-slate-100 text-slate-800 border-slate-200';
+      case 2:
+        return 'bg-blue-100 text-blue-800 border-blue-200';
+      case 3:
+        return 'bg-emerald-100 text-emerald-800 border-emerald-200';
+      default:
+        return 'bg-indigo-100 text-indigo-800 border-indigo-200';
+    }
+  };
+
+  const getTitleClasses = (index) => {
+    switch(index) {
+      case 0:
+      case 1:
+        return 'text-slate-800';
+      case 2:
+        return 'text-blue-800';
+      case 3:
+        return 'text-emerald-800';
+      default:
+        return 'text-indigo-800';
+    }
+  };
+
+  const getBulletClasses = (index) => {
+    switch(index) {
+      case 0:
+      case 1:
+        return 'bg-slate-600';
+      case 2:
+        return 'bg-blue-600';
+      case 3:
+        return 'bg-emerald-600';
+      default:
+        return 'bg-indigo-600';
+    }
+  };
+
   return (
     <>
       <motion.section 
@@ -73,13 +133,9 @@ const ProjectsSection = ({
               className="cursor-pointer"
               onClick={() => setExpandedProject(expandedProject === index ? null : index)}
             >
-              <Card className={`shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 ${
-                index === 0 ? 'border-l-slate-600 bg-gradient-to-r from-slate-50 to-white' :
-                index === 1 ? 'border-l-slate-600 bg-gradient-to-r from-slate-50 to-white' :
-                index === 2 ? 'border-l-blue-600 bg-gradient-to-r from-blue-50 to-white' :
-                index === 3 ? 'border-l-emerald-600 bg-gradient-to-r from-emerald-50 to-white' :
-                'border-l-indigo-600 bg-gradient-to-r from-indigo-50 to-white'
-              } ${expandedProject === index ? 'ring-2 ring-blue-300' : ''}`}>
+              <Card className={`${getProjectCardClasses(index)} ${
+                expandedProject === index ? 'ring-2 ring-blue-300 shadow-2xl' : ''
+              }`}>
                 <CardHeader>
                   <div className="flex flex-col lg:flex-row gap-6">
                     {/* Imagen del proyecto */}
@@ -136,13 +192,7 @@ const ProjectsSection = ({
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 mb-4">
                         <div className="flex-1 min-w-0">
-                          <CardTitle className={`text-lg sm:text-xl flex items-center ${
-                            index === 0 ? 'text-slate-800' :
-                            index === 1 ? 'text-slate-800' :
-                            index === 2 ? 'text-blue-800' :
-                            index === 3 ? 'text-emerald-800' :
-                            'text-indigo-800'
-                          }`}>
+                          <CardTitle className={`text-lg sm:text-xl flex items-center ${getTitleClasses(index)}`}>
                             <GitBranch className="mr-2 w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
                             <span className="break-words">{proyecto.nombre}</span>
                           </CardTitle>
@@ -164,13 +214,7 @@ const ProjectsSection = ({
                         <h4 className="font-semibold text-gray-700 mb-2 text-sm sm:text-base">Tecnologías:</h4>
                         <div className="flex flex-wrap gap-1 sm:gap-2">
                           {proyecto.tecnologias.map((tech, techIndex) => (
-                            <Badge key={techIndex} variant="outline" className={`text-xs ${
-                              index === 0 ? 'bg-slate-100 text-slate-800 border-slate-200' :
-                              index === 1 ? 'bg-slate-100 text-slate-800 border-slate-200' :
-                              index === 2 ? 'bg-blue-100 text-blue-800 border-blue-200' :
-                              index === 3 ? 'bg-emerald-100 text-emerald-800 border-emerald-200' :
-                              'bg-indigo-100 text-indigo-800 border-indigo-200'
-                            }`}>
+                            <Badge key={techIndex} variant="outline" className={`text-xs ${getBadgeClasses(index)}`}>
                               {tech}
                             </Badge>
                           ))}
@@ -193,13 +237,7 @@ const ProjectsSection = ({
                       <ul className="space-y-2">
                         {proyecto.caracteristicas.map((caracteristica, charIndex) => (
                           <li key={charIndex} className="flex items-start">
-                            <div className={`w-2 h-2 rounded-full mr-3 mt-2 flex-shrink-0 ${
-                              index === 0 ? 'bg-slate-600' :
-                              index === 1 ? 'bg-slate-600' :
-                              index === 2 ? 'bg-blue-600' :
-                              index === 3 ? 'bg-emerald-600' :
-                              'bg-indigo-600'
-                            }`}></div>
+                            <div className={`w-2 h-2 rounded-full mr-3 mt-2 flex-shrink-0 ${getBulletClasses(index)}`}></div>
                             <span className="text-gray-600 text-sm sm:text-base">{caracteristica}</span>
                           </li>
                         ))}
@@ -250,6 +288,7 @@ const ProjectsSection = ({
                   alt={`Vista ampliada - Imagen ${modalImageIndex + 1}`}
                   className="max-w-full max-h-[75vh] object-contain rounded-lg shadow-lg"
                   onError={(e) => {
+                    console.error("Error cargando imagen en modal:", selectedProjectImages[modalImageIndex]);
                     e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Error+al+cargar+imagen";
                   }}
                 />

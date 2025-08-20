@@ -70,14 +70,14 @@ export const profileData = {
       descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
       tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
       imagenes: [
-        "/images/certificates/Teloapp_celview6.png",
-        "/images/certificates/Teloapp_celview1.png",
-        "/images/certificates/Teloapp_celview2.png",
-        "/images/certificates/Teloapp_celview3.png",
-        "/images/certificates/Teloapp_celview4.png",
-        "/images/certificates/Teloapp_celview5.png",
-        "/images/certificates/Teloapp_pcview.png",
-        "/images/certificates/Teloapp_pcview2.png"
+        "/images/Teloapp_celview6.png",
+        "/images/Teloapp_celview1.png",
+        "/images/Teloapp_celview2.png",
+        "/images/Teloapp_celview3.png",
+        "/images/Teloapp_celview4.png",
+        "/images/Teloapp_celview5.png",
+        "/images/Teloapp_pcview.png",
+        "/images/Teloapp_pcview2.png"
       ],
       demoUrl: null,
       caracteristicas: [
@@ -95,9 +95,9 @@ export const profileData = {
       descripcion: "Aplicación web interactiva que consume la API de Rick & Morty. Desarrollada para practicar integración de APIs REST y manejo de datos dinámicos.",
       tecnologias: ["JavaScript", "HTML/CSS", "API REST", "JSON"],
        imagenes: [
-        "/images/certificates/rickymorty_pc.png",
-        "/images/certificates/rickymorty_cel.png",
-        "/images/certificates/rickymorty_cel2.png"
+        "/images/rickymorty_pc.png",
+        "/images/rickymorty_cel.png",
+        "/images/rickymorty_cel2.png"
 
       ],
       demoUrl: "https://rick-morty-1.netlify.app",

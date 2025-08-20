@@ -42,7 +42,7 @@ const EducationSection = ({
             whileHover={{ scale: 1.01 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600">
+            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-r-2 border-l-blue-600 border-r-blue-300 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                   <div className="flex-1 min-w-0">
@@ -92,7 +92,7 @@ const EducationSection = ({
                     </h4>
                     <div className="space-y-3">
                       {formacion.certificaciones.map((cert, certIndex) => (
-                        <div key={certIndex} className="group border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-all duration-300">
+                        <div key={certIndex} className="group border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-all duration-300 border-l-2 border-r border-l-emerald-500 border-r-emerald-200 shadow-emerald-100/50">
                           {cert.tipo === "imagen" ? (
                             <div className="flex flex-col sm:flex-row">
                               {/* Thumbnail de la certificación */}

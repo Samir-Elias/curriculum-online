@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [failedImages, setFailedImages] = useState(new Set());
   
   // Normalizar las imágenes a un array
   const normalizedImages = React.useMemo(() => {
@@ -24,6 +25,17 @@ const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
     );
   }
   
+  // Manejar error de carga de imagen
+  const handleImageError = (e, imageIndex) => {
+    console.warn(`Error cargando imagen ${imageIndex}:`, normalizedImages[imageIndex]);
+    
+    // Agregar a la lista de imágenes fallidas
+    setFailedImages(prev => new Set([...prev, imageIndex]));
+    
+    // Establecer imagen de placeholder
+    e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Error+al+cargar+imagen";
+  };
+  
   // Si solo hay una imagen, no mostrar controles
   if (normalizedImages.length === 1) {
     return (
@@ -38,9 +50,7 @@ const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
             onImageClick(normalizedImages[0], 0, normalizedImages);
           }
         }}
-        onError={(e) => {
-          e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Imagen+no+disponible";
-        }}
+        onError={(e) => handleImageError(e, 0)}
       />
     );
   }
@@ -76,10 +86,19 @@ const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
         className={`${className} cursor-pointer`}
         loading="lazy"
         onClick={handleImageClick}
-        onError={(e) => {
-          e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Imagen+no+disponible";
+        onError={(e) => handleImageError(e, currentIndex)}
+        onLoad={() => {
+          // Log para debugging
+          console.log(`Imagen cargada exitosamente: ${normalizedImages[currentIndex]}`);
         }}
       />
+      
+      {/* Indicador si la imagen falló */}
+      {failedImages.has(currentIndex) && (
+        <div className="absolute top-2 left-2 bg-red-500 text-white px-2 py-1 rounded text-xs">
+          Error de carga
+        </div>
+      )}
       
       {/* Contador de imágenes */}
       <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-2 py-1 rounded-full text-xs font-medium pointer-events-none">
@@ -113,7 +132,7 @@ const ImageSlider = ({ images, alt, className = "", onImageClick }) => {
               index === currentIndex 
                 ? 'bg-white scale-110' 
                 : 'bg-white bg-opacity-50 hover:bg-opacity-75'
-            }`}
+            } ${failedImages.has(index) ? 'bg-red-400' : ''}`}
             aria-label={`Ir a imagen ${index + 1}`}
           />
         ))}
