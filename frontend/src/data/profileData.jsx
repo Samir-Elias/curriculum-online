@@ -70,9 +70,14 @@ export const profileData = {
       descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
       tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
       imagenes: [
-        "https://via.placeholder.com/1200x630/0f172a/3b82f6?text=TeloApp+Home",
-        "https://via.placeholder.com/1200x630/0f172a/60a5fa?text=TeloApp+Maps",
-        "https://via.placeholder.com/1200x630/0f172a/93c5fd?text=TeloApp+Search"
+        "/images/certificates/Teloapp_celview6.png",
+        "/images/certificates/Teloapp_celview1.png",
+        "/images/certificates/Teloapp_celview2.png",
+        "/images/certificates/Teloapp_celview3.png",
+        "/images/certificates/Teloapp_celview4.png",
+        "/images/certificates/Teloapp_celview5.png",
+        "/images/certificates/Teloapp_pcview.png",
+        "/images/certificates/Teloapp_pcview2.png"
       ],
       demoUrl: null,
       caracteristicas: [
@@ -89,8 +94,13 @@ export const profileData = {
       nombre: "Rick & Morty Explorer App",
       descripcion: "Aplicación web interactiva que consume la API de Rick & Morty. Desarrollada para practicar integración de APIs REST y manejo de datos dinámicos.",
       tecnologias: ["JavaScript", "HTML/CSS", "API REST", "JSON"],
-      imagenes: "https://via.placeholder.com/1200x630/065f46/10b981?text=Rick+%26+Morty+Explorer",
-      demoUrl: null,
+       imagenes: [
+        "/images/certificates/rickymorty_pc.png",
+        "/images/certificates/rickymorty_cel.png",
+        "/images/certificates/rickymorty_cel2.png"
+
+      ],
+      demoUrl: "https://rick-morty-1.netlify.app",
       caracteristicas: [
         "Consumo de API REST externa",
         "Interfaz dinámica y responsive",
@@ -130,7 +140,7 @@ export const profileData = {
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
           imagenes: [
             "/images/certificates/Egg_FullStack.png", 
-            "/images/certificates/Tramo1.png",
+            "/images/certificates/Tramo_1.png",
             "/images/certificates/Backend_Tramo2.png",
             "/images/certificates/Cuarto_Tramo.png",
             "/images/certificates/4Tramos.png",
