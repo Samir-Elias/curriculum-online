@@ -130,7 +130,7 @@ export const profileData = {
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
           imagenes: [
             "/images/certificates/Egg_FullStack.png", 
-            "/images/certificates/Tramo1.jpeg",
+            "/images/certificates/Tramo1.png",
             "/images/certificates/Backend_Tramo2.png",
             "/images/certificates/Cuarto_Tramo.png",
             "/images/certificates/4Tramos.png",
