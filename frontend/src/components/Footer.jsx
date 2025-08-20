@@ -20,7 +20,7 @@ const Footer = ({ personalInfo }) => {
         >
           <h3 className="text-xl sm:text-2xl font-bold mb-4">Conectemos y creemos algo increíble juntos</h3>
           <p className="text-gray-300 mb-6 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-            4 años de experiencia autodidacta me han preparado para contribuir desde el día uno. 
+            6 años de experiencia autodidacta me han preparado para contribuir desde el día uno. 
             Busco un equipo donde pueda aplicar mi pasión por el desarrollo Backend y seguir creciendo.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6">
@@ -54,7 +54,7 @@ const Footer = ({ personalInfo }) => {
           </div>
           <div className="flex justify-center items-center gap-2 text-xs sm:text-sm text-gray-400">
             <Coffee className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
-            <span>Desarrollado con pasión desde Mendoza, Argentina</span>
+            <span>Desarrollado desde Mendoza, Argentina</span>
           </div>
         </motion.div>
       </div>
