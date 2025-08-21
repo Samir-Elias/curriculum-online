@@ -66,6 +66,34 @@ export const profileData = {
       repositorio: "https://github.com/Samir-Elias/ServiceBook-Spring",
       estado: "Completado y Funcional"
     },
+    //estimador de proy
+
+    {
+      nombre: "Estimador de proyectos",
+      descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
+      tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
+      imagenes: [
+        "/images/Teloapp_celview6.png",
+        "/images/Teloapp_celview1.png",
+        "/images/Teloapp_celview2.png",
+        "/images/Teloapp_celview3.png",
+        "/images/Teloapp_celview4.png",
+        "/images/Teloapp_celview5.png",
+        "/images/Teloapp_pcview.png",
+        "/images/Teloapp_pcview2.png"
+      ],
+      demoUrl: null,
+      caracteristicas: [
+        "Interfaz moderna inspirada en PedidosYa",
+        "Sistema de geolocalización con Google Maps",
+        "Búsqueda y filtros avanzados",
+        "Panel para propietarios de establecimientos",
+        "Diseño responsive y user-friendly"
+      ],
+      repositorio: "https://github.com/Samir-Elias/TeloApp",
+      estado: "En desarrollo activo"
+    },
+
     {
       nombre: "TeloApp - Marketplace de Moteles",
       descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
