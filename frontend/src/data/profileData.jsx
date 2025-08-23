@@ -227,15 +227,7 @@ export const profileData = {
       duracion: "200 horas presenciales",
       descripcion: "Formación presencial en desarrollo web frontend. Enfoque práctico en diseño UI/UX y maquetación moderna.",
       competencias: ["HTML5", "CSS3", "JavaScript", "Diseño responsive", "UI/UX", "Prototipado"],
-      certificaciones: [
-        {
-          nombre: "Certificado Diseño Web",
-          url: "https://sites.google.com/view/samir-elias-salatino/inicio",
-          imagenes: "https://via.placeholder.com/800x600/7c3aed/a855f7?text=Certificado+Diseño+Web",
-          emisor: "Escuelas Newton",
-          tipo: "imagen"
-        }
-      ],
+      
       modalidad: "Presencial",
       periodo: "2022-2023"
     }
