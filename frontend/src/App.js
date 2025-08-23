@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Resume from "./components/Resume";
-import LinkedInBadge from './components/LinkedInBadge'; // Corregida la ruta
+import LinkedInBadge from './components/LinkedinBadge'; // Corregida la ruta
 function App() {
   return (
     <div className="App">
