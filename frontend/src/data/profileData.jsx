@@ -69,29 +69,37 @@ export const profileData = {
     //estimador de proy
 
     {
-      nombre: "Estimador de proyectos",
-      descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
-      tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
+      nombre: "Estimador de Proyectos - Full-Stack Application",
+      descripcion: "Aplicación web completa para estimación de proyectos con panel administrativo. Sistema profesional de cálculo de costos, tiempos y recursos para desarrollo web. Incluye autenticación, base de datos persistente, notificaciones interactivas y dashboard completo para administradores.",
+      tecnologias: ["React", "FastAPI", "MongoDB", "Framer Motion", "Tailwind CSS", "Axios", "Python", "JWT Authentication"],
       imagenes: [
-        "/images/Teloapp_celview6.png",
-        "/images/Teloapp_celview1.png",
-        "/images/Teloapp_celview2.png",
-        "/images/Teloapp_celview3.png",
-        "/images/Teloapp_celview4.png",
-        "/images/Teloapp_celview5.png",
-        "/images/Teloapp_pcview.png",
-        "/images/Teloapp_pcview2.png"
+        "/images/estimador_calculator.png", 
+        "/images/estimador_hero.png",
+        "/images/estimador_admin_panel.png",
+        "/images/estimador_dashboard.png",
+        "/images/estimador_notifications.png"
       ],
-      demoUrl: null,
+      demoUrl: null, // Puedes agregar la URL si lo deployaste
       caracteristicas: [
-        "Interfaz moderna inspirada en PedidosYa",
-        "Sistema de geolocalización con Google Maps",
-        "Búsqueda y filtros avanzados",
-        "Panel para propietarios de establecimientos",
-        "Diseño responsive y user-friendly"
+        "Calculadora inteligente de costos y tiempos por tipo de proyecto",
+        "Panel administrativo completo con autenticación JWT",
+        "Base de datos MongoDB para persistencia de estimaciones",
+        "Notificaciones interactivas con modales animados",
+        "Dashboard con estadísticas y métricas en tiempo real",
+        "Sistema de configuración de equipo y tarifas personalizables",
+        "API RESTful completa con documentación automática",
+        "Interfaz responsive con animaciones fluidas (Framer Motion)",
+        "Sistema de filtrado y búsqueda de estimaciones guardadas",
+        "Desglose detallado por áreas (Frontend, Backend, Design, QA)",
+        "Cálculo automático basado en complejidad y funcionalidades",
+        "Soporte para diferentes tipos de proyecto (E-commerce, WebApp, etc.)"
       ],
-      repositorio: "https://github.com/Samir-Elias/TeloApp",
-      estado: "En desarrollo activo"
+      repositorio: "https://github.com/Samir-Elias/project-estimator",
+      estado: "Completado y Funcional",
+      destacado: {
+        aspecto: "Arquitectura Full-Stack Completa",
+        detalle: "Implementación completa desde cero con FastAPI + React, incluyendo autenticación, base de datos, panel admin y cálculos avanzados"
+      }
     },
 
     {
