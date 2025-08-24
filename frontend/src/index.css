@@ -563,3 +563,250 @@ code {
     background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(6, 78, 59, 0.2));
   }
 }
+/* Agregue esto al final de index.css */
+
+/* ========================================
+   MEJORAS ESPECÍFICAS PARA RESPONSIVE
+   ======================================== */
+
+/* Asegurar que ningún elemento se salga del contenedor */
+.container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Mejoras específicas para pantallas móviles */
+@media (max-width: 640px) {
+    /* Asegurar que las cards no se salgan */
+    [class*="Card"], .card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Reducir padding en pantallas muy pequeñas */
+    .container {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+    }
+    
+    /* Mejorar badges para que no se salgan */
+    .badge, [class*="badge"] {
+        max-width: 100%;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.2;
+    }
+    
+    /* Asegurar que los flex containers respeten el ancho */
+    .flex {
+        min-width: 0;
+    }
+    
+    /* Mejorar botones en móvil */
+    button {
+        min-width: 0;
+        max-width: 100%;
+    }
+    
+    /* Reducir espacio entre elementos */
+    .gap-6 {
+        gap: 1rem !important;
+    }
+    
+    .gap-4 {
+        gap: 0.75rem !important;
+    }
+    
+    /* Ajustar títulos largos */
+    h1, h2, h3, h4, h5, h6 {
+        word-break: break-word;
+        hyphens: auto;
+        line-height: 1.2;
+    }
+    
+    /* Mejorar el comportamiento de las imágenes */
+    img {
+        max-width: 100% !important;
+        height: auto !important;
+    }
+    
+    /* Específico para certificaciones en móvil */
+    .certificate-card-enhanced {
+        margin: 0 !important;
+    }
+    
+    /* Mejorar flex containers anidados */
+    .flex > * {
+        min-width: 0;
+        flex-shrink: 1;
+    }
+    
+    /* Asegurar que los textos largos se ajusten */
+    .text-wrap, .break-words {
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        word-break: break-word !important;
+    }
+}
+
+/* Para pantallas muy pequeñas (menos de 380px) */
+@media (max-width: 380px) {
+    .container {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    
+    /* Reducir aún más los espacios */
+    .p-6 {
+        padding: 1rem !important;
+    }
+    
+    .p-4 {
+        padding: 0.75rem !important;
+    }
+    
+    .p-3 {
+        padding: 0.5rem !important;
+    }
+    
+    /* Mejorar botones muy pequeños */
+    .text-xs {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Asegurar que los badges no se desborden */
+    .badge, [class*="Badge"] {
+        font-size: 0.7rem !important;
+        padding: 0.125rem 0.375rem !important;
+    }
+    
+    /* Reducir iconos si es necesario */
+    .w-4.h-4 {
+        width: 0.875rem !important;
+        height: 0.875rem !important;
+    }
+    
+    /* Mejorar distribución de botones */
+    .flex.gap-2 {
+        gap: 0.25rem !important;
+    }
+    
+    .flex.gap-1 {
+        gap: 0.125rem !important;
+    }
+}
+
+/* Mejoras específicas para tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .container {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+/* Asegurar que los elementos de certificación no se desborden */
+.certificate-container {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.certificate-buttons {
+    flex-shrink: 0;
+    min-width: fit-content;
+}
+
+/* Mejorar el comportamiento de los modales en móvil */
+@media (max-width: 640px) {
+    .fixed.inset-0 {
+        padding: 0.5rem !important;
+    }
+    
+    .modal-content {
+        max-width: calc(100vw - 1rem) !important;
+        max-height: calc(100vh - 1rem) !important;
+    }
+}
+
+/* Prevenir desbordamiento horizontal global */
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Específicamente para elementos que pueden causar overflow */
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+/* Mejorar la responsividad de los contenedores flex */
+.flex-1 {
+    min-width: 0;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
+/* Asegurar que las imágenes de los proyectos no se desborden */
+.aspect-video {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Mejorar el comportamiento de los grids responsivos */
+.grid {
+    width: 100%;
+    max-width: 100%;
+}
+
+.grid > * {
+    min-width: 0;
+    max-width: 100%;
+}
+
+/* Corrección específica para elementos que podrían salirse */
+@media (max-width: 640px) {
+    /* Forzar que todos los elementos hijos respeten el contenedor padre */
+    .mb-12, .mb-16 {
+        margin-bottom: 2rem !important;
+    }
+    
+    .mb-6, .mb-8 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Ajustar sombras en móvil para reducir el uso de espacio */
+    .shadow-lg {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+    }
+    
+    .shadow-xl {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+    }
+}
+
+/* Mejora para elementos que usan position absolute y podrían salirse */
+.absolute {
+    max-width: calc(100% - 2rem);
+}
+
+/* Asegurar que los textos muy largos no rompan el layout */
+.break-all {
+    word-break: break-all;
+}
+
+/* Para debugging - opcional, remover en producción */
+/*
+.debug-border * {
+    outline: 1px solid red;
+}
+*/
