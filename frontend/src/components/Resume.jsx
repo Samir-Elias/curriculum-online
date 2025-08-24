@@ -7,28 +7,35 @@ import EducationSection from "./EducationSection";
 import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
-// Opcional: Solo si quieres usar el debugger de imágenes
-// import ImageDebugger from "./ImageDebugger";
+import LoadingScreen from "./LoadingScreen"; // Importar el nuevo componente
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
-  const [hasBeenVisible, setHasBeenVisible] = useState({}); // Nuevo estado para elementos que ya fueron vistos
+  const [hasBeenVisible, setHasBeenVisible] = useState({});
   const [expandedProject, setExpandedProject] = useState(null);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [showLoading, setShowLoading] = useState(true); // Estado para la pantalla de carga
 
   useEffect(() => {
+    // Manejar el scroll del body durante la carga
+    if (showLoading) {
+      document.body.classList.add('loading');
+      document.documentElement.classList.add('loading');
+    } else {
+      document.body.classList.remove('loading');
+      document.documentElement.classList.remove('loading');
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           const elementId = entry.target.id;
           
-          // Actualizar visibilidad actual
           setIsVisible(prev => ({
             ...prev,
             [elementId]: entry.isIntersecting
           }));
           
-          // Si el elemento se vuelve visible, marcarlo como "ya fue visto"
           if (entry.isIntersecting) {
             setHasBeenVisible(prev => ({
               ...prev,
@@ -40,12 +47,20 @@ const Resume = () => {
       { threshold: 0.1 }
     );
 
-    document.querySelectorAll('[id]').forEach((el) => {
-      observer.observe(el);
-    });
+    // Solo observar elementos si no estamos mostrando la pantalla de carga
+    if (!showLoading) {
+      document.querySelectorAll('[id]').forEach((el) => {
+        observer.observe(el);
+      });
+    }
 
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      // Limpiar clases al desmontar
+      document.body.classList.remove('loading');
+      document.documentElement.classList.remove('loading');
+    };
+  }, [showLoading]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -67,20 +82,27 @@ const Resume = () => {
     }
   };
 
-  // Función para determinar si una sección debe estar animada
   const getSectionVisibility = (sectionId) => {
-    // Si ya fue visto una vez, mantenerlo visible
     if (hasBeenVisible[sectionId]) {
       return "visible";
     }
-    // Si no ha sido visto y está actualmente visible, mostrarlo
     if (isVisible[sectionId]) {
       return "visible";
     }
-    // Si no ha sido visto y no está visible, ocultarlo
     return "hidden";
   };
 
+  // Función que se ejecuta cuando termina la carga
+  const handleLoadingComplete = () => {
+    setShowLoading(false);
+  };
+
+  // Si estamos mostrando la pantalla de carga, solo mostrar eso
+  if (showLoading) {
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
+  }
+
+  // Resto del componente (se muestra después de la carga)
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 print:bg-white">
       {/* Hero Section */}

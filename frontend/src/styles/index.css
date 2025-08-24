@@ -21,6 +21,8 @@
 @import './components/modals.css';
 @import './components/slider.css';
 @import './components/avatar.css';
+@import './components/loading.css';
+
 
 /* Effects and animations */
 @import './effects/animations.css';

@@ -1,0 +1,96 @@
+/* ==========================================================================
+   LOADING SCREEN STYLES - RESET COMPLETO
+   ========================================================================== */
+
+/* Prevenir cualquier overflow durante la carga */
+body.loading,
+html.loading {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Asegurar que el root container no interfiera */
+#root.loading {
+  overflow: hidden !important;
+  height: 100vh !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Reset completo para la pantalla de carga */
+.loading-screen * {
+  box-sizing: border-box !important;
+}
+
+/* Específico para móviles */
+@media (max-width: 640px) {
+  body.loading,
+  html.loading {
+    -webkit-overflow-scrolling: touch;
+    overflow: hidden !important;
+  }
+  
+  /* Prevenir zoom en inputs en móviles */
+  .loading-screen input,
+  .loading-screen textarea,
+  .loading-screen select {
+    font-size: 16px !important;
+  }
+}
+
+/* Para tablets */
+@media (min-width: 641px) and (max-width: 1024px) {
+  body.loading,
+  html.loading {
+    overflow: hidden !important;
+  }
+}
+
+/* Asegurar que no hay elementos que interfieran */
+.loading-screen {
+  position: fixed !important;
+  z-index: 99999 !important;
+  isolation: isolate !important;
+}
+
+/* Fix para Safari iOS */
+@supports (-webkit-appearance: none) and (stroke-color: transparent) {
+  .loading-screen {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+  }
+}
+
+/* Fix para navegadores antiguos */
+.loading-screen svg {
+  overflow: visible !important;
+}
+
+/* Asegurar que texto no se seleccione durante la carga */
+.loading-screen * {
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Reducir animaciones en dispositivos con poca batería */
+@media (prefers-reduced-motion: reduce) {
+  .loading-screen * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Alto contraste */
+@media (prefers-contrast: high) {
+  .loading-screen {
+    background: #000000 !important;
+  }
+}

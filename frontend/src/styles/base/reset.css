@@ -1,49 +1,213 @@
-/* Reset adicional para evitar espacios en blanco */
-* {
-    box-sizing: border-box;
-    max-width: 100%;
+/* ==========================================================================
+   CSS RESET & BASE STYLES
+   ========================================================================== */
+
+/* Reset básico */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
+/* HTML y Body - Fix para línea blanca */
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden; /* Previene scroll horizontal */
+  max-width: 100vw;
 }
 
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden; /* Previene scroll horizontal */
+  max-width: 100vw;
+  width: 100%;
+}
+
+/* Root container - React App */
 #root {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
-/* Prevenir overflow horizontal en todos los elementos */
-* {
-    max-width: 100%;
+/* Headings reset */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
-/* Específico para imágenes y contenido multimedia */
-img, video, canvas, audio, iframe, embed, object {
-    max-width: 100%;
-    height: auto;
+/* Párrafos */
+p {
+  margin: 0;
+  padding: 0;
 }
 
-/* Responsive images - Asegurar que todas las imágenes sean responsive */
+/* Listas */
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:focus,
+a:hover {
+  text-decoration: none;
+}
+
+/* Botones */
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+}
+
+/* Inputs y form elements */
+input, textarea, select {
+  font: inherit;
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/* Images */
 img {
-    max-width: 100%;
-    height: auto;
-    display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
-/* Ensure images don't break layout on small screens */
-@media (max-width: 640px) {
-    .project-image-container {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .certificate-grid {
-        grid-template-columns: 1fr;
-    }
+/* Tables */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
+
+/* SVGs */
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Code */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Remove default focus outline but keep for keyboard users */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Prevent horizontal overflow on all elements */
+* {
+  max-width: 100%;
+}
+
+/* Specific fixes for common overflow causes */
+div, section, article, aside, nav, header, footer, main {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+/* Text elements that might cause overflow */
+h1, h2, h3, h4, h5, h6, p, span, a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+/* Container elements should not overflow */
+.container, .wrapper, .content {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Fix for absolutely positioned elements */
+[style*="position: absolute"] {
+  max-width: 100vw;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Remove animations and transitions for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Print styles reset */
+@media print {
+  *, *::before, *::after {
+    background: transparent !important;
+    color: black !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* Debug helper - Descomenta para identificar elementos que causan overflow */
+/*
+* {
+  outline: 1px solid red !important;
+  position: relative;
+}
+
+*:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.1);
+  pointer-events: none;
+  z-index: 10000;
+}
+*/
