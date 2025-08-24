@@ -64,4 +64,4 @@ const ObjectiveSection = ({ objetivoProfesional, isVisible, containerVariants, i
   );
 };
 
-export default ObjectiveSection;
+export default ObjectiveSection; 
