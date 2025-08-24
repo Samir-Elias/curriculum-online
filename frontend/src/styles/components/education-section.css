@@ -1,12 +1,14 @@
 /* ==========================================================================
-   EDUCATION SECTION - COMPONENTE ESPECÍFICO
+   EDUCATION SECTION - COMPONENTE ESPECÍFICO CON SCROLL SNAPPING
    ========================================================================== */
 
-/* Layout principal de Education Section */
+/* Layout principal de Education Section con scroll snapping */
 .education-layout-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.5rem;
+  width: 100%;
+  height: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -17,24 +19,179 @@
   }
 }
 
-/* Áreas específicas */
+/* Áreas específicas para el layout dual */
 .education-content-area {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  height: fit-content;
 }
 
 .education-certificates-area {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  height: fit-content;
 }
 
-/* Certificaciones - Aspect ratio mejorado */
-.certificate-image-container {
-  aspect-ratio: 4/3;
-  overflow: hidden;
+/* Cards de formación sin scroll interno */
+.education-card-fullscreen {
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-left: 6px solid #3b82f6;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: fit-content;
+  min-height: 400px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-card-fullscreen:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Variantes de color para education cards */
+.education-card-blue {
+  border-left-color: #3b82f6;
+  background: linear-gradient(135deg, rgba(239, 246, 255, 0.5), rgba(255, 255, 255, 0.9));
+}
+
+.education-card-emerald {
+  border-left-color: #10b981;
+  background: linear-gradient(135deg, rgba(236, 253, 245, 0.5), rgba(255, 255, 255, 0.9));
+}
+
+/* Header de la card sin overflow */
+.education-card-header {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 1.5rem;
+  flex-shrink: 0;
+}
+
+.education-card-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.education-card-subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+/* Content área que se adapta */
+.education-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow: visible;
+}
+
+/* Metadata grid mejorado */
+.education-metadata-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .education-metadata-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.education-metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(59, 130, 246, 0.05);
   border-radius: 0.5rem;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+}
+
+.education-metadata-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+/* Competencias grid sin scroll interno */
+.education-competencias-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .education-competencias-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.education-competencia-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  transition: all 0.2s ease;
+}
+
+.education-competencia-item:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.1);
+}
+
+.education-competencia-bullet {
+  width: 0.75rem;
+  height: 0.75rem;
+  background: #3b82f6;
+  border-radius: 50%;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+/* Certificaciones mejoradas */
+.education-certificates-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.education-certificate-item {
+  background: white;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border-left: 3px solid #10b981;
+}
+
+.education-certificate-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.1);
+  border-left-color: #059669;
+}
+
+/* Certificate image container mejorado */
+.certificate-image-container {
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 0;
   background: linear-gradient(45deg, #f8fafc, #f1f5f9);
   position: relative;
 }
@@ -48,52 +205,114 @@
 }
 
 .certificate-image-container:hover img {
-  transform: scale(1.02);
+  transform: scale(1.05);
 }
 
-/* Cards de certificación específicas */
-.certificate-card-with-image {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+/* Certificate info section */
+.education-certificate-info {
+  padding: 1.5rem;
+}
+
+.education-certificate-title {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.education-certificate-issuer {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+/* Expand button para las cards */
+.education-expand-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  background: rgba(59, 130, 246, 0.02);
+  color: #3b82f6;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  margin-top: auto;
+}
+
+.education-expand-button:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.education-expand-button-emerald {
+  background: rgba(16, 185, 129, 0.02);
+  color: #10b981;
+}
+
+.education-expand-button-emerald:hover {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+/* Card expandida que ocupa toda la pantalla */
+.education-card-expanded {
   background: white;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-left: 2px solid #10b981;
-  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-left: 6px solid #3b82f6;
+  max-height: 95vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+  display: flex;
+  flex-direction: column;
 }
 
-.certificate-card-with-image:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
-  border-left-color: #059669;
+.education-card-expanded::-webkit-scrollbar {
+  width: 8px;
 }
 
-.certificate-card-link-only {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  background: white;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border-left: 2px solid #3b82f6;
-  box-shadow: 0 1px 3px rgba(59, 130, 246, 0.1);
+.education-card-expanded::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
 }
 
-.certificate-card-link-only:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
-  border-left-color: #2563eb;
+.education-card-expanded::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
 }
 
-/* Fix para imágenes de certificados */
-.certificate-thumb {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+/* Content de la card expandida */
+.education-expanded-content {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .education-expanded-content {
+    grid-template-columns: 2fr 1fr;
+  }
 }
 
 /* Responsive específico para Education */
 @media (max-width: 768px) {
   .education-layout-container {
     gap: 1rem;
+  }
+  
+  .education-card-fullscreen {
+    padding: 1.5rem;
+    min-height: 300px;
+  }
+  
+  .education-card-title {
+    font-size: 1.5rem;
+  }
+  
+  .education-metadata-grid {
+    grid-template-columns: 1fr;
   }
   
   .certificate-image-container {
@@ -113,16 +332,39 @@
   .certificate-image-container {
     aspect-ratio: 3/2;
   }
+  
+  .education-card-fullscreen {
+    margin: 0 -0.5rem;
+  }
 }
 
-/* Animación específica para education cards */
-.education-card-enhanced {
+/* Estados específicos para animaciones */
+.education-card-interactive {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.education-card-enhanced:hover {
+.education-card-interactive:hover {
   transform: translateY(-2px);
-  box-shadow: 
-    0 20px 25px -5px rgba(59, 130, 246, 0.1),
-    0 10px 10px -5px rgba(59, 130, 246, 0.04);
+}
+
+/* Prevenir hover durante las animaciones */
+.slide-container.animating .education-card-interactive {
+  pointer-events: none;
+}
+
+.slide-container.animating .education-card-interactive:hover {
+  transform: none;
+}
+
+/* Print styles */
+@media print {
+  .education-card-fullscreen,
+  .education-card-expanded {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .education-expand-button {
+    display: none;
+  }
 }

@@ -1,0 +1,302 @@
+/* ==========================================================================
+   DUAL CARDS LAYOUT - SISTEMA DE SCROLL SNAPPING
+   ========================================================================== */
+
+/* SCROLL SNAP CONTAINER - El contenedor principal con scroll snap */
+.scroll-snap-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* SCROLL SNAP ITEMS - Cada sección que se "engancha" al centro */
+.scroll-snap-item {
+  min-height: 100vh;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  width: 100%;
+}
+
+/* FULLSCREEN SECTIONS - Secciones que usan toda la pantalla */
+.fullscreen-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 1rem;
+  position: relative;
+}
+
+/* FULLSCREEN CARDS - Cards que pueden crecer según el contenido */
+.fullscreen-card {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-left: 6px solid #3b82f6;
+  min-height: 60vh;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fullscreen-card-expanded {
+  max-height: 95vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.fullscreen-card-expanded::-webkit-scrollbar {
+  width: 8px;
+}
+
+.fullscreen-card-expanded::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.fullscreen-card-expanded::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+.fullscreen-card-expanded::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* DUAL CARDS GRID - Grid para las cards duales */
+.dual-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .dual-cards-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* TITLE SECTION - Sección de título fuera del scroll snap */
+.section-title-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 3rem 2rem;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1f2937;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #3b82f6;
+}
+
+/* SLIDE ANIMATIONS - Animaciones para las transiciones */
+.slide-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 400px;
+}
+
+.slide-dual-cards {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+@media (min-width: 1024px) {
+  .slide-dual-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Estados de las animaciones slide */
+.slide-dual-cards.state-normal {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.slide-dual-cards.state-pushed {
+  transform: translateX(100%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slide-expanded-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+.slide-expanded-card.state-hidden {
+  transform: translateX(-100%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.slide-expanded-card.state-visible {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mejoras de performance para las animaciones */
+.slide-dual-cards,
+.slide-expanded-card {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* RESPONSIVE - Diseño responsivo */
+@media (max-width: 768px) {
+  .scroll-snap-item {
+    padding: 1rem;
+  }
+  
+  .dual-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .title-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .scroll-snap-item {
+    padding: 0.5rem;
+  }
+  
+  .fullscreen-card {
+    min-height: 50vh;
+    max-height: 85vh;
+  }
+  
+  .dual-cards-grid {
+    gap: 1rem;
+  }
+  
+  .section-title-container {
+    padding: 2rem 1rem;
+  }
+  
+  /* En móvil, las cards se apilan en lugar de deslizarse horizontalmente */
+  .slide-dual-cards.state-pushed {
+    transform: translateY(-100%) scale(0.95);
+  }
+  
+  .slide-expanded-card.state-hidden {
+    transform: translateY(100%) scale(0.95);
+  }
+}
+
+/* PRINT STYLES - Estilos para impresión */
+@media print {
+  .scroll-snap-container {
+    height: auto;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+  
+  .scroll-snap-item {
+    min-height: auto;
+    scroll-snap-align: none;
+    page-break-inside: avoid;
+  }
+  
+  .section-title-container {
+    position: static;
+  }
+  
+  .slide-dual-cards,
+  .slide-expanded-card {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transition: none !important;
+  }
+}
+
+/* ACCESSIBILITY - Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-snap-container {
+    scroll-behavior: auto;
+  }
+  
+  .slide-dual-cards,
+  .slide-expanded-card {
+    transition: none !important;
+  }
+}
+
+/* Estados de focus para accesibilidad */
+.slide-container:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Mejoras para high contrast mode */
+@media (prefers-contrast: high) {
+  .slide-dual-cards.state-pushed {
+    opacity: 0.1 !important;
+  }
+  
+  .slide-expanded-card.state-hidden {
+    opacity: 0.1 !important;
+  }
+}
