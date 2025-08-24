@@ -42,41 +42,41 @@ const EducationSection = ({
             whileHover={{ scale: 1.01 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
-            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-r-2 border-l-blue-600 border-r-blue-300 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50">
+            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-r-2 border-l-blue-600 border-r-blue-300 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50 w-full max-w-full overflow-hidden">
               <CardHeader>
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
                   <div className="flex-1 min-w-0">
-                    <CardTitle className="text-lg sm:text-xl text-gray-800 break-words">{formacion.titulo}</CardTitle>
-                    <CardDescription className="text-base sm:text-lg text-blue-600 font-semibold">
+                    <CardTitle className="text-lg sm:text-xl text-gray-800 break-words leading-tight">{formacion.titulo}</CardTitle>
+                    <CardDescription className="text-base sm:text-lg text-blue-600 font-semibold break-words">
                       {formacion.institucion}
                     </CardDescription>
-                    <CardDescription className="text-xs sm:text-sm text-gray-500 mt-1">
+                    <CardDescription className="text-xs sm:text-sm text-gray-500 mt-1 break-words">
                       {formacion.duracion} {formacion.modalidad && `• ${formacion.modalidad}`}
                     </CardDescription>
                   </div>
-                  <div className="flex flex-row gap-2 flex-shrink-0">
+                  <div className="flex flex-wrap gap-2 flex-shrink-0">
                     {formacion.estado && (
-                      <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 text-xs">
+                      <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 text-xs whitespace-nowrap">
                         {formacion.estado}
                       </Badge>
                     )}
                     {formacion.periodo && (
-                      <Badge variant="outline" className="bg-gray-100 text-gray-800 text-xs">
+                      <Badge variant="outline" className="bg-gray-100 text-gray-800 text-xs whitespace-nowrap">
                         {formacion.periodo}
                       </Badge>
                     )}
                   </div>
                 </div>
               </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base">{formacion.descripcion}</p>
+              <CardContent className="px-4 sm:px-6">
+                <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base break-words">{formacion.descripcion}</p>
                 
                 {/* Competencias */}
                 <div className="mb-4">
                   <h4 className="font-semibold text-gray-700 mb-2 text-sm sm:text-base">Competencias desarrolladas:</h4>
                   <div className="flex flex-wrap gap-1 sm:gap-2">
                     {formacion.competencias.map((competencia, compIndex) => (
-                      <Badge key={compIndex} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs">
+                      <Badge key={compIndex} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs break-words max-w-full">
                         {competencia}
                       </Badge>
                     ))}
@@ -92,7 +92,7 @@ const EducationSection = ({
                     </h4>
                     <div className="space-y-3">
                       {formacion.certificaciones.map((cert, certIndex) => (
-                        <div key={certIndex} className="group border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-all duration-300 border-l-2 border-r border-l-emerald-500 border-r-emerald-200 shadow-emerald-100/50">
+                        <div key={certIndex} className="group border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-all duration-300 border-l-2 border-r border-l-emerald-500 border-r-emerald-200 shadow-emerald-100/50 w-full max-w-full">
                           {cert.tipo === "imagen" ? (
                             <div className="flex flex-col sm:flex-row">
                               {/* Thumbnail de la certificación */}
@@ -108,51 +108,51 @@ const EducationSection = ({
                                 </div>
                               </div>
                               {/* Información de la certificación */}
-                              <div className="flex-1 p-3 flex items-center justify-between">
-                                <div className="min-w-0 flex-1">
+                              <div className="flex-1 p-3 flex items-center justify-between min-w-0">
+                                <div className="min-w-0 flex-1 pr-2">
                                   <p className="text-sm font-medium text-gray-800 truncate">{cert.nombre}</p>
-                                  <p className="text-xs text-gray-500">{cert.emisor}</p>
+                                  <p className="text-xs text-gray-500 truncate">{cert.emisor}</p>
                                 </div>
-                                <div className="flex gap-2 ml-2 flex-shrink-0">
+                                <div className="flex gap-1 sm:gap-2 flex-shrink-0">
                                   <Button
                                     variant="outline"
                                     size="sm"
                                     onClick={() => setSelectedCertificate(cert)}
-                                    className="print:hidden text-xs border-blue-200 text-blue-700 hover:bg-blue-50"
+                                    className="print:hidden text-xs border-blue-200 text-blue-700 hover:bg-blue-50 px-2 py-1"
                                   >
                                     <Eye className="w-3 h-3 mr-1 flex-shrink-0" />
-                                    Ver
+                                    <span className="hidden xs:inline">Ver</span>
                                   </Button>
                                   <Button
                                     variant="outline"
                                     size="sm"
                                     onClick={() => window.open(cert.url)}
-                                    className="print:hidden text-xs border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                                    className="print:hidden text-xs border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-2 py-1"
                                   >
                                     <ExternalLink className="w-3 h-3 mr-1 flex-shrink-0" />
-                                    Enlace
+                                    <span className="hidden xs:inline">Enlace</span>
                                   </Button>
                                 </div>
                               </div>
                             </div>
                           ) : (
                             // Certificación solo con enlace
-                            <div className="flex items-center justify-between p-3">
-                              <div className="flex items-center flex-1 min-w-0">
+                            <div className="flex items-center justify-between p-3 min-w-0">
+                              <div className="flex items-center flex-1 min-w-0 pr-2">
                                 <FileText className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
                                 <div className="min-w-0 flex-1">
                                   <p className="text-sm font-medium text-gray-800 truncate">{cert.nombre}</p>
-                                  <p className="text-xs text-gray-500">{cert.emisor}</p>
+                                  <p className="text-xs text-gray-500 truncate">{cert.emisor}</p>
                                 </div>
                               </div>
                               <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => window.open(cert.url)}
-                                className="print:hidden text-xs ml-2 border-blue-200 text-blue-700 hover:bg-blue-50 flex-shrink-0"
+                                className="print:hidden text-xs border-blue-200 text-blue-700 hover:bg-blue-50 flex-shrink-0 px-2 py-1"
                               >
                                 <ExternalLink className="w-3 h-3 mr-1 flex-shrink-0" />
-                                Ver
+                                <span className="hidden xs:inline">Ver</span>
                               </Button>
                             </div>
                           )}

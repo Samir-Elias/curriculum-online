@@ -1,0 +1,14 @@
+/* Dark mode support (if needed in the future) */
+@media (prefers-color-scheme: dark) {
+  .project-card-enhanced {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+  }
+  
+  .education-card-enhanced {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.2), rgba(30, 41, 59, 0.9));
+  }
+  
+  .certificate-card-enhanced {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(6, 78, 59, 0.2));
+  }
+}

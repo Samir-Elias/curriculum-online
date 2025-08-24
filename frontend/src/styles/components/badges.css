@@ -1,0 +1,28 @@
+/* Animaciones sutiles para badges */
+.badge-enhanced {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.badge-enhanced:hover {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mejorar badges para que no se salgan */
+@media (max-width: 640px) {
+    .badge, [class*="badge"] {
+        max-width: 100%;
+        word-break: break-word;
+        white-space: normal;
+        line-height: 1.2;
+    }
+}
+
+/* Para pantallas muy pequeñas (menos de 380px) */
+@media (max-width: 380px) {
+    /* Asegurar que los badges no se desborden */
+    .badge, [class*="Badge"] {
+        font-size: 0.7rem !important;
+        padding: 0.125rem 0.375rem !important;
+    }
+}

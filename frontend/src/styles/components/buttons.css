@@ -1,0 +1,52 @@
+/* Mejoras para los botones */
+.button-enhanced {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.button-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.button-enhanced:hover::before {
+  left: 100%;
+}
+
+/* Mejorar botones en móvil */
+@media (max-width: 640px) {
+    button {
+        min-width: 0;
+        max-width: 100%;
+    }
+    
+    /* Mejorar distribución de botones */
+    .flex.gap-2 {
+        gap: 0.25rem !important;
+    }
+    
+    .flex.gap-1 {
+        gap: 0.125rem !important;
+    }
+}
+
+/* Para pantallas muy pequeñas (menos de 380px) */
+@media (max-width: 380px) {
+    /* Mejorar botones muy pequeños */
+    .text-xs {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Reducir iconos si es necesario */
+    .w-4.h-4 {
+        width: 0.875rem !important;
+        height: 0.875rem !important;
+    }
+}

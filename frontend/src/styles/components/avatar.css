@@ -1,0 +1,34 @@
+/* Avatar specific styles */
+.avatar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-enhanced {
+  transition: var(--transition-default);
+}
+
+.avatar-enhanced:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Avatar responsive adjustments */
+@media (max-width: 640px) {
+  .avatar-container {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* Para el HeroSection avatar específicamente */
+.hero-avatar {
+  border: 4px solid white;
+  box-shadow: var(--shadow-lg);
+}
+
+.hero-avatar:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+} 

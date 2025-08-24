@@ -1,0 +1,12 @@
+/* Efecto de resplandor sutil para elementos activos */
+.glow-blue {
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.1), 0 0 20px rgba(59, 130, 246, 0.05);
+}
+
+.glow-emerald {
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.1), 0 0 20px rgba(16, 185, 129, 0.05);
+}
+
+.glow-slate {
+  box-shadow: 0 0 0 1px rgba(71, 85, 105, 0.1), 0 0 20px rgba(71, 85, 105, 0.05);
+}

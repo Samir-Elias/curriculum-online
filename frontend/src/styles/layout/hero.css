@@ -1,0 +1,20 @@
+/* Específico para el hero section */
+.hero-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+/* Corrección específica para el gradiente del hero */
+.hero-gradient {
+    background: linear-gradient(to right, #4f46e5, #9333ea, #2563eb);
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}

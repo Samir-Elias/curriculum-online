@@ -12,6 +12,7 @@ import CertificateModal from "./CertificateModal";
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
+  const [hasBeenVisible, setHasBeenVisible] = useState({}); // Nuevo estado para elementos que ya fueron vistos
   const [expandedProject, setExpandedProject] = useState(null);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
 
@@ -19,10 +20,21 @@ const Resume = () => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
+          const elementId = entry.target.id;
+          
+          // Actualizar visibilidad actual
           setIsVisible(prev => ({
             ...prev,
-            [entry.target.id]: entry.isIntersecting
+            [elementId]: entry.isIntersecting
           }));
+          
+          // Si el elemento se vuelve visible, marcarlo como "ya fue visto"
+          if (entry.isIntersecting) {
+            setHasBeenVisible(prev => ({
+              ...prev,
+              [elementId]: true
+            }));
+          }
         });
       },
       { threshold: 0.1 }
@@ -55,6 +67,20 @@ const Resume = () => {
     }
   };
 
+  // Función para determinar si una sección debe estar animada
+  const getSectionVisibility = (sectionId) => {
+    // Si ya fue visto una vez, mantenerlo visible
+    if (hasBeenVisible[sectionId]) {
+      return "visible";
+    }
+    // Si no ha sido visto y está actualmente visible, mostrarlo
+    if (isVisible[sectionId]) {
+      return "visible";
+    }
+    // Si no ha sido visto y no está visible, ocultarlo
+    return "hidden";
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 print:bg-white">
       {/* Hero Section */}
@@ -67,7 +93,10 @@ const Resume = () => {
         {/* Stack Tecnológico */}
         <TechStack 
           tecnologiasCore={profileData.tecnologiasCore}
-          isVisible={isVisible}
+          isVisible={{
+            ...isVisible,
+            techstack: getSectionVisibility('techstack') === 'visible'
+          }}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
         />
@@ -75,7 +104,10 @@ const Resume = () => {
         {/* Proyectos Destacados */}
         <ProjectsSection 
           proyectosDestacados={profileData.proyectosDestacados}
-          isVisible={isVisible}
+          isVisible={{
+            ...isVisible,
+            projects: getSectionVisibility('projects') === 'visible'
+          }}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
           expandedProject={expandedProject}
@@ -85,7 +117,10 @@ const Resume = () => {
         {/* Formación Técnica */}
         <EducationSection 
           formacionTecnica={profileData.formacionTecnica}
-          isVisible={isVisible}
+          isVisible={{
+            ...isVisible,
+            education: getSectionVisibility('education') === 'visible'
+          }}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
           setSelectedCertificate={setSelectedCertificate}
@@ -94,7 +129,10 @@ const Resume = () => {
         {/* Objetivo Profesional */}
         <ObjectiveSection 
           objetivoProfesional={profileData.objetivoProfesional}
-          isVisible={isVisible}
+          isVisible={{
+            ...isVisible,
+            objective: getSectionVisibility('objective') === 'visible'
+          }}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
         />

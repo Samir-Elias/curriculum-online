@@ -21,7 +21,7 @@ const HeroSection = ({ personalInfo, itemVariants }) => {
   return (
     <motion.section 
       id="hero"
-      className="relative bg-gradient-to-r from-slate-900 via-gray-900 to-slate-800 text-white print:bg-gray-800"
+      className="hero-section relative bg-gradient-to-r from-slate-900 via-gray-900 to-slate-800 text-white print:bg-gray-800"
       variants={{
         hidden: { opacity: 0 },
         visible: {

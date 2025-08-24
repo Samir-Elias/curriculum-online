@@ -1,0 +1,29 @@
+/* Print styles */
+@media print {
+    .hero-section,
+    footer {
+        width: 100%;
+        position: static;
+        left: auto;
+        right: auto;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    /* Hide modal in print */
+    .certificate-modal {
+        display: none !important;
+    }
+    
+    .project-card-enhanced,
+    .education-card-enhanced,
+    .certificate-card-enhanced {
+        box-shadow: none !important;
+        transform: none !important;
+        background: white !important;
+    }
+    
+    .image-error-indicator {
+        display: none !important;
+    }
+}

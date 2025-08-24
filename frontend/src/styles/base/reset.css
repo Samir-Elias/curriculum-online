@@ -1,0 +1,49 @@
+/* Reset adicional para evitar espacios en blanco */
+* {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+#root {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+/* Prevenir overflow horizontal en todos los elementos */
+* {
+    max-width: 100%;
+}
+
+/* Específico para imágenes y contenido multimedia */
+img, video, canvas, audio, iframe, embed, object {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Responsive images - Asegurar que todas las imágenes sean responsive */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Ensure images don't break layout on small screens */
+@media (max-width: 640px) {
+    .project-image-container {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .certificate-grid {
+        grid-template-columns: 1fr;
+    }
+}

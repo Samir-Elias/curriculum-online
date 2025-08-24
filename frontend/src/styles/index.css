@@ -1,0 +1,37 @@
+/* Archivo principal que importa todos los módulos CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+@import './base/reset.css';
+@import './base/typography.css';
+@import './base/variables.css';
+
+/* Layout */
+@import './layout/container.css';
+@import './layout/responsive.css';
+@import './layout/hero.css';
+@import './layout/footer.css';
+
+/* Components */
+@import './components/cards.css';
+@import './components/buttons.css';
+@import './components/badges.css';
+@import './components/modals.css';
+@import './components/slider.css';
+@import './components/avatar.css';
+
+/* Effects and animations */
+@import './effects/animations.css';
+@import './effects/visual-effects.css';
+@import './effects/hover-effects.css';
+
+/* Themes */
+@import './themes/colors.css';
+@import './themes/shadows.css';
+
+/* Utilities */
+@import './utils/responsive-fixes.css';
+@import './utils/print.css';
+@import './utils/debugging.css';
