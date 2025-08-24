@@ -1,11 +1,22 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   BookOpen,
   Award,
   Eye,
   ExternalLink,
-  FileText
+  FileText,
+  Calendar,
+  MapPin,
+  Clock,
+  CheckCircle,
+  Users,
+  ChevronDown,
+  ChevronUp,
+  Star,
+  Target,
+  TrendingUp,
+  X
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -17,152 +28,494 @@ const EducationSection = ({
   isVisible, 
   containerVariants, 
   itemVariants, 
-  setSelectedCertificate 
+  setSelectedCertificate,
+  expandedEducation,
+  setExpandedEducation
 }) => {
+  // Variantes de animación para el slide lateral
+  const slideVariants = {
+    dual: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.6
+      }
+    },
+    pushedRight: {
+      x: "100%",
+      opacity: 0,
+      scale: 0.9,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.6
+      }
+    }
+  };
+
+  const expandedVariants = {
+    hidden: {
+      x: "-100%",
+      opacity: 0,
+      scale: 0.9
+    },
+    visible: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.6
+      }
+    },
+    exit: {
+      x: "-100%",
+      opacity: 0,
+      scale: 0.9,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        duration: 0.6
+      }
+    }
+  };
+
   return (
     <motion.section 
       id="education"
-      className="mb-12 sm:mb-16"
+      className="mb-0"
       variants={containerVariants}
       initial="hidden"
       animate={isVisible.education ? "visible" : "hidden"}
     >
-      <motion.h2 
-        className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center text-gray-800"
-        variants={itemVariants}
-      >
-        <BookOpen className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-blue-600" />
-        Formación Técnica Especializada
-      </motion.h2>
-      <div className="grid gap-6">
+      {/* Título de sección - fuera del scroll snap */}
+      <div className="section-title-container">
+        <motion.h2 
+          className="text-3xl sm:text-4xl font-bold mb-8 text-center text-gray-800"
+          variants={itemVariants}
+        >
+          <BookOpen className="inline-block w-6 h-6 sm:w-8 sm:h-8 mr-2 sm:mr-3 text-blue-600" />
+          Formación Técnica Especializada
+        </motion.h2>
+      </div>
+
+      {/* Container con scroll snapping */}
+      <div className="scroll-snap-container">
         {formacionTecnica.map((formacion, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
-            whileHover={{ scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 300 }}
+            className="scroll-snap-item fullscreen-section"
           >
-            <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-r-2 border-l-blue-600 border-r-blue-300 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50 w-full max-w-full overflow-hidden">
-              <CardHeader>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4">
-                  <div className="flex-1 min-w-0">
-                    <CardTitle className="text-lg sm:text-xl text-gray-800 break-words leading-tight">{formacion.titulo}</CardTitle>
-                    <CardDescription className="text-base sm:text-lg text-blue-600 font-semibold break-words">
-                      {formacion.institucion}
-                    </CardDescription>
-                    <CardDescription className="text-xs sm:text-sm text-gray-500 mt-1 break-words">
-                      {formacion.duracion} {formacion.modalidad && `• ${formacion.modalidad}`}
-                    </CardDescription>
-                  </div>
-                  <div className="flex flex-wrap gap-2 flex-shrink-0">
-                    {formacion.estado && (
-                      <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 text-xs whitespace-nowrap">
-                        {formacion.estado}
-                      </Badge>
-                    )}
-                    {formacion.periodo && (
-                      <Badge variant="outline" className="bg-gray-100 text-gray-800 text-xs whitespace-nowrap">
-                        {formacion.periodo}
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-              </CardHeader>
-              <CardContent className="px-4 sm:px-6">
-                <p className="text-gray-600 mb-4 leading-relaxed text-sm sm:text-base break-words">{formacion.descripcion}</p>
-                
-                {/* Competencias */}
-                <div className="mb-4">
-                  <h4 className="font-semibold text-gray-700 mb-2 text-sm sm:text-base">Competencias desarrolladas:</h4>
-                  <div className="flex flex-wrap gap-1 sm:gap-2">
-                    {formacion.competencias.map((competencia, compIndex) => (
-                      <Badge key={compIndex} variant="outline" className="bg-blue-50 text-blue-700 border-blue-200 text-xs break-words max-w-full">
-                        {competencia}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Certificaciones */}
-                {formacion.certificaciones && formacion.certificaciones.length > 0 && (
-                  <div>
-                    <h4 className="font-semibold text-gray-700 mb-3 text-sm sm:text-base flex items-center">
-                      <Award className="w-4 h-4 mr-2 text-emerald-600 flex-shrink-0" />
-                      Certificaciones obtenidas:
-                    </h4>
-                    <div className="space-y-3">
-                      {formacion.certificaciones.map((cert, certIndex) => (
-                        <div key={certIndex} className="group border border-gray-200 rounded-lg overflow-hidden bg-white hover:shadow-md transition-all duration-300 border-l-2 border-r border-l-emerald-500 border-r-emerald-200 shadow-emerald-100/50 w-full max-w-full">
-                          {cert.tipo === "imagen" ? (
-                            <div className="flex flex-col sm:flex-row">
-                              {/* Thumbnail de la certificación */}
-                              <div className="sm:w-24 sm:h-16 w-full h-32 bg-gray-100 flex-shrink-0 relative overflow-hidden cursor-pointer"
-                                   onClick={() => setSelectedCertificate(cert)}>
-                                <ImageSlider 
-                                  images={cert.imagenes}
-                                  alt={`Certificado ${cert.nombre}`}
-                                  className="w-full h-full object-cover"
-                                />
-                                <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300 flex items-center justify-center pointer-events-none">
-                                  <Eye className="w-4 h-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                </div>
-                              </div>
-                              {/* Información de la certificación */}
-                              <div className="flex-1 p-3 flex items-center justify-between min-w-0">
-                                <div className="min-w-0 flex-1 pr-2">
-                                  <p className="text-sm font-medium text-gray-800 truncate">{cert.nombre}</p>
-                                  <p className="text-xs text-gray-500 truncate">{cert.emisor}</p>
-                                </div>
-                                <div className="flex gap-1 sm:gap-2 flex-shrink-0">
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => setSelectedCertificate(cert)}
-                                    className="print:hidden text-xs border-blue-200 text-blue-700 hover:bg-blue-50 px-2 py-1"
-                                  >
-                                    <Eye className="w-3 h-3 mr-1 flex-shrink-0" />
-                                    <span className="hidden xs:inline">Ver</span>
-                                  </Button>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    onClick={() => window.open(cert.url)}
-                                    className="print:hidden text-xs border-emerald-200 text-emerald-700 hover:bg-emerald-50 px-2 py-1"
-                                  >
-                                    <ExternalLink className="w-3 h-3 mr-1 flex-shrink-0" />
-                                    <span className="hidden xs:inline">Enlace</span>
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            // Certificación solo con enlace
-                            <div className="flex items-center justify-between p-3 min-w-0">
-                              <div className="flex items-center flex-1 min-w-0 pr-2">
-                                <FileText className="w-4 h-4 mr-2 text-blue-600 flex-shrink-0" />
-                                <div className="min-w-0 flex-1">
-                                  <p className="text-sm font-medium text-gray-800 truncate">{cert.nombre}</p>
-                                  <p className="text-xs text-gray-500 truncate">{cert.emisor}</p>
-                                </div>
-                              </div>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => window.open(cert.url)}
-                                className="print:hidden text-xs border-blue-200 text-blue-700 hover:bg-blue-50 flex-shrink-0 px-2 py-1"
-                              >
-                                <ExternalLink className="w-3 h-3 mr-1 flex-shrink-0" />
-                                <span className="hidden xs:inline">Ver</span>
-                              </Button>
-                            </div>
+            {/* Contenedor que se adapta al contenido */}
+            <div className="relative w-full">
+              
+              {/* CARDS DUALES - Ocupan el espacio necesario */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`dual-${index}`}
+                  className="grid grid-cols-1 lg:grid-cols-2 gap-8 absolute inset-0 w-full"
+                  variants={slideVariants}
+                  animate={expandedEducation === index ? "pushedRight" : "dual"}
+                  style={{ pointerEvents: expandedEducation === index ? "none" : "auto" }}
+                >
+                  
+                  {/* CARD IZQUIERDA - CONTENIDO PRINCIPAL */}
+                  <Card 
+                    className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50 cursor-pointer fullscreen-card"
+                    onClick={() => setExpandedEducation(expandedEducation === index ? null : index)}
+                  >
+                    <CardHeader className="pb-6">
+                      <div className="flex justify-between items-start mb-6">
+                        <div className="flex-1 min-w-0">
+                          <CardTitle className="text-2xl sm:text-3xl text-blue-800 mb-3 leading-tight break-words">
+                            {formacion.titulo}
+                          </CardTitle>
+                          <CardDescription className="text-lg sm:text-xl text-blue-600 font-semibold mb-4 break-words">
+                            {formacion.institucion}
+                          </CardDescription>
+                        </div>
+                        <div className="flex gap-2 flex-shrink-0">
+                          {formacion.estado && (
+                            <Badge className="bg-emerald-100 text-emerald-800 border-emerald-200 text-sm px-4 py-2">
+                              {formacion.estado}
+                            </Badge>
                           )}
                         </div>
-                      ))}
-                    </div>
-                  </div>
+                      </div>
+
+                      {/* Info con iconos - más espaciada */}
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                          <Clock className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                          <div>
+                            <p className="font-semibold text-xs text-gray-600 uppercase">Duración</p>
+                            <p className="text-sm text-gray-800">{formacion.duracion}</p>
+                          </div>
+                        </div>
+                        {formacion.modalidad && (
+                          <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                            <MapPin className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                            <div>
+                              <p className="font-semibold text-xs text-gray-600 uppercase">Modalidad</p>
+                              <p className="text-sm text-gray-800">{formacion.modalidad}</p>
+                            </div>
+                          </div>
+                        )}
+                        {formacion.periodo && (
+                          <div className="flex items-center gap-3 p-3 bg-blue-50 rounded-lg">
+                            <Calendar className="w-5 h-5 text-blue-500 flex-shrink-0" />
+                            <div>
+                              <p className="font-semibold text-xs text-gray-600 uppercase">Período</p>
+                              <p className="text-sm text-gray-800">{formacion.periodo}</p>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </CardHeader>
+
+                    <CardContent className="space-y-8">
+                      {/* Descripción completa */}
+                      <div>
+                        <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
+                          {formacion.descripcion}
+                        </p>
+                      </div>
+                      
+                      {/* Todas las competencias - sin scroll, en grid */}
+                      <div>
+                        <h4 className="font-semibold text-gray-700 mb-6 text-lg flex items-center">
+                          <CheckCircle className="w-5 h-5 mr-3 text-blue-600 flex-shrink-0" />
+                          Competencias desarrolladas:
+                        </h4>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {formacion.competencias.map((competencia, compIndex) => (
+                            <div key={compIndex} className="flex items-start p-4 bg-white rounded-lg border border-blue-100 shadow-sm">
+                              <div className="w-3 h-3 bg-blue-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
+                              <span className="text-sm text-gray-700 leading-relaxed">{competencia}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Indicador de expansión */}
+                      <div className="text-center pt-6 border-t border-blue-100">
+                        <Button variant="ghost" size="lg" className="text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-8 py-4 text-base">
+                          <ChevronDown className="w-5 h-5 mr-3" />
+                          Ver certificaciones y detalles completos
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* CARD DERECHA - CERTIFICACIONES */}
+                  <Card 
+                    className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-emerald-600 bg-gradient-to-r from-emerald-50 to-white shadow-emerald-200/50 cursor-pointer fullscreen-card"
+                    onClick={() => setExpandedEducation(expandedEducation === index ? null : index)}
+                  >
+                    <CardHeader className="pb-6">
+                      <CardTitle className="text-2xl text-emerald-800 flex items-center">
+                        <Award className="w-6 h-6 mr-3 flex-shrink-0" />
+                        Certificaciones Obtenidas
+                      </CardTitle>
+                      <CardDescription className="text-emerald-600 text-lg">
+                        {formacion.certificaciones?.length || 0} certificación{formacion.certificaciones?.length !== 1 ? 'es' : ''} disponible{formacion.certificaciones?.length !== 1 ? 's' : ''}
+                      </CardDescription>
+                    </CardHeader>
+                    
+                    <CardContent className="space-y-8">
+                      {formacion.certificaciones && formacion.certificaciones.length > 0 ? (
+                        <div className="space-y-6">
+                          {/* Mostrar todas las certificaciones */}
+                          {formacion.certificaciones.map((cert, certIndex) => (
+                            <div key={certIndex} className="bg-white rounded-lg p-6 border border-emerald-100 shadow-sm">
+                              {cert.tipo === "imagen" ? (
+                                <div>
+                                  <div className="aspect-video bg-gray-100 rounded-lg mb-4 overflow-hidden">
+                                    <ImageSlider 
+                                      images={cert.imagenes}
+                                      alt={`Certificado ${cert.nombre}`}
+                                      className="w-full h-full object-cover"
+                                    />
+                                  </div>
+                                  <h5 className="font-semibold text-gray-800 text-lg mb-2">
+                                    {cert.nombre}
+                                  </h5>
+                                  <p className="text-sm text-gray-500 mb-4">
+                                    {cert.emisor}
+                                  </p>
+                                  <div className="flex gap-3">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        setSelectedCertificate(cert);
+                                      }}
+                                      className="flex-1 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                                    >
+                                      <Eye className="w-4 h-4 mr-2" />
+                                      Ver Certificado
+                                    </Button>
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        window.open(cert.url);
+                                      }}
+                                      className="flex-1 border-blue-200 text-blue-700 hover:bg-blue-50"
+                                    >
+                                      <ExternalLink className="w-4 h-4 mr-2" />
+                                      Enlace Original
+                                    </Button>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-between">
+                                  <div className="flex items-center flex-1 min-w-0">
+                                    <FileText className="w-8 h-8 mr-4 text-blue-600 flex-shrink-0" />
+                                    <div className="min-w-0">
+                                      <h5 className="font-semibold text-gray-800 text-lg mb-1">
+                                        {cert.nombre}
+                                      </h5>
+                                      <p className="text-sm text-gray-500">{cert.emisor}</p>
+                                    </div>
+                                  </div>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      window.open(cert.url);
+                                    }}
+                                    className="border-blue-200 text-blue-700 hover:bg-blue-50 flex-shrink-0 ml-4"
+                                  >
+                                    <ExternalLink className="w-4 h-4 mr-2" />
+                                    Ver Enlace
+                                  </Button>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="text-center py-12 text-gray-500">
+                          <Award className="w-16 h-16 mx-auto mb-4 opacity-50" />
+                          <h3 className="text-lg font-semibold mb-2">Certificaciones en proceso</h3>
+                          <p className="text-sm">Las certificaciones estarán disponibles próximamente</p>
+                        </div>
+                      )}
+
+                      {/* Call to action */}
+                      <div className="text-center pt-6 border-t border-emerald-100">
+                        <Button variant="ghost" size="lg" className="text-emerald-600 hover:text-emerald-800 hover:bg-emerald-50 px-8 py-4 text-base">
+                          <ChevronDown className="w-5 h-5 mr-3" />
+                          Ver análisis detallado del programa
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* CARD EXPANDIDA - Vista completa sin scroll interno */}
+              <AnimatePresence>
+                {expandedEducation === index && (
+                  <motion.div
+                    key={`expanded-${index}`}
+                    className="absolute inset-0 w-full"
+                    variants={expandedVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                  >
+                    <Card className="shadow-lg hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600 bg-gradient-to-r from-blue-50 to-white shadow-blue-200/50 ring-2 ring-blue-300 fullscreen-card-expanded">
+                      <CardHeader className="pb-6">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1 min-w-0">
+                            <CardTitle className="text-3xl sm:text-4xl text-blue-800 mb-3 flex items-start">
+                              <Star className="w-8 h-8 mr-4 text-yellow-500 flex-shrink-0 mt-2" />
+                              <span className="break-words leading-tight">{formacion.titulo}</span>
+                            </CardTitle>
+                            <CardDescription className="text-xl sm:text-2xl text-blue-600 font-semibold break-words">
+                              {formacion.institucion}
+                            </CardDescription>
+                          </div>
+                          <Button
+                            variant="outline"
+                            size="lg"
+                            onClick={() => setExpandedEducation(null)}
+                            className="text-blue-600 hover:bg-blue-50 flex-shrink-0 px-6 py-3"
+                          >
+                            <X className="w-5 h-5 mr-2" />
+                            Cerrar Vista Detallada
+                          </Button>
+                        </div>
+                      </CardHeader>
+
+                      <CardContent>
+                        {/* Grid expandido con información completa */}
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                          
+                          {/* Información detallada - 2/3 */}
+                          <div className="lg:col-span-2 space-y-10">
+                            {/* Metadata completa */}
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                              <div className="flex items-center gap-4 p-6 bg-blue-50 rounded-lg">
+                                <Clock className="w-6 h-6 text-blue-500" />
+                                <div>
+                                  <p className="font-semibold text-sm text-gray-600 uppercase tracking-wide">Duración</p>
+                                  <p className="text-lg text-gray-800 font-medium">{formacion.duracion}</p>
+                                </div>
+                              </div>
+                              {formacion.modalidad && (
+                                <div className="flex items-center gap-4 p-6 bg-blue-50 rounded-lg">
+                                  <MapPin className="w-6 h-6 text-blue-500" />
+                                  <div>
+                                    <p className="font-semibold text-sm text-gray-600 uppercase tracking-wide">Modalidad</p>
+                                    <p className="text-lg text-gray-800 font-medium">{formacion.modalidad}</p>
+                                  </div>
+                                </div>
+                              )}
+                              <div className="flex items-center gap-4 p-6 bg-blue-50 rounded-lg">
+                                <Target className="w-6 h-6 text-emerald-500" />
+                                <div>
+                                  <p className="font-semibold text-sm text-gray-600 uppercase tracking-wide">Estado</p>
+                                  <Badge className="bg-emerald-100 text-emerald-800 px-4 py-2 text-sm">
+                                    {formacion.estado}
+                                  </Badge>
+                                </div>
+                              </div>
+                            </div>
+
+                            {/* Descripción completa */}
+                            <div>
+                              <h4 className="font-bold text-gray-700 mb-6 text-xl flex items-center">
+                                <TrendingUp className="w-6 h-6 mr-3 text-blue-600" />
+                                Descripción completa del programa:
+                              </h4>
+                              <p className="text-gray-700 leading-relaxed text-lg">{formacion.descripcion}</p>
+                            </div>
+
+                            {/* Todas las competencias organizadas */}
+                            <div>
+                              <h4 className="font-bold text-gray-700 mb-8 text-xl flex items-center">
+                                <CheckCircle className="w-6 h-6 mr-3 text-blue-600" />
+                                Competencias desarrolladas:
+                              </h4>
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                {formacion.competencias.map((competencia, compIndex) => (
+                                  <div key={compIndex} className="flex items-start p-6 bg-white rounded-lg border border-blue-100 shadow-sm">
+                                    <div className="w-4 h-4 bg-blue-500 rounded-full mr-4 mt-2 flex-shrink-0"></div>
+                                    <span className="text-base text-gray-700 leading-relaxed">{competencia}</span>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* Certificaciones completas - 1/3 */}
+                          <div className="lg:col-span-1">
+                            <h4 className="font-bold text-gray-700 mb-8 text-xl flex items-center">
+                              <Award className="w-6 h-6 mr-3 text-emerald-600" />
+                              Certificaciones:
+                            </h4>
+                            
+                            {formacion.certificaciones && formacion.certificaciones.length > 0 ? (
+                              <div className="space-y-6">
+                                {formacion.certificaciones.map((cert, certIndex) => (
+                                  <div key={certIndex} className="border border-emerald-200 rounded-lg bg-white overflow-hidden hover:shadow-md transition-all">
+                                    {cert.tipo === "imagen" ? (
+                                      <div>
+                                        <div className="aspect-[4/3] bg-gray-100 cursor-pointer" onClick={(e) => {
+                                          e.stopPropagation();
+                                          setSelectedCertificate(cert);
+                                        }}>
+                                          <ImageSlider 
+                                            images={cert.imagenes}
+                                            alt={`Certificado ${cert.nombre}`}
+                                            className="w-full h-full object-cover"
+                                          />
+                                        </div>
+                                        <div className="p-6">
+                                          <h5 className="font-semibold text-gray-800 text-base mb-2">{cert.nombre}</h5>
+                                          <p className="text-sm text-gray-500 mb-4">{cert.emisor}</p>
+                                          <div className="flex gap-3">
+                                            <Button
+                                              variant="outline"
+                                              size="sm"
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                setSelectedCertificate(cert);
+                                              }}
+                                              className="flex-1 border-emerald-200 text-emerald-700 hover:bg-emerald-50"
+                                            >
+                                              <Eye className="w-4 h-4 mr-2" />
+                                              Ver
+                                            </Button>
+                                            <Button
+                                              variant="outline"
+                                              size="sm"
+                                              onClick={(e) => {
+                                                e.stopPropagation();
+                                                window.open(cert.url);
+                                              }}
+                                              className="flex-1 border-blue-200 text-blue-700 hover:bg-blue-50"
+                                            >
+                                              <ExternalLink className="w-4 h-4 mr-2" />
+                                              Enlace
+                                            </Button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    ) : (
+                                      <div className="p-6 flex items-center justify-between">
+                                        <div className="flex items-center flex-1 min-w-0">
+                                          <FileText className="w-8 h-8 mr-4 text-blue-600 flex-shrink-0" />
+                                          <div className="min-w-0">
+                                            <h5 className="font-semibold text-gray-800 text-base">{cert.nombre}</h5>
+                                            <p className="text-sm text-gray-500">{cert.emisor}</p>
+                                          </div>
+                                        </div>
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          onClick={(e) => {
+                                            e.stopPropagation();
+                                            window.open(cert.url);
+                                          }}
+                                          className="border-blue-200 text-blue-700 hover:bg-blue-50 flex-shrink-0 ml-4"
+                                        >
+                                          <ExternalLink className="w-4 h-4" />
+                                        </Button>
+                                      </div>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            ) : (
+                              <div className="text-center py-12 text-gray-500 border-2 border-dashed border-gray-200 rounded-lg">
+                                <Award className="w-12 h-12 mx-auto mb-4 opacity-50" />
+                                <p className="text-base">Certificaciones en proceso</p>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </motion.div>
                 )}
-              </CardContent>
-            </Card>
+              </AnimatePresence>
+            </div>
           </motion.div>
         ))}
       </div>

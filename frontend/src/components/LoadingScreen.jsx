@@ -18,8 +18,8 @@ const LoadingScreen = ({ onLoadingComplete }) => {
       // Esperar un poco más para que termine la animación de salida
       setTimeout(() => {
         onLoadingComplete();
-      }, 900);
-    }, 4500);
+      }, 800);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);

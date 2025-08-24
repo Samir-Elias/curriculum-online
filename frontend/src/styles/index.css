@@ -13,6 +13,7 @@
 @import './layout/responsive.css';
 @import './layout/hero.css';
 @import './layout/footer.css';
+@import './layout/section-layouts.css'; /* NUEVO */
 
 /* Components */
 @import './components/cards.css';
@@ -22,12 +23,16 @@
 @import './components/slider.css';
 @import './components/avatar.css';
 @import './components/loading.css';
-
+@import './components/education-section.css'; /* NUEVO */
+@import './components/objective-section.css'; /* NUEVO */
+@import './components/dual-cards-layout.css'; /* NUEVO */
 
 /* Effects and animations */
 @import './effects/animations.css';
 @import './effects/visual-effects.css';
 @import './effects/hover-effects.css';
+@import './effects/section-effects.css'; /* NUEVO */
+@import './effects/slide-animations.css'; /* NUEVO */
 
 /* Themes */
 @import './themes/colors.css';
@@ -37,3 +42,4 @@
 @import './utils/responsive-fixes.css';
 @import './utils/print.css';
 @import './utils/debugging.css';
+@import './utils/section-responsive.css'; /* NUEVO */

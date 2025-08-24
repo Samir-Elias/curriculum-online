@@ -1,0 +1,320 @@
+/* ==========================================================================
+   SLIDE ANIMATIONS - ANIMACIONES DE DESPLAZAMIENTO LATERAL
+   ========================================================================== */
+
+/* Container para animaciones de slide */
+.slide-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* Estados base para las animaciones */
+.slide-dual-cards {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+@media (min-width: 1024px) {
+  .slide-dual-cards {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+/* Estado normal - cards visibles */
+.slide-dual-cards.state-normal {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Estado empujado - cards se mueven a la derecha */
+.slide-dual-cards.state-pushed {
+  transform: translateX(100%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Card expandida que viene desde la izquierda */
+.slide-expanded-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+}
+
+/* Estado oculto - card expandida fuera de pantalla */
+.slide-expanded-card.state-hidden {
+  transform: translateX(-100%) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Estado visible - card expandida en posición */
+.slide-expanded-card.state-visible {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Mejoras de performance para las animaciones */
+.slide-dual-cards,
+.slide-expanded-card {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+}
+
+/* Custom scrollbar para contenido expandido */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Efectos de hover durante las transiciones */
+.slide-container .card-interactive {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-container .card-interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Prevenir hover durante las animaciones */
+.slide-container.animating .card-interactive {
+  pointer-events: none;
+}
+
+.slide-container.animating .card-interactive:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Indicadores de loading durante las transiciones */
+.slide-loading-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.slide-container.loading .slide-loading-indicator {
+  opacity: 1;
+}
+
+.slide-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid #e2e8f0;
+  border-top: 3px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Efectos de blur durante las transiciones */
+.slide-container.transitioning .slide-dual-cards {
+  filter: blur(1px);
+}
+
+.slide-container.transitioning .slide-expanded-card {
+  filter: blur(1px);
+}
+
+/* Animaciones de entrada suaves para contenido */
+.slide-content-enter {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: slideContentIn 0.4s ease forwards;
+  animation-delay: 0.3s;
+}
+
+@keyframes slideContentIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive behavior para las animaciones */
+@media (max-width: 1023px) {
+  .slide-dual-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  /* En móvil, las cards se apilan en lugar de deslizarse horizontalmente */
+  .slide-dual-cards.state-pushed {
+    transform: translateY(-100%) scale(0.95);
+  }
+  
+  .slide-expanded-card.state-hidden {
+    transform: translateY(100%) scale(0.95);
+  }
+}
+
+@media (max-width: 640px) {
+  .slide-dual-cards {
+    gap: 1rem;
+  }
+  
+  /* Animaciones más rápidas en móvil */
+  .slide-dual-cards,
+  .slide-expanded-card {
+    transition-duration: 0.4s;
+  }
+}
+
+/* Reducir animaciones si el usuario lo prefiere */
+@media (prefers-reduced-motion: reduce) {
+  .slide-dual-cards,
+  .slide-expanded-card {
+    transition-duration: 0.1s !important;
+  }
+  
+  .slide-content-enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Estados de focus para accesibilidad */
+.slide-container:focus-within {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Mejoras para high contrast mode */
+@media (prefers-contrast: high) {
+  .slide-dual-cards.state-pushed {
+    opacity: 0.1 !important;
+  }
+  
+  .slide-expanded-card.state-hidden {
+    opacity: 0.1 !important;
+  }
+}
+
+/* Print styles - desactivar animaciones */
+@media print {
+  .slide-dual-cards,
+  .slide-expanded-card {
+    position: static !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transition: none !important;
+  }
+  
+  .slide-container {
+    overflow: visible !important;
+  }
+  
+  .custom-scrollbar {
+    overflow: visible !important;
+    max-height: none !important;
+  }
+}
+
+/* Debug mode - para desarrollo */
+.slide-debug .slide-dual-cards {
+  border: 2px solid red;
+}
+
+.slide-debug .slide-expanded-card {
+  border: 2px solid blue;
+}
+
+.slide-debug .slide-container {
+  border: 2px solid green;
+}
+
+/* Animaciones adicionales para elementos específicos */
+.slide-badge-enter {
+  opacity: 0;
+  transform: scale(0.8);
+  animation: slideBadgeIn 0.3s ease forwards;
+}
+
+.slide-badge-enter:nth-child(1) { animation-delay: 0.1s; }
+.slide-badge-enter:nth-child(2) { animation-delay: 0.15s; }
+.slide-badge-enter:nth-child(3) { animation-delay: 0.2s; }
+
+@keyframes slideBadgeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Efectos especiales para botones durante las transiciones */
+.slide-button-special {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide-button-special::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.slide-button-special:hover::before {
+  left: 100%;
+}
+
+/* Optimizaciones de GPU */
+.slide-dual-cards,
+.slide-expanded-card,
+.card-interactive {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}

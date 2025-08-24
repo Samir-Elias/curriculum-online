@@ -66,8 +66,6 @@ export const profileData = {
       repositorio: "https://github.com/Samir-Elias/ServiceBook-Spring",
       estado: "Completado y Funcional"
     },
-    //estimador de proy
-
     {
       nombre: "Estimador de Proyectos - Full-Stack Application",
       descripcion: "Aplicación web completa para estimación de proyectos con panel administrativo. Sistema profesional de cálculo de costos, tiempos y recursos para desarrollo web. Incluye autenticación, base de datos persistente, notificaciones interactivas y dashboard completo para administradores.",
@@ -79,7 +77,7 @@ export const profileData = {
         "/images/estimador_dashboard.png",
         "/images/estimador_notifications.png"
       ],
-      demoUrl: null, // Puedes agregar la URL si lo deployaste
+      demoUrl: "https://estimador-de-proyectos.vercel.app",
       caracteristicas: [
         "Calculadora inteligente de costos y tiempos por tipo de proyecto",
         "Panel administrativo completo con autenticación JWT",
@@ -101,7 +99,6 @@ export const profileData = {
         detalle: "Implementación completa desde cero con FastAPI + React, incluyendo autenticación, base de datos, panel admin y cálculos avanzados"
       }
     },
-
     {
       nombre: "TeloApp - Marketplace de Moteles",
       descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
@@ -131,11 +128,10 @@ export const profileData = {
       nombre: "Rick & Morty Explorer App",
       descripcion: "Aplicación web interactiva que consume la API de Rick & Morty. Desarrollada para practicar integración de APIs REST y manejo de datos dinámicos.",
       tecnologias: ["JavaScript", "HTML/CSS", "API REST", "JSON"],
-       imagenes: [
+      imagenes: [
         "/images/rickymorty_pc.png",
         "/images/rickymorty_cel.png",
         "/images/rickymorty_cel2.png"
-
       ],
       demoUrl: "https://rick-morty-1.netlify.app",
       caracteristicas: [
@@ -146,34 +142,29 @@ export const profileData = {
       ],
       repositorio: "https://github.com/Samir-Elias/Rick-Morty-app",
       estado: "Completado"
-    },
-    /*{
-      nombre: "Caminito Verde ONG - Web Institucional",
-      descripcion: "Sitio web institucional para ONG ambientalista. Diseño moderno con SCSS y estructura semántica para optimización SEO.",
-      tecnologias: ["HTML5", "SCSS", "CSS3", "JavaScript"],
-      imagenes: "https://via.placeholder.com/1200x630/166534/22c55e?text=Caminito+Verde+ONG",
-      demoUrl: null,
-      caracteristicas: [
-        "Diseño responsive y accesible",
-        "Optimización SEO",
-        "Arquitectura CSS modular con SCSS",
-        "Interfaz limpia y profesional"
-      ],
-      repositorio: "https://github.com/Samir-Elias/Caminito-Verde-ONG",
-      estado: "Completado"
-    }*/
+    }
   ],
   
   formacionTecnica: [
     {
-      titulo: "Full-Stack Java - Argentina Programa 4.0 - Programación desde cero ",
-      institucion: "Egg Education - Cursado Full-Stack Java Intensivo",
-      duracion: "1.5 años (3 horas diarias, L-V)",
-      descripcion: "Formación intensiva en desarrollo Full-Stack con Java. Metodología práctica con Sprints, trabajo en equipos rotativos de 10 personas simulando entorno startup real. Programa gubernamental de formación en programación con metodología Scrum aplicada. Fundamentos sólidos de programación y mejores prácticas.",
-      competencias: ["Java avanzado", "Spring Framework", "JPA", "Maven", "SQL", "Metodologías Ágiles", "Trabajo en equipo", "Git colaborativo"],
+      titulo: "Full-Stack Java - Argentina Programa 4.0",
+      institucion: "Egg Education - Formación Gubernamental Intensiva",
+      duracion: "1.5 años intensivos (3hrs diarias L-V)",
+      modalidad: "Virtual Presencial",
+      descripcion: "Programa gubernamental intensivo de desarrollo Full-Stack con metodología Scrum aplicada. Trabajo colaborativo en equipos rotativos de 10 personas simulando entornos startup reales. Enfoque práctico con Sprints y desarrollo de proyectos completos desde cero.",
+      competencias: [
+        "Java avanzado y POO",
+        "Spring Framework y Spring Boot", 
+        "JPA/Hibernate y Maven",
+        "Base de datos SQL",
+        "Metodologías Ágiles (Scrum)",
+        "Trabajo en equipo colaborativo",
+        "Git y control de versiones",
+        "Testing y debugging"
+      ],
       certificaciones: [
         {
-          nombre: "Certificado Java Full-Stack",
+          nombre: "Certificación Full-Stack Java Argentina Programa 4.0",
           url: "https://sites.google.com/view/samir-elias-salatino/inicio",
           imagenes: [
             "/images/certificates/Egg_FullStack.png", 
@@ -183,22 +174,33 @@ export const profileData = {
             "/images/certificates/4Tramos.png",
             "/images/certificates/Proyecto_Scrum.png"
           ],
-          emisor: "Argentina Programa 4.0 - Programación desde cero",
+          emisor: "Argentina Programa 4.0 - Egg Education",
           tipo: "imagen"
         }
       ],
-      estado: "Completado"
+      estado: "Completado",
+      periodo: "2022-2023"
     },
     {
-      titulo: "Google UX Design Certificate - Aspectos Básicos del Diseño UX",
-      institucion: "Google Career Certificates (Coursera)",
-      duracion: "3 de 7 cursos completados - Modalidad Online",
-      descripcion: "Certificación profesional de Google en Diseño de Experiencia del Usuario. Formación práctica en metodologías UX, investigación de usuarios, prototipado y herramientas de diseño. Curso impartido completamente en inglés.",
-      competencias: ["UX/UI Design", "User Research", "Figma", "Prototipos de baja fidelidad", "Design Thinking", "User-Centered Design", "Wireframing", "Usability Testing"],
+      titulo: "Google UX Design Certificate - Programa Profesional",
+      institucion: "Google Career Certificates - Coursera",
+      duracion: "3 de 7 módulos completados (150+ horas)",
+      modalidad: "Online en Inglés",
+      descripcion: "Certificación profesional de Google en Diseño UX/UI. Formación práctica en metodologías de investigación de usuarios, prototipado y herramientas de diseño profesionales. Enfoque hands-on con proyectos reales y portfolio building.",
+      competencias: [
+        "UX/UI Design fundamentals",
+        "User Research y Testing",
+        "Figma y herramientas de prototipado",
+        "Design Thinking methodology",
+        "User-Centered Design",
+        "Wireframing y mockups",
+        "Usability Testing",
+        "Design Systems"
+      ],
       certificaciones: [
         {
-          nombre: "Google UX Design Certificate (3/7 módulos)",
-          url: "https://coursera.org/verify/professional-cert/tu-certificado-aqui",
+          nombre: "Google UX Design - Aspectos Básicos del Diseño UX",
+          url: "https://sites.google.com/view/samir-elias-salatino/inicio",
           imagenes: [
             "/images/certificates/certificado-ux.png",
             "/images/certificates/certificado-ux2.png",
@@ -208,19 +210,32 @@ export const profileData = {
           tipo: "imagen"
         }
       ],
-      estado: "Parcialmente Completado (3/7)",
+      estado: "En progreso (3/7 módulos)",
       periodo: "2023-2024"
     },
     {
-      titulo: "JavaScript Algorithm and Data Structures ",
-      institucion: "FreeCodeCamp",
-      duracion: "300hs of work - Modalidad Online",
-      descripcion: "Certificación JavaScript Algorithm and Data Structures",
-      competencias: ["Javascript", "Data Structures", "Algorithms"],
+      titulo: "JavaScript Algorithm and Data Structures",
+      institucion: "FreeCodeCamp - Certificación Internacional",
+      duracion: "300 horas de trabajo práctico",
+      modalidad: "Online Autoguiado",
+      descripcion: "Certificación intensiva en algoritmos y estructuras de datos con JavaScript. Enfoque práctico resolviendo problemas reales de programación, optimización de código y mejores prácticas de desarrollo.",
+      competencias: [
+        "JavaScript avanzado (ES6+)",
+        "Algoritmos de búsqueda y ordenamiento",
+        "Estructuras de datos complejas",
+        "Análisis de complejidad algorítmica",
+        "Problem-solving avanzado",
+        "Programación funcional",
+        "Optimización de rendimiento",
+        "Clean Code principles"
+      ],
       certificaciones: [
         {
-          nombre: "JavaScript Algorithm and Data Structures",
-          imagenes:"/images/certificates/FreeCodeCamp.png",
+          nombre: "JavaScript Algorithm and Data Structures Certification",
+          url: "https://sites.google.com/view/samir-elias-salatino/inicio",
+          imagenes: [
+            "/images/certificates/FreeCodeCamp.png"
+          ],
           emisor: "FreeCodeCamp",
           tipo: "imagen"
         }
@@ -228,15 +243,24 @@ export const profileData = {
       estado: "Completado",
       periodo: "2023"
     },
-  
     {
-      titulo: "Diseño de Páginas Web",
-      institucion: "Escuelas Newton",
+      titulo: "Diseño de Páginas Web - Desarrollo Frontend",
+      institucion: "Escuelas Newton - Formación Presencial",
       duracion: "200 horas presenciales",
-      descripcion: "Formación presencial en desarrollo web frontend. Enfoque práctico en diseño UI/UX y maquetación moderna.",
-      competencias: ["HTML5", "CSS3", "JavaScript", "Diseño responsive", "UI/UX", "Prototipado"],
-      
       modalidad: "Presencial",
+      descripcion: "Formación presencial intensiva en desarrollo web frontend y diseño UI/UX. Enfoque práctico en maquetación moderna, diseño responsive y experiencia de usuario. Proyectos reales con metodología hands-on.",
+      competencias: [
+        "HTML5 semántico y accesibilidad",
+        "CSS3 y técnicas avanzadas",
+        "JavaScript vanilla y DOM",
+        "Diseño responsive (Mobile-first)",
+        "UI/UX Design principles",
+        "Prototipado y wireframing",
+        "Cross-browser compatibility",
+        "Web Performance optimization"
+      ],
+      certificaciones: [],
+      estado: "Completado",
       periodo: "2022-2023"
     }
   ],
@@ -244,14 +268,14 @@ export const profileData = {
   experienciaComplementaria: [
     {
       rol: "Desarrollo de habilidades transferibles",
-      descripcion: "Experiencia laboral que ha desarrollado competencias clave para el mundo tech: gestión bajo presión, atención al detalle, resolución autónoma de problemas, y excelente comunicación con clientes."
+      descripcion: "Experiencia laboral previa que ha desarrollado competencias clave para el mundo tech: gestión bajo presión, atención al detalle, resolución autónoma de problemas, comunicación efectiva con clientes, y capacidad de adaptación a entornos dinámicos."
     }
   ],
   
   objetivoProfesional: {
     titulo: "Desarrollador Backend Java | Full-Stack Developer",
-    descripcion: "Busco incorporarme como desarrollador en un equipo dinámico donde pueda aplicar mis 6 años de experiencia en Java y Spring Framework. Especializado en Backend con sólidos conocimientos Frontend. Disponible para trabajo remoto o presencial en Mendoza.",
-    modalidades: ["Remoto", "Híbrido", "Presencial en Mendoza"],
-    niveles: ["Junior Developer", "Trainee", "Developer Jr/SSr"]
+    descripcion: "Developer especializado en Backend con Java y Spring Framework, con experiencia en proyectos Full-Stack y metodologías ágiles. Busco contribuir desde el primer día en un equipo dinámico donde pueda aplicar mis 6 años de experiencia autodidacta y seguir creciendo profesionalmente en un entorno colaborativo e innovador.",
+    modalidades: ["Trabajo Remoto", "Modalidad Híbrida", "Presencial en Mendoza"],
+    niveles: ["Junior Developer", "Developer Trainee", "Full-Stack Junior", "Backend Developer Jr"]
   }
 };

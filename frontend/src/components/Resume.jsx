@@ -7,14 +7,16 @@ import EducationSection from "./EducationSection";
 import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
-import LoadingScreen from "./LoadingScreen"; // Importar el nuevo componente
+import LoadingScreen from "./LoadingScreen";
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
   const [hasBeenVisible, setHasBeenVisible] = useState({});
   const [expandedProject, setExpandedProject] = useState(null);
+  const [expandedEducation, setExpandedEducation] = useState(null); // NUEVO
+  const [expandedObjective, setExpandedObjective] = useState(false); // NUEVO
   const [selectedCertificate, setSelectedCertificate] = useState(null);
-  const [showLoading, setShowLoading] = useState(true); // Estado para la pantalla de carga
+  const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
     // Manejar el scroll del body durante la carga
@@ -136,7 +138,7 @@ const Resume = () => {
           setExpandedProject={setExpandedProject}
         />
 
-        {/* Formación Técnica */}
+        {/* Formación Técnica - ACTUALIZADO */}
         <EducationSection 
           formacionTecnica={profileData.formacionTecnica}
           isVisible={{
@@ -146,9 +148,11 @@ const Resume = () => {
           containerVariants={containerVariants}
           itemVariants={itemVariants}
           setSelectedCertificate={setSelectedCertificate}
+          expandedEducation={expandedEducation} // NUEVO
+          setExpandedEducation={setExpandedEducation} // NUEVO
         />
 
-        {/* Objetivo Profesional */}
+        {/* Objetivo Profesional - ACTUALIZADO */}
         <ObjectiveSection 
           objetivoProfesional={profileData.objetivoProfesional}
           isVisible={{
@@ -157,6 +161,8 @@ const Resume = () => {
           }}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
+          expandedObjective={expandedObjective} // NUEVO
+          setExpandedObjective={setExpandedObjective} // NUEVO
         />
       </div>
 

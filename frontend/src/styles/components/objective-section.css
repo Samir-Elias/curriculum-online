@@ -1,0 +1,141 @@
+/* ==========================================================================
+   OBJECTIVE SECTION - COMPONENTE ESPECÍFICO
+   ========================================================================== */
+
+/* Layout principal de Objective Section */
+.objective-layout-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .objective-layout-container {
+    grid-template-columns: 3fr 2fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+/* Áreas específicas */
+.objective-main-content {
+  height: fit-content;
+}
+
+.objective-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: fit-content;
+}
+
+/* Cards de información lateral */
+.info-card-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  transition: all 0.3s ease;
+}
+
+.info-card-item:hover {
+  transform: translateX(2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.info-card-blue {
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.info-card-blue:hover {
+  border-color: rgba(59, 130, 246, 0.3);
+  background: rgba(59, 130, 246, 0.02);
+}
+
+.info-card-emerald {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.info-card-emerald:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.02);
+}
+
+/* Status card especial */
+.status-card {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.status-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.status-card:hover::before {
+  left: 100%;
+}
+
+/* Lista de fortalezas */
+.strengths-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.strengths-list .bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  margin-top: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Animación específica para objective cards */
+.objective-card-enhanced {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.objective-card-enhanced:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 10px 15px -3px rgba(16, 185, 129, 0.1),
+    0 4px 6px -2px rgba(16, 185, 129, 0.05);
+}
+
+/* Responsive específico para Objective */
+@media (max-width: 768px) {
+  .objective-layout-container {
+    gap: 1rem;
+  }
+  
+  .objective-sidebar {
+    gap: 1rem;
+  }
+  
+  .info-card-item {
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .info-card-item {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}

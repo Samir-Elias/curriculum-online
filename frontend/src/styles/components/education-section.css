@@ -1,0 +1,128 @@
+/* ==========================================================================
+   EDUCATION SECTION - COMPONENTE ESPECÍFICO
+   ========================================================================== */
+
+/* Layout principal de Education Section */
+.education-layout-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .education-layout-container {
+    grid-template-columns: 3fr 2fr;
+    gap: 2rem;
+    align-items: start;
+  }
+}
+
+/* Áreas específicas */
+.education-content-area {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.education-certificates-area {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Certificaciones - Aspect ratio mejorado */
+.certificate-image-container {
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  background: linear-gradient(45deg, #f8fafc, #f1f5f9);
+  position: relative;
+}
+
+.certificate-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.certificate-image-container:hover img {
+  transform: scale(1.02);
+}
+
+/* Cards de certificación específicas */
+.certificate-card-with-image {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 2px solid #10b981;
+  box-shadow: 0 1px 3px rgba(16, 185, 129, 0.1);
+}
+
+.certificate-card-with-image:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  border-left-color: #059669;
+}
+
+.certificate-card-link-only {
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-left: 2px solid #3b82f6;
+  box-shadow: 0 1px 3px rgba(59, 130, 246, 0.1);
+}
+
+.certificate-card-link-only:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+  border-left-color: #2563eb;
+}
+
+/* Fix para imágenes de certificados */
+.certificate-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Responsive específico para Education */
+@media (max-width: 768px) {
+  .education-layout-container {
+    gap: 1rem;
+  }
+  
+  .certificate-image-container {
+    aspect-ratio: 16/9;
+  }
+}
+
+@media (max-width: 640px) {
+  .education-content-area {
+    order: 2;
+  }
+  
+  .education-certificates-area {
+    order: 1;
+  }
+  
+  .certificate-image-container {
+    aspect-ratio: 3/2;
+  }
+}
+
+/* Animación específica para education cards */
+.education-card-enhanced {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education-card-enhanced:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 20px 25px -5px rgba(59, 130, 246, 0.1),
+    0 10px 10px -5px rgba(59, 130, 246, 0.04);
+}
