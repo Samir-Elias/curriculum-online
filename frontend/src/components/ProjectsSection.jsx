@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Code,
   Eye,
@@ -13,7 +13,10 @@ import {
   CheckCircle,
   X,
   Zap,
-  Layers
+  Layers,
+  Maximize2,
+  Minimize2,
+  Info
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -30,6 +33,9 @@ const ProjectsSection = ({
   const [modalImageIndex, setModalImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [expandedProjects, setExpandedProjects] = useState(new Set());
+  
+  // ✨ NUEVO: Estado para cards unificadas
+  const [unifiedCards, setUnifiedCards] = useState(new Set());
 
   // Detectar mobile
   useEffect(() => {
@@ -53,6 +59,17 @@ const ProjectsSection = ({
     setExpandedProjects(newExpanded);
   };
 
+  // ✨ NUEVO: Toggle para unificar/separar cards
+  const toggleCardUnification = (index) => {
+    const newUnified = new Set(unifiedCards);
+    if (newUnified.has(index)) {
+      newUnified.delete(index);
+    } else {
+      newUnified.add(index);
+    }
+    setUnifiedCards(newUnified);
+  };
+
   const handleImageClick = (images, currentIndex) => {
     const normalizedImages = Array.isArray(images) ? images : [images];
     setSelectedProjectImages(normalizedImages);
@@ -64,7 +81,7 @@ const ProjectsSection = ({
     setModalImageIndex(0);
   };
 
-  // **MOBILE VIEW** - Lista simple y limpia
+  // **MOBILE VIEW** - Lista simple y limpia (sin cambios)
   const MobileProjectView = () => (
     <div className="mobile-projects-container">
       {proyectosDestacados.map((proyecto, index) => {
@@ -174,222 +191,411 @@ const ProjectsSection = ({
             </button>
 
             {/* Contenido expandible */}
-            {isExpanded && (
-              <motion.div
-                className="mobile-project-expanded"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Stack tecnológico */}
-                <div className="mobile-tech-section">
-                  <h4 className="mobile-section-title">
-                    <Zap className="w-4 h-4 text-blue-600" />
-                    Tecnologías:
-                  </h4>
-                  <div className="mobile-tech-badges">
-                    {proyecto.tecnologias.map((tech, techIndex) => (
-                      <span key={techIndex} className="mobile-tech-badge">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Características */}
-                <div className="mobile-features-section">
-                  <h4 className="mobile-section-title">
-                    <CheckCircle className="w-4 h-4 text-green-600" />
-                    Características:
-                  </h4>
-                  <ul className="mobile-features-list">
-                    {proyecto.caracteristicas.map((caracteristica, charIndex) => (
-                      <li key={charIndex} className="mobile-feature-item">
-                        <div className="mobile-feature-bullet"></div>
-                        {caracteristica}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* Descripción completa */}
-                <div className="mobile-description-full">
-                  <h4 className="mobile-section-title">Descripción completa:</h4>
-                  <p>{proyecto.descripcion}</p>
-                </div>
-
-                {/* Aspecto destacado si existe */}
-                {proyecto.destacado && (
-                  <div className="mobile-destacado-section">
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  className="mobile-project-expanded"
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Stack tecnológico */}
+                  <div className="mobile-tech-section">
                     <h4 className="mobile-section-title">
-                      <Star className="w-4 h-4 text-yellow-500" />
-                      Aspecto destacado:
+                      <Zap className="w-4 h-4 text-blue-600" />
+                      Tecnologías:
                     </h4>
-                    <p><strong>{proyecto.destacado.aspecto}</strong></p>
-                    {proyecto.destacado.detalle && (
-                      <p className="text-sm text-gray-600 mt-1">
-                        {proyecto.destacado.detalle}
-                      </p>
-                    )}
+                    <div className="mobile-tech-badges">
+                      {proyecto.tecnologias.map((tech, techIndex) => (
+                        <span key={techIndex} className="mobile-tech-badge">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                )}
-              </motion.div>
-            )}
+
+                  {/* Características */}
+                  <div className="mobile-features-section">
+                    <h4 className="mobile-section-title">
+                      <CheckCircle className="w-4 h-4 text-green-600" />
+                      Características:
+                    </h4>
+                    <ul className="mobile-features-list">
+                      {proyecto.caracteristicas.map((caracteristica, charIndex) => (
+                        <li key={charIndex} className="mobile-feature-item">
+                          <div className="mobile-feature-bullet"></div>
+                          {caracteristica}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Descripción completa */}
+                  <div className="mobile-description-full">
+                    <h4 className="mobile-section-title">Descripción completa:</h4>
+                    <p>{proyecto.descripcion}</p>
+                  </div>
+
+                  {/* Aspecto destacado si existe */}
+                  {proyecto.destacado && (
+                    <div className="mobile-destacado-section">
+                      <h4 className="mobile-section-title">
+                        <Star className="w-4 h-4 text-yellow-500" />
+                        Aspecto destacado:
+                      </h4>
+                      <p><strong>{proyecto.destacado.aspecto}</strong></p>
+                      {proyecto.destacado.detalle && (
+                        <p className="text-sm text-gray-600 mt-1">
+                          {proyecto.destacado.detalle}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </motion.div>
         );
       })}
     </div>
   );
 
-  // **DESKTOP VIEW** - Dual cards sin scroll snapping forzado
+  // ✨ **DESKTOP VIEW RENOVADO** - Con funcionalidad de dual cards unificables
   const DesktopProjectView = () => (
     <div className="desktop-projects-container">
-      {proyectosDestacados.map((proyecto, index) => (
-        <div key={index} className="desktop-project-section">
-          <div className="project-dual-cards">
-            
-            {/* CARD IZQUIERDA - IMAGEN Y INFORMACIÓN BÁSICA */}
-            <Card className="desktop-project-card-left">
-              <CardHeader className="desktop-project-header">
-                <CardTitle className="desktop-project-title">
-                  <GitBranch className="mr-3 w-6 h-6 flex-shrink-0" />
-                  {proyecto.nombre}
-                </CardTitle>
-                
-                <div className="desktop-project-badges">
-                  <Badge 
-                    variant="outline" 
-                    className={`desktop-status-badge ${
-                      proyecto.estado.includes('Completado') ? 'completed' : 'in-progress'
-                    }`}
-                  >
-                    <CheckCircle className="w-4 h-4" />
-                    {proyecto.estado}
-                  </Badge>
-                  {proyecto.destacado && (
-                    <Badge className="desktop-featured-badge">
-                      <Star className="w-4 h-4" />
-                      Destacado
-                    </Badge>
-                  )}
-                </div>
-              </CardHeader>
-
-              <CardContent className="desktop-project-content">
-                <div 
-                  className="desktop-project-image"
-                  onClick={() => {
-                    if (proyecto.imagenes && proyecto.imagenes.length > 0) {
-                      handleImageClick(proyecto.imagenes, 0);
-                    }
-                  }}
+      {proyectosDestacados.map((proyecto, index) => {
+        const isUnified = unifiedCards.has(index);
+        
+        return (
+          <motion.div 
+            key={index} 
+            className="desktop-project-section"
+            layout
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
+            <AnimatePresence mode="wait">
+              {!isUnified ? (
+                // ✨ DUAL CARDS - Estado normal (2 cards separadas)
+                <motion.div
+                  key="dual-cards"
+                  className="project-dual-cards"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  layout
+                  transition={{ duration: 0.4 }}
                 >
-                  <ImageSlider 
-                    images={proyecto.imagenes}
-                    alt={`Proyecto ${proyecto.nombre}`}
-                    className="w-full h-full object-cover rounded-lg"
-                    onImageClick={(imageUrl, currentIndex, allImages) => {
-                      if (allImages && allImages.length > 0) {
-                        handleImageClick(allImages, currentIndex);
-                      }
-                    }}
-                  />
-                </div>
-
-                <div className="desktop-project-description">
-                  {proyecto.descripcion}
-                </div>
-
-                <div className="desktop-project-actions">
-                  {proyecto.demoUrl && (
-                    <a
-                      href={proyecto.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="desktop-action-btn primary"
-                    >
-                      <Eye className="w-4 h-4" />
-                      Ver Demo
-                    </a>
-                  )}
-                  <a
-                    href={proyecto.repositorio}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="desktop-action-btn secondary"
-                  >
-                    <Github className="w-4 h-4" />
-                    Repositorio
-                  </a>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* CARD DERECHA - INFORMACIÓN TÉCNICA */}
-            <Card className="desktop-project-card-right">
-              <CardHeader className="desktop-project-header">
-                <CardTitle className="desktop-project-title">
-                  <Layers className="w-6 h-6 mr-2" />
-                  Stack Tecnológico
-                </CardTitle>
-                <CardDescription>
-                  Tecnologías y características implementadas
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="desktop-project-content">
-                {/* Stack tecnológico */}
-                <div className="desktop-tech-section">
-                  <h4 className="desktop-section-title">
-                    <Zap className="w-5 h-5 text-blue-600" />
-                    Tecnologías utilizadas:
-                  </h4>
-                  <div className="desktop-tech-grid">
-                    {proyecto.tecnologias.map((tech, techIndex) => (
-                      <div key={techIndex} className="desktop-tech-badge">
-                        {tech}
+                  {/* CARD IZQUIERDA - IMAGEN Y INFO BÁSICA */}
+                  <Card className="desktop-project-card-left">
+                    <CardHeader className="desktop-project-header">
+                      <CardTitle className="desktop-project-title">
+                        <GitBranch className="mr-3 w-6 h-6 flex-shrink-0" />
+                        {proyecto.nombre}
+                      </CardTitle>
+                      
+                      <div className="desktop-project-badges">
+                        <Badge 
+                          variant="outline" 
+                          className={`desktop-status-badge ${
+                            proyecto.estado.includes('Completado') ? 'completed' : 'in-progress'
+                          }`}
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                          {proyecto.estado}
+                        </Badge>
+                        {proyecto.destacado && (
+                          <Badge className="desktop-featured-badge">
+                            <Star className="w-4 h-4" />
+                            Destacado
+                          </Badge>
+                        )}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                    </CardHeader>
 
-                {/* Características */}
-                <div className="desktop-features-section">
-                  <h4 className="desktop-section-title">
-                    <CheckCircle className="w-5 h-5 text-green-600" />
-                    Características principales:
-                  </h4>
-                  <div className="desktop-features-list">
-                    {proyecto.caracteristicas.map((caracteristica, charIndex) => (
-                      <div key={charIndex} className="desktop-feature-item">
-                        <div className="desktop-feature-bullet"></div>
-                        <span>{caracteristica}</span>
+                    <CardContent className="desktop-project-content">
+                      <div 
+                        className="desktop-project-image"
+                        onClick={() => {
+                          if (proyecto.imagenes && proyecto.imagenes.length > 0) {
+                            handleImageClick(proyecto.imagenes, 0);
+                          }
+                        }}
+                      >
+                        <ImageSlider 
+                          images={proyecto.imagenes}
+                          alt={`Proyecto ${proyecto.nombre}`}
+                          className="w-full h-full object-cover rounded-lg"
+                          onImageClick={(imageUrl, currentIndex, allImages) => {
+                            if (allImages && allImages.length > 0) {
+                              handleImageClick(allImages, currentIndex);
+                            }
+                          }}
+                        />
                       </div>
-                    ))}
-                  </div>
-                </div>
 
-                {/* Aspecto destacado si existe */}
-                {proyecto.destacado && (
-                  <div className="desktop-destacado-section">
-                    <h4 className="desktop-section-title">
-                      <Star className="w-5 h-5 text-yellow-500" />
-                      Aspecto destacado:
-                    </h4>
-                    <p className="font-semibold">{proyecto.destacado.aspecto}</p>
-                    {proyecto.destacado.detalle && (
-                      <p className="text-sm text-gray-600 mt-2">
-                        {proyecto.destacado.detalle}
-                      </p>
-                    )}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      ))}
+                      <div className="desktop-project-description">
+                        {proyecto.descripcion}
+                      </div>
+
+                      <div className="desktop-project-actions">
+                        {proyecto.demoUrl && (
+                          <a
+                            href={proyecto.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="desktop-action-btn primary"
+                          >
+                            <Eye className="w-4 h-4" />
+                            Ver Demo
+                          </a>
+                        )}
+                        <a
+                          href={proyecto.repositorio}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="desktop-action-btn secondary"
+                        >
+                          <Github className="w-4 h-4" />
+                          Repositorio
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* CARD DERECHA - INFO TÉCNICA */}
+                  <Card className="desktop-project-card-right">
+                    <CardHeader className="desktop-project-header">
+                      <CardTitle className="desktop-project-title">
+                        <Layers className="w-6 h-6 mr-2" />
+                        Stack Tecnológico
+                      </CardTitle>
+                      <CardDescription>
+                        Tecnologías y características implementadas
+                      </CardDescription>
+                    </CardHeader>
+
+                    <CardContent className="desktop-project-content">
+                      {/* Stack tecnológico */}
+                      <div className="desktop-tech-section">
+                        <h4 className="desktop-section-title">
+                          <Zap className="w-5 h-5 text-blue-600" />
+                          Tecnologías utilizadas:
+                        </h4>
+                        <div className="desktop-tech-grid">
+                          {proyecto.tecnologias.map((tech, techIndex) => (
+                            <div key={techIndex} className="desktop-tech-badge">
+                              {tech}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Características principales */}
+                      <div className="desktop-features-section">
+                        <h4 className="desktop-section-title">
+                          <CheckCircle className="w-5 h-5 text-green-600" />
+                          Características:
+                        </h4>
+                        <div className="desktop-features-list">
+                          {proyecto.caracteristicas.slice(0, 4).map((caracteristica, charIndex) => (
+                            <div key={charIndex} className="desktop-feature-item">
+                              <div className="desktop-feature-bullet"></div>
+                              <span>{caracteristica}</span>
+                            </div>
+                          ))}
+                          {proyecto.caracteristicas.length > 4 && (
+                            <div className="desktop-feature-item more-features">
+                              <div className="desktop-feature-bullet"></div>
+                              <span>+{proyecto.caracteristicas.length - 4} características más</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* Botón para ver detalles completos */}
+                      <div className="desktop-details-action">
+                        <Button
+                          onClick={() => toggleCardUnification(index)}
+                          className="desktop-details-btn"
+                          variant="outline"
+                        >
+                          <Maximize2 className="w-4 h-4 mr-2" />
+                          Ver Detalles Completos
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ) : (
+                // ✨ UNIFIED CARD - Estado expandido (1 card grande)
+                <motion.div
+                  key="unified-card"
+                  className="project-unified-card"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  layout
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  <Card className="desktop-project-card-unified">
+                    <CardHeader className="desktop-project-header-unified">
+                      <div className="flex justify-between items-start">
+                        <CardTitle className="desktop-project-title-unified">
+                          <GitBranch className="mr-3 w-7 h-7 flex-shrink-0" />
+                          {proyecto.nombre}
+                        </CardTitle>
+                        <Button
+                          onClick={() => toggleCardUnification(index)}
+                          className="desktop-minimize-btn"
+                          variant="outline"
+                          size="sm"
+                        >
+                          <Minimize2 className="w-4 h-4 mr-1" />
+                          Contraer
+                        </Button>
+                      </div>
+                      
+                      <div className="desktop-project-badges-unified">
+                        <Badge 
+                          variant="outline" 
+                          className={`desktop-status-badge ${
+                            proyecto.estado.includes('Completado') ? 'completed' : 'in-progress'
+                          }`}
+                        >
+                          <CheckCircle className="w-4 h-4" />
+                          {proyecto.estado}
+                        </Badge>
+                        {proyecto.destacado && (
+                          <Badge className="desktop-featured-badge">
+                            <Star className="w-4 h-4" />
+                            Destacado
+                          </Badge>
+                        )}
+                      </div>
+                    </CardHeader>
+
+                    <CardContent className="desktop-project-content-unified">
+                      <div className="unified-content-grid">
+                        {/* Columna izquierda - Imagen y acciones */}
+                        <div className="unified-left-column">
+                          <div 
+                            className="desktop-project-image-unified"
+                            onClick={() => {
+                              if (proyecto.imagenes && proyecto.imagenes.length > 0) {
+                                handleImageClick(proyecto.imagenes, 0);
+                              }
+                            }}
+                          >
+                            <ImageSlider 
+                              images={proyecto.imagenes}
+                              alt={`Proyecto ${proyecto.nombre}`}
+                              className="w-full h-full object-cover rounded-lg"
+                              onImageClick={(imageUrl, currentIndex, allImages) => {
+                                if (allImages && allImages.length > 0) {
+                                  handleImageClick(allImages, currentIndex);
+                                }
+                              }}
+                            />
+                          </div>
+
+                          <div className="desktop-project-actions-unified">
+                            {proyecto.demoUrl && (
+                              <a
+                                href={proyecto.demoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="desktop-action-btn primary unified"
+                              >
+                                <Eye className="w-5 h-5" />
+                                Ver Demo
+                              </a>
+                            )}
+                            <a
+                              href={proyecto.repositorio}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="desktop-action-btn secondary unified"
+                            >
+                              <Github className="w-5 h-5" />
+                              Repositorio
+                            </a>
+                          </div>
+                        </div>
+
+                        {/* Columna derecha - Información completa */}
+                        <div className="unified-right-column">
+                          {/* Descripción completa */}
+                          <div className="unified-description">
+                            <h4 className="unified-section-title">
+                              <Info className="w-5 h-5 text-blue-600" />
+                              Descripción del proyecto
+                            </h4>
+                            <p className="unified-description-text">
+                              {proyecto.descripcion}
+                            </p>
+                          </div>
+
+                          {/* Stack tecnológico completo */}
+                          <div className="unified-tech-section">
+                            <h4 className="unified-section-title">
+                              <Zap className="w-5 h-5 text-blue-600" />
+                              Stack tecnológico completo
+                            </h4>
+                            <div className="unified-tech-grid">
+                              {proyecto.tecnologias.map((tech, techIndex) => (
+                                <div key={techIndex} className="unified-tech-badge">
+                                  {tech}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Todas las características */}
+                          <div className="unified-features-section">
+                            <h4 className="unified-section-title">
+                              <CheckCircle className="w-5 h-5 text-green-600" />
+                              Todas las características
+                            </h4>
+                            <div className="unified-features-grid">
+                              {proyecto.caracteristicas.map((caracteristica, charIndex) => (
+                                <div key={charIndex} className="unified-feature-item">
+                                  <div className="unified-feature-bullet"></div>
+                                  <span>{caracteristica}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+
+                          {/* Aspecto destacado si existe */}
+                          {proyecto.destacado && (
+                            <div className="unified-destacado-section">
+                              <h4 className="unified-section-title">
+                                <Star className="w-5 h-5 text-yellow-500" />
+                                Aspecto destacado
+                              </h4>
+                              <div className="unified-destacado-content">
+                                <p className="unified-destacado-title">
+                                  {proyecto.destacado.aspecto}
+                                </p>
+                                {proyecto.destacado.detalle && (
+                                  <p className="unified-destacado-detail">
+                                    {proyecto.destacado.detalle}
+                                  </p>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        );
+      })}
     </div>
   );
 
