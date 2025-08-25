@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { profileData } from "../data/profileData";
 import HeroSection from "./HeroSection";
 import TechStack from "./TechStack";
-import ProjectsSection from "./ProjectsSection"; // ← AÑADIR ESTE IMPORT
-// import ScrollCheckpoints from "./ScrollCheckpoints"; // ← COMENTAR ESTA LÍNEA
+import ProjectsSection from "./ProjectsSection";
 import EducationSection from "./EducationSection";
 import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
 import LoadingScreen from "./LoadingScreen";
+
+// ❌ NO IMPORTAR ScrollCheckpoints - ELIMINADO COMPLETAMENTE
+// import ScrollCheckpoints from "./ScrollCheckpoints"; 
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -27,6 +29,10 @@ const Resume = () => {
       document.body.classList.remove('loading');
       document.documentElement.classList.remove('loading');
     }
+
+    // 🧹 ASEGURAR QUE NO HAY CLASES DE CHECKPOINTS
+    document.body.classList.remove('checkpoints-active');
+    document.documentElement.classList.remove('checkpoints-active');
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -61,6 +67,8 @@ const Resume = () => {
       // Limpiar clases al desmontar
       document.body.classList.remove('loading');
       document.documentElement.classList.remove('loading');
+      document.body.classList.remove('checkpoints-active');
+      document.documentElement.classList.remove('checkpoints-active');
     };
   }, [showLoading]);
 
@@ -125,7 +133,7 @@ const Resume = () => {
           itemVariants={itemVariants}
         />
 
-        {/* Proyectos Destacados - NUEVO Sistema Responsive */}
+        {/* 🎯 PROYECTOS DESTACADOS - NUEVO SISTEMA LIMPIO */}
         <ProjectsSection 
           proyectosDestacados={profileData.proyectosDestacados}
           isVisible={{
@@ -135,6 +143,13 @@ const Resume = () => {
           containerVariants={containerVariants}
           itemVariants={itemVariants}
         />
+
+        {/* ❌ NO USAR ScrollCheckpoints - COMENTADO/ELIMINADO */}
+        {/* 
+        <ScrollCheckpoints 
+          proyectosDestacados={profileData.proyectosDestacados}
+        />
+        */}
 
         {/* Formación Técnica */}
         <EducationSection 

@@ -13,8 +13,7 @@ import {
   CheckCircle,
   X,
   Zap,
-  Layers,
-  ExternalLink
+  Layers
 } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
@@ -65,7 +64,7 @@ const ProjectsSection = ({
     setModalImageIndex(0);
   };
 
-  // **MOBILE VIEW** - Lista simple sin checkpoints
+  // **MOBILE VIEW** - Lista simple y limpia
   const MobileProjectView = () => (
     <div className="mobile-projects-container">
       {proyectosDestacados.map((proyecto, index) => {
@@ -243,11 +242,11 @@ const ProjectsSection = ({
     </div>
   );
 
-  // **DESKTOP VIEW** - Sistema de checkpoints (SIN ScrollCheckpoints component)
+  // **DESKTOP VIEW** - Dual cards sin scroll snapping forzado
   const DesktopProjectView = () => (
     <div className="desktop-projects-container">
       {proyectosDestacados.map((proyecto, index) => (
-        <div key={index} className="desktop-project-checkpoint">
+        <div key={index} className="desktop-project-section">
           <div className="project-dual-cards">
             
             {/* CARD IZQUIERDA - IMAGEN Y INFORMACIÓN BÁSICA */}

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PROJECTS SECTION RESPONSIVE - MOBILE & DESKTOP OPTIMIZADO
+   PROJECTS SECTION RESPONSIVE - MOBILE & DESKTOP LIMPIO SIN CHECKPOINTS
    Archivo: src/styles/components/mobile-projects.css
    ========================================================================== */
 
@@ -8,8 +8,9 @@
    ========================================================================== */
 
 .projects-section-container {
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   position: relative;
+  padding: 2rem 0;
 }
 
 .projects-section-title {
@@ -31,7 +32,7 @@
 }
 
 /* ==========================================================================
-   VISTA MÓVIL (< 768px) - LISTA SIMPLE SIN CHECKPOINTS
+   VISTA MÓVIL (< 768px) - LISTA SIMPLE Y LIMPIA
    ========================================================================== */
 
 @media (max-width: 767px) {
@@ -53,6 +54,12 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border: 1px solid #e5e7eb;
     overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .mobile-project-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
 
   /* Header de proyecto mobile */
@@ -310,7 +317,7 @@
 }
 
 /* ==========================================================================
-   VISTA DESKTOP (>= 768px) - DUAL CARDS SIN SCROLL SNAPPING FORZADO
+   VISTA DESKTOP (>= 768px) - DUAL CARDS SIN SCROLL SNAPPING
    ========================================================================== */
 
 @media (min-width: 768px) {
@@ -319,17 +326,19 @@
   .desktop-projects-container {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 6rem;
     padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
-  /* Cada proyecto como checkpoint */
-  .desktop-project-checkpoint {
-    min-height: 90vh;
+  /* Cada proyecto como sección normal (SIN altura forzada) */
+  .desktop-project-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem 0;
+    padding: 3rem 0;
+    min-height: auto; /* NO forzar altura */
   }
 
   /* Layout dual cards */
@@ -340,6 +349,7 @@
     width: 90%;
     max-width: 1400px;
     margin: 0 auto;
+    align-items: start;
   }
 
   /* Cards base desktop */
@@ -348,11 +358,12 @@
     background: white;
     border-radius: 1.5rem;
     padding: 2rem;
-    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     transition: all 0.3s ease;
+    height: fit-content;
   }
 
   .desktop-project-card-left {
@@ -366,7 +377,7 @@
   .desktop-project-card-left:hover,
   .desktop-project-card-right:hover {
     transform: translateY(-4px);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   }
 
   /* Headers desktop */
@@ -443,9 +454,12 @@
     cursor: pointer;
     transition: transform 0.3s ease;
     height: 250px;
-    background: rgba(251, 191, 36, 0.1);
-    border: 2px solid rgba(251, 191, 36, 0.2);
-    padding: 1rem;
+    background: rgba(251, 191, 36, 0.05);
+    border: 2px solid rgba(251, 191, 36, 0.1);
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .desktop-project-image:hover {
@@ -739,6 +753,10 @@
   .desktop-project-image {
     height: 200px;
   }
+  
+  .desktop-projects-container {
+    gap: 4rem;
+  }
 }
 
 /* Mobile grande */
@@ -760,6 +778,7 @@
 @media (max-width: 480px) {
   .projects-section-container {
     margin-bottom: 2rem;
+    padding: 1rem 0;
   }
   
   .mobile-projects-container {
@@ -792,6 +811,26 @@
   }
 }
 
+/* Desktop grande */
+@media (min-width: 1440px) {
+  .desktop-projects-container {
+    gap: 8rem;
+  }
+  
+  .project-dual-cards {
+    gap: 5rem;
+  }
+  
+  .desktop-project-card-left,
+  .desktop-project-card-right {
+    padding: 2.5rem;
+  }
+  
+  .desktop-project-image {
+    height: 300px;
+  }
+}
+
 /* ==========================================================================
    ACCESSIBILITY Y ESTADOS ESPECIALES
    ========================================================================== */
@@ -816,6 +855,12 @@
     transition: none !important;
     transform: none !important;
   }
+  
+  .mobile-project-card:hover,
+  .desktop-project-card-left:hover,
+  .desktop-project-card-right:hover {
+    transform: none !important;
+  }
 }
 
 /* High contrast */
@@ -829,6 +874,12 @@
   .mobile-status-badge,
   .desktop-status-badge {
     border-width: 2px;
+  }
+  
+  .mobile-action-btn.primary,
+  .desktop-action-btn.primary {
+    background: #000;
+    border-color: #000;
   }
 }
 
@@ -848,7 +899,7 @@
     height: auto !important;
   }
   
-  .desktop-project-checkpoint {
+  .desktop-project-section {
     min-height: auto;
     page-break-inside: avoid;
     margin-bottom: 2rem;
@@ -858,4 +909,46 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+  
+  .desktop-project-card-left,
+  .desktop-project-card-right {
+    box-shadow: none !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   ELIMINACIÓN DE ESTILOS CONFLICTIVOS DE CHECKPOINTS
+   ========================================================================== */
+
+/* Asegurar que NO hay scroll snapping */
+html,
+body {
+  scroll-snap-type: none !important;
+}
+
+/* Asegurar que las secciones NO tienen altura forzada */
+.desktop-project-section {
+  height: auto !important;
+  min-height: auto !important;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
+}
+
+/* Eliminar cualquier estilo de checkpoint que pueda interferir */
+.projects-section-container .checkpoint-item {
+  height: auto !important;
+  min-height: auto !important;
+}
+
+/* Performance optimizations */
+.desktop-project-card-left,
+.desktop-project-card-right {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Smooth scroll natural */
+html {
+  scroll-behavior: smooth;
 }

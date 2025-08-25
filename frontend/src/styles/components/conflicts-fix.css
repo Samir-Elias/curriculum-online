@@ -1,9 +1,8 @@
 /* ==========================================================================
-   CONFLICTOS FIX - DESACTIVAR SCROLLCHECKPOINTS EN MOBILE
+   CONFLICTS FIX - DESACTIVAR SCROLLCHECKPOINTS SOLO EN MOBILE
    Archivo: src/styles/components/conflicts-fix.css
    
    ⚠️  IMPORTANTE: Este archivo debe importarse DESPUÉS de checkpoint-projects.css
-   para hacer override de los estilos problemáticos.
    ========================================================================== */
 
 /* ==========================================================================
@@ -22,22 +21,7 @@
     scroll-snap-type: none !important;
   }
   
-  /* 2. DESACTIVAR ALTURA FORZADA DE CHECKPOINTS */
-  .checkpoint-item {
-    height: auto !important;
-    min-height: auto !important;
-    scroll-snap-align: none !important;
-    scroll-snap-stop: normal !important;
-    padding: 1rem !important;
-    display: block !important;
-  }
-  
-  .checkpoints-main-container {
-    scroll-snap-type: none !important;
-    padding: 0 !important;
-  }
-  
-  /* 3. OCULTAR NAVEGACIÓN DE CHECKPOINTS COMPLETAMENTE */
+  /* 2. OCULTAR NAVEGACIÓN DE CHECKPOINTS COMPLETAMENTE EN MOBILE */
   .scroll-indicators {
     display: none !important;
     visibility: hidden !important;
@@ -68,38 +52,29 @@
     opacity: 0 !important;
   }
   
-  /* 4. RESETEAR LAYOUT DUAL A SINGLE COLUMN */
-  .project-checkpoint-dual {
-    display: block !important;
-    grid-template-columns: none !important;
-    gap: 0 !important;
-    width: 100% !important;
-    max-width: none !important;
-    margin: 0 !important;
+  /* 3. DESACTIVAR ALTURA FORZADA DE CHECKPOINTS */
+  .checkpoint-item {
+    height: auto !important;
+    min-height: auto !important;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
     padding: 0 !important;
+    display: none !important; /* Ocultar completamente el sistema de checkpoints */
   }
   
-  /* 5. DESACTIVAR CARDS DEL SISTEMA CHECKPOINTS */
+  .checkpoints-main-container {
+    display: none !important; /* Ocultar contenedor de checkpoints */
+  }
+  
+  /* 4. DESACTIVAR CARDS DEL SISTEMA CHECKPOINTS */
   .project-card-red,
-  .project-card-celeste {
+  .project-card-celeste,
+  .project-card-expanded-full,
+  .project-checkpoint-dual {
     display: none !important;
   }
   
-  .project-card-expanded-full {
-    display: none !important;
-  }
-  
-  /* 6. RESETEAR TÍTULOS STICKY */
-  .checkpoints-title {
-    position: static !important;
-    background: none !important;
-    backdrop-filter: none !important;
-    border-bottom: none !important;
-    font-size: 1.75rem !important;
-    padding: 1rem 0 !important;
-  }
-  
-  /* 7. ELIMINAR Z-INDEX CONFLICTIVOS */
+  /* 5. ELIMINAR Z-INDEX CONFLICTIVOS */
   .scroll-indicators,
   .section-nav,
   .back-to-top-button,
@@ -108,22 +83,83 @@
     z-index: -1 !important;
   }
   
-  /* 8. DESACTIVAR ANIMACIONES DE CHECKPOINTS */
-  .checkpoint-item.active {
-    animation: none !important;
-    transform: none !important;
-  }
-  
-  /* 9. RESETEAR MODAL DE IMÁGENES DE CHECKPOINTS */
+  /* 6. DESACTIVAR MODAL DE IMÁGENES DE CHECKPOINTS */
   .image-modal-overlay {
-    z-index: -1 !important;
     display: none !important;
   }
   
-  /* 10. PREVENIR CONFLICTOS DE INTERSECTIONOBSERVER */
-  .checkpoint-item[id] {
-    scroll-margin-top: 0 !important;
-    scroll-margin-bottom: 0 !important;
+  /* 7. ASEGURAR QUE MOBILE-PROJECTS.CSS TOME PRIORIDAD */
+  .mobile-projects-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .mobile-project-card {
+    display: block !important;
+  }
+}
+
+/* ==========================================================================
+   DESKTOP OVERRIDES - MANTENER CHECKPOINTS PERO OPTIMIZAR
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  
+  /* OCULTAR MOBILE STYLES EN DESKTOP */
+  .mobile-projects-container {
+    display: none !important;
+  }
+  
+  .mobile-project-card {
+    display: none !important;
+  }
+  
+  /* OCULTAR TÍTULO DUPLICADO DE SCROLLCHECKPOINTS */
+  .checkpoints-title {
+    display: none !important; /* Ocultar el título duplicado del ScrollCheckpoints */
+  }
+  
+  /* ASEGURAR CHECKPOINTS FUNCIONEN EN DESKTOP */
+  .checkpoints-main-container {
+    display: block !important;
+  }
+  
+  .checkpoint-item {
+    display: flex !important;
+    min-height: 100vh;
+    height: auto;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+  
+  /* Hacer scroll snapping más suave en desktop */
+  html {
+    scroll-snap-type: y proximity; /* Más suave que mandatory */
+  }
+  
+  /* Navegación más discreta en desktop */
+  .scroll-indicators {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    display: flex !important;
+  }
+  
+  .scroll-indicators:hover {
+    opacity: 1;
+  }
+  
+  .section-nav {
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    display: flex !important;
+  }
+  
+  .section-nav:hover {
+    opacity: 1;
+  }
+  
+  .scroll-progress {
+    display: block !important;
   }
 }
 
@@ -153,7 +189,6 @@
   
   /* Reducir altura de checkpoints en tablet */
   .checkpoint-item {
-    height: auto;
     min-height: 80vh;
     padding: 1.5rem;
   }
@@ -161,48 +196,6 @@
   .project-checkpoint-dual {
     grid-template-columns: 1fr;
     gap: 2rem;
-  }
-}
-
-/* ==========================================================================
-   DESKTOP OVERRIDES - MANTENER FUNCIONALIDAD PERO SIN FORZAR SCROLL
-   ========================================================================== */
-
-@media (min-width: 1024px) {
-  
-  /* Hacer scroll snapping más suave en desktop */
-  html {
-    scroll-snap-type: y proximity; /* Más suave que mandatory */
-  }
-  
-  .checkpoint-item {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal; /* No forzar parada */
-  }
-  
-  /* Permitir contenido que exceda 100vh */
-  .checkpoint-item {
-    min-height: 100vh;
-    height: auto; /* Permitir crecimiento */
-  }
-  
-  /* Navegación más discreta en desktop */
-  .scroll-indicators {
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
-  }
-  
-  .scroll-indicators:hover {
-    opacity: 1;
-  }
-  
-  .section-nav {
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
-  }
-  
-  .section-nav:hover {
-    opacity: 1;
   }
 }
 
@@ -261,24 +254,6 @@ body {
     transition: none !important;
   }
 }
-
-/* ==========================================================================
-   DEBUGGING - REMOVER EN PRODUCCIÓN
-   ========================================================================== */
-
-/* Uncomment para debugging visual
-.checkpoint-item {
-  border: 2px solid red !important;
-}
-
-.project-checkpoint-dual {
-  border: 2px solid blue !important;
-}
-
-.scroll-indicators {
-  border: 2px solid green !important;
-}
-*/
 
 /* ==========================================================================
    ACCESSIBILITY FIXES
