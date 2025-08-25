@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { profileData } from "../data/profileData";
 import HeroSection from "./HeroSection";
 import TechStack from "./TechStack";
-import ScrollCheckpoints from "./ScrollCheckpoints"; // NUEVO - Reemplaza ProjectsSection
+import ProjectsSection from "./ProjectsSection"; // ← AÑADIR ESTE IMPORT
+// import ScrollCheckpoints from "./ScrollCheckpoints"; // ← COMENTAR ESTA LÍNEA
 import EducationSection from "./EducationSection";
 import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
@@ -123,10 +124,17 @@ const Resume = () => {
           containerVariants={containerVariants}
           itemVariants={itemVariants}
         />
-    {/* Proyectos Destacados - NUEVO Sistema de Checkpoints */}
-      <ScrollCheckpoints 
-        proyectosDestacados={profileData.proyectosDestacados}
-      />
+
+        {/* Proyectos Destacados - NUEVO Sistema Responsive */}
+        <ProjectsSection 
+          proyectosDestacados={profileData.proyectosDestacados}
+          isVisible={{
+            ...isVisible,
+            projects: getSectionVisibility('projects') === 'visible'
+          }}
+          containerVariants={containerVariants}
+          itemVariants={itemVariants}
+        />
 
         {/* Formación Técnica */}
         <EducationSection 
@@ -155,7 +163,6 @@ const Resume = () => {
           setExpandedObjective={setExpandedObjective}
         />
       </div>
-  
 
       {/* Footer */}
       <Footer personalInfo={profileData.personalInfo} />

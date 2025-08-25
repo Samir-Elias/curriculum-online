@@ -1,0 +1,861 @@
+/* ==========================================================================
+   PROJECTS SECTION RESPONSIVE - MOBILE & DESKTOP OPTIMIZADO
+   Archivo: src/styles/components/mobile-projects.css
+   ========================================================================== */
+
+/* ==========================================================================
+   ESTILOS BASE Y COMUNES
+   ========================================================================== */
+
+.projects-section-container {
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.projects-section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.projects-title-icon {
+  width: 2rem;
+  height: 2rem;
+  color: #3b82f6;
+}
+
+/* ==========================================================================
+   VISTA MÓVIL (< 768px) - LISTA SIMPLE SIN CHECKPOINTS
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  
+  /* Container principal mobile */
+  .mobile-projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 0 1rem;
+    max-width: 100%;
+  }
+
+  /* Card individual mobile */
+  .mobile-project-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+  }
+
+  /* Header de proyecto mobile */
+  .mobile-project-header {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-project-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .mobile-project-title h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .mobile-project-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mobile-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid;
+  }
+
+  .mobile-status-badge.completed {
+    background-color: #dcfce7;
+    color: #166534;
+    border-color: #bbf7d0;
+  }
+
+  .mobile-status-badge.in-progress {
+    background-color: #fef3c7;
+    color: #92400e;
+    border-color: #fde68a;
+  }
+
+  .mobile-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+  }
+
+  /* Imagen mobile */
+  .mobile-project-image {
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-project-image:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Descripción mobile */
+  .mobile-project-description {
+    margin-bottom: 1rem;
+  }
+
+  .mobile-project-description p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Acciones mobile */
+  .mobile-project-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .mobile-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    flex: 1;
+    justify-content: center;
+    min-width: 120px;
+  }
+
+  .mobile-action-btn.primary {
+    background: #3b82f6;
+    color: white;
+  }
+
+  .mobile-action-btn.primary:hover {
+    background: #2563eb;
+    transform: translateY(-1px);
+  }
+
+  .mobile-action-btn.secondary {
+    background: transparent;
+    color: #374151;
+    border: 1px solid #d1d5db;
+  }
+
+  .mobile-action-btn.secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    transform: translateY(-1px);
+  }
+
+  /* Botón expandir mobile */
+  .mobile-expand-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem;
+    background: #f3f4f6;
+    color: #374151;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-expand-btn:hover {
+    background: #e5e7eb;
+    border-color: #9ca3af;
+  }
+
+  /* Contenido expandible mobile */
+  .mobile-project-expanded {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    overflow: hidden;
+  }
+
+  .mobile-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Stack tecnológico mobile */
+  .mobile-tech-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .mobile-tech-badge {
+    padding: 0.25rem 0.75rem;
+    background: #dbeafe;
+    color: #1e40af;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  /* Características mobile */
+  .mobile-features-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.5;
+  }
+
+  .mobile-feature-bullet {
+    width: 0.375rem;
+    height: 0.375rem;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-top: 0.375rem;
+    flex-shrink: 0;
+  }
+
+  /* Descripción completa mobile */
+  .mobile-description-full {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobile-description-full p {
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Destacado mobile */
+  .mobile-destacado-section {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  /* Título mobile */
+  .projects-section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .projects-title-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+/* ==========================================================================
+   VISTA DESKTOP (>= 768px) - DUAL CARDS SIN SCROLL SNAPPING FORZADO
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  
+  /* Container principal desktop */
+  .desktop-projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 0 2rem;
+  }
+
+  /* Cada proyecto como checkpoint */
+  .desktop-project-checkpoint {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+
+  /* Layout dual cards */
+  .project-dual-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  /* Cards base desktop */
+  .desktop-project-card-left,
+  .desktop-project-card-right {
+    background: white;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .desktop-project-card-left {
+    border-left: 6px solid #dc2626;
+  }
+
+  .desktop-project-card-right {
+    border-left: 6px solid #2563eb;
+  }
+
+  .desktop-project-card-left:hover,
+  .desktop-project-card-right:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Headers desktop */
+  .desktop-project-header {
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 1rem;
+  }
+
+  .desktop-project-title {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 0;
+  }
+
+  /* Badges desktop */
+  .desktop-project-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .desktop-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid;
+  }
+
+  .desktop-status-badge.completed {
+    background: rgba(16, 185, 129, 0.1);
+    color: #047857;
+    border-color: rgba(16, 185, 129, 0.2);
+  }
+
+  .desktop-status-badge.in-progress {
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+    border-color: rgba(245, 158, 11, 0.2);
+  }
+
+  .desktop-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: rgba(245, 158, 11, 0.1);
+    color: #92400e;
+    border: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  /* Content desktop */
+  .desktop-project-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  /* Imagen desktop */
+  .desktop-project-image {
+    border-radius: 1rem;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    height: 250px;
+    background: rgba(251, 191, 36, 0.1);
+    border: 2px solid rgba(251, 191, 36, 0.2);
+    padding: 1rem;
+  }
+
+  .desktop-project-image:hover {
+    transform: scale(1.02);
+  }
+
+  /* Descripción desktop */
+  .desktop-project-description {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 1rem;
+  }
+
+  /* Acciones desktop */
+  .desktop-project-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .desktop-action-btn {
+    flex: 1;
+    min-width: 120px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .desktop-action-btn.primary {
+    background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+    color: white;
+    border: none;
+  }
+
+  .desktop-action-btn.primary:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+  }
+
+  .desktop-action-btn.secondary {
+    background: transparent;
+    color: #374151;
+    border: 2px solid #d1d5db;
+  }
+
+  .desktop-action-btn.secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Secciones técnicas desktop */
+  .desktop-tech-section,
+  .desktop-features-section,
+  .desktop-destacado-section {
+    margin-bottom: 2rem;
+  }
+
+  .desktop-section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 1rem;
+  }
+
+  /* Stack tecnológico desktop */
+  .desktop-tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .desktop-tech-badge {
+    background: rgba(59, 130, 246, 0.15);
+    color: #1e40af;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    transition: background-color 0.2s ease;
+  }
+
+  .desktop-tech-badge:hover {
+    background: rgba(59, 130, 246, 0.25);
+  }
+
+  /* Características desktop */
+  .desktop-features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .desktop-feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: #4b5563;
+    line-height: 1.6;
+  }
+
+  .desktop-feature-bullet {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: #22c55e;
+    border-radius: 50%;
+    margin-top: 0.375rem;
+    flex-shrink: 0;
+  }
+
+  /* Destacado desktop */
+  .desktop-destacado-section {
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);
+    border: 2px solid rgba(34, 197, 94, 0.2);
+    border-radius: 1rem;
+    padding: 2rem;
+    color: #065f46;
+  }
+}
+
+/* ==========================================================================
+   MODAL DE IMÁGENES - COMÚN PARA MOBILE Y DESKTOP
+   ========================================================================== */
+
+.projects-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 1rem;
+}
+
+.projects-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 95vh;
+  width: 100%;
+}
+
+.projects-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.projects-modal-info {
+  color: white;
+}
+
+.projects-modal-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.projects-modal-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+.projects-modal-close {
+  font-size: 0.75rem;
+  background: white;
+  color: black;
+}
+
+.projects-modal-close:hover {
+  background: #f3f4f6;
+}
+
+.projects-modal-image-container {
+  position: relative;
+  background: white;
+  border-radius: 0 0 0.75rem 0.75rem;
+  overflow: hidden;
+}
+
+.projects-modal-image-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
+  padding: 1rem;
+  min-height: 60vh;
+}
+
+.projects-modal-image {
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.projects-modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.projects-modal-nav-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.projects-modal-nav-left {
+  left: 1rem;
+}
+
+.projects-modal-nav-right {
+  right: 1rem;
+}
+
+.projects-modal-indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.projects-modal-indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.projects-modal-indicator.active {
+  background: white;
+  transform: scale(1.25);
+}
+
+.projects-modal-indicator:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS ESPECÍFICOS
+   ========================================================================== */
+
+/* Tablet específico */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .project-dual-cards {
+    gap: 3rem;
+    width: 95%;
+  }
+  
+  .desktop-project-card-left,
+  .desktop-project-card-right {
+    padding: 1.5rem;
+  }
+  
+  .desktop-project-image {
+    height: 200px;
+  }
+}
+
+/* Mobile grande */
+@media (min-width: 481px) and (max-width: 767px) {
+  .mobile-project-card {
+    padding: 2rem;
+  }
+  
+  .mobile-project-actions {
+    flex-direction: row;
+  }
+  
+  .mobile-action-btn {
+    flex: 1;
+  }
+}
+
+/* Mobile pequeño */
+@media (max-width: 480px) {
+  .projects-section-container {
+    margin-bottom: 2rem;
+  }
+  
+  .mobile-projects-container {
+    padding: 0 0.5rem;
+    gap: 1.5rem;
+  }
+  
+  .mobile-project-card {
+    padding: 1rem;
+  }
+  
+  .mobile-project-actions {
+    flex-direction: column;
+  }
+  
+  .mobile-action-btn {
+    min-width: auto;
+  }
+  
+  .projects-section-title {
+    font-size: 1.75rem;
+  }
+  
+  .projects-modal-nav-left {
+    left: 0.5rem;
+  }
+  
+  .projects-modal-nav-right {
+    right: 0.5rem;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY Y ESTADOS ESPECIALES
+   ========================================================================== */
+
+/* Estados de focus */
+.mobile-action-btn:focus,
+.desktop-action-btn:focus,
+.mobile-expand-btn:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-project-card,
+  .desktop-project-card-left,
+  .desktop-project-card-right,
+  .mobile-project-image,
+  .desktop-project-image,
+  .mobile-action-btn,
+  .desktop-action-btn {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* High contrast */
+@media (prefers-contrast: high) {
+  .mobile-project-card,
+  .desktop-project-card-left,
+  .desktop-project-card-right {
+    border: 2px solid #000;
+  }
+  
+  .mobile-status-badge,
+  .desktop-status-badge {
+    border-width: 2px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .projects-modal-overlay {
+    display: none !important;
+  }
+  
+  .mobile-expand-btn {
+    display: none !important;
+  }
+  
+  .mobile-project-expanded {
+    display: block !important;
+    opacity: 1 !important;
+    height: auto !important;
+  }
+  
+  .desktop-project-checkpoint {
+    min-height: auto;
+    page-break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+  
+  .project-dual-cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}

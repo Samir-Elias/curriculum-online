@@ -28,6 +28,9 @@
 @import './components/dual-cards-layout.css';
 @import './components/scroll-checkpoints.css'; /* NUEVO */
 @import './components/checkpoint-projects.css';
+@import './components/linkedin-badge.css';
+@import './components/mobile-projects.css';
+@import './components/conflicts-fix.css';  /* siempre al final */
 
 /* Effects and animations */
 @import './effects/animations.css';
