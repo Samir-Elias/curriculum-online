@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { profileData } from "../data/profileData";
 import HeroSection from "./HeroSection";
 import TechStack from "./TechStack";
-import ProjectsSection from "./ProjectsSection";
+import ScrollCheckpoints from "./ScrollCheckpoints"; // NUEVO - Reemplaza ProjectsSection
 import EducationSection from "./EducationSection";
 import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
@@ -12,9 +12,8 @@ import LoadingScreen from "./LoadingScreen";
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
   const [hasBeenVisible, setHasBeenVisible] = useState({});
-  const [expandedProject, setExpandedProject] = useState(null);
-  const [expandedEducation, setExpandedEducation] = useState(null); // NUEVO
-  const [expandedObjective, setExpandedObjective] = useState(false); // NUEVO
+  const [expandedEducation, setExpandedEducation] = useState(null);
+  const [expandedObjective, setExpandedObjective] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [showLoading, setShowLoading] = useState(true);
 
@@ -125,20 +124,7 @@ const Resume = () => {
           itemVariants={itemVariants}
         />
 
-        {/* Proyectos Destacados */}
-        <ProjectsSection 
-          proyectosDestacados={profileData.proyectosDestacados}
-          isVisible={{
-            ...isVisible,
-            projects: getSectionVisibility('projects') === 'visible'
-          }}
-          containerVariants={containerVariants}
-          itemVariants={itemVariants}
-          expandedProject={expandedProject}
-          setExpandedProject={setExpandedProject}
-        />
-
-        {/* Formación Técnica - ACTUALIZADO */}
+        {/* Formación Técnica */}
         <EducationSection 
           formacionTecnica={profileData.formacionTecnica}
           isVisible={{
@@ -148,11 +134,11 @@ const Resume = () => {
           containerVariants={containerVariants}
           itemVariants={itemVariants}
           setSelectedCertificate={setSelectedCertificate}
-          expandedEducation={expandedEducation} // NUEVO
-          setExpandedEducation={setExpandedEducation} // NUEVO
+          expandedEducation={expandedEducation}
+          setExpandedEducation={setExpandedEducation}
         />
 
-        {/* Objetivo Profesional - ACTUALIZADO */}
+        {/* Objetivo Profesional */}
         <ObjectiveSection 
           objetivoProfesional={profileData.objetivoProfesional}
           isVisible={{
@@ -161,10 +147,15 @@ const Resume = () => {
           }}
           containerVariants={containerVariants}
           itemVariants={itemVariants}
-          expandedObjective={expandedObjective} // NUEVO
-          setExpandedObjective={setExpandedObjective} // NUEVO
+          expandedObjective={expandedObjective}
+          setExpandedObjective={setExpandedObjective}
         />
       </div>
+
+      {/* Proyectos Destacados - NUEVO Sistema de Checkpoints */}
+      <ScrollCheckpoints 
+        proyectosDestacados={profileData.proyectosDestacados}
+      />
 
       {/* Footer */}
       <Footer personalInfo={profileData.personalInfo} />
