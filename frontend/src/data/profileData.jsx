@@ -104,14 +104,14 @@ export const profileData = {
       descripcion: "Aplicación web moderna tipo marketplace para reserva de moteles. Desarrollada con React y Node.js, incluye geolocalización, sistema de búsqueda avanzada y panel de administración para propietarios.",
       tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
       imagenes: [
+        "/images/Teloapp_pcview2.png",
         "/images/Teloapp_celview6.png",
         "/images/Teloapp_celview1.png",
         "/images/Teloapp_celview2.png",
         "/images/Teloapp_celview3.png",
         "/images/Teloapp_celview4.png",
         "/images/Teloapp_celview5.png",
-        "/images/Teloapp_pcview.png",
-        "/images/Teloapp_pcview2.png"
+        "/images/Teloapp_pcview.png"        
       ],
       demoUrl: null,
       caracteristicas: [
