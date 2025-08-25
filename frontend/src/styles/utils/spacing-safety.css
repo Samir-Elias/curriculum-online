@@ -1,0 +1,162 @@
+/* ==========================================================================
+   SISTEMA DE ESPACIADO SEGURO - CARDS NUNCA SE TOCAN
+   ========================================================================== */
+
+/* Variables CSS para espaciado dinámico */
+:root {
+  --card-gap-desktop: 4rem;
+  --card-gap-tablet: 3rem;
+  --card-gap-mobile: 2rem;
+  --section-padding: 2rem;
+  --min-card-spacing: 1.5rem; /* Espaciado mínimo absoluto */
+}
+
+/* Contenedor base para todas las secciones con cards duales */
+.dual-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--card-gap-desktop);
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+  
+  /* Garantizar que siempre haya espacio entre cards */
+  padding: 0 calc(var(--card-gap-desktop) / 4);
+}
+
+/* Aplicar a projects y education */
+.project-checkpoint-dual,
+.education-dual-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--card-gap-desktop);
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  align-items: start;
+  padding: 0 calc(var(--card-gap-desktop) / 4);
+}
+
+/* Cards base con espaciado garantizado */
+.safe-spaced-card {
+  margin: calc(var(--min-card-spacing) / 2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover sin afectar el espaciado */
+.safe-spaced-card:hover {
+  transform: translateY(-4px); /* Solo movimiento vertical */
+}
+
+/* Prevenir que las animaciones rompan el espaciado */
+.safe-spaced-card {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Centrado absoluto de las cards en la pantalla */
+.section-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--section-padding);
+  position: relative;
+}
+
+/* Offset sutil para variedad visual sin romper el centrado */
+.card-offset-left {
+  margin-top: -0.5rem;
+}
+
+.card-offset-right {
+  margin-top: 0.5rem;
+}
+
+/* Responsive con espaciado garantizado */
+@media (max-width: 1024px) {
+  :root {
+    --card-gap-desktop: var(--card-gap-tablet);
+  }
+  
+  .dual-cards-container,
+  .project-checkpoint-dual,
+  .education-dual-container {
+    gap: var(--card-gap-tablet);
+    width: 95%;
+    padding: 0 calc(var(--card-gap-tablet) / 4);
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --card-gap-desktop: var(--card-gap-mobile);
+    --section-padding: 1rem;
+  }
+  
+  .dual-cards-container,
+  .project-checkpoint-dual,
+  .education-dual-container {
+    grid-template-columns: 1fr;
+    gap: var(--card-gap-mobile);
+    width: 100%;
+    padding: 0 calc(var(--card-gap-mobile) / 2);
+  }
+  
+  /* En móvil, eliminar offsets para centrado perfecto */
+  .card-offset-left,
+  .card-offset-right {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --min-card-spacing: 1rem;
+  }
+  
+  .section-centered {
+    padding: 1rem;
+  }
+  
+  .safe-spaced-card {
+    margin: calc(var(--min-card-spacing) / 2) 0;
+  }
+}
+
+/* Orden correcto de secciones con espaciado */
+.main-sections-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-hero { order: 1; }
+.section-tech-stack { order: 2; }
+.section-projects { order: 3; }
+.section-education { order: 4; }
+.section-objectives { order: 5; }
+.section-footer { order: 6; }
+
+/* Separadores visuales opcionales */
+.section-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+  margin: 2rem auto;
+  width: 60%;
+}
+
+/* Debug mode - mostrar espaciado (comentar en producción) */
+/*
+.dual-cards-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 0, 0, 0.3);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+*/

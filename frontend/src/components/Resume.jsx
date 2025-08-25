@@ -123,6 +123,10 @@ const Resume = () => {
           containerVariants={containerVariants}
           itemVariants={itemVariants}
         />
+    {/* Proyectos Destacados - NUEVO Sistema de Checkpoints */}
+      <ScrollCheckpoints 
+        proyectosDestacados={profileData.proyectosDestacados}
+      />
 
         {/* Formación Técnica */}
         <EducationSection 
@@ -151,11 +155,7 @@ const Resume = () => {
           setExpandedObjective={setExpandedObjective}
         />
       </div>
-
-      {/* Proyectos Destacados - NUEVO Sistema de Checkpoints */}
-      <ScrollCheckpoints 
-        proyectosDestacados={profileData.proyectosDestacados}
-      />
+  
 
       {/* Footer */}
       <Footer personalInfo={profileData.personalInfo} />
