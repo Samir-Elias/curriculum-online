@@ -1,5 +1,5 @@
 /* ==========================================================================
-   LOADING SCREEN STYLES - RESET COMPLETO
+   LOADING SCREEN STYLES - PROGRAMATE THEME
    ========================================================================== */
 
 /* Prevenir cualquier overflow durante la carga */
@@ -26,6 +26,99 @@ html.loading {
   box-sizing: border-box !important;
 }
 
+/* Gradiente de fondo personalizado para PrograMate */
+.loading-screen {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%) !important;
+}
+
+/* Animación personalizada para las gotitas */
+@keyframes dropAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.8);
+  }
+  20% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(15px) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.6);
+  }
+}
+
+/* Animación para el llenado del mate */
+@keyframes fillMate {
+  0% {
+    height: 0%;
+    opacity: 0.8;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    height: 100%;
+    opacity: 1;
+  }
+}
+
+/* Animación para las ondas en la superficie */
+@keyframes waveAnimation {
+  0%, 100% {
+    rx: 25;
+    ry: 3;
+  }
+  50% {
+    rx: 27;
+    ry: 2;
+  }
+}
+
+/* Efecto de brillo para el texto PrograMate */
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px rgba(76, 175, 80, 0.3),
+      0 0 10px rgba(76, 175, 80, 0.2),
+      0 0 15px rgba(76, 175, 80, 0.1);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px rgba(76, 175, 80, 0.6),
+      0 0 20px rgba(76, 175, 80, 0.4),
+      0 0 30px rgba(76, 175, 80, 0.2);
+  }
+}
+
+/* Animación para el símbolo </> */
+@keyframes codeSymbolPulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 3px rgba(139, 69, 19, 0.3));
+  }
+  50% {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 8px rgba(139, 69, 19, 0.5));
+  }
+}
+
+/* Responsividad mejorada para el mate */
+@media (max-width: 480px) {
+  .mate-container {
+    width: 100px !important;
+    height: 120px !important;
+  }
+  
+  .loading-screen svg {
+    width: 100px !important;
+    height: 120px !important;
+  }
+}
+
 /* Específico para móviles */
 @media (max-width: 640px) {
   body.loading,
@@ -40,6 +133,15 @@ html.loading {
   .loading-screen select {
     font-size: 16px !important;
   }
+  
+  /* Ajustar tamaños de fuente en móviles */
+  .loading-screen h2 {
+    font-size: clamp(1.25rem, 6vw, 1.5rem) !important;
+  }
+  
+  .loading-screen p {
+    font-size: clamp(0.75rem, 3vw, 1rem) !important;
+  }
 }
 
 /* Para tablets */
@@ -47,6 +149,10 @@ html.loading {
   body.loading,
   html.loading {
     overflow: hidden !important;
+  }
+  
+  .loading-screen h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem) !important;
   }
 }
 
@@ -82,15 +188,77 @@ html.loading {
 /* Reducir animaciones en dispositivos con poca batería */
 @media (prefers-reduced-motion: reduce) {
   .loading-screen * {
-    animation-duration: 0.01ms !important;
+    animation-duration: 0.5s !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    transition-duration: 0.1s !important;
   }
 }
 
 /* Alto contraste */
 @media (prefers-contrast: high) {
   .loading-screen {
-    background: #000000 !important;
+    background: #1a1a1a !important;
+  }
+  
+  .loading-screen h2 {
+    color: #00ff00 !important;
+  }
+  
+  .loading-screen p {
+    color: #ffffff !important;
+  }
+}
+
+/* Modo oscuro adicional */
+@media (prefers-color-scheme: dark) {
+  .loading-screen {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%) !important;
+  }
+}
+
+/* Animaciones adicionales para el tema mate */
+.mate-steam {
+  animation: steamRise 2s ease-in-out infinite;
+}
+
+@keyframes steamRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateY(-20px) scale(1.2);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-40px) scale(0.8);
+  }
+}
+
+/* Efecto de partículas flotantes */
+.floating-particles {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(76, 175, 80, 0.3);
+  border-radius: 50%;
+  animation: floatUp 3s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
   }
 }
