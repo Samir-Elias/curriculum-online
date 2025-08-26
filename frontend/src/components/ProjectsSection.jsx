@@ -1,708 +1,439 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { 
-  Code,
-  Eye,
-  Github,
-  GitBranch,
-  ChevronDown,
-  ChevronUp,
-  ChevronLeft,
-  ChevronRight,
-  Star,
-  CheckCircle,
-  X,
-  Zap,
-  Layers,
-  Maximize2,
-  Minimize2,
-  Info
-} from "lucide-react";
-import { Button } from "./ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
-import { Badge } from "./ui/badge";
-import ImageSlider from "./ImageSlider";
+import { useState } from "react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { Button } from "./ui/button"
+import { Badge } from "./ui/badge"
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronLeft, ExternalLink, Github, Calendar, Users, Code, Zap } from "lucide-react"
 
-const ProjectsSection = ({ 
-  proyectosDestacados, 
-  isVisible, 
-  containerVariants, 
-  itemVariants 
-}) => {
-  const [selectedProjectImages, setSelectedProjectImages] = useState(null);
-  const [modalImageIndex, setModalImageIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const [expandedProjects, setExpandedProjects] = useState(new Set());
-  
-  // ✨ NUEVO: Estado para cards unificadas
-  const [unifiedCards, setUnifiedCards] = useState(new Set());
+const projects = [
+  {
+    id: "1",
+    title: "E-commerce Platform",
+    description: "Plataforma completa de comercio electrónico con gestión de inventario y pagos",
+    image: "/modern-ecommerce-dashboard.png",
+    technologies: ["React", "Node.js", "PostgreSQL", "Stripe", "AWS"],
+    features: [
+      "Carrito de compras avanzado",
+      "Gestión de inventario",
+      "Procesamiento de pagos",
+      "Panel de administración",
+      "Analytics en tiempo real",
+    ],
+    details: {
+      overview:
+        "Desarrollé una plataforma completa de e-commerce desde cero, incluyendo frontend, backend y base de datos.",
+      challenges:
+        "Los principales desafíos fueron la optimización de rendimiento con grandes catálogos y la integración segura de pagos.",
+      solutions: "Implementé lazy loading, caching inteligente y arquitectura de microservicios para escalabilidad.",
+      results: "La plataforma maneja 10,000+ productos y procesa 500+ transacciones diarias con 99.9% uptime.",
+    },
+    links: {
+      demo: "https://demo.example.com",
+      github: "https://github.com/example/ecommerce",
+    },
+    stats: {
+      duration: "6 meses",
+      team: "4 desarrolladores",
+      role: "Full Stack Lead",
+    },
+  },
+  {
+    id: "2",
+    title: "App de Gestión de Tareas",
+    description: "Aplicación colaborativa para gestión de proyectos y tareas en equipo",
+    image: "/task-management-app.png",
+    technologies: ["Vue.js", "Express", "MongoDB", "Socket.io", "Docker"],
+    features: [
+      "Colaboración en tiempo real",
+      "Tableros Kanban",
+      "Notificaciones push",
+      "Reportes y métricas",
+      "Integración con calendarios",
+    ],
+    details: {
+      overview:
+        "Creé una aplicación web para gestión de tareas con funcionalidades colaborativas y sincronización en tiempo real.",
+      challenges: "La sincronización en tiempo real entre múltiples usuarios y la gestión de conflictos de datos.",
+      solutions:
+        "Utilicé WebSockets para comunicación bidireccional y implementé algoritmos de resolución de conflictos.",
+      results: "La app es utilizada por 50+ equipos con más de 1000 usuarios activos mensuales.",
+    },
+    links: {
+      demo: "https://tasks.example.com",
+      github: "https://github.com/example/task-manager",
+    },
+    stats: {
+      duration: "4 meses",
+      team: "3 desarrolladores",
+      role: "Frontend Lead",
+    },
+  },
+  {
+    id: "3",
+    title: "Dashboard Analytics",
+    description: "Dashboard interactivo para visualización de datos y métricas empresariales",
+    image: "/analytics-dashboard.png",
+    technologies: ["React", "D3.js", "Python", "FastAPI", "Redis"],
+    features: [
+      "Visualizaciones interactivas",
+      "Filtros dinámicos",
+      "Exportación de reportes",
+      "Alertas automáticas",
+      "API REST completa",
+    ],
+    details: {
+      overview: "Desarrollé un dashboard completo para visualización de datos empresariales con gráficos interactivos.",
+      challenges: "Renderizar grandes volúmenes de datos de manera eficiente y crear visualizaciones personalizables.",
+      solutions: "Implementé virtualización de datos, lazy loading y componentes de gráficos reutilizables.",
+      results: "El dashboard procesa 1M+ puntos de datos y genera reportes para 200+ usuarios empresariales.",
+    },
+    links: {
+      demo: "https://analytics.example.com",
+      github: "https://github.com/example/analytics",
+    },
+    stats: {
+      duration: "5 meses",
+      team: "2 desarrolladores",
+      role: "Full Stack Developer",
+    },
+  },
+  {
+    id: "4",
+    title: "Sistema de Gestión Hospitalaria",
+    description: "Sistema integral para la administración de hospitales y clínicas",
+    image: "/hospital-management.png",
+    technologies: ["Java", "Spring Boot", "MySQL", "Angular", "Docker"],
+    features: [
+      "Gestión de pacientes",
+      "Historiales médicos",
+      "Programación de citas",
+      "Facturación automática",
+      "Reportes estadísticos",
+    ],
+    details: {
+      overview: "Sistema completo para la gestión administrativa y médica de instituciones de salud.",
+      challenges: "Manejar datos sensibles con altos estándares de seguridad y disponibilidad 24/7.",
+      solutions: "Implementé encriptación end-to-end, backups automáticos y arquitectura redundante.",
+      results: "Sistema utilizado por 3 hospitales con más de 50,000 pacientes registrados.",
+    },
+    links: {
+      github: "https://github.com/example/hospital-management",
+    },
+    stats: {
+      duration: "8 meses",
+      team: "6 desarrolladores",
+      role: "Backend Lead",
+    },
+  },
+]
 
-  // Detectar mobile
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+export default function ProjectsSection() {
+  const [selectedProject, setSelectedProject] = useState(null)
 
-  // Manejar expansión en mobile
-  const toggleProjectExpansion = (index) => {
-    const newExpanded = new Set(expandedProjects);
-    if (newExpanded.has(index)) {
-      newExpanded.delete(index);
-    } else {
-      newExpanded.add(index);
-    }
-    setExpandedProjects(newExpanded);
-  };
+  const handleShowDetails = (projectId) => {
+    setSelectedProject(projectId)
+  }
 
-  // ✨ NUEVO: Toggle para unificar/separar cards
-  const toggleCardUnification = (index) => {
-    const newUnified = new Set(unifiedCards);
-    if (newUnified.has(index)) {
-      newUnified.delete(index);
-    } else {
-      newUnified.add(index);
-    }
-    setUnifiedCards(newUnified);
-  };
+  const handleBackToGrid = () => {
+    setSelectedProject(null)
+  }
 
-  const handleImageClick = (images, currentIndex) => {
-    const normalizedImages = Array.isArray(images) ? images : [images];
-    setSelectedProjectImages(normalizedImages);
-    setModalImageIndex(currentIndex);
-  };
+  const selectedProjectData = projects.find((p) => p.id === selectedProject)
 
-  const closeModal = () => {
-    setSelectedProjectImages(null);
-    setModalImageIndex(0);
-  };
+  return (
+    <section className="py-16 px-4 max-w-7xl mx-auto">
+      <div className="text-center mb-12">
+        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          Mis Proyectos
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          Una selección de proyectos que demuestran mis habilidades en desarrollo full-stack
+        </p>
+      </div>
 
-  // **MOBILE VIEW** - Lista simple y limpia (sin cambios)
-  const MobileProjectView = () => (
-    <div className="mobile-projects-container">
-      {proyectosDestacados.map((proyecto, index) => {
-        const isExpanded = expandedProjects.has(index);
-        
-        return (
-          <motion.div
-            key={index}
-            className="mobile-project-card"
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: index * 0.1 }}
+      <AnimatePresence mode="wait">
+        {!selectedProject ? (
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="space-y-16"
           >
-            {/* Header compacto */}
-            <div className="mobile-project-header">
-              <div className="mobile-project-title">
-                <GitBranch className="w-5 h-5 text-blue-600" />
-                <h3>{proyecto.nombre}</h3>
-              </div>
-              
-              <div className="mobile-project-badges">
-                <Badge 
-                  variant="outline" 
-                  className={`mobile-status-badge ${
-                    proyecto.estado.includes('Completado') ? 'completed' : 'in-progress'
-                  }`}
-                >
-                  <CheckCircle className="w-3 h-3" />
-                  {proyecto.estado}
-                </Badge>
-                {proyecto.destacado && (
-                  <Badge className="mobile-featured-badge">
-                    <Star className="w-3 h-3" />
-                    Destacado
-                  </Badge>
-                )}
-              </div>
-            </div>
-
-            {/* Imagen principal */}
-            <div 
-              className="mobile-project-image"
-              onClick={() => {
-                if (proyecto.imagenes && proyecto.imagenes.length > 0) {
-                  handleImageClick(proyecto.imagenes, 0);
-                }
-              }}
-            >
-              <ImageSlider 
-                images={proyecto.imagenes}
-                alt={`Proyecto ${proyecto.nombre}`}
-                className="w-full h-48 object-cover rounded-lg"
-                onImageClick={(imageUrl, currentIndex, allImages) => {
-                  if (allImages && allImages.length > 0) {
-                    handleImageClick(allImages, currentIndex);
-                  }
-                }}
-              />
-            </div>
-
-            {/* Descripción breve */}
-            <div className="mobile-project-description">
-              <p>{proyecto.descripcion.substring(0, 120)}...</p>
-            </div>
-
-            {/* Botones de acción */}
-            <div className="mobile-project-actions">
-              {proyecto.demoUrl && (
-                <a
-                  href={proyecto.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mobile-action-btn primary"
-                >
-                  <Eye className="w-4 h-4" />
-                  Ver Demo
-                </a>
-              )}
-              <a
-                href={proyecto.repositorio}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mobile-action-btn secondary"
+            {projects.map((project, index) => (
+              <motion.div 
+                key={project.id} 
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="grid grid-cols-1 lg:grid-cols-3 gap-6"
               >
-                <Github className="w-4 h-4" />
-                Código
-              </a>
-            </div>
+                {/* Card de Información */}
+                <Card className="h-fit hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-slate-800 dark:text-slate-200">
+                      <Code className="h-5 w-5 text-blue-600" />
+                      Información
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <h3 className="font-semibold text-lg mb-2 text-slate-900 dark:text-slate-100">
+                        {project.title}
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {project.description}
+                      </p>
+                    </div>
+                    <div className="space-y-3">
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                        <Calendar className="h-4 w-4 text-green-600" />
+                        <span>{project.stats.duration}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                        <Users className="h-4 w-4 text-purple-600" />
+                        <span>{project.stats.team}</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                        <Zap className="h-4 w-4 text-orange-600" />
+                        <span>{project.stats.role}</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-            {/* Botón expandir/contraer */}
-            <button
-              className="mobile-expand-btn"
-              onClick={() => toggleProjectExpansion(index)}
+                {/* Card Central - Foto e Info */}
+                <Card className="h-fit hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border-0 bg-white dark:bg-slate-900 overflow-hidden">
+                  <CardContent className="p-0">
+                    <div className="aspect-video relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 z-10"></div>
+                      <img
+                        src={project.image || "/placeholder.svg"}
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-semibold mb-3 text-slate-900 dark:text-slate-100">
+                        Tecnologías
+                      </h3>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.technologies.map((tech) => (
+                          <Badge 
+                            key={tech} 
+                            variant="secondary" 
+                            className="text-xs px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-slate-700 dark:text-slate-300 border-0 hover:shadow-md transition-shadow duration-200"
+                          >
+                            {tech}
+                          </Badge>
+                        ))}
+                      </div>
+                      <div className="flex gap-2">
+                        {project.links.demo && (
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1 bg-transparent hover:bg-blue-50 dark:hover:bg-blue-900/20 border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400"
+                          >
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Demo
+                          </Button>
+                        )}
+                        {project.links.github && (
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1 bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800 border-slate-200 dark:border-slate-700"
+                          >
+                            <Github className="h-4 w-4 mr-2" />
+                            Código
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Card de Características */}
+                <Card className="h-fit hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-slate-800 dark:text-slate-200">
+                      <Zap className="h-5 w-5 text-yellow-600" />
+                      Características
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3 mb-6">
+                      {project.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-start gap-2 text-sm">
+                          <div className="w-1.5 h-1.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-slate-600 dark:text-slate-400 leading-relaxed">
+                            {feature}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button 
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1" 
+                      onClick={() => handleShowDetails(project.id)}
+                    >
+                      Ver Detalles Completos
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        ) : (
+          selectedProjectData && (
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="max-w-4xl mx-auto"
             >
-              {isExpanded ? (
-                <>
-                  <ChevronUp className="w-4 h-4" />
-                  Menos detalles
-                </>
-              ) : (
-                <>
-                  <ChevronDown className="w-4 h-4" />
-                  Más detalles
-                </>
-              )}
-            </button>
+              <Button 
+                variant="ghost" 
+                onClick={handleBackToGrid} 
+                className="mb-6 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors duration-200"
+              >
+                <ChevronLeft className="h-4 w-4 mr-2" />
+                Volver a Proyectos
+              </Button>
 
-            {/* Contenido expandible */}
-            <AnimatePresence>
-              {isExpanded && (
-                <motion.div
-                  className="mobile-project-expanded"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Stack tecnológico */}
-                  <div className="mobile-tech-section">
-                    <h4 className="mobile-section-title">
-                      <Zap className="w-4 h-4 text-blue-600" />
-                      Tecnologías:
-                    </h4>
-                    <div className="mobile-tech-badges">
-                      {proyecto.tecnologias.map((tech, techIndex) => (
-                        <span key={techIndex} className="mobile-tech-badge">
+              <Card className="border-0 shadow-2xl bg-white dark:bg-slate-900 overflow-hidden">
+                <CardHeader className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20">
+                  <CardTitle className="text-3xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    {selectedProjectData.title}
+                  </CardTitle>
+                  <CardDescription className="text-lg text-slate-600 dark:text-slate-400">
+                    {selectedProjectData.description}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-8 p-8">
+                  {/* Imagen principal */}
+                  <div className="aspect-video relative overflow-hidden rounded-xl shadow-lg">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 z-10"></div>
+                    <img
+                      src={selectedProjectData.image || "/placeholder.svg"}
+                      alt={selectedProjectData.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Información del proyecto */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center p-4 rounded-lg bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
+                      <Calendar className="h-6 w-6 text-green-600 mx-auto mb-2" />
+                      <h3 className="font-semibold mb-1 text-slate-800 dark:text-slate-200">Duración</h3>
+                      <p className="text-muted-foreground">{selectedProjectData.stats.duration}</p>
+                    </div>
+                    <div className="text-center p-4 rounded-lg bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+                      <Users className="h-6 w-6 text-purple-600 mx-auto mb-2" />
+                      <h3 className="font-semibold mb-1 text-slate-800 dark:text-slate-200">Equipo</h3>
+                      <p className="text-muted-foreground">{selectedProjectData.stats.team}</p>
+                    </div>
+                    <div className="text-center p-4 rounded-lg bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20">
+                      <Zap className="h-6 w-6 text-orange-600 mx-auto mb-2" />
+                      <h3 className="font-semibold mb-1 text-slate-800 dark:text-slate-200">Mi Rol</h3>
+                      <p className="text-muted-foreground">{selectedProjectData.stats.role}</p>
+                    </div>
+                  </div>
+
+                  {/* Tecnologías */}
+                  <div>
+                    <h3 className="font-semibold mb-4 text-xl text-slate-800 dark:text-slate-200">
+                      Tecnologías Utilizadas
+                    </h3>
+                    <div className="flex flex-wrap gap-3">
+                      {selectedProjectData.technologies.map((tech) => (
+                        <Badge 
+                          key={tech} 
+                          variant="secondary" 
+                          className="px-4 py-2 text-sm bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-slate-700 dark:text-slate-300 border-0 shadow-sm"
+                        >
                           {tech}
-                        </span>
+                        </Badge>
                       ))}
                     </div>
                   </div>
 
                   {/* Características */}
-                  <div className="mobile-features-section">
-                    <h4 className="mobile-section-title">
-                      <CheckCircle className="w-4 h-4 text-green-600" />
-                      Características:
-                    </h4>
-                    <ul className="mobile-features-list">
-                      {proyecto.caracteristicas.map((caracteristica, charIndex) => (
-                        <li key={charIndex} className="mobile-feature-item">
-                          <div className="mobile-feature-bullet"></div>
-                          {caracteristica}
-                        </li>
+                  <div>
+                    <h3 className="font-semibold mb-4 text-xl text-slate-800 dark:text-slate-200">
+                      Características Principales
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {selectedProjectData.features.map((feature, index) => (
+                        <div key={index} className="flex items-start gap-3 p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+                          <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mt-2 flex-shrink-0" />
+                          <span className="text-sm text-slate-600 dark:text-slate-400">{feature}</span>
+                        </div>
                       ))}
-                    </ul>
-                  </div>
-
-                  {/* Descripción completa */}
-                  <div className="mobile-description-full">
-                    <h4 className="mobile-section-title">Descripción completa:</h4>
-                    <p>{proyecto.descripcion}</p>
-                  </div>
-
-                  {/* Aspecto destacado si existe */}
-                  {proyecto.destacado && (
-                    <div className="mobile-destacado-section">
-                      <h4 className="mobile-section-title">
-                        <Star className="w-4 h-4 text-yellow-500" />
-                        Aspecto destacado:
-                      </h4>
-                      <p><strong>{proyecto.destacado.aspecto}</strong></p>
-                      {proyecto.destacado.detalle && (
-                        <p className="text-sm text-gray-600 mt-1">
-                          {proyecto.destacado.detalle}
-                        </p>
-                      )}
                     </div>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-
-  // ✨ **DESKTOP VIEW RENOVADO** - Con funcionalidad de dual cards unificables
-  const DesktopProjectView = () => (
-    <div className="desktop-projects-container">
-      {proyectosDestacados.map((proyecto, index) => {
-        const isUnified = unifiedCards.has(index);
-        
-        return (
-          <motion.div 
-            key={index} 
-            className="desktop-project-section"
-            layout
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-          >
-            <AnimatePresence mode="wait">
-              {!isUnified ? (
-                // ✨ DUAL CARDS - Estado normal (2 cards separadas)
-                <motion.div
-                  key="dual-cards"
-                  className="project-dual-cards"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  layout
-                  transition={{ duration: 0.4 }}
-                >
-                  {/* CARD IZQUIERDA - IMAGEN Y INFO BÁSICA */}
-                  <Card className="desktop-project-card-left">
-                    <CardHeader className="desktop-project-header">
-                      <CardTitle className="desktop-project-title">
-                        <GitBranch className="mr-3 w-6 h-6 flex-shrink-0" />
-                        {proyecto.nombre}
-                      </CardTitle>
-                      
-                      <div className="desktop-project-badges">
-                        <Badge 
-                          variant="outline" 
-                          className={`desktop-status-badge ${
-                            proyecto.estado.includes('Completado') ? 'completed' : 'in-progress'
-                          }`}
-                        >
-                          <CheckCircle className="w-4 h-4" />
-                          {proyecto.estado}
-                        </Badge>
-                        {proyecto.destacado && (
-                          <Badge className="desktop-featured-badge">
-                            <Star className="w-4 h-4" />
-                            Destacado
-                          </Badge>
-                        )}
-                      </div>
-                    </CardHeader>
-
-                    <CardContent className="desktop-project-content">
-                      <div 
-                        className="desktop-project-image"
-                        onClick={() => {
-                          if (proyecto.imagenes && proyecto.imagenes.length > 0) {
-                            handleImageClick(proyecto.imagenes, 0);
-                          }
-                        }}
-                      >
-                        <ImageSlider 
-                          images={proyecto.imagenes}
-                          alt={`Proyecto ${proyecto.nombre}`}
-                          className="w-full h-full object-cover rounded-lg"
-                          onImageClick={(imageUrl, currentIndex, allImages) => {
-                            if (allImages && allImages.length > 0) {
-                              handleImageClick(allImages, currentIndex);
-                            }
-                          }}
-                        />
-                      </div>
-
-                      <div className="desktop-project-description">
-                        {proyecto.descripcion}
-                      </div>
-
-                      <div className="desktop-project-actions">
-                        {proyecto.demoUrl && (
-                          <a
-                            href={proyecto.demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="desktop-action-btn primary"
-                          >
-                            <Eye className="w-4 h-4" />
-                            Ver Demo
-                          </a>
-                        )}
-                        <a
-                          href={proyecto.repositorio}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="desktop-action-btn secondary"
-                        >
-                          <Github className="w-4 h-4" />
-                          Repositorio
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-
-                  {/* CARD DERECHA - INFO TÉCNICA */}
-                  <Card className="desktop-project-card-right">
-                    <CardHeader className="desktop-project-header">
-                      <CardTitle className="desktop-project-title">
-                        <Layers className="w-6 h-6 mr-2" />
-                        Stack Tecnológico
-                      </CardTitle>
-                      <CardDescription>
-                        Tecnologías y características implementadas
-                      </CardDescription>
-                    </CardHeader>
-
-                    <CardContent className="desktop-project-content">
-                      {/* Stack tecnológico */}
-                      <div className="desktop-tech-section">
-                        <h4 className="desktop-section-title">
-                          <Zap className="w-5 h-5 text-blue-600" />
-                          Tecnologías utilizadas:
-                        </h4>
-                        <div className="desktop-tech-grid">
-                          {proyecto.tecnologias.map((tech, techIndex) => (
-                            <div key={techIndex} className="desktop-tech-badge">
-                              {tech}
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Características principales */}
-                      <div className="desktop-features-section">
-                        <h4 className="desktop-section-title">
-                          <CheckCircle className="w-5 h-5 text-green-600" />
-                          Características:
-                        </h4>
-                        <div className="desktop-features-list">
-                          {proyecto.caracteristicas.slice(0, 4).map((caracteristica, charIndex) => (
-                            <div key={charIndex} className="desktop-feature-item">
-                              <div className="desktop-feature-bullet"></div>
-                              <span>{caracteristica}</span>
-                            </div>
-                          ))}
-                          {proyecto.caracteristicas.length > 4 && (
-                            <div className="desktop-feature-item more-features">
-                              <div className="desktop-feature-bullet"></div>
-                              <span>+{proyecto.caracteristicas.length - 4} características más</span>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      {/* Botón para ver detalles completos */}
-                      <div className="desktop-details-action">
-                        <Button
-                          onClick={() => toggleCardUnification(index)}
-                          className="desktop-details-btn"
-                          variant="outline"
-                        >
-                          <Maximize2 className="w-4 h-4 mr-2" />
-                          Ver Detalles Completos
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ) : (
-                // ✨ UNIFIED CARD - Estado expandido (1 card grande)
-                <motion.div
-                  key="unified-card"
-                  className="project-unified-card"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  layout
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                >
-                  <Card className="desktop-project-card-unified">
-                    <CardHeader className="desktop-project-header-unified">
-                      <div className="flex justify-between items-start">
-                        <CardTitle className="desktop-project-title-unified">
-                          <GitBranch className="mr-3 w-7 h-7 flex-shrink-0" />
-                          {proyecto.nombre}
-                        </CardTitle>
-                        <Button
-                          onClick={() => toggleCardUnification(index)}
-                          className="desktop-minimize-btn"
-                          variant="outline"
-                          size="sm"
-                        >
-                          <Minimize2 className="w-4 h-4 mr-1" />
-                          Contraer
-                        </Button>
-                      </div>
-                      
-                      <div className="desktop-project-badges-unified">
-                        <Badge 
-                          variant="outline" 
-                          className={`desktop-status-badge ${
-                            proyecto.estado.includes('Completado') ? 'completed' : 'in-progress'
-                          }`}
-                        >
-                          <CheckCircle className="w-4 h-4" />
-                          {proyecto.estado}
-                        </Badge>
-                        {proyecto.destacado && (
-                          <Badge className="desktop-featured-badge">
-                            <Star className="w-4 h-4" />
-                            Destacado
-                          </Badge>
-                        )}
-                      </div>
-                    </CardHeader>
-
-                    <CardContent className="desktop-project-content-unified">
-                      <div className="unified-content-grid">
-                        {/* Columna izquierda - Imagen y acciones */}
-                        <div className="unified-left-column">
-                          <div 
-                            className="desktop-project-image-unified"
-                            onClick={() => {
-                              if (proyecto.imagenes && proyecto.imagenes.length > 0) {
-                                handleImageClick(proyecto.imagenes, 0);
-                              }
-                            }}
-                          >
-                            <ImageSlider 
-                              images={proyecto.imagenes}
-                              alt={`Proyecto ${proyecto.nombre}`}
-                              className="w-full h-full object-cover rounded-lg"
-                              onImageClick={(imageUrl, currentIndex, allImages) => {
-                                if (allImages && allImages.length > 0) {
-                                  handleImageClick(allImages, currentIndex);
-                                }
-                              }}
-                            />
-                          </div>
-
-                          <div className="desktop-project-actions-unified">
-                            {proyecto.demoUrl && (
-                              <a
-                                href={proyecto.demoUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="desktop-action-btn primary unified"
-                              >
-                                <Eye className="w-5 h-5" />
-                                Ver Demo
-                              </a>
-                            )}
-                            <a
-                              href={proyecto.repositorio}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="desktop-action-btn secondary unified"
-                            >
-                              <Github className="w-5 h-5" />
-                              Repositorio
-                            </a>
-                          </div>
-                        </div>
-
-                        {/* Columna derecha - Información completa */}
-                        <div className="unified-right-column">
-                          {/* Descripción completa */}
-                          <div className="unified-description">
-                            <h4 className="unified-section-title">
-                              <Info className="w-5 h-5 text-blue-600" />
-                              Descripción del proyecto
-                            </h4>
-                            <p className="unified-description-text">
-                              {proyecto.descripcion}
-                            </p>
-                          </div>
-
-                          {/* Stack tecnológico completo */}
-                          <div className="unified-tech-section">
-                            <h4 className="unified-section-title">
-                              <Zap className="w-5 h-5 text-blue-600" />
-                              Stack tecnológico completo
-                            </h4>
-                            <div className="unified-tech-grid">
-                              {proyecto.tecnologias.map((tech, techIndex) => (
-                                <div key={techIndex} className="unified-tech-badge">
-                                  {tech}
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Todas las características */}
-                          <div className="unified-features-section">
-                            <h4 className="unified-section-title">
-                              <CheckCircle className="w-5 h-5 text-green-600" />
-                              Todas las características
-                            </h4>
-                            <div className="unified-features-grid">
-                              {proyecto.caracteristicas.map((caracteristica, charIndex) => (
-                                <div key={charIndex} className="unified-feature-item">
-                                  <div className="unified-feature-bullet"></div>
-                                  <span>{caracteristica}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-
-                          {/* Aspecto destacado si existe */}
-                          {proyecto.destacado && (
-                            <div className="unified-destacado-section">
-                              <h4 className="unified-section-title">
-                                <Star className="w-5 h-5 text-yellow-500" />
-                                Aspecto destacado
-                              </h4>
-                              <div className="unified-destacado-content">
-                                <p className="unified-destacado-title">
-                                  {proyecto.destacado.aspecto}
-                                </p>
-                                {proyecto.destacado.detalle && (
-                                  <p className="unified-destacado-detail">
-                                    {proyecto.destacado.detalle}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.div>
-        );
-      })}
-    </div>
-  );
-
-  return (
-    <>
-      {/* Título de la sección */}
-      <motion.section 
-        id="projects"
-        className="projects-section-container"
-        variants={containerVariants}
-        initial="hidden"
-        animate={isVisible.projects ? "visible" : "hidden"}
-      >
-        <motion.h2 
-          className="projects-section-title"
-          variants={itemVariants}
-        >
-          <Code className="projects-title-icon" />
-          Proyectos Destacados
-        </motion.h2>
-
-        {/* Renderizar vista según dispositivo */}
-        {isMobile ? <MobileProjectView /> : <DesktopProjectView />}
-      </motion.section>
-
-      {/* Modal para imágenes */}
-      {selectedProjectImages && (
-        <div 
-          className="projects-modal-overlay"
-          onClick={closeModal}
-        >
-          <div 
-            className="projects-modal-content"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Header del modal */}
-            <div className="projects-modal-header">
-              <div className="projects-modal-info">
-                <h3 className="projects-modal-title">Vista ampliada del proyecto</h3>
-                <p className="projects-modal-subtitle">
-                  {modalImageIndex + 1} de {selectedProjectImages.length}
-                </p>
-              </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={closeModal}
-                className="projects-modal-close"
-              >
-                <X className="w-4 h-4 mr-1" />
-                Cerrar
-              </Button>
-            </div>
-            
-            {/* Contenedor de imagen con controles */}
-            <div className="projects-modal-image-container">
-              <div className="projects-modal-image-display">
-                <img 
-                  src={selectedProjectImages[modalImageIndex]}
-                  alt={`Vista ampliada - Imagen ${modalImageIndex + 1}`}
-                  className="projects-modal-image"
-                  onError={(e) => {
-                    console.error("Error cargando imagen en modal:", selectedProjectImages[modalImageIndex]);
-                    e.target.src = "https://via.placeholder.com/800x600/e2e8f0/64748b?text=Error+al+cargar+imagen";
-                  }}
-                />
-              </div>
-
-              {/* Controles de navegación */}
-              {selectedProjectImages.length > 1 && (
-                <>
-                  <button
-                    onClick={() => setModalImageIndex((prev) => (prev - 1 + selectedProjectImages.length) % selectedProjectImages.length)}
-                    className="projects-modal-nav-btn projects-modal-nav-left"
-                    aria-label="Imagen anterior"
-                  >
-                    <ChevronLeft className="w-6 h-6" />
-                  </button>
-                  
-                  <button
-                    onClick={() => setModalImageIndex((prev) => (prev + 1) % selectedProjectImages.length)}
-                    className="projects-modal-nav-btn projects-modal-nav-right"
-                    aria-label="Imagen siguiente"
-                  >
-                    <ChevronRight className="w-6 h-6" />
-                  </button>
-
-                  <div className="projects-modal-indicators">
-                    {selectedProjectImages.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => setModalImageIndex(index)}
-                        className={`projects-modal-indicator ${
-                          index === modalImageIndex ? 'active' : ''
-                        }`}
-                        aria-label={`Ir a imagen ${index + 1}`}
-                      />
-                    ))}
                   </div>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
 
-export default ProjectsSection;
+                  {/* Detalles del proyecto */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20">
+                      <h3 className="font-semibold mb-3 text-slate-800 dark:text-slate-200">
+                        Descripción General
+                      </h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {selectedProjectData.details.overview}
+                      </p>
+                    </div>
+                    <div className="p-6 rounded-xl bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20">
+                      <h3 className="font-semibold mb-3 text-slate-800 dark:text-slate-200">Desafíos</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {selectedProjectData.details.challenges}
+                      </p>
+                    </div>
+                    <div className="p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20">
+                      <h3 className="font-semibold mb-3 text-slate-800 dark:text-slate-200">Soluciones</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {selectedProjectData.details.solutions}
+                      </p>
+                    </div>
+                    <div className="p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20">
+                      <h3 className="font-semibold mb-3 text-slate-800 dark:text-slate-200">Resultados</h3>
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        {selectedProjectData.details.results}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Enlaces */}
+                  <div className="flex gap-4 pt-6 border-t border-slate-200 dark:border-slate-700">
+                    {selectedProjectData.links.demo && (
+                      <Button 
+                        asChild
+                        className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        <a href={selectedProjectData.links.demo} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4 mr-2" />
+                          Ver Demo
+                        </a>
+                      </Button>
+                    )}
+                    {selectedProjectData.links.github && (
+                      <Button 
+                        variant="outline" 
+                        asChild
+                        className="border-slate-300 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200"
+                      >
+                        <a href={selectedProjectData.links.github} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4 mr-2" />
+                          Ver Código
+                        </a>
+                      </Button>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )
+        )}
+      </AnimatePresence>
+    </section>
+  )
+}
