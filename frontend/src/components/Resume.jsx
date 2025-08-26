@@ -9,9 +9,6 @@ import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
 import LoadingScreen from "./LoadingScreen";
 
-// ❌ NO IMPORTAR ScrollCheckpoints - ELIMINADO COMPLETAMENTE
-// import ScrollCheckpoints from "./ScrollCheckpoints"; 
-
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
   const [hasBeenVisible, setHasBeenVisible] = useState({});
@@ -30,7 +27,7 @@ const Resume = () => {
       document.documentElement.classList.remove('loading');
     }
 
-    // 🧹 ASEGURAR QUE NO HAY CLASES DE CHECKPOINTS
+    // Limpiar clases de checkpoints si existen
     document.body.classList.remove('checkpoints-active');
     document.documentElement.classList.remove('checkpoints-active');
 
@@ -133,7 +130,7 @@ const Resume = () => {
           itemVariants={itemVariants}
         />
 
-        {/* 🎯 PROYECTOS DESTACADOS - NUEVO SISTEMA LIMPIO */}
+        {/* PROYECTOS DESTACADOS - CORREGIDO */}
         <ProjectsSection 
           proyectosDestacados={profileData.proyectosDestacados}
           isVisible={{
@@ -143,13 +140,6 @@ const Resume = () => {
           containerVariants={containerVariants}
           itemVariants={itemVariants}
         />
-
-        {/* ❌ NO USAR ScrollCheckpoints - COMENTADO/ELIMINADO */}
-        {/* 
-        <ScrollCheckpoints 
-          proyectosDestacados={profileData.proyectosDestacados}
-        />
-        */}
 
         {/* Formación Técnica */}
         <EducationSection 
