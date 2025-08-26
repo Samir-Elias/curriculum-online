@@ -25,12 +25,9 @@
 @import './components/loading.css';
 @import './components/education-section.css';
 @import './components/objective-section.css';
-@import './components/dual-cards-layout.css';
-@import './components/scroll-checkpoints.css'; /* NUEVO */
-@import './components/checkpoint-projects.css';
+@import './components/scroll-checkpoints.css';
 @import './components/linkedin-badge.css';
 @import './components/mobile-projects.css';
-@import './components/conflicts-fix.css';  /* siempre al final */
 
 /* Effects and animations */
 @import './effects/animations.css';
@@ -47,7 +44,7 @@
 @import './utils/responsive-fixes.css';
 @import './utils/print.css';
 @import './utils/debugging.css';
-@import './utils/section-responsive.css';
+@import './utils/section-responsive.css';*/
 
 /* ==========================================================================
    PROYECTOS CON SCROLL SNAPPING - ESTILOS ADICIONALES
@@ -127,6 +124,209 @@ section[id].active-checkpoint::before {
   pointer-events: auto;
 }
 
+/* ==========================================================================
+   MEJORAS ESPECÍFICAS PARA PROJECT SECTION
+   ========================================================================== */
+
+/* Animación shimmer mejorada para placeholders de imágenes */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Mejoras para las imágenes de proyectos */
+.project-image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  will-change: transform;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg, 
+    rgba(59, 130, 246, 0.1) 0%, 
+    rgba(147, 51, 234, 0.1) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.project-image-container:hover::after {
+  opacity: 1;
+}
+
+/* Optimización para las cards de proyecto */
+.project-card {
+  contain: layout style paint;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Mejoras para contenido expandible sin scroll */
+.project-expanded-content {
+  overflow: visible; /* Cambio clave: permitir expansión completa */
+  max-height: none;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-expanded-content[data-expanded="false"] {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.project-expanded-content[data-expanded="true"] {
+  max-height: fit-content; /* Permite altura automática */
+  opacity: 1;
+  overflow: visible;
+}
+
+/* Animación para tags de tecnología */
+.tech-tag {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+}
+
+.tech-tag:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+}
+
+/* Gradiente animado para estados de carga */
+.image-loading {
+  background: linear-gradient(
+    45deg,
+    rgba(59, 130, 246, 0.08),
+    rgba(147, 51, 234, 0.08),
+    rgba(236, 72, 153, 0.08),
+    rgba(59, 130, 246, 0.08)
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 4s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 100% 50%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+}
+
+/* Mejoras para botones de acción de proyectos */
+.project-action-button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.project-action-button:hover::before {
+  left: 100%;
+}
+
+/* Animaciones de entrada escalonada para características */
+.feature-item {
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInFeature 0.6s ease-out forwards;
+}
+
+.feature-item:nth-child(1) { animation-delay: 0.1s; }
+.feature-item:nth-child(2) { animation-delay: 0.2s; }
+.feature-item:nth-child(3) { animation-delay: 0.3s; }
+.feature-item:nth-child(4) { animation-delay: 0.4s; }
+.feature-item:nth-child(5) { animation-delay: 0.5s; }
+.feature-item:nth-child(6) { animation-delay: 0.6s; }
+
+@keyframes slideInFeature {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Mejoras para las secciones de desafíos, soluciones y resultados */
+.challenge-solution-result {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.challenge-solution-result::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 0 2px 2px 0;
+  transition: all 0.3s ease;
+}
+
+.challenge-solution-result.challenge::before {
+  background: linear-gradient(180deg, #f59e0b, #d97706);
+}
+
+.challenge-solution-result.solution::before {
+  background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+}
+
+.challenge-solution-result.result::before {
+  background: linear-gradient(180deg, #10b981, #059669);
+}
+
+.challenge-solution-result:hover::before {
+  width: 6px;
+  box-shadow: 0 0 15px currentColor;
+}
+
 /* Responsive mejoras para checkpoints */
 @media (max-width: 1024px) {
   section[id] {
@@ -136,6 +336,10 @@ section[id].active-checkpoint::before {
   section[id].active-checkpoint::before {
     width: 30px;
     height: 2px;
+  }
+
+  .project-card {
+    margin: 0 -0.5rem;
   }
 }
 
@@ -147,9 +351,38 @@ section[id].active-checkpoint::before {
   section[id].active-checkpoint::before {
     display: none; /* Ocultar en móvil para evitar distracción */
   }
+
+  .project-expanded-content {
+    padding: 1rem;
+  }
+
+  .tech-tag {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.5rem;
+  }
+
+  .project-image-container {
+    border-radius: 8px;
+  }
 }
 
-/* Print styles para checkpoints */
+/* Mejoras para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+  .tech-tag:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .project-image-container:hover::after {
+    opacity: 0;
+  }
+  
+  .project-action-button:hover::before {
+    left: -100%;
+  }
+}
+
+/* Print styles para checkpoints y proyectos */
 @media print {
   section[id] {
     scroll-margin: 0;
@@ -163,6 +396,33 @@ section[id].active-checkpoint::before {
   .checkpoint-section-loading {
     opacity: 1 !important;
     pointer-events: auto !important;
+  }
+
+  .project-card {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+  }
+
+  .project-expanded-content {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .shimmer,
+  .image-loading {
+    animation: none !important;
+    background: #f3f4f6 !important;
+  }
+
+  .project-action-button {
+    display: none !important;
+  }
+
+  .tech-tag {
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+    border: 1px solid #d1d5db !important;
   }
 }
 
@@ -179,6 +439,23 @@ section[id].active-checkpoint::before {
   .checkpoint-section-loading {
     transition: none !important;
   }
+
+  .shimmer,
+  .image-loading {
+    animation: none !important;
+  }
+
+  .tech-tag,
+  .project-card,
+  .project-image-container {
+    transition: none !important;
+  }
+
+  .feature-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 /* Focus visible para navegación por teclado */
@@ -188,11 +465,25 @@ section[id]:focus-visible {
   border-radius: 8px;
 }
 
+.tech-tag:focus-visible,
+.project-action-button:focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
 /* Estados para high contrast */
 @media (prefers-contrast: high) {
   section[id].active-checkpoint::before {
     background: #000;
     opacity: 1;
+  }
+
+  .project-card {
+    border: 2px solid #000 !important;
+  }
+
+  .tech-tag {
+    border: 1px solid #000 !important;
   }
 }
 
@@ -209,4 +500,78 @@ section[id]:focus-visible {
 
 .scroll-checkpoints-overlay > * {
   pointer-events: auto;
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ========================================================================== */
+
+/* Optimización de capas de composición */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Contenedor de viewport para intersection observer */
+.viewport-container {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Lazy loading para imágenes */
+.lazy-image {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.lazy-image.loaded {
+  opacity: 1;
+}
+
+/* Mejoras para animaciones de Framer Motion */
+.framer-motion-container {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Preload crítico para fuentes e imágenes importantes */
+.preload-critical {
+  font-display: swap;
+}
+
+/* Estados de hover mejorados para mejor UX */
+.interactive-hover {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.interactive-hover:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mejoras específicas para la expansión de contenido */
+.expand-animation-enter {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.expand-animation-enter-active {
+  max-height: 2000px; /* Valor alto para permitir contenido extenso */
+  opacity: 1;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+}
+
+.expand-animation-exit {
+  max-height: 2000px;
+  opacity: 1;
+}
+
+.expand-animation-exit-active {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
