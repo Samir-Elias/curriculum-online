@@ -4,161 +4,161 @@
 
 /* Fixes específicos para Education y Objective Sections */
 @media (max-width: 640px) {
-    /* Education Section responsive */
-    .education-layout-container {
-        gap: 1rem !important;
-        grid-template-columns: 1fr !important;
-    }
-    
-    .certificate-image-container {
-        aspect-ratio: 3/2 !important;
-        min-height: 120px;
-    }
-    
-    /* Objective Section responsive */
-    .objective-layout-container {
-        gap: 1rem !important;
-        grid-template-columns: 1fr !important;
-    }
-    
-    .objective-sidebar {
-        gap: 0.75rem !important;
-    }
-    
-    /* Cards info laterales más compactas */
-    .info-card-item {
-        padding: 0.5rem !important;
-        font-size: 0.875rem !important;
-    }
-    
-    /* Status card más compacta */
-    .status-card {
-        padding: 1rem !important;
-    }
+  /* Education Section responsive */
+  .education-layout-container {
+    gap: 1rem !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .certificate-image-container {
+    aspect-ratio: 3 / 2 !important;
+    min-height: 120px;
+  }
+
+  /* Objective Section responsive */
+  .objective-layout-container {
+    gap: 1rem !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .objective-sidebar {
+    gap: 0.75rem !important;
+  }
+
+  /* Cards info laterales más compactas */
+  .info-card-item {
+    padding: 0.5rem !important;
+    font-size: 0.875rem !important;
+  }
+
+  /* Status card más compacta */
+  .status-card {
+    padding: 1rem !important;
+  }
 }
 
 /* Tablet específico */
 @media (min-width: 641px) and (max-width: 1023px) {
-    .education-layout-container,
-    .objective-layout-container {
-        grid-template-columns: 1fr !important;
-        gap: 1.5rem;
-    }
-    
-    .certificate-image-container {
-        aspect-ratio: 4/3;
-        max-width: 300px;
-        margin: 0 auto;
-    }
+  .education-layout-container,
+  .objective-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem;
+  }
+
+  .certificate-image-container {
+    aspect-ratio: 4 / 3;
+    max-width: 300px;
+    margin: 0 auto;
+  }
 }
 
 /* Desktop específico */
 @media (min-width: 1024px) {
-    /* Asegurar que el layout split funcione correctamente */
-    .lg\:col-span-3 {
-        grid-column: span 3;
-    }
-    
-    .lg\:col-span-2 {
-        grid-column: span 2;
-    }
-    
-    /* Optimizar altura de las certificaciones */
-    .education-certificates-area {
-        max-height: fit-content;
-    }
-    
-    /* Sidebar pegajoso para objective */
-    .objective-sidebar {
-        position: sticky;
-        top: 2rem;
-    }
+  /* Asegurar que el layout split funcione correctamente */
+  .lg\:col-span-3 {
+    grid-column: span 3;
+  }
+
+  .lg\:col-span-2 {
+    grid-column: span 2;
+  }
+
+  /* Optimizar altura de las certificaciones */
+  .education-certificates-area {
+    max-height: fit-content;
+  }
+
+  /* Sidebar pegajoso para objective */
+  .objective-sidebar {
+    position: sticky;
+    top: 2rem;
+  }
 }
 
 /* Extra small devices */
 @media (max-width: 380px) {
-    /* Certificaciones más pequeñas */
-    .certificate-image-container {
-        aspect-ratio: 16/9 !important;
-        min-height: 100px;
-    }
-    
-    /* Reducir padding de cards */
-    .education-card-enhanced,
-    .objective-card-enhanced {
-        margin: 0 -0.25rem !important;
-    }
-    
-    /* Botones más compactos */
-    .certificate-card-with-image .flex.gap-2 {
-        gap: 0.25rem !important;
-    }
-    
-    /* Texto más pequeño en sidebar */
-    .info-card-item span {
-        font-size: 0.8rem !important;
-    }
+  /* Certificaciones más pequeñas */
+  .certificate-image-container {
+    aspect-ratio: 16 / 9 !important;
+    min-height: 100px;
+  }
+
+  /* Reducir padding de cards */
+  .education-card-enhanced,
+  .objective-card-enhanced {
+    margin: 0 -0.25rem !important;
+  }
+
+  /* Botones más compactos */
+  .certificate-card-with-image .flex.gap-2 {
+    gap: 0.25rem !important;
+  }
+
+  /* Texto más pequeño en sidebar */
+  .info-card-item span {
+    font-size: 0.8rem !important;
+  }
 }
 
 /* Landscape móvil */
 @media (max-width: 812px) and (orientation: landscape) {
-    .certificate-image-container {
-        aspect-ratio: 2/1;
-        max-height: 150px;
-    }
-    
-    .objective-sidebar {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1rem;
-    }
+  .certificate-image-container {
+    aspect-ratio: 2 / 1;
+    max-height: 150px;
+  }
+
+  .objective-sidebar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
 }
 
 /* High DPI screens */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
-    .certificate-image-container img {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
+  .certificate-image-container img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-    .education-card-enhanced,
-    .objective-card-enhanced,
-    .info-card-item,
-    .certificate-card-with-image,
-    .certificate-card-link-only {
-        transition: none !important;
-        transform: none !important;
-    }
-    
-    .certificate-image-container:hover img {
-        transform: none !important;
-    }
+  .education-card-enhanced,
+  .objective-card-enhanced,
+  .info-card-item,
+  .certificate-card-with-image,
+  .certificate-card-link-only {
+    transition: none !important;
+    transform: none !important;
+  }
+
+  .certificate-image-container:hover img {
+    transform: none !important;
+  }
 }
 
 /* Print specific fixes */
 @media print {
-    .education-layout-container,
-    .objective-layout-container {
-        grid-template-columns: 1fr !important;
-        gap: 1rem !important;
-        break-inside: avoid;
-    }
-    
-    .objective-sidebar {
-        break-inside: avoid;
-        page-break-inside: avoid;
-    }
-    
-    .certificate-image-container {
-        aspect-ratio: 4/3 !important;
-        max-height: 200px;
-        break-inside: avoid;
-    }
-    
-    .status-card::before {
-        display: none !important;
-    }
+  .education-layout-container,
+  .objective-layout-container {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    break-inside: avoid;
+  }
+
+  .objective-sidebar {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .certificate-image-container {
+    aspect-ratio: 4 / 3 !important;
+    max-height: 200px;
+    break-inside: avoid;
+  }
+
+  .status-card::before {
+    display: none !important;
+  }
 }

@@ -20,7 +20,7 @@
   max-width: 1400px;
   margin: 0 auto;
   align-items: start;
-  
+
   /* Garantizar que siempre haya espacio entre cards */
   padding: 0 calc(var(--card-gap-desktop) / 4);
 }
@@ -79,7 +79,7 @@
   :root {
     --card-gap-desktop: var(--card-gap-tablet);
   }
-  
+
   .dual-cards-container,
   .project-checkpoint-dual,
   .education-dual-container {
@@ -94,7 +94,7 @@
     --card-gap-desktop: var(--card-gap-mobile);
     --section-padding: 1rem;
   }
-  
+
   .dual-cards-container,
   .project-checkpoint-dual,
   .education-dual-container {
@@ -103,7 +103,7 @@
     width: 100%;
     padding: 0 calc(var(--card-gap-mobile) / 2);
   }
-  
+
   /* En móvil, eliminar offsets para centrado perfecto */
   .card-offset-left,
   .card-offset-right {
@@ -115,11 +115,11 @@
   :root {
     --min-card-spacing: 1rem;
   }
-  
+
   .section-centered {
     padding: 1rem;
   }
-  
+
   .safe-spaced-card {
     margin: calc(var(--min-card-spacing) / 2) 0;
   }
@@ -131,17 +131,29 @@
   flex-direction: column;
 }
 
-.section-hero { order: 1; }
-.section-tech-stack { order: 2; }
-.section-projects { order: 3; }
-.section-education { order: 4; }
-.section-objectives { order: 5; }
-.section-footer { order: 6; }
+.section-hero {
+  order: 1;
+}
+.section-tech-stack {
+  order: 2;
+}
+.section-projects {
+  order: 3;
+}
+.section-education {
+  order: 4;
+}
+.section-objectives {
+  order: 5;
+}
+.section-footer {
+  order: 6;
+}
 
 /* Separadores visuales opcionales */
 .section-separator {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
   margin: 2rem auto;
   width: 60%;
 }

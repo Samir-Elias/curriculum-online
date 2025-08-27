@@ -1,145 +1,279 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Github, 
-  Linkedin,
-  Download,
-  Code,
-  Globe
-} from "lucide-react";
-import { Button } from "./ui/button";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+"use client"
+import { motion } from "framer-motion"
+import { Mail, MapPin, Github, Download, Code, Globe, Zap, FolderOpen, GraduationCap, Target, ChevronRight, ExternalLink } from "lucide-react"
+import { Button } from "./ui/button"
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
+import Lottie from "lottie-react"
+import mateAnimation from "../assets/Progra-Mate.json"
+import "../styles/components/hero-section.css"
 
-const HeroSection = ({ personalInfo, itemVariants }) => {
+const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
+  const defaultPersonalInfo = {
+    nombre: "Samir Elias Salatino",
+    titulo: "Desarrollador Backend Java | Full Stack Developer",
+    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y metodologías ágiles. Experiencia en metodologías ágiles y proyectos Full-Stack. Más interesado y certificado disponible en mi portafolio.",
+    ubicacion: "Mendoza, Argentina",
+    experiencia: "6+ años Developer Autodidacta",
+    email: "samir.elias.dev@gmail.com",
+    github: "https://github.com/Samir-Elias",
+    website: "https://portfolio.samir-elias.dev",
+    avatar: "/images/perfil.jpg", // Cambiado a la imagen correcta
+  }
+
+  // Merge provided personalInfo with defaults
+  const info = { ...defaultPersonalInfo, ...personalInfo }
+
   const downloadPDF = () => {
-    window.print();
-  };
+    window.print()
+  }
+
+  const defaultItemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  }
+
+  const variants = { ...defaultItemVariants, ...itemVariants }
 
   return (
-    <motion.section 
-      id="hero"
-      className="hero-section relative bg-gradient-to-r from-slate-900 via-gray-900 to-slate-800 text-white print:bg-gray-800"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: {
-          opacity: 1,
-          transition: {
-            duration: 0.6,
-            staggerChildren: 0.1
-          }
-        }
-      }}
-      initial="hidden"
-      animate="visible"
-    >
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-transparent to-blue-800/10"></div>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 relative z-10">
-        <motion.div 
-          className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12"
-          variants={itemVariants}
-        >
-          <motion.div 
-            className="flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 300 }}
-          >
-            <Avatar className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 border-4 border-white shadow-2xl">
-              <AvatarImage src={personalInfo.foto} alt="Samir Salatino" className="object-cover" />
-              <AvatarFallback className="text-2xl sm:text-3xl lg:text-4xl bg-white text-blue-600">
-                SS
-              </AvatarFallback>
-            </Avatar>
-          </motion.div>
-          
-          <div className="text-center lg:text-left flex-1">
-            <motion.h1 
-              className="text-3xl sm:text-4xl lg:text-6xl xl:text-7xl font-bold mb-4 bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent leading-tight"
-              variants={itemVariants}
-            >
-              {personalInfo.nombre}
-            </motion.h1>
-            <motion.h2 
-              className="text-lg sm:text-xl lg:text-2xl mb-4 text-blue-200 font-semibold"
-              variants={itemVariants}
-            >
-              {personalInfo.titulo}
-            </motion.h2>
-            <motion.p 
-              className="text-base sm:text-lg mb-6 text-gray-200 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
-              variants={itemVariants}
-            >
-              {personalInfo.bio}
-            </motion.p>
-            <motion.div 
-              className="flex flex-wrap justify-center lg:justify-start gap-3 sm:gap-4 mb-6 sm:mb-8"
-              variants={itemVariants}
-            >
-              <div className="flex items-center gap-2 text-gray-300 text-sm sm:text-base">
-                <MapPin size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
-                <span>{personalInfo.ubicacion}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300 text-sm sm:text-base">
-                <Code size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
-                <span>{personalInfo.experiencia}</span>
-              </div>
-              <div className="flex items-center gap-2 text-gray-300 text-sm sm:text-base">
-                <Globe size={16} className="sm:w-5 sm:h-5 flex-shrink-0" />
-                <span>Disponible para remoto</span>
-              </div>
-            </motion.div>
-            <motion.div 
-              className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4"
-              variants={itemVariants}
-            >
-              <Button 
-                variant="secondary" 
-                size="sm"
-                className="bg-blue-600 text-white hover:bg-blue-700 shadow-lg print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
-                onClick={() => window.open(`mailto:${personalInfo.email}`)}
-              >
-                <Mail className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
-                <span className="hidden sm:inline">{personalInfo.email}</span>
-                <span className="sm:hidden">Email</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-gray-300 text-white hover:bg-white hover:text-gray-900 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
-                onClick={downloadPDF}
-              >
-                <Download className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
-                <span className="hidden sm:inline">Descargar PDF</span>
-                <span className="sm:hidden">PDF</span>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-gray-300 text-white hover:bg-white hover:text-gray-900 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
-                onClick={() => window.open(personalInfo.github)}
-              >
-                <Github className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
-                GitHub
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm"
-                className="border-gray-300 text-white hover:bg-white hover:text-gray-900 print:hidden text-xs sm:text-sm px-3 sm:px-4 py-2"
-                onClick={() => window.open(personalInfo.website)}
-              >
-                <Globe className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2 flex-shrink-0" />
-                <span className="hidden sm:inline">Portfolio</span>
-                <span className="sm:hidden">Web</span>
-              </Button>
-            </motion.div>
+    <section className="hero-section" id="hero">
+      {/* Header PrograMate */}
+      <motion.div 
+        className="hero-brand-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div className="brand-content">
+          <div className="mate-animation">
+            <Lottie 
+              animationData={mateAnimation} 
+              loop={true}
+              style={{ width: 100, height: 100 }}
+            />
           </div>
-        </motion.div>
-      </div>
-      <div className="absolute bottom-0 left-0 right-0 h-16 sm:h-20 bg-gradient-to-t from-white to-transparent print:hidden"></div>
-    </motion.section>
-  );
-};
+          <h1 className="brand-title">
+            Progra<span className="brand-accent">M</span>ate
+          </h1>
+        </div>
+      </motion.div>
 
-export default HeroSection;
+      <div className="hero-container">
+        <div className="hero-cards-layout">
+          {/* Card izquierda - Información personal */}
+          <motion.div
+            className="hero-card hero-card-left"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="hero-content">
+              {/* Avatar section */}
+              <motion.div className="hero-avatar-section" variants={variants}>
+                <div className="avatar-container">
+                  <Avatar className="hero-avatar">
+                    <AvatarImage src={info.avatar || "/images/perfil.jpg"} alt={info.nombre} />
+                    <AvatarFallback className="avatar-fallback">
+                      {info.nombre
+                        ?.split(" ")
+                        .map((n) => n[0])
+                        .join("")
+                        .slice(0, 2) || "SE"}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="avatar-status">
+                    <div className="status-indicator"></div>
+                    <span>Disponible</span>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Main info */}
+              <motion.div className="hero-main-info" variants={variants}>
+                <h1 className="hero-name">{info.nombre}</h1>
+                <h2 className="hero-title">{info.titulo}</h2>
+                <p className="hero-bio">{info.bio}</p>
+              </motion.div>
+
+              {/* Stats section */}
+              <motion.div className="hero-stats" variants={variants}>
+                <div className="stat-item">
+                  <MapPin className="stat-icon" />
+                  <span>{info.ubicacion}</span>
+                </div>
+                <div className="stat-item">
+                  <Code className="stat-icon" />
+                  <span>{info.experiencia}</span>
+                </div>
+                <div className="stat-item">
+                  <Globe className="stat-icon" />
+                  <span>Disponible para remoto</span>
+                </div>
+              </motion.div>
+
+              {/* Action buttons */}
+              <motion.div className="hero-actions" variants={variants}>
+                <Button className="action-button primary-button" onClick={() => window.open(`mailto:${info.email}`)}>
+                  <Mail className="button-icon" />
+                  <span>{info.email}</span>
+                  <span className="button-label">Email</span>
+                </Button>
+
+                <Button className="action-button secondary-button" onClick={downloadPDF}>
+                  <Download className="button-icon" />
+                  <span>Descargar PDF</span>
+                  <span className="button-label">PDF</span>
+                </Button>
+
+                {info.github && (
+                  <Button className="action-button tertiary-button" onClick={() => window.open(info.github)}>
+                    <Github className="button-icon" />
+                    <span>GitHub</span>
+                  </Button>
+                )}
+
+                {info.website && (
+                  <Button className="action-button tertiary-button" onClick={() => window.open(info.website)}>
+                    <Globe className="button-icon" />
+                    <span>Portfolio</span>
+                    <span className="button-label">Web</span>
+                  </Button>
+                )}
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Card centro - Índice de navegación */}
+          <motion.div
+            className="hero-card hero-card-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          >
+            <div className="hero-navigation-content">
+              <motion.div className="navigation-header" variants={variants}>
+                <h2 className="navigation-title">
+                  <Zap className="navigation-icon" />
+                  Navegación
+                </h2>
+                <p className="navigation-subtitle">Explora mi portfolio</p>
+              </motion.div>
+
+              <motion.div className="navigation-sections" variants={variants}>
+                <div className="nav-section-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="nav-section-icon">
+                    <FolderOpen className="section-icon" />
+                  </div>
+                  <div className="nav-section-content">
+                    <h3 className="nav-section-title">Proyectos Destacados</h3>
+                    <p className="nav-section-description">Una selección de mis mejores trabajos como desarrollador Full-Stack</p>
+                  </div>
+                  <ChevronRight className="nav-section-arrow" />
+                </div>
+
+                <div className="nav-section-item" onClick={() => document.getElementById('education')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="nav-section-icon">
+                    <GraduationCap className="section-icon" />
+                  </div>
+                  <div className="nav-section-content">
+                    <h3 className="nav-section-title">Educación & Certificaciones</h3>
+                    <p className="nav-section-description">Mi formación académica y certificaciones profesionales</p>
+                  </div>
+                  <ChevronRight className="nav-section-arrow" />
+                </div>
+
+                <div className="nav-section-item" onClick={() => document.getElementById('objective')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="nav-section-icon">
+                    <Target className="section-icon" />
+                  </div>
+                  <div className="nav-section-content">
+                    <h3 className="nav-section-title">Objetivos & Metas</h3>
+                    <p className="nav-section-description">Mis aspiraciones profesionales y visión de futuro</p>
+                  </div>
+                  <ChevronRight className="nav-section-arrow" />
+                </div>
+              </motion.div>
+
+              {/* Tech Stack Preview */}
+              <motion.div className="tech-preview" variants={variants}>
+                <h3 className="tech-preview-title">Stack Tecnológico</h3>
+                <div className="tech-preview-grid">
+                  <div className="tech-preview-category">
+                    <span className="tech-preview-label">Backend</span>
+                    <div className="tech-preview-icons">
+                      <span className="tech-preview-icon">☕</span>
+                      <span className="tech-preview-icon">🌱</span>
+                      <span className="tech-preview-icon">⚡</span>
+                    </div>
+                  </div>
+                  <div className="tech-preview-category">
+                    <span className="tech-preview-label">Frontend</span>
+                    <div className="tech-preview-icons">
+                      <span className="tech-preview-icon">⚛️</span>
+                      <span className="tech-preview-icon">🎨</span>
+                      <span className="tech-preview-icon">📱</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Card derecha - Preview de proyectos */}
+          <motion.div
+            className="hero-card hero-card-right"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          >
+            <div className="hero-projects-preview">
+              <motion.div className="projects-preview-header" variants={variants}>
+                <h2 className="projects-preview-title">
+                  <FolderOpen className="projects-preview-icon" />
+                  Proyectos Destacados
+                </h2>
+                <p className="projects-preview-subtitle">Una muestra de mi trabajo</p>
+              </motion.div>
+
+              <motion.div className="projects-preview-grid" variants={variants}>
+                <div className="project-preview-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-image">
+                    <img src="/images/estimador_hero.png" alt="Estimador de Costos" />
+                    <div className="project-preview-overlay">
+                      <ExternalLink className="project-preview-link-icon" />
+                    </div>
+                  </div>
+                  <h3 className="project-preview-title">Estimador de Costos</h3>
+                  <p className="project-preview-description">Sistema completo de estimación y gestión de proyectos</p>
+                </div>
+
+                <div className="project-preview-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-image">
+                    <img src="/images/Teloapp_pcview.png" alt="TeloApp" />
+                    <div className="project-preview-overlay">
+                      <ExternalLink className="project-preview-link-icon" />
+                    </div>
+                  </div>
+                  <h3 className="project-preview-title">TeloApp</h3>
+                  <p className="project-preview-description">Aplicación móvil para gestión de telos y hoteles</p>
+                </div>
+
+                <div className="project-preview-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-image">
+                    <img src="/images/serviceBook_inicio.png" alt="ServiceBook" />
+                    <div className="project-preview-overlay">
+                      <ExternalLink className="project-preview-link-icon" />
+                    </div>
+                  </div>
+                  <h3 className="project-preview-title">ServiceBook</h3>
+                  <p className="project-preview-description">Plataforma de gestión de servicios y reservas</p>
+                </div>
+              </motion.div>
+            </div>
+                    </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default HeroSection

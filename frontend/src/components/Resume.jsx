@@ -8,6 +8,7 @@ import ObjectiveSection from "./ObjectiveSection";
 import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
 import LoadingScreen from "./LoadingScreen";
+import BackgroundAnimation from "./BackgroundAnimation";
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -111,72 +112,78 @@ const Resume = () => {
 
   // Resto del componente (se muestra después de la carga)
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 print:bg-white">
-      {/* Hero Section */}
-      <HeroSection 
-        personalInfo={profileData.personalInfo}
-        itemVariants={itemVariants}
-      />
-
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        {/* Stack Tecnológico */}
-        <TechStack 
-          tecnologiasCore={profileData.tecnologiasCore}
-          isVisible={{
-            ...isVisible,
-            techstack: getSectionVisibility('techstack') === 'visible'
-          }}
-          containerVariants={containerVariants}
+    <div className="relative min-h-screen">
+      {/* Background Animation */}
+      <BackgroundAnimation />
+      
+      {/* Contenido principal con z-index para estar sobre el background */}
+      <div className="relative z-10">
+        {/* Hero Section con título del TechStack */}
+        <HeroSection 
+          personalInfo={profileData.personalInfo}
           itemVariants={itemVariants}
         />
 
-        {/* PROYECTOS DESTACADOS - CORREGIDO */}
-        <ProjectsSection 
-          proyectosDestacados={profileData.proyectosDestacados}
-          isVisible={{
-            ...isVisible,
-            projects: getSectionVisibility('projects') === 'visible'
-          }}
-          containerVariants={containerVariants}
-          itemVariants={itemVariants}
-        />
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          {/* Stack Tecnológico sin título */}
+                                  <TechStack 
+                          tecnologiasCore={profileData.tecnologiasCore}
+                          isVisible={{
+                            ...isVisible,
+                            techstack: getSectionVisibility('techstack') === 'visible'
+                          }}
+                          containerVariants={containerVariants}
+                          itemVariants={itemVariants}
+                        />
 
-        {/* Formación Técnica */}
-        <EducationSection 
-          formacionTecnica={profileData.formacionTecnica}
-          isVisible={{
-            ...isVisible,
-            education: getSectionVisibility('education') === 'visible'
-          }}
-          containerVariants={containerVariants}
-          itemVariants={itemVariants}
+          {/* PROYECTOS DESTACADOS - CORREGIDO */}
+          <ProjectsSection 
+            proyectosDestacados={profileData.proyectosDestacados}
+            isVisible={{
+              ...isVisible,
+              projects: getSectionVisibility('projects') === 'visible'
+            }}
+            containerVariants={containerVariants}
+            itemVariants={itemVariants}
+          />
+
+          {/* Formación Técnica */}
+          <EducationSection 
+            formacionTecnica={profileData.formacionTecnica}
+            isVisible={{
+              ...isVisible,
+              education: getSectionVisibility('education') === 'visible'
+            }}
+            containerVariants={containerVariants}
+            itemVariants={itemVariants}
+            setSelectedCertificate={setSelectedCertificate}
+            expandedEducation={expandedEducation}
+            setExpandedEducation={setExpandedEducation}
+          />
+
+          {/* Objetivo Profesional */}
+          <ObjectiveSection 
+            objetivoProfesional={profileData.objetivoProfesional}
+            isVisible={{
+              ...isVisible,
+              objective: getSectionVisibility('objective') === 'visible'
+            }}
+            containerVariants={containerVariants}
+            itemVariants={itemVariants}
+            expandedObjective={expandedObjective}
+            setExpandedObjective={setExpandedObjective}
+          />
+        </div>
+
+        {/* Footer */}
+        <Footer personalInfo={profileData.personalInfo} />
+
+        {/* Modal para certificaciones */}
+        <CertificateModal 
+          selectedCertificate={selectedCertificate}
           setSelectedCertificate={setSelectedCertificate}
-          expandedEducation={expandedEducation}
-          setExpandedEducation={setExpandedEducation}
-        />
-
-        {/* Objetivo Profesional */}
-        <ObjectiveSection 
-          objetivoProfesional={profileData.objetivoProfesional}
-          isVisible={{
-            ...isVisible,
-            objective: getSectionVisibility('objective') === 'visible'
-          }}
-          containerVariants={containerVariants}
-          itemVariants={itemVariants}
-          expandedObjective={expandedObjective}
-          setExpandedObjective={setExpandedObjective}
         />
       </div>
-
-      {/* Footer */}
-      <Footer personalInfo={profileData.personalInfo} />
-
-      {/* Modal para certificaciones */}
-      <CertificateModal 
-        selectedCertificate={selectedCertificate}
-        setSelectedCertificate={setSelectedCertificate}
-      />
     </div>
   );
 };

@@ -4,64 +4,65 @@
 @tailwind utilities;
 
 /* Base styles */
-@import './base/reset.css';
-@import './base/typography.css';
-@import './base/variables.css';
+@import "./base/reset.css";
+@import "./base/typography.css";
+@import "./base/variables.css";
 
 /* Layout */
-@import './layout/container.css';
-@import './layout/responsive.css';
-@import './layout/hero.css';
-@import './layout/footer.css';
-@import './layout/section-layouts.css';
+@import "./layout/container.css";
+@import "./layout/responsive.css";
+/* @import "./layout/hero.css"; */ /* Comentado temporalmente para evitar conflictos */
+@import "./layout/footer.css";
+@import "./layout/section-layouts.css";
 
 /* Components */
-@import './components/cards.css';
-@import './components/buttons.css';
-@import './components/badges.css';
-@import './components/modals.css';
-@import './components/slider.css';
-@import './components/avatar.css';
-@import './components/loading.css';
-@import './components/education-section.css';
-@import './components/objective-section.css';
-@import './components/scroll-checkpoints.css';
-@import './components/linkedin-badge.css';
-@import './components/mobile-projects.css';
+@import "./components/cards.css";
+@import "./components/buttons.css";
+@import "./components/badges.css";
+@import "./components/modals.css";
+@import "./components/slider.css";
+@import "./components/avatar.css";
+@import "./components/loading.css";
+@import "./components/education-section.css";
+@import "./components/objective-section.css";
+@import "./components/linkedin-badge.css";
+@import "./components/mobile-projects.css";
+@import "./components/background-animation.css";
+@import "./components/techstack.css";
 
 /* Effects and animations */
-@import './effects/animations.css';
-@import './effects/visual-effects.css';
-@import './effects/hover-effects.css';
-@import './effects/section-effects.css';
-@import './effects/slide-animations.css';
+@import "./effects/animations.css";
+@import "./effects/visual-effects.css";
+@import "./effects/hover-effects.css";
+@import "./effects/section-effects.css";
+@import "./effects/slide-animations.css";
 
 /* Themes */
-@import './themes/colors.css';
-@import './themes/shadows.css';
+@import "./themes/colors.css";
+@import "./themes/shadows.css";
 
 /* Utilities */
-@import './utils/responsive-fixes.css';
-@import './utils/print.css';
-@import './utils/debugging.css';
-@import './utils/section-responsive.css';
+@import "./utils/responsive-fixes.css";
+@import "./utils/print.css";
+@import "./utils/debugging.css";
+@import "./utils/section-responsive.css";
 
 /* ==========================================================================
-   PROYECTOS CON SCROLL SNAPPING - ESTILOS ADICIONALES
+   ESTILOS GLOBALES UNIFICADOS CON BACKGROUND ANIMATION
    ========================================================================== */
 
-/* Smooth scroll global mejorado */
+/* Smooth scroll global */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 2rem;
 }
 
-/* Container principal con mejor espaciado para checkpoints */
+/* Container principal */
 .container {
   position: relative;
 }
 
-/* Espaciado específico para secciones con checkpoints */
+/* Espaciado para secciones */
 section[id] {
   scroll-margin-top: 4rem;
   scroll-margin-bottom: 2rem;
@@ -70,58 +71,6 @@ section[id] {
 /* Mejoras específicas para la sección de proyectos */
 #projects {
   position: relative;
-}
-
-/* Indicador visual sutil cuando una sección está activa */
-section[id].active-checkpoint {
-  position: relative;
-}
-
-section[id].active-checkpoint::before {
-  content: '';
-  position: absolute;
-  top: -1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, #3b82f6, #10b981);
-  border-radius: 2px;
-  opacity: 0.6;
-  animation: activeIndicator 2s ease infinite;
-}
-
-@keyframes activeIndicator {
-  0%, 100% {
-    opacity: 0.6;
-    transform: translateX(-50%) scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: translateX(-50%) scale(1.1);
-  }
-}
-
-/* Mejoras para el scroll de proyectos específicamente */
-.projects-scroll-enhanced {
-  scroll-snap-type: y proximity;
-}
-
-.projects-scroll-enhanced .scroll-snap-item {
-  scroll-snap-align: center;
-  scroll-snap-stop: normal;
-}
-
-/* Estados de carga mejorados */
-.checkpoint-section-loading {
-  opacity: 0.8;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
-
-.checkpoint-section-loading.loaded {
-  opacity: 1;
-  pointer-events: auto;
 }
 
 /* ==========================================================================
@@ -159,17 +108,13 @@ section[id].active-checkpoint::before {
 }
 
 .project-image-container::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg, 
-    rgba(59, 130, 246, 0.1) 0%, 
-    rgba(147, 51, 234, 0.1) 100%
-  );
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -231,7 +176,8 @@ section[id].active-checkpoint::before {
 }
 
 @keyframes gradientShift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   25% {
@@ -253,18 +199,13 @@ section[id].active-checkpoint::before {
 }
 
 .project-action-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -279,12 +220,24 @@ section[id].active-checkpoint::before {
   animation: slideInFeature 0.6s ease-out forwards;
 }
 
-.feature-item:nth-child(1) { animation-delay: 0.1s; }
-.feature-item:nth-child(2) { animation-delay: 0.2s; }
-.feature-item:nth-child(3) { animation-delay: 0.3s; }
-.feature-item:nth-child(4) { animation-delay: 0.4s; }
-.feature-item:nth-child(5) { animation-delay: 0.5s; }
-.feature-item:nth-child(6) { animation-delay: 0.6s; }
+.feature-item:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.feature-item:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.feature-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.feature-item:nth-child(4) {
+  animation-delay: 0.4s;
+}
+.feature-item:nth-child(5) {
+  animation-delay: 0.5s;
+}
+.feature-item:nth-child(6) {
+  animation-delay: 0.6s;
+}
 
 @keyframes slideInFeature {
   to {
@@ -300,7 +253,7 @@ section[id].active-checkpoint::before {
 }
 
 .challenge-solution-result::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -327,15 +280,10 @@ section[id].active-checkpoint::before {
   box-shadow: 0 0 15px currentColor;
 }
 
-/* Responsive mejoras para checkpoints */
+/* Responsive mejoras */
 @media (max-width: 1024px) {
   section[id] {
     scroll-margin-top: 3rem;
-  }
-  
-  section[id].active-checkpoint::before {
-    width: 30px;
-    height: 2px;
   }
 
   .project-card {
@@ -346,10 +294,6 @@ section[id].active-checkpoint::before {
 @media (max-width: 768px) {
   section[id] {
     scroll-margin-top: 2rem;
-  }
-  
-  section[id].active-checkpoint::before {
-    display: none; /* Ocultar en móvil para evitar distracción */
   }
 
   .project-expanded-content {
@@ -372,30 +316,21 @@ section[id].active-checkpoint::before {
     transform: none;
     box-shadow: none;
   }
-  
+
   .project-image-container:hover::after {
     opacity: 0;
   }
-  
+
   .project-action-button:hover::before {
     left: -100%;
   }
 }
 
-/* Print styles para checkpoints y proyectos */
+/* Print styles para proyectos */
 @media print {
   section[id] {
     scroll-margin: 0;
     page-break-inside: avoid;
-  }
-  
-  section[id].active-checkpoint::before {
-    display: none;
-  }
-  
-  .checkpoint-section-loading {
-    opacity: 1 !important;
-    pointer-events: auto !important;
   }
 
   .project-card {
@@ -431,14 +366,6 @@ section[id].active-checkpoint::before {
   html {
     scroll-behavior: auto;
   }
-  
-  section[id].active-checkpoint::before {
-    animation: none !important;
-  }
-  
-  .checkpoint-section-loading {
-    transition: none !important;
-  }
 
   .shimmer,
   .image-loading {
@@ -473,11 +400,6 @@ section[id]:focus-visible {
 
 /* Estados para high contrast */
 @media (prefers-contrast: high) {
-  section[id].active-checkpoint::before {
-    background: #000;
-    opacity: 1;
-  }
-
   .project-card {
     border: 2px solid #000 !important;
   }
@@ -485,21 +407,6 @@ section[id]:focus-visible {
   .tech-tag {
     border: 1px solid #000 !important;
   }
-}
-
-/* Mejoras específicas para el componente ScrollCheckpoints */
-.scroll-checkpoints-container {
-  position: relative;
-  z-index: 1;
-}
-
-/* Prevenir conflictos con otros elementos flotantes */
-.scroll-checkpoints-overlay {
-  pointer-events: none;
-}
-
-.scroll-checkpoints-overlay > * {
-  pointer-events: auto;
 }
 
 /* ==========================================================================
@@ -559,8 +466,7 @@ section[id]:focus-visible {
 .expand-animation-enter-active {
   max-height: 2000px; /* Valor alto para permitir contenido extenso */
   opacity: 1;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
 }
 
 .expand-animation-exit {
@@ -572,6 +478,5 @@ section[id]:focus-visible {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s,
-              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

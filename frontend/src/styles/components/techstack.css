@@ -1,0 +1,425 @@
+/* TechStack Section - Unión profesional entre secciones */
+.techstack-floating-section {
+  position: relative;
+  z-index: 20;
+  margin: 2rem 0 80px 0; /* Ajustado para el título de vuelta en TechStack */
+  padding: 0 2rem;
+  overflow: hidden;
+}
+
+.techstack-floating-container {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.techstack-floating-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.techstack-floating-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #10b981, #3b82f6);
+  border-radius: 2px;
+}
+
+.techstack-floating-icon {
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-right: 0.75rem;
+  color: #10b981;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.techstack-floating-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Cards flotantes del TechStack - Más profesionales */
+.techstack-floating-card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 20px !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15) !important,
+    0 0 0 1px rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  overflow: hidden;
+  transform: translateY(0);
+  position: relative;
+}
+
+.techstack-floating-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--card-accent-color, #64748b), var(--card-accent-color, #64748b));
+  opacity: 0.8;
+}
+
+.techstack-floating-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 
+    0 35px 70px rgba(0, 0, 0, 0.25) !important,
+    0 0 0 1px rgba(255, 255, 255, 0.2) !important;
+}
+
+.techstack-floating-card-header {
+  padding: 1.5rem 1.5rem 1rem 1.5rem !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+
+.techstack-floating-card-title {
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #1e293b !important;
+  display: flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  letter-spacing: -0.025em;
+}
+
+.techstack-floating-card-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.techstack-floating-card-content {
+  padding: 1.5rem !important;
+  background: white;
+}
+
+.techstack-floating-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.techstack-floating-badge {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  font-size: 0.8rem !important;
+  font-weight: 500 !important;
+  padding: 0.75rem 1rem !important;
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid transparent !important;
+  width: 100% !important;
+  justify-content: flex-start !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.techstack-floating-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.techstack-floating-badge:hover::before {
+  left: 100%;
+}
+
+.tech-icon-medium {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 2px;
+}
+
+.tech-icon-medium svg {
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+.tech-name {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: inherit;
+}
+
+/* Colores específicos por categoría con variables CSS */
+.backend-card {
+  --card-accent-color: #64748b;
+}
+
+.backend-card .techstack-floating-card-icon {
+  color: #64748b;
+}
+
+.backend-badge {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  color: #475569 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.backend-badge:hover {
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%) !important;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
+}
+
+.frontend-card {
+  --card-accent-color: #3b82f6;
+}
+
+.frontend-card .techstack-floating-card-icon {
+  color: #3b82f6;
+}
+
+.frontend-badge {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%) !important;
+  color: #1e40af !important;
+  border-color: #bfdbfe !important;
+}
+
+.frontend-badge:hover {
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%) !important;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
+}
+
+.tools-card {
+  --card-accent-color: #10b981;
+}
+
+.tools-card .techstack-floating-card-icon {
+  color: #10b981;
+}
+
+.tools-badge {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  color: #047857 !important;
+  border-color: #a7f3d0 !important;
+}
+
+.tools-badge:hover {
+  background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%) !important;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
+}
+
+.methodologies-card {
+  --card-accent-color: #8b5cf6;
+}
+
+.methodologies-card .techstack-floating-card-icon {
+  color: #8b5cf6;
+}
+
+.methodologies-badge {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%) !important;
+  color: #6d28d9 !important;
+  border-color: #c4b5fd !important;
+}
+
+.methodologies-badge:hover {
+  background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%) !important;
+  transform: translateX(6px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+  .techstack-floating-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .techstack-floating-section {
+    margin: -50px 0 50px 0;
+    padding: 0 1rem;
+  }
+
+  .techstack-floating-container {
+    padding: 0;
+  }
+
+  .techstack-floating-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .techstack-floating-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .techstack-floating-card {
+    margin-bottom: 0.5rem;
+  }
+
+  .techstack-floating-card-header {
+    padding: 1.25rem 1.25rem 0.75rem 1.25rem !important;
+  }
+
+  .techstack-floating-card-content {
+    padding: 1.25rem !important;
+  }
+
+  .techstack-floating-badges {
+    gap: 0.5rem;
+  }
+
+  .techstack-floating-badge {
+    font-size: 0.75rem !important;
+    padding: 0.625rem 0.875rem !important;
+  }
+
+  .tech-icon-medium {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .tech-icon-medium svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .techstack-floating-title {
+    font-size: 1.5rem;
+  }
+
+  .techstack-floating-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-right: 0.5rem;
+  }
+
+  .techstack-floating-card-title {
+    font-size: 1.125rem !important;
+  }
+
+  .techstack-floating-card-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: 0.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .techstack-floating-section {
+    background: white !important;
+    color: black !important;
+    margin: 0 !important;
+  }
+
+  .techstack-floating-title {
+    color: black !important;
+    text-shadow: none !important;
+  }
+
+  .techstack-floating-title::after {
+    background: #374151 !important;
+  }
+
+  .techstack-floating-icon {
+    color: #374151 !important;
+  }
+
+  .techstack-floating-card {
+    background: white !important;
+    border: 1px solid #e5e7eb !important;
+    box-shadow: none !important;
+  }
+
+  .techstack-floating-card::before {
+    background: #374151 !important;
+  }
+
+  .techstack-floating-card-header {
+    background: #f9fafb !important;
+  }
+
+  .techstack-floating-card-title {
+    color: black !important;
+  }
+
+  .techstack-floating-card-icon {
+    color: #374151 !important;
+  }
+
+  .techstack-floating-badge {
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+    border: 1px solid #d1d5db !important;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .techstack-floating-card,
+  .techstack-floating-badge {
+    transition: none !important;
+  }
+
+  .techstack-floating-card:hover {
+    transform: none !important;
+  }
+
+  .techstack-floating-badge:hover {
+    transform: none !important;
+  }
+
+  .techstack-floating-badge::before {
+    display: none !important;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .techstack-floating-card {
+    border: 2px solid #000 !important;
+  }
+
+  .techstack-floating-badge {
+    border: 1px solid #000 !important;
+  }
+}

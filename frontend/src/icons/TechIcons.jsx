@@ -197,7 +197,25 @@ export const getTechIcon = (tech) => {
     "SQL": <DatabaseIcon />,
     "SCSS": <CSS3Icon />,
     "Axios": <JavaScriptIcon />,
-    "JWT Authentication": <DatabaseIcon />
+    "JWT Authentication": <DatabaseIcon />,
+    // Herramientas
+    "Git": <GitHubIcon />,
+    "GitHub": <GitHubIcon />,
+    "IntelliJ IDEA": <DatabaseIcon />,
+    "Eclipse": <DatabaseIcon />,
+    "Postman": <ExternalLinkIcon />,
+    "Docker": <DatabaseIcon />,
+    "Figma": <DatabaseIcon />,
+    "Claude": <DatabaseIcon />,
+    "Gemini": <DatabaseIcon />,
+    "N8N": <DatabaseIcon />,
+    // Metodologías
+    "Scrum": <DatabaseIcon />,
+    "Agile": <DatabaseIcon />,
+    "Sprints": <DatabaseIcon />,
+    "Trabajo en equipo": <DatabaseIcon />,
+    "UX/UI Design": <DatabaseIcon />,
+    "User Research": <DatabaseIcon />
   }
 
   return iconMap[tech] || <DatabaseIcon />

@@ -15,6 +15,8 @@ html {
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden; /* Previene scroll horizontal */
   max-width: 100vw;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  min-height: 100vh;
 }
 
 body {
@@ -27,6 +29,8 @@ body {
   overflow-x: hidden; /* Previene scroll horizontal */
   max-width: 100vw;
   width: 100%;
+  background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+  min-height: 100vh;
 }
 
 /* Root container - React App */
