@@ -59,9 +59,9 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
           {/* Card izquierda - Información personal */}
           <motion.div
             className="hero-card hero-card-left"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
           >
             <div className="hero-content">
               {/* Avatar section */}
@@ -124,7 +124,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
             className="hero-card hero-card-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
           >
             <div className="hero-navigation-content">
               <motion.div className="navigation-header" variants={variants}>
@@ -175,8 +175,8 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
           {/* Card derecha - Preview de proyectos */}
           <motion.div
             className="hero-card hero-card-right"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
           >
             <div className="hero-projects-preview">
