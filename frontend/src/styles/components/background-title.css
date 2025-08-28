@@ -1,0 +1,150 @@
+/* 
+ * BACKGROUND TITLE STYLES
+ * Componente fijo para el logo de Node.js detrás del mate
+ * Responsive y optimizado para todos los dispositivos
+ */
+
+.background-title-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.fixed-nodejs-behind-mate {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.6;
+  filter: brightness(2.0) contrast(1.2) drop-shadow(0 0 30px rgba(16, 185, 129, 0.8));
+  transition: all 0.3s ease;
+}
+
+/* Responsive design para tablets */
+@media (max-width: 768px) {
+  .fixed-nodejs-behind-mate {
+    width: 150px;
+    height: 150px;
+    opacity: 0.5;
+    filter: brightness(1.8) contrast(1.1) drop-shadow(0 0 20px rgba(16, 185, 129, 0.6));
+  }
+}
+
+/* Responsive design para móviles */
+@media (max-width: 480px) {
+  .fixed-nodejs-behind-mate {
+    width: 120px;
+    height: 120px;
+    opacity: 0.4;
+    filter: brightness(1.6) contrast(1.0) drop-shadow(0 0 15px rgba(16, 185, 129, 0.5));
+  }
+}
+
+/* Responsive design para móviles muy pequeños */
+@media (max-width: 360px) {
+  .fixed-nodejs-behind-mate {
+    width: 100px;
+    height: 100px;
+    opacity: 0.35;
+    filter: brightness(1.5) contrast(1.0) drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+  }
+}
+
+/* Efectos de hover (solo en desktop) */
+@media (min-width: 769px) {
+  .fixed-nodejs-behind-mate:hover {
+    opacity: 0.8;
+    filter: brightness(2.5) contrast(1.3) drop-shadow(0 0 40px rgba(16, 185, 129, 1.0));
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* Animación sutil de respiración */
+@keyframes breathing {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+.fixed-nodejs-behind-mate {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+/* Ajustes para diferentes orientaciones */
+@media (orientation: landscape) and (max-height: 500px) {
+  .fixed-nodejs-behind-mate {
+    width: 80px;
+    height: 80px;
+    opacity: 0.3;
+  }
+}
+
+/* Ajustes para pantallas muy grandes */
+@media (min-width: 1920px) {
+  .fixed-nodejs-behind-mate {
+    width: 250px;
+    height: 250px;
+    opacity: 0.7;
+  }
+}
+
+/* Asegurar que no interfiera con elementos interactivos */
+.background-title-container * {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Optimización para dispositivos con preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  .fixed-nodejs-behind-mate {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Estilos para los elementos internos */
+.nodejs-icon-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nodejs-icon {
+  width: 100%;
+  height: 100%;
+  color: #10b981;
+  filter: drop-shadow(0 0 20px rgba(16, 185, 129, 0.6));
+}
+
+.lottie-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.mate-lottie {
+  width: 100%;
+  height: 100%;
+}

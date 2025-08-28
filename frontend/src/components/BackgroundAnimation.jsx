@@ -55,7 +55,7 @@ const BackgroundAnimation = () => {
     { id: 10, Icon: HTML5Icon, x: 12, y: 45, size: 68, speed: 33 },
     { id: 11, Icon: TailwindIcon, x: 85, y: 70, size: 54, speed: 40 },
     
-    // Node.js detrás del mate (arriba izquierda)
+    // Node.js en posición normal (sin fijar)
     { id: 12, Icon: NodeIcon, x: 7.8, y: 2, size: 70, speed: 50 }
   ], [])
 
@@ -64,45 +64,40 @@ const BackgroundAnimation = () => {
       ref={containerRef}
       className="background-animation-container"
     >
-
       {/* Sin efectos de distorsión - Fondo completamente estático */}
 
-             {/* Iconos de tecnologías fijos - Solo rotación con CSS puro */}
-       <div className="absolute inset-0 pointer-events-none">
-         {floatingIcons.map((icon) => (
-           <div
-             key={`bg-icon-${icon.id}-${icon.x}-${icon.y}`}
-             className="floating-tech-icon"
-             style={{
-               left: `${icon.x}%`,
-               top: `${icon.y}%`,
-               width: `${icon.size}px`,
-               height: `${icon.size}px`,
-               '--rotation-speed': `${icon.speed}s`
-             }}
-           >
-             <div style={{ 
+      {/* Iconos de tecnologías fijos - Solo rotación con CSS puro */}
+      <div className="absolute inset-0 pointer-events-none">
+        {floatingIcons.map((icon) => (
+          <div
+            key={`bg-icon-${icon.id}-${icon.x}-${icon.y}`}
+            className="floating-tech-icon"
+            style={{
+              left: `${icon.x}%`,
+              top: `${icon.y}%`,
+              width: `${icon.size}px`,
+              height: `${icon.size}px`,
+              '--rotation-speed': `${icon.speed}s`
+            }}
+          >
+                         <div style={{ 
                width: `${icon.size}px`, 
                height: `${icon.size}px`,
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center',
                transform: `scale(${icon.size / 40})`,
-               opacity: icon.id === 12 ? 1.0 : 0.4,
-               filter: icon.id === 12 ? 'brightness(3.0) contrast(1.5) drop-shadow(0 0 20px rgba(16, 185, 129, 1.0)) hue-rotate(0deg) saturate(2.0)' : 'none',
-               color: icon.id === 12 ? '#10b981' : 'inherit'
+               opacity: 0.4,
+               filter: 'none',
+               color: 'inherit'
              }}>
                {React.createElement(icon.Icon)}
              </div>
-           </div>
-         ))}
-       </div>
+          </div>
+        ))}
+      </div>
 
-
-
-
-
-
+      
     </div>
   )
 }

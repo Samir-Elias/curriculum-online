@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import CertificateModal from "./CertificateModal";
 import LoadingScreen from "./LoadingScreen";
 import BackgroundAnimation from "./BackgroundAnimation";
+import BackgroundTitle from "./BackgroundTitle";
 
 const Resume = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -115,6 +116,9 @@ const Resume = () => {
     <div className="relative min-h-screen">
       {/* Background Animation */}
       <BackgroundAnimation />
+      
+      {/* Background Title - Node.js fijo detrás del mate */}
+      <BackgroundTitle />
       
       {/* Contenido principal con z-index para estar sobre el background */}
       <div className="relative z-10">
