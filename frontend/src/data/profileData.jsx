@@ -8,7 +8,7 @@ export const profileData = {
     foto: "/perfil.jpg",
     titulo: "Desarrollador Backend Java | Full-Stack Developer",
     experiencia: "6 años como Developer Autodidacta",
-    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack. Más información y certificados disponibles en mi portfolio.",
+    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack.",
     linkedin: "https://www.linkedin.com/in/samir-elías",
     github: "https://github.com/Samir-Elias",
     website: "https://sites.google.com/view/samir-elias-salatino/inicio"

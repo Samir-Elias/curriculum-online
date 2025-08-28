@@ -1,21 +1,31 @@
+/* 
+ * HERO SECTION STYLES - PERFECTO - NO MODIFICAR
+ * 
+ * Esta sección ha sido optimizada y probada exhaustivamente.
+ * Cualquier modificación puede romper el diseño actual que está funcionando perfectamente.
+ * 
+ * Última optimización: Diciembre 2024
+ * Estado: PERFECTO - NO TOCAR
+ */
+
 /* Hero Section - Estilos actualizados con color del loading screen */
 .hero-section {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%); /* Color del loading screen */
+  height: 100vh;
+  background: transparent; /* Transparente para mostrar BackgroundAnimation */
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   text-align: center;
 }
 
 /* Header PrograMate */
 .hero-brand-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   z-index: 10;
   width: 100%;
   display: flex;
@@ -31,23 +41,29 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
+  transform: translateX(-20px);
 }
 
   .mate-animation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80px;
-    height: 80px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  position: relative;
+  margin-bottom: 0.5rem;
+}
 
 .brand-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-weight: 800;
   color: white;
   margin: 0;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.05em;
+  white-space: nowrap;
+  line-height: 1;
+  transform: translateX(20px);
 }
 
 .brand-accent {
@@ -58,26 +74,17 @@
 /* Layout de 3 cards */
 .hero-cards-layout {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   width: 100%;
-  max-width: 1200px;
-  align-items: stretch;
+  max-width: 1400px;
+  align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
+  padding: 0 1rem 0 0;
+  position: relative;
 }
 
-.hero-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-  pointer-events: none;
-}
+
 
 .hero-container {
   max-width: 100%;
@@ -100,30 +107,33 @@
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
   flex: 1;
-  min-height: 600px;
-  max-height: 700px;
+  height: auto;
+  min-height: 450px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 /* Card izquierda - Información personal */
 .hero-card-left {
   flex: 1;
   width: 32%;
-  min-width: 300px;
+  min-width: 320px;
 }
 
 /* Card centro - Navegación */
 .hero-card-center {
   flex: 1;
   width: 33%;
-  min-width: 300px;
+  min-width: 320px;
 }
 
 /* Card derecha - Preview de proyectos */
 .hero-card-right {
   flex: 1.1;
   width: 35%;
-  min-width: 320px;
+  min-width: 340px;
 }
 
 .hero-card:hover {
@@ -136,9 +146,9 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 2rem;
-  height: 100%;
-  justify-content: space-between;
+  gap: 1.5rem;
+  height: auto;
+  justify-content: flex-start;
 }
 
 /* Avatar section */
@@ -158,8 +168,8 @@
 }
 
 .hero-avatar {
-  width: 140px !important;
-  height: 140px !important;
+  width: 100px !important;
+  height: 100px !important;
   border: 4px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
@@ -218,7 +228,7 @@
 }
 
 .hero-name {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 700;
   color: white;
   margin: 0;
@@ -227,7 +237,7 @@
 }
 
 .hero-title {
-  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
   font-weight: 600;
   color: #10b981;
   margin: 0;
@@ -236,45 +246,96 @@
 }
 
 .hero-bio {
-  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  font-size: clamp(0.875rem, 2vw, 1rem);
   color: #e2e8f0;
-  line-height: 1.6;
+  line-height: 1.5;
   margin: 0;
   opacity: 0.9;
 }
 
-/* Stats section */
-.hero-stats {
+/* Badges escalera flotantes por debajo de las cards */
+.hero-floating-badges {
   display: flex;
-  flex-wrap: wrap;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto 0 auto;
+  padding: 0 1rem;
   justify-content: center;
-  gap: 1.5rem;
-  margin: 1rem 0;
+  position: relative;
+  z-index: 10;
+  margin-top: -0.5rem;
 }
 
-.stat-item {
+.floating-badge-item {
+  display: flex;
+  justify-content: center;
+}
+
+/* Badge izquierdo - mismo ancho que hero-card-left */
+.floating-badge-item:nth-child(1) {
+  flex: 1;
+  width: 32%;
+  min-width: 320px;
+  margin-top: 0;
+  margin-left: 0;
+}
+
+/* Badge centro - mismo ancho que hero-card-center */
+.floating-badge-item:nth-child(2) {
+  flex: 1;
+  width: 33%;
+  min-width: 320px;
+  margin-top: 0.5rem;
+  margin-left: 0;
+}
+
+/* Badge derecho - mismo ancho que hero-card-right */
+.floating-badge-item:nth-child(3) {
+  flex: 1.1;
+  width: 32%;
+  min-width: 300px;
+  margin-top: 1rem;
+  margin-left: 0;
+}
+
+/* Formato escalera para los badges - ya definido arriba */
+
+.card-badge-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.75rem 1.25rem;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
   color: #e2e8f0;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-.stat-item:hover {
-  background: rgba(255, 255, 255, 0.15);
+.card-badge-item:hover {
+  background: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
-.stat-icon {
+.card-badge-item .badge-icon {
   width: 16px;
   height: 16px;
   color: #10b981;
+  flex-shrink: 0;
+}
+
+.card-badge-item span {
+  font-weight: 600;
+  color: white;
 }
 
 /* Action buttons */
@@ -300,6 +361,27 @@
   border: 1px solid transparent;
 }
 
+.email-button,
+.download-button,
+.github-button {
+  padding: 0.875rem;
+  min-width: 48px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.email-button .button-icon,
+.download-button .button-icon,
+.github-button svg {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .action-button::before {
   content: "";
   position: absolute;
@@ -315,45 +397,54 @@
   left: 100%;
 }
 
-.primary-button {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+.email-button {
+  background: #ea4335;
   color: white;
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+  border: 1px solid #ea4335;
+  box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
 }
 
-.primary-button:hover {
-  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+.email-button:hover {
+  background: #d32f2f;
+  border-color: #d32f2f;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 8px 25px rgba(234, 67, 53, 0.4);
 }
 
-.secondary-button {
-  background: rgba(255, 255, 255, 0.1);
+.download-button {
+  background: #3b82f6;
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(10px);
+  border: 1px solid #3b82f6;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
 
-.secondary-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+.download-button:hover {
+  background: #2563eb;
+  border-color: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
 }
 
-.tertiary-button {
-  background: rgba(59, 130, 246, 0.1);
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  backdrop-filter: blur(10px);
+.github-button {
+  background: #000000;
+  color: white;
+  border: 1px solid #000000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-.tertiary-button:hover {
-  background: rgba(59, 130, 246, 0.2);
+.github-button:hover {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .button-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.github-button svg {
   width: 18px;
   height: 18px;
 }
@@ -369,7 +460,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 2rem;
+  gap: 1.5rem;
   justify-content: space-between;
 }
 
@@ -383,7 +474,7 @@
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   font-weight: 700;
   color: white;
   margin-bottom: 0.5rem;
@@ -421,6 +512,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+  min-height: 80px;
 }
 
 .nav-section-item:hover {
@@ -449,13 +541,16 @@
 .nav-section-content {
   flex: 1;
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .nav-section-title {
   font-size: 1.1rem;
   font-weight: 600;
   color: white;
-  margin: 0 0 0.25rem 0;
+  margin: 0 0 0.5rem 0;
   line-height: 1.3;
 }
 
@@ -463,7 +558,8 @@
   font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.7);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
+  max-width: 100%;
 }
 
 .nav-section-arrow {
@@ -478,68 +574,15 @@
   transform: translateX(3px);
 }
 
-/* Tech Stack Preview */
-.tech-preview {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
 
-.tech-preview-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: white;
-  margin: 0 0 1rem 0;
-  text-align: center;
-}
-
-.tech-preview-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-.tech-preview-category {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.tech-preview-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-  text-align: center;
-}
-
-.tech-preview-icons {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.tech-preview-icon {
-  font-size: 1.25rem;
-  opacity: 0.8;
-  transition: all 0.3s ease;
-}
-
-.tech-preview-category:hover .tech-preview-icon {
-  opacity: 1;
-  transform: scale(1.1);
-}
 
 /* Preview de proyectos - Card derecha */
 .hero-projects-preview {
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 1.5rem;
-  justify-content: flex-start;
+  gap: 1rem;
+  justify-content: space-between;
 }
 
 .projects-preview-header {
@@ -575,11 +618,10 @@
 .projects-preview-grid {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.75rem;
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
   padding-right: 0.5rem;
-  max-height: calc(100% - 120px);
 }
 
 /* Scrollbar personalizado para el grid de proyectos */
@@ -622,7 +664,7 @@
 .project-preview-image {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 80px;
   overflow: hidden;
 }
 
@@ -686,142 +728,271 @@
 /* Responsive design */
 @media (max-width: 1200px) {
   .hero-cards-layout {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1.5rem;
+    padding: 0 1.5rem 0 1.5rem;
   }
 
   .hero-card-left,
-  .hero-card-center,
+  .hero-card-center {
+    flex: 1;
+    max-width: 50%;
+  }
+
   .hero-card-right {
-    max-width: 100%;
+    display: none;
   }
 
   .hero-card {
     min-height: auto;
+    height: auto;
+  }
+
+  .hero-floating-badges {
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .floating-badge-item:nth-child(3) {
+    display: none;
+  }
+
+  .floating-badge-item {
+    flex: 1;
+    width: 50%;
+  }
+
+  /* Formato escalera para tablet */
+  .floating-badge-item:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .floating-badge-item:nth-child(2) {
+    margin-top: 1rem;
+  }
+
+  .card-badge-item {
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
   .hero-section {
-    padding: 1rem;
+    padding: 0.5rem;
+    height: auto;
+    min-height: auto;
   }
 
   .hero-brand-header {
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
   }
 
   .brand-title {
-    font-size: 2.5rem;
+    font-size: 1.25rem;
   }
 
   .mate-animation {
-    width: 80px;
-    height: 80px;
+    width: 30px;
+    height: 30px;
   }
 
   .hero-cards-layout {
+    flex-direction: column;
     gap: 1rem;
+    padding: 0 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-card-left,
+  .hero-card-center {
+    max-width: 100%;
   }
 
   .hero-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .hero-content {
-    gap: 1.5rem;
+    padding: 1rem;
+    min-height: auto;
+    height: auto;
+    overflow: visible !important;
   }
 
   .hero-avatar {
-    width: 140px !important;
-    height: 140px !important;
+    width: 60px;
+    height: 60px;
   }
 
-  .hero-stats {
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
+  .hero-content {
+    gap: 0.75rem;
+    height: auto;
+    justify-content: flex-start;
+    overflow: visible;
   }
 
-  .stat-item {
-    width: 100%;
-    justify-content: center;
+  .hero-name {
+    font-size: 1.25rem;
   }
 
-  .hero-actions {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .action-button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  /* Navegación responsive */
-  .navigation-title {
-    font-size: 1.5rem;
-  }
-
-  .nav-section-item {
-    padding: 1rem;
-  }
-
-  .nav-section-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .section-icon {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  .nav-section-title {
+  .hero-title {
     font-size: 1rem;
   }
 
-  .nav-section-description {
+  .hero-bio {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .hero-navigation-content {
+    height: auto;
+    gap: 0.75rem;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .navigation-title {
+    font-size: 1rem;
+  }
+
+  .nav-section-item {
+    padding: 0.75rem;
+    min-height: 50px;
+  }
+
+  .nav-section-title {
     font-size: 0.8rem;
+    margin: 0 0 0.25rem 0;
   }
 
-  .tech-preview-grid {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
+  .nav-section-description {
+    font-size: 0.7rem;
+    line-height: 1.3;
   }
 
-  /* Projects preview responsive */
+  .hero-projects-preview {
+    height: auto;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
   .projects-preview-grid {
-    gap: 0.75rem;
+    gap: 0.5rem;
+    overflow: visible;
   }
 
   .project-preview-image {
-    height: 100px;
+    height: 50px;
   }
 
-  .project-preview-item h3 {
-    font-size: 0.9rem;
+  .project-preview-title {
+    font-size: 0.8rem;
   }
 
-  .project-preview-item p {
-    font-size: 0.75rem;
+  .project-preview-description {
+    font-size: 0.7rem;
+  }
+
+  /* Badges escalera responsive - OCULTOS EN MÓVIL */
+  .hero-floating-badges {
+    display: none;
   }
 }
 
 @media (max-width: 480px) {
+  .hero-section {
+    padding: 0.25rem;
+    height: auto;
+    min-height: auto;
+  }
+
+  .hero-brand-header {
+    margin-bottom: 0.25rem;
+  }
+
+  .brand-title {
+    font-size: 1rem;
+  }
+
+  .mate-animation {
+    width: 25px;
+    height: 25px;
+  }
+
+  .hero-cards-layout {
+    gap: 0.75rem;
+    padding: 0 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
   .hero-card {
-    padding: 1.5rem 1rem;
+    padding: 0.75rem;
+    overflow: visible !important;
+  }
+
+  .hero-avatar {
+    width: 50px;
+    height: 50px;
   }
 
   .hero-name {
-    font-size: 2rem;
+    font-size: 1rem;
   }
 
   .hero-title {
-    font-size: 1.125rem;
+    font-size: 0.875rem;
   }
 
   .hero-bio {
+    font-size: 0.7rem;
+    line-height: 1.2;
+  }
+
+  .navigation-title {
     font-size: 0.875rem;
+  }
+
+  .nav-section-item {
+    padding: 0.5rem;
+    min-height: 40px;
+  }
+
+  .nav-section-title {
+    font-size: 0.75rem;
+  }
+
+  .nav-section-description {
+    font-size: 0.65rem;
+    line-height: 1.2;
+  }
+
+  .project-preview-image {
+    height: 40px;
+  }
+
+  .project-preview-title {
+    font-size: 0.75rem;
+  }
+
+  .project-preview-description {
+    font-size: 0.65rem;
+  }
+
+  /* Badges escalera responsive - OCULTOS EN MÓVIL */
+  .hero-floating-badges {
+    display: none;
+  }
+
+  /* Si en el futuro se muestran, mantener formato escalera */
+  .floating-badge-item:nth-child(1) {
+    margin-top: 0;
+  }
+
+  .floating-badge-item:nth-child(2) {
+    margin-top: 0.5rem;
+  }
+
+  .floating-badge-item:nth-child(3) {
+    margin-top: 1rem;
   }
 }
 

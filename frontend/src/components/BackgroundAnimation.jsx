@@ -1,6 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useRef, useMemo } from 'react'
 import { 
   ReactIcon, 
   NodeIcon, 
@@ -20,61 +19,14 @@ import {
 } from '../icons/TechIcons'
 
 const BackgroundAnimation = () => {
-  const [scrollY, setScrollY] = useState(0)
-  const [currentSection, setCurrentSection] = useState('hero')
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [previousSection, setPreviousSection] = useState('hero')
   const containerRef = useRef(null)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY
-      setScrollY(scrollPosition)
-
-      // Determinar la sección actual basada en el scroll
-      const sections = ['techstack', 'projects', 'education', 'objective', 'footer'] // Removido 'hero'
-      const sectionElements = sections.map(id => document.getElementById(id))
-      
-      let activeSection = 'hero' // Mantener hero como default
-      sectionElements.forEach((element, index) => {
-        if (element) {
-          const rect = element.getBoundingClientRect()
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            activeSection = sections[index]
-          }
-        }
-      })
-      
-             // Detectar cambio de sección y activar transición
-       if (activeSection !== currentSection) {
-         setPreviousSection(currentSection)
-         setCurrentSection(activeSection)
-         setIsTransitioning(true)
-         
-         // Desactivar transición después de un delay
-         setTimeout(() => {
-           setIsTransitioning(false)
-         }, 1500) // Transición más larga para suavidad
-       }
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [currentSection])
-
-  // Configuraciones de animación por sección - Unificada para las 3 secciones principales
-  // Configuración de animación unificada - Una sola animación continua
-  const getAnimationConfig = () => {
-    return {
-      primaryColor: '#1e3a8a',
-      secondaryColor: '#3b82f6',
-      pattern: 'gradient-flow',
-      intensity: 0.7
-    }
+  // Configuración del fondo con gradiente gradual
+  const config = {
+    primaryColor: '#0f172a', // Oscuro en la parte superior
+    secondaryColor: '#1e3a8a', // Medio en el centro
+    tertiaryColor: '#3b82f6'   // Claro en la parte inferior
   }
-
-  const config = getAnimationConfig()
-  const prevConfig = getAnimationConfig()
 
   // Array de iconos de tecnologías
   const techIcons = [
@@ -83,101 +35,50 @@ const BackgroundAnimation = () => {
     MySQLIcon, AndroidIcon, BootstrapIcon, PythonIcon, FastAPIIcon
   ]
 
-  // Generar iconos flotantes - Distribución aleatoria, posiciones fijas
-  const floatingIcons = Array.from({ length: 12 }, (_, i) => ({
-    id: i,
-    Icon: techIcons[i % techIcons.length], // Iconos fijos
-    x: Math.random() * 85 + 7, // Distribución aleatoria en X
-    y: Math.random() * 70 + 15, // Distribución aleatoria en Y
-    size: Math.random() * 50 + 70, // Tamaño entre 70-120px
-    delay: i * 2, // Delay escalonado
-    direction: i % 2 === 0 ? 1 : -1 // Dirección alternada
-  }))
+  // Generar iconos fijos - Tamaño reducido y ubicados en laterales
+  const floatingIcons = useMemo(() => [
+    // Laterales izquierdos
+    { id: 0, Icon: ReactIcon, x: 5, y: 15, size: 60, speed: 35 },
+    { id: 1, Icon: JavaScriptIcon, x: 8, y: 35, size: 55, speed: 38 },
+    { id: 2, Icon: JavaIcon, x: 3, y: 55, size: 62, speed: 36 },
+    { id: 3, Icon: MongoIcon, x: 7, y: 75, size: 58, speed: 37 },
+    { id: 4, Icon: PythonIcon, x: 4, y: 85, size: 59, speed: 44 },
+    
+    // Laterales derechos
+    { id: 5, Icon: NodeIcon, x: 92, y: 20, size: 65, speed: 42 },
+    { id: 6, Icon: CSS3Icon, x: 95, y: 40, size: 52, speed: 45 },
+    { id: 7, Icon: SpringIcon, x: 90, y: 60, size: 64, speed: 41 },
+    { id: 8, Icon: FirebaseIcon, x: 93, y: 80, size: 56, speed: 43 },
+    { id: 9, Icon: MySQLIcon, x: 88, y: 90, size: 61, speed: 39 },
+    
+    // Centros laterales (izquierda y derecha)
+    { id: 10, Icon: HTML5Icon, x: 12, y: 45, size: 68, speed: 33 },
+    { id: 11, Icon: TailwindIcon, x: 85, y: 70, size: 54, speed: 40 },
+    
+    // Node.js detrás del mate (derecha inferior)
+    { id: 12, Icon: NodeIcon, x: 38.1, y: 4.2, size: 85, speed: 50 }
+  ], [])
 
   return (
     <div 
       ref={containerRef}
-      className="fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      className="background-animation-container"
     >
-      {/* Fondo principal con transición suave */}
-      <motion.div
-        className="absolute inset-0"
-        style={{
-          background: `linear-gradient(135deg, ${config.primaryColor} 0%, ${config.secondaryColor} 100%)`
-        }}
-        animate={{
-          background: isTransitioning 
-            ? [
-                `linear-gradient(135deg, ${prevConfig.primaryColor} 0%, ${prevConfig.secondaryColor} 100%)`,
-                `linear-gradient(135deg, ${config.primaryColor} 0%, ${config.secondaryColor} 100%)`
-              ]
-            : `linear-gradient(135deg, ${config.primaryColor} 0%, ${config.secondaryColor} 100%)`
-        }}
-        transition={{
-          duration: isTransitioning ? 1.5 : 0,
-          ease: "easeInOut"
-        }}
-      />
 
-      {/* Efecto de distorsión durante transiciones */}
-      <AnimatePresence>
-        {isTransitioning && (
-          <motion.div
-            className="absolute inset-0"
-            initial={{ 
-              opacity: 0,
-              scale: 1,
-              filter: "blur(0px)"
-            }}
-            animate={{ 
-              opacity: [0, 0.3, 0],
-              scale: [1, 1.1, 1],
-              filter: ["blur(0px)", "blur(2px)", "blur(0px)"]
-            }}
-            exit={{ 
-              opacity: 0,
-              scale: 1,
-              filter: "blur(0px)"
-            }}
-            transition={{
-              duration: 1.5,
-              ease: "easeInOut"
-            }}
-            style={{
-              background: `radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 70%)`
-            }}
-          />
-        )}
-      </AnimatePresence>
+      {/* Sin efectos de distorsión - Fondo completamente estático */}
 
-             {/* Iconos de tecnologías flotantes */}
+             {/* Iconos de tecnologías fijos - Solo rotación con CSS puro */}
        <div className="absolute inset-0 pointer-events-none">
          {floatingIcons.map((icon) => (
-           <motion.div
-             key={icon.id}
-             className="absolute"
+           <div
+             key={`bg-icon-${icon.id}-${icon.x}-${icon.y}`}
+             className="floating-tech-icon"
              style={{
                left: `${icon.x}%`,
                top: `${icon.y}%`,
                width: `${icon.size}px`,
                height: `${icon.size}px`,
-               opacity: 0.5,
-               filter: 'drop-shadow(0 0 6px rgba(255,255,255,0.3))',
-               display: 'flex',
-               alignItems: 'center',
-               justifyContent: 'center',
-               position: 'fixed',
-               zIndex: 1,
-               pointerEvents: 'none'
-             }}
-             animate={{
-               rotate: [0, 360]
-             }}
-             transition={{
-               duration: 40,
-               repeat: Infinity,
-               ease: "linear",
-               delay: icon.delay
+               '--rotation-speed': `${icon.speed}s`
              }}
            >
              <div style={{ 
@@ -186,15 +87,18 @@ const BackgroundAnimation = () => {
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center',
-               color: 'white',
-               opacity: 0.6,
-               transform: `scale(${icon.size / 20})`
+               transform: `scale(${icon.size / 40})`,
+               opacity: icon.id === 12 ? 1.0 : 0.4,
+               filter: icon.id === 12 ? 'brightness(3.0) contrast(1.5) drop-shadow(0 0 20px rgba(16, 185, 129, 1.0)) hue-rotate(0deg) saturate(2.0)' : 'none',
+               color: icon.id === 12 ? '#10b981' : 'inherit'
              }}>
-               <icon.Icon />
+               {React.createElement(icon.Icon)}
              </div>
-           </motion.div>
+           </div>
          ))}
        </div>
+
+
 
 
 

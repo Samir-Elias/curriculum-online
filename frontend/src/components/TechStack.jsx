@@ -26,7 +26,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
           variants={itemVariants}
         >
           <Zap className="techstack-floating-icon" />
-          Stack Tecnológico
+          Stack Tecnoló<span style={{ color: '#10b981' }}>G</span>ico
         </motion.h2>
         <div className="techstack-floating-grid">
           <motion.div variants={itemVariants}>

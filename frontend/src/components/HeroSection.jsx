@@ -1,10 +1,11 @@
 "use client"
 import { motion } from "framer-motion"
-import { Mail, MapPin, Github, Download, Code, Globe, Zap, FolderOpen, GraduationCap, Target, ChevronRight, ExternalLink } from "lucide-react"
+import { Mail, MapPin, FileText, Code, Globe, Zap, FolderOpen, GraduationCap, Target, ChevronRight, ExternalLink } from "lucide-react"
+import { GitHubIcon, WhatsAppIcon, InstagramIcon } from "../icons/TechIcons"
 import { Button } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import Lottie from "lottie-react"
-import mateAnimation from "../assets/Progra-Mate.json"
+import mateAnimation from "../assets/mainscene.json"
 import "../styles/components/hero-section.css"
 
 const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
@@ -22,10 +23,6 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
 
   // Merge provided personalInfo with defaults
   const info = { ...defaultPersonalInfo, ...personalInfo }
-
-  const downloadPDF = () => {
-    window.print()
-  }
 
   const defaultItemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -48,7 +45,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
             <Lottie 
               animationData={mateAnimation} 
               loop={true}
-              style={{ width: 100, height: 100 }}
+              style={{ width: 120, height: 120 }}
             />
           </div>
           <h1 className="brand-title">
@@ -94,51 +91,31 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                 <p className="hero-bio">{info.bio}</p>
               </motion.div>
 
-              {/* Stats section */}
-              <motion.div className="hero-stats" variants={variants}>
-                <div className="stat-item">
-                  <MapPin className="stat-icon" />
-                  <span>{info.ubicacion}</span>
-                </div>
-                <div className="stat-item">
-                  <Code className="stat-icon" />
-                  <span>{info.experiencia}</span>
-                </div>
-                <div className="stat-item">
-                  <Globe className="stat-icon" />
-                  <span>Disponible para remoto</span>
-                </div>
-              </motion.div>
-
               {/* Action buttons */}
               <motion.div className="hero-actions" variants={variants}>
-                <Button className="action-button primary-button" onClick={() => window.open(`mailto:${info.email}`)}>
+                <Button className="action-button email-button" onClick={() => window.open(`mailto:${info.email}`)}>
                   <Mail className="button-icon" />
-                  <span>{info.email}</span>
-                  <span className="button-label">Email</span>
                 </Button>
 
-                <Button className="action-button secondary-button" onClick={downloadPDF}>
-                  <Download className="button-icon" />
-                  <span>Descargar PDF</span>
-                  <span className="button-label">PDF</span>
+                <Button className="action-button download-button">
+                  <FileText className="button-icon" />
                 </Button>
 
                 {info.github && (
-                  <Button className="action-button tertiary-button" onClick={() => window.open(info.github)}>
-                    <Github className="button-icon" />
-                    <span>GitHub</span>
+                  <Button className="action-button github-button" onClick={() => window.open(info.github)}>
+                    <GitHubIcon />
                   </Button>
                 )}
 
-                {info.website && (
-                  <Button className="action-button tertiary-button" onClick={() => window.open(info.website)}>
-                    <Globe className="button-icon" />
-                    <span>Portfolio</span>
-                    <span className="button-label">Web</span>
-                  </Button>
-                )}
+                <Button className="action-button whatsapp-button" onClick={() => window.open('https://wa.me/5492612345678')}>
+                  <WhatsAppIcon />
+                </Button>
+
+                <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
+                  <InstagramIcon />
+                </Button>
               </motion.div>
+
             </div>
           </motion.div>
 
@@ -192,29 +169,6 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                   <ChevronRight className="nav-section-arrow" />
                 </div>
               </motion.div>
-
-              {/* Tech Stack Preview */}
-              <motion.div className="tech-preview" variants={variants}>
-                <h3 className="tech-preview-title">Stack Tecnológico</h3>
-                <div className="tech-preview-grid">
-                  <div className="tech-preview-category">
-                    <span className="tech-preview-label">Backend</span>
-                    <div className="tech-preview-icons">
-                      <span className="tech-preview-icon">☕</span>
-                      <span className="tech-preview-icon">🌱</span>
-                      <span className="tech-preview-icon">⚡</span>
-                    </div>
-                  </div>
-                  <div className="tech-preview-category">
-                    <span className="tech-preview-label">Frontend</span>
-                    <div className="tech-preview-icons">
-                      <span className="tech-preview-icon">⚛️</span>
-                      <span className="tech-preview-icon">🎨</span>
-                      <span className="tech-preview-icon">📱</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
 
@@ -235,7 +189,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
               </motion.div>
 
               <motion.div className="projects-preview-grid" variants={variants}>
-                <div className="project-preview-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
                   <div className="project-preview-image">
                     <img src="/images/estimador_hero.png" alt="Estimador de Costos" />
                     <div className="project-preview-overlay">
@@ -246,7 +200,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                   <p className="project-preview-description">Sistema completo de estimación y gestión de proyectos</p>
                 </div>
 
-                <div className="project-preview-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
                   <div className="project-preview-image">
                     <img src="/images/Teloapp_pcview.png" alt="TeloApp" />
                     <div className="project-preview-overlay">
@@ -257,7 +211,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                   <p className="project-preview-description">Aplicación móvil para gestión de telos y hoteles</p>
                 </div>
 
-                <div className="project-preview-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
                   <div className="project-preview-image">
                     <img src="/images/serviceBook_inicio.png" alt="ServiceBook" />
                     <div className="project-preview-overlay">
@@ -269,7 +223,31 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                 </div>
               </motion.div>
             </div>
-                    </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Badges escalera flotantes por debajo de las cards */}
+        <div className="hero-floating-badges">
+          <motion.div className="floating-badge-item" variants={variants}>
+            <div className="card-badge-item">
+              <MapPin className="badge-icon" />
+              <span>{info.ubicacion}</span>
+            </div>
+          </motion.div>
+
+          <motion.div className="floating-badge-item" variants={variants}>
+            <div className="card-badge-item">
+              <Code className="badge-icon" />
+              <span>{info.experiencia}</span>
+            </div>
+          </motion.div>
+
+          <motion.div className="floating-badge-item" variants={variants}>
+            <div className="card-badge-item">
+              <Globe className="badge-icon" />
+              <span>Disponible para remoto</span>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
