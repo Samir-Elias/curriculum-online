@@ -17,7 +17,7 @@ export const profileData = {
   tecnologiasCore: {
     backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
     frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
-    herramientas: ["Git", "GitHub", "IntelliJ IDEA", "Eclipse", "Postman", "Docker", "Figma", "Claude", "Gemini", "N8N"],
+    herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N"],
     metodologias: ["Scrum", "Agile", "Sprints", "Trabajo en equipo", "UX/UI Design", "User Research"]
   },
   
