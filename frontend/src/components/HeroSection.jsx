@@ -1,11 +1,10 @@
 "use client"
 import { motion } from "framer-motion"
 import { Mail, MapPin, FileText, Code, Globe, Zap, FolderOpen, GraduationCap, Target, ChevronRight, ExternalLink } from "lucide-react"
-import { GitHubIcon, WhatsAppIcon, InstagramIcon } from "../icons/TechIcons"
+import { GitHubIcon, WhatsAppIcon, InstagramIcon, NodeIcon } from "../icons/TechIcons"
 import { Button } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
-import Lottie from "lottie-react"
-import mateAnimation from "../assets/mainscene.json"
+import MateIcon from "./MateIcon"
 import "../styles/components/hero-section.css"
 
 const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
@@ -33,20 +32,16 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
 
   return (
     <section className="hero-section" id="hero">
-      {/* Header PrograMate */}
+      {/* Header PrograMate - Ahora como card */}
       <motion.div 
-        className="hero-brand-header"
+        className="hero-brand-card"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        <div className="brand-content">
+        <div className="brand-card-content">
           <div className="mate-animation">
-            <Lottie 
-              animationData={mateAnimation} 
-              loop={true}
-              style={{ width: 120, height: 120 }}
-            />
+            <MateIcon width={120} height={120} />
           </div>
           <h1 className="brand-title">
             Progra<span className="brand-accent">M</span>ate
@@ -59,11 +54,21 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
           {/* Card izquierda - Información personal */}
           <motion.div
             className="hero-card hero-card-left"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="hero-content">
+              {/* Título flotante para móvil - arriba de la imagen */}
+              <motion.h1 
+                className="floating-brand-title"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+                Progra<span className="brand-accent">M</span>ate
+              </motion.h1>
+
               {/* Avatar section */}
               <motion.div className="hero-avatar-section" variants={variants}>
                 <div className="avatar-container">
@@ -124,7 +129,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
             className="hero-card hero-card-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="hero-navigation-content">
               <motion.div className="navigation-header" variants={variants}>
@@ -175,9 +180,9 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
           {/* Card derecha - Preview de proyectos */}
           <motion.div
             className="hero-card hero-card-right"
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="hero-projects-preview">
               <motion.div className="projects-preview-header" variants={variants}>

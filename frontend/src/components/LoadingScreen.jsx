@@ -1,56 +1,101 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import lottie from 'lottie-web';
-import animationData from '../assets/Progra-Mate.json';
+import MateIcon from './MateIcon';
+import FallingIconsAnimation from './FallingIconsAnimation';
+import BackgroundAnimation from './BackgroundAnimation';
 
-const LoadingScreen = ({ onLoadingComplete }) => {
+const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
   const [isLoading, setIsLoading] = useState(true);
-  const lottieRef = useRef(null);
-  const animationInstance = useRef(null);
+  const [displayedText, setDisplayedText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [writingComplete, setWritingComplete] = useState(false);
+  const [dotsCount, setDotsCount] = useState(0);
+  const [dotsCycles, setDotsCycles] = useState(0);
+  const [processingState, setProcessingState] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  const promptText = "Preparar mate con yerba, agua a 80°C y azúcar";
+  
+  const processingStates = [
+    "Preparando mate...",
+    "Analizando prompt...",
+    "¡Listo para tomar!"
+  ];
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Efecto para la escritura del prompt
+  useEffect(() => {
+    if (writingComplete) return; // Si ya terminó, no hacer nada
+    
+    const startWriting = setTimeout(() => {
+      const writeNextChar = (index) => {
+        if (index < promptText.length) {
+          setDisplayedText(promptText.slice(0, index + 1));
+          setCurrentIndex(index + 1);
+          setTimeout(() => writeNextChar(index + 1), 60); // Velocidad más lenta
+        } else {
+          // La escritura terminó
+          setWritingComplete(true);
+        }
+      };
+      
+      writeNextChar(currentIndex);
+    }, 800); // Empezar después de 0.8 segundos
+
+    return () => clearTimeout(startWriting);
+  }, [writingComplete]); // Solo depende de writingComplete
+
+  // Efecto para cambiar estados de procesamiento después de que termine la escritura
+  useEffect(() => {
+    if (writingComplete) {
+      console.log('Writing complete, processing state:', processingState);
+      const processingTimer = setTimeout(() => {
+        if (processingState < processingStates.length - 1) {
+          console.log('Moving to next processing state:', processingState + 1);
+          setProcessingState(processingState + 1);
+        } else {
+          console.log('Processing complete, finishing loading immediately');
+          // Terminar inmediatamente después del último estado
+          console.log('Setting isLoading to false');
+          setIsLoading(false);
+          // Restaurar scroll
+          document.body.style.overflow = 'auto';
+          document.documentElement.style.overflow = 'auto';
+          // Llamar inmediatamente a onLoadingComplete
+          onLoadingComplete();
+        }
+              }, 1200); // Cada estado de procesamiento dura 1.2 segundos
+
+      return () => clearTimeout(processingTimer);
+    }
+  }, [writingComplete, processingState]);
 
   useEffect(() => {
     // Prevenir scroll durante la carga
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
-    
-    // Inicializar la animación Lottie
-    if (lottieRef.current) {
-      animationInstance.current = lottie.loadAnimation({
-        container: lottieRef.current,
-        renderer: 'svg',
-        loop: false, // Solo una vez
-        autoplay: true,
-        animationData: animationData
-      });
-    }
-    
-    // Simular tiempo de carga - ajustado para la duración de tu animación
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      // Restaurar scroll
-      document.body.style.overflow = 'auto';
-      document.documentElement.style.overflow = 'auto';
-      // Esperar un poco más para que termine la animación de salida
-      setTimeout(() => {
-        onLoadingComplete();
-      }, 800);
-    }, 4000); // Tiempo ajustado para tu animación
 
     return () => {
-      clearTimeout(timer);
       // Limpiar estilos
       document.body.style.overflow = 'auto';
       document.documentElement.style.overflow = 'auto';
-      // Destruir la animación Lottie
-      if (animationInstance.current) {
-        animationInstance.current.destroy();
-      }
     };
-  }, [onLoadingComplete]);
+  }, []);
 
   return (
     <AnimatePresence>
-      {isLoading && (
+      {showLoading && isLoading && (
         <motion.div
           style={{
             position: 'fixed',
@@ -71,71 +116,99 @@ const LoadingScreen = ({ onLoadingComplete }) => {
             alignItems: 'center',
             justifyContent: 'center'
           }}
-          initial={{ opacity: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
           exit={{ 
             opacity: 0,
-            scale: 1.1,
+            scale: 1.2,
+            filter: 'blur(20px)',
             transition: { 
-              duration: 0.8,
+              duration: 1,
               ease: "easeInOut"
             }
           }}
         >
-          {/* CONTENEDOR PRINCIPAL CENTRADO */}
-          <motion.div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              position: 'relative',
-              zIndex: 10
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            {/* ANIMACIÓN LOTTIE DEL MATE */}
+          {/* BackgroundAnimation solo en móviles */}
+          {isMobile && <BackgroundAnimation isMobile={isMobile} />}
+          
+                        {/* CONTENEDOR FLEXBOX PRINCIPAL */}
             <motion.div
               style={{ 
-                width: '200px',
-                height: '300px',
-                marginBottom: '1rem'
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-            >
-              <div 
-                ref={lottieRef}
-                style={{
-                  width: '100%',
-                  height: '100%'
-                }}
-              />
-            </motion.div>
-
-            {/* TEXTO - Aparece después */}
-            <motion.div
-              style={{
-                textAlign: 'center',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100vh',
+                position: 'relative',
+                padding: '20px',
+                boxSizing: 'border-box',
+                transform: 'translateY(-8vh)'
               }}
               initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 }}
+              animate={{ 
+                opacity: 1, 
+                y: 0,
+                scale: writingComplete && processingState >= processingStates.length - 1 ? 0.8 : 1,
+                filter: writingComplete && processingState >= processingStates.length - 1 ? 'blur(10px)' : 'blur(0px)'
+              }}
+              transition={{ 
+                duration: 0.8, 
+                delay: 0.2,
+                scale: { duration: 1, ease: "easeInOut" },
+                filter: { duration: 1, ease: "easeInOut" }
+              }}
             >
-              {/* PrograMate con M verde */}
+                {/* ANIMACIÓN DE ICONOS CAYENDO - Solo en desktop */}
+                <FallingIconsAnimation isAnimating={isLoading} />
+
+
+
+                                  {/* Mate icon */}
+                  <div
+                    style={{
+                      zIndex: 2, 
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      marginBottom: '15px',
+                      filter: 'drop-shadow(8px 4px 12px rgba(0, 0, 0, 0.6)) drop-shadow(4px 2px 8px rgba(0, 0, 0, 0.4))'
+                    }}
+                  >
+                    <MateIcon width={400} height={400} />
+                  </div>
+
+                                {/* TEXTO */}
+                <motion.div
+                  style={{
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                                         gap: '8px',
+                     marginTop: '0px'
+                  }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+                                          transition={{ duration: 0.8, delay: 1.2 }}
+            >
+              {/* PrograMate que aparece desde abajo */}
               <motion.h2 
                 style={{
                   fontSize: 'clamp(1.5rem, 5vw, 2rem)',
                   fontWeight: '700',
                   marginBottom: '0.5rem',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  filter: 'drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))'
                 }}
-                animate={{
+                initial={{ 
+                  opacity: 0,
+                  y: 100
+                }}
+                animate={{ 
+                  opacity: 1,
+                  y: 0,
                   filter: [
                     'drop-shadow(0 0 8px rgba(59, 130, 246, 0.3))',
                     'drop-shadow(0 0 16px rgba(59, 130, 246, 0.5))',
@@ -143,9 +216,13 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                   ]
                 }}
                 transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatType: "reverse"
+                  opacity: { duration: 0.8, delay: 0.5 },
+                  y: { duration: 0.8, delay: 0.5, ease: "easeOut" },
+                  filter: {
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }
                 }}
               >
                 <span style={{ color: '#E2E8F0' }}>Progra</span>
@@ -155,8 +232,8 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                 }}>M</span>
                 <span style={{ color: '#E2E8F0' }}>ate</span>
               </motion.h2>
-              
-              {/* Nombre */}
+                
+                {/* Nombre */}
               <motion.p 
                 style={{
                   fontSize: 'clamp(1rem, 3vw, 1.25rem)',
@@ -213,12 +290,59 @@ const LoadingScreen = ({ onLoadingComplete }) => {
                   repeatType: "reverse"
                 }}
               >
-                100% preparando el mate...
+                {writingComplete ? processingStates[processingState] : `Esperando indicaciones${'.'.repeat(dotsCount)}`}
               </motion.p>
+              
+              {/* Prompt de IA */}
+              <motion.div
+                style={{
+                  marginTop: '10px',
+                  padding: '8px 12px',
+                  background: 'rgba(16, 185, 129, 0.1)',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  borderRadius: '6px',
+                  width: 'fit-content',
+                  minWidth: '300px',
+                  maxWidth: '500px',
+                  height: '32px',
+                  textAlign: 'left',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+              >
+                <motion.p
+                  style={{
+                    fontSize: 'clamp(0.7rem, 2vw, 0.8rem)',
+                    color: '#10B981',
+                    fontFamily: 'monospace',
+                    fontWeight: '400',
+                    margin: 0,
+                    lineHeight: '1',
+                    whiteSpace: 'nowrap',
+                    overflow: 'hidden',
+                    textOverflow: 'ellipsis'
+                  }}
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.8, duration: 0.5 }}
+                >
+                  <span style={{ color: '#94A3B8' }}>Prompt:</span> "{displayedText}<span style={{ animation: 'blink 1s infinite' }}>|</span>"
+                </motion.p>
+              </motion.div>
             </motion.div>
           </motion.div>
         </motion.div>
       )}
+      
+      <style jsx>{`
+        @keyframes blink {
+          0%, 50% { opacity: 1; }
+          51%, 100% { opacity: 0; }
+        }
+      `}</style>
     </AnimatePresence>
   );
 };

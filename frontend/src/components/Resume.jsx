@@ -1,23 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { profileData } from "../data/profileData";
-import HeroSection from "./HeroSection";
-import TechStack from "./TechStack";
-import ProjectsSection from "./ProjectsSection";
-import EducationSection from "./EducationSection";
-import ObjectiveSection from "./ObjectiveSection";
-import Footer from "./Footer";
-import CertificateModal from "./CertificateModal";
-import LoadingScreen from "./LoadingScreen";
-import BackgroundAnimation from "./BackgroundAnimation";
-import BackgroundTitle from "./BackgroundTitle";
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
+import HeroSection from './HeroSection';
+import TechStack from './TechStack';
+import ProjectsSection from './ProjectsSection';
+import EducationSection from './EducationSection';
+import ObjectiveSection from './ObjectiveSection';
+import Footer from './Footer';
+import LoadingScreen from './LoadingScreen';
+import BackgroundAnimation from './BackgroundAnimation';
+import CertificateModal from './CertificateModal';
+import { profileData } from '../data/profileData';
 
-const Resume = () => {
-  const [isVisible, setIsVisible] = useState({});
-  const [hasBeenVisible, setHasBeenVisible] = useState({});
-  const [expandedEducation, setExpandedEducation] = useState(null);
-  const [expandedObjective, setExpandedObjective] = useState(false);
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+const Resume = ({ onAppLoadingComplete }) => {
   const [showLoading, setShowLoading] = useState(true);
+  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const [expandedEducation, setExpandedEducation] = useState({});
+  const [expandedObjective, setExpandedObjective] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Estados para controlar la visibilidad de secciones
+  const [isVisible, setIsVisible] = useState({
+    hero: false,
+    techstack: false,
+    projects: false,
+    education: false,
+    objective: false
+  });
+  
+  const [hasBeenVisible, setHasBeenVisible] = useState({
+    hero: false,
+    techstack: false,
+    projects: false,
+    education: false,
+    objective: false
+  });
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   useEffect(() => {
     // Manejar el scroll del body durante la carga
@@ -103,92 +131,129 @@ const Resume = () => {
 
   // Función que se ejecuta cuando termina la carga
   const handleLoadingComplete = () => {
+    console.log('Loading complete! Setting showLoading to false');
     setShowLoading(false);
+    // Notificar a App.js que la carga terminó
+    if (onAppLoadingComplete) {
+      onAppLoadingComplete();
+    }
   };
 
-  // Si estamos mostrando la pantalla de carga, solo mostrar eso
-  if (showLoading) {
-    return <LoadingScreen onLoadingComplete={handleLoadingComplete} />;
-  }
-
-  // Resto del componente (se muestra después de la carga)
-  return (
-    <div className="relative min-h-screen">
-      {/* Background Animation */}
-      <BackgroundAnimation />
+    return (
+    <>
+      {/* LoadingScreen con AnimatePresence para transición suave */}
+      <LoadingScreen onLoadingComplete={handleLoadingComplete} showLoading={showLoading} />
       
-      {/* Background Title - Node.js fijo detrás del mate */}
-      <BackgroundTitle />
+      {/* Background Animation con transición suave */}
+      <motion.div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh',
+          zIndex: 0,
+          opacity: showLoading ? 0 : 1,
+          transition: 'opacity 1s ease-in-out'
+        }}
+      >
+        <BackgroundAnimation isMobile={isMobile} />
+      </motion.div>
       
-      {/* Contenido principal con z-index para estar sobre el background */}
-      <div className="relative z-10">
-        {/* Hero Section con título del TechStack */}
-        <HeroSection 
-          personalInfo={profileData.personalInfo}
-          itemVariants={itemVariants}
-        />
-
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          {/* Stack Tecnológico sin título */}
-                                  <TechStack 
-                          tecnologiasCore={profileData.tecnologiasCore}
-                          isVisible={{
-                            ...isVisible,
-                            techstack: getSectionVisibility('techstack') === 'visible'
-                          }}
-                          containerVariants={containerVariants}
-                          itemVariants={itemVariants}
-                        />
-
-          {/* PROYECTOS DESTACADOS - CORREGIDO */}
-          <ProjectsSection 
-            proyectosDestacados={profileData.proyectosDestacados}
-            isVisible={{
-              ...isVisible,
-              projects: getSectionVisibility('projects') === 'visible'
-            }}
-            containerVariants={containerVariants}
+      {/* Contenido principal con transición suave */}
+      <motion.div 
+        className="relative min-h-screen"
+        style={{
+          opacity: showLoading ? 0 : 1,
+          filter: showLoading ? 'blur(20px)' : 'blur(0px)',
+          transform: showLoading ? 'scale(0.95)' : 'scale(1)',
+          transition: 'all 1s ease-in-out',
+          pointerEvents: showLoading ? 'none' : 'auto',
+          minHeight: '100vh',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          width: '100vw',
+          height: '100vh',
+          overflowY: 'auto'
+        }}
+      >
+        {console.log('Rendering main content, showLoading:', showLoading)}
+      
+        {/* Contenido principal con z-index para estar sobre el background */}
+        <div className="relative z-1">
+          {/* Hero Section con título del TechStack */}
+          <HeroSection 
+            personalInfo={profileData.personalInfo}
             itemVariants={itemVariants}
           />
 
-          {/* Formación Técnica */}
-          <EducationSection 
-            formacionTecnica={profileData.formacionTecnica}
-            isVisible={{
-              ...isVisible,
-              education: getSectionVisibility('education') === 'visible'
-            }}
-            containerVariants={containerVariants}
-            itemVariants={itemVariants}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+            {/* Stack Tecnológico sin título */}
+            <TechStack 
+              tecnologiasCore={profileData.tecnologiasCore}
+              isVisible={{
+                ...isVisible,
+                techstack: getSectionVisibility('techstack') === 'visible'
+              }}
+              containerVariants={containerVariants}
+              itemVariants={itemVariants}
+            />
+
+            {/* PROYECTOS DESTACADOS - CORREGIDO */}
+            <ProjectsSection 
+              proyectosDestacados={profileData.proyectosDestacados}
+              isVisible={{
+                ...isVisible,
+                projects: getSectionVisibility('projects') === 'visible'
+              }}
+              containerVariants={containerVariants}
+              itemVariants={itemVariants}
+            />
+
+            {/* Formación Técnica */}
+            <EducationSection 
+              formacionTecnica={profileData.formacionTecnica}
+              isVisible={{
+                ...isVisible,
+                education: getSectionVisibility('education') === 'visible'
+              }}
+              containerVariants={containerVariants}
+              itemVariants={itemVariants}
+              setSelectedCertificate={setSelectedCertificate}
+              expandedEducation={expandedEducation}
+              setExpandedEducation={setExpandedEducation}
+            />
+
+            {/* Objetivo Profesional */}
+            <ObjectiveSection 
+              objetivoProfesional={profileData.objetivoProfesional}
+              isVisible={{
+                ...isVisible,
+                objective: getSectionVisibility('objective') === 'visible'
+              }}
+              containerVariants={containerVariants}
+              itemVariants={itemVariants}
+              expandedObjective={expandedObjective}
+              setExpandedObjective={setExpandedObjective}
+            />
+          </div>
+
+          {/* Footer */}
+          <Footer personalInfo={profileData.personalInfo} />
+
+          {/* Modal para certificaciones */}
+          <CertificateModal 
+            selectedCertificate={selectedCertificate}
             setSelectedCertificate={setSelectedCertificate}
-            expandedEducation={expandedEducation}
-            setExpandedEducation={setExpandedEducation}
-          />
-
-          {/* Objetivo Profesional */}
-          <ObjectiveSection 
-            objetivoProfesional={profileData.objetivoProfesional}
-            isVisible={{
-              ...isVisible,
-              objective: getSectionVisibility('objective') === 'visible'
-            }}
-            containerVariants={containerVariants}
-            itemVariants={itemVariants}
-            expandedObjective={expandedObjective}
-            setExpandedObjective={setExpandedObjective}
           />
         </div>
-
-        {/* Footer */}
-        <Footer personalInfo={profileData.personalInfo} />
-
-        {/* Modal para certificaciones */}
-        <CertificateModal 
-          selectedCertificate={selectedCertificate}
-          setSelectedCertificate={setSelectedCertificate}
-        />
-      </div>
-    </div>
+      </motion.div>
+    </>
   );
 };
 

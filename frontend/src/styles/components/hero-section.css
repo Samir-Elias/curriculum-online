@@ -23,64 +23,161 @@
   width: 100%;
   max-width: 100vw;
   box-sizing: border-box;
+  /* Zoom out 10% para el hero section completo */
+  transform: scale(0.9);
+  transform-origin: center center;
 }
 
-/* Header PrograMate */
-.hero-brand-header {
-  text-align: center;
-  margin-bottom: 1.5rem;
+/* Título flotante - Oculto en desktop */
+.floating-brand-title {
+  display: none;
+}
+
+/* Compensar el zoom out del hero section para el título flotante */
+.floating-brand-title {
+  /* Contrarrestar el scale(0.9) del hero-section */
+  transform: scale(1.111111); /* 1/0.9 = 1.111111 para compensar */
+  transform-origin: center center;
+}
+
+/* Header PrograMate - Ahora como card */
+.hero-brand-card {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.8));
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 8px;
+  padding: 2.5rem 3rem;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 20px rgba(16, 185, 129, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  margin: 2rem auto 2.5rem auto;
   z-index: 10;
   width: 100%;
+  max-width: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  overflow: hidden;
+  /* Compensar el zoom out del hero section */
+  transform: scale(1.111111);
+  transform-origin: center center;
 }
 
-.brand-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+.hero-brand-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
   width: 100%;
-  max-width: 400px;
-  margin: 0 auto;
-  transform: translateX(-20px);
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  transition: left 0.6s ease;
 }
 
-@media (max-width: 480px) {
-  .brand-content {
-    gap: 0.25rem;
+.hero-brand-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 
+    0 35px 60px -12px rgba(0, 0, 0, 0.35),
+    0 0 30px rgba(16, 185, 129, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(16, 185, 129, 0.5);
+}
+
+.hero-brand-card:hover::before {
+  left: 100%;
+}
+
+.brand-card-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  .brand-card-content {
+    gap: 1rem;
   }
 }
 
-  .mate-animation {
+@media (max-width: 768px) {
+  .brand-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .brand-card-content {
+    gap: 0.8rem;
+  }
+  
+  .brand-title {
+    font-size: 1.6rem;
+  }
+}
+
+.mate-animation {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   position: relative;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+  z-index: 2;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 4px rgba(16, 185, 129, 0.2));
+  animation: mateFloat 3s ease-in-out infinite;
 }
 
+@keyframes mateFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-5px) rotate(2deg); 
+  }
+}
+
+
+
 .brand-title {
-  font-size: 3rem;
+  font-size: 2.2rem;
   font-weight: 800;
+  font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  background: linear-gradient(135deg, #E2E8F0 0%, #F1F5F9 50%, #E2E8F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
   color: white;
   margin: 0;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
   letter-spacing: 0.05em;
   white-space: nowrap;
-  line-height: 1;
-  transform: translateX(20px);
+  transform: translateX(0px) translateY(5px);
+  text-align: center;
 }
 
 .brand-accent {
-  color: #10b981;
-  text-shadow: 0 0 30px rgba(16, 185, 129, 0.6);
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
 }
 
-/* Layout de 3 cards */
+/* Layout de 3 cards - Simplificado sin cards */
 .hero-cards-layout {
   display: flex;
   gap: 2rem;
@@ -92,8 +189,6 @@
   padding: 0 1rem;
   position: relative;
 }
-
-
 
 .hero-container {
   max-width: 100%;
@@ -108,6 +203,7 @@
   box-sizing: border-box;
 }
 
+/* Cards principales para desktop */
 .hero-card {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(20px);
@@ -126,6 +222,28 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+}
+
+/* Overlay para mejorar contraste del texto sobre iconos del fondo */
+.hero-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: 24px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Asegurar que el contenido esté por encima del overlay */
+.hero-content,
+.hero-navigation-content,
+.hero-projects-preview {
+  position: relative;
+  z-index: 2;
 }
 
 /* Card izquierda - Información personal */
@@ -240,13 +358,16 @@
   max-width: 600px;
 }
 
+/* Mejorar contraste del texto principal */
 .hero-name {
   font-size: clamp(1.25rem, 3vw, 2rem);
   font-weight: 700;
   color: white;
   margin: 0;
   line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .hero-title {
@@ -255,19 +376,24 @@
   color: #10b981;
   margin: 0;
   line-height: 1.4;
-  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 2;
 }
 
 .hero-bio {
   font-size: clamp(0.875rem, 2vw, 1rem);
-  color: #e2e8f0;
+  color: #f8fafc;
   line-height: 1.5;
   margin: 0;
-  opacity: 0.9;
+  opacity: 0.95;
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
   text-align: justify;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 2;
 }
 
 /* Badges escalera flotantes por debajo de las cards */
@@ -331,16 +457,22 @@
   font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  /* FORZAR ELIMINACIÓN DE SOMBRADO */
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .card-badge-item:hover {
   background: rgba(255, 255, 255, 0.12);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  /* FORZAR ELIMINACIÓN DE SOMBRADO EN HOVER */
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .card-badge-item .badge-icon {
@@ -348,11 +480,18 @@
   height: 16px;
   color: #10b981;
   flex-shrink: 0;
+  /* ELIMINAR SOMBRADOS DEL ICONO */
+  text-shadow: none !important;
+  box-shadow: none !important;
+  filter: none !important;
 }
 
 .card-badge-item span {
   font-weight: 600;
   color: white;
+  /* ELIMINAR SOMBRADOS DEL TEXTO */
+  text-shadow: none !important;
+  box-shadow: none !important;
 }
 
 /* Action buttons */
@@ -421,13 +560,13 @@
 .email-button {
   background: #ea4335;
   color: white;
-  border: 1px solid #ea4335;
+  border: 1px solid #000000;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .email-button:hover {
   background: #d32f2f;
-  border-color: #d32f2f;
+  border-color: #000000;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
@@ -435,13 +574,13 @@
 .download-button {
   background: #3b82f6;
   color: white;
-  border: 1px solid #3b82f6;
+  border: 1px solid #000000;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .download-button:hover {
   background: #2563eb;
-  border-color: #2563eb;
+  border-color: #000000;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
@@ -455,7 +594,7 @@
 
 .github-button:hover {
   background: #1a1a1a;
-  border-color: #1a1a1a;
+  border-color: #000000;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
@@ -463,13 +602,13 @@
 .whatsapp-button {
   background: #25d366;
   color: white;
-  border: 1px solid #25d366;
+  border: 1px solid #000000;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .whatsapp-button:hover {
   background: #128c7e;
-  border-color: #128c7e;
+  border-color: #000000;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
@@ -477,13 +616,13 @@
 .instagram-button {
   background: #e4405f;
   color: white;
-  border: 1px solid #e4405f;
+  border: 1px solid #000000;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .instagram-button:hover {
   background: #c13584;
-  border-color: #c13584;
+  border-color: #000000;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
@@ -527,7 +666,9 @@
   font-weight: 700;
   color: white;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .navigation-icon {
@@ -537,9 +678,12 @@
 }
 
 .navigation-subtitle {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.95rem;
   margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .navigation-sections {
@@ -604,17 +748,23 @@
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 2;
 }
 
 .nav-section-description {
   font-size: 0.875rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   margin: 0;
   line-height: 1.5;
   max-width: 100%;
   word-wrap: break-word;
   overflow-wrap: break-word;
   hyphens: auto;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .nav-section-arrow {
@@ -655,7 +805,9 @@
   font-weight: 700;
   color: white;
   margin-bottom: 0.5rem;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .projects-preview-icon {
@@ -665,9 +817,12 @@
 }
 
 .projects-preview-subtitle {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 0.9rem;
   margin: 0;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .projects-preview-grid {
@@ -768,14 +923,20 @@
   margin: 0.75rem 0 0.25rem 0;
   padding: 0 0.75rem;
   line-height: 1.3;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 2;
 }
 
 .project-preview-item p {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.85);
   margin: 0 0 0.75rem 0;
   padding: 0 0.75rem;
   line-height: 1.4;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 
@@ -847,17 +1008,44 @@
     min-height: auto;
   }
 
-  .hero-brand-header {
-    margin-bottom: 0.5rem;
+  /* Ocultar la card completa en móvil */
+  .hero-brand-card {
+    display: none;
   }
 
-  .brand-title {
-    font-size: 1.25rem;
+  /* Título flotante para móvil */
+  .floating-brand-title {
+    display: block;
+    position: relative;
+    margin: 0 auto 2rem auto;
+    z-index: 10;
+    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 58, 138, 0.9));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 
+      0 10px 25px -5px rgba(0, 0, 0, 0.3),
+      0 0 15px rgba(16, 185, 129, 0.2);
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #E2E8F0 0%, #F1F5F9 50%, #E2E8F0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    width: fit-content;
+    text-align: center;
   }
 
-  .mate-animation {
-    width: 30px;
-    height: 30px;
+  .floating-brand-title .brand-accent {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
   }
 
   .hero-cards-layout {
@@ -879,6 +1067,10 @@
   }
 
   .hero-card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
     padding: 1rem;
     min-height: auto;
     height: auto;
@@ -886,6 +1078,11 @@
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Eliminar overlay en móviles */
+  .hero-card::after {
+    display: none;
   }
 
   .hero-avatar {
@@ -989,24 +1186,16 @@
     min-height: auto;
   }
 
-  .hero-brand-header {
-    margin-bottom: 1rem;
-    position: relative;
-    z-index: 5;
+  /* Ocultar la card completa en móviles pequeños también */
+  .hero-brand-card {
+    display: none;
   }
 
-  .brand-title {
-    font-size: 1.5rem;
-    margin-top: 5px;
-  }
-
-  .mate-animation {
-    width: 40px;
-    height: 40px;
-    position: relative;
-    z-index: 10;
-    margin-bottom: 10px;
-    padding-bottom: 0.5rem;
+  /* Ajustar título flotante para móviles pequeños */
+  .floating-brand-title {
+    margin: 0 auto 1.5rem auto;
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
   }
 
   .hero-cards-layout {
@@ -1020,11 +1209,20 @@
   }
 
   .hero-card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
     padding: 0.75rem;
     overflow: visible !important;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Eliminar overlay en móviles pequeños */
+  .hero-card::after {
+    display: none;
   }
 
   .hero-avatar {
@@ -1102,6 +1300,18 @@
     min-height: auto;
   }
 
+  /* Ocultar la card completa en tablets también */
+  .hero-brand-card {
+    display: none;
+  }
+
+  /* Ajustar título flotante para tablets */
+  .floating-brand-title {
+    margin: 0 auto 2.5rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.75rem;
+  }
+
   .hero-cards-layout {
     gap: 1rem;
     padding: 0 1rem;
@@ -1114,12 +1324,21 @@
   }
 
   .hero-card {
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    border-radius: 0;
     padding: 1.5rem;
     overflow: visible !important;
     min-height: 400px;
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+  }
+
+  /* Eliminar overlay en tablets */
+  .hero-card::after {
+    display: none;
   }
 
   .hero-avatar {
@@ -1214,4 +1433,16 @@
     color: black !important;
     border: 1px solid #d1d5db !important;
   }
+}
+
+/* ELIMINACIÓN FORZADA DE SOMBRADOS EN BADGES */
+.card-badge-item,
+.card-badge-item *,
+.card-badge-item:hover,
+.card-badge-item:hover * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+  filter: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
 }

@@ -6,7 +6,7 @@ export const profileData = {
     email: "samireliassalatino@gmail.com",
     telefono: "+54 9 261 466-6991",
     foto: "/perfil.jpg",
-    titulo: "Desarrollador Backend Java | Full-Stack Developer",
+    titulo: " Dev Java | Full-Stack React",
     experiencia: "6 años como Developer Autodidacta",
     bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack.",
     linkedin: "https://www.linkedin.com/in/samir-elías",
