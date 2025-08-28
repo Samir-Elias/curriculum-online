@@ -18,7 +18,7 @@ export const profileData = {
     backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
     frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
     herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N"],
-    metodologias: ["Scrum", "Agile", "Sprints", "Trabajo en equipo", "UX/UI Design", "User Research"]
+    metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research"]
   },
   
   proyectosDestacados: [
@@ -158,7 +158,7 @@ export const profileData = {
         "JPA/Hibernate y Maven",
         "Base de datos SQL",
         "Metodologías Ágiles (Scrum)",
-        "Trabajo en equipo colaborativo",
+        "Teamwork colaborativo",
         "Git y control de versiones",
         "Testing y debugging"
       ],

@@ -20,6 +20,9 @@
   justify-content: center;
   padding: 0.5rem 1rem 0.5rem 1rem;
   text-align: center;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
 }
 
 /* Header PrograMate */
@@ -42,6 +45,12 @@
   max-width: 400px;
   margin: 0 auto;
   transform: translateX(-20px);
+}
+
+@media (max-width: 480px) {
+  .brand-content {
+    gap: 0.25rem;
+  }
 }
 
   .mate-animation {
@@ -80,7 +89,7 @@
   align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
-  padding: 0 1rem 0 0;
+  padding: 0 1rem;
   position: relative;
 }
 
@@ -96,6 +105,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
 }
 
 .hero-card {
@@ -109,10 +119,13 @@
   flex: 1;
   height: auto;
   min-height: 450px;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Card izquierda - Información personal */
@@ -251,6 +264,10 @@
   line-height: 1.5;
   margin: 0;
   opacity: 0.9;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  text-align: justify;
 }
 
 /* Badges escalera flotantes por debajo de las cards */
@@ -363,7 +380,9 @@
 
 .email-button,
 .download-button,
-.github-button {
+.github-button,
+.whatsapp-button,
+.instagram-button {
   padding: 0.875rem;
   min-width: 48px;
   width: 48px;
@@ -374,7 +393,9 @@
 
 .email-button .button-icon,
 .download-button .button-icon,
-.github-button svg {
+.github-button svg,
+.whatsapp-button svg,
+.instagram-button svg {
   width: 24px;
   height: 24px;
   display: flex;
@@ -401,28 +422,28 @@
   background: #ea4335;
   color: white;
   border: 1px solid #ea4335;
-  box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .email-button:hover {
   background: #d32f2f;
   border-color: #d32f2f;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(234, 67, 53, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .download-button {
   background: #3b82f6;
   color: white;
   border: 1px solid #3b82f6;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .download-button:hover {
   background: #2563eb;
   border-color: #2563eb;
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
 
 .github-button {
@@ -435,6 +456,34 @@
 .github-button:hover {
   background: #1a1a1a;
   border-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.whatsapp-button {
+  background: #25d366;
+  color: white;
+  border: 1px solid #25d366;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.whatsapp-button:hover {
+  background: #128c7e;
+  border-color: #128c7e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.instagram-button {
+  background: #e4405f;
+  color: white;
+  border: 1px solid #e4405f;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.instagram-button:hover {
+  background: #c13584;
+  border-color: #c13584;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
@@ -552,6 +601,9 @@
   color: white;
   margin: 0 0 0.5rem 0;
   line-height: 1.3;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .nav-section-description {
@@ -560,6 +612,9 @@
   margin: 0;
   line-height: 1.5;
   max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .nav-section-arrow {
@@ -730,7 +785,11 @@
   .hero-cards-layout {
     flex-direction: row;
     gap: 1.5rem;
-    padding: 0 1.5rem 0 1.5rem;
+    padding: 0 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero-card-left,
@@ -753,6 +812,9 @@
     gap: 1.5rem;
     margin-top: 0.5rem;
     padding: 0 1.5rem;
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
   }
 
   .floating-badge-item:nth-child(3) {
@@ -803,11 +865,17 @@
     gap: 1rem;
     padding: 0 0.5rem;
     margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto 1rem auto;
   }
 
   .hero-card-left,
   .hero-card-center {
     max-width: 100%;
+    width: 100%;
   }
 
   .hero-card {
@@ -815,6 +883,9 @@
     min-height: auto;
     height: auto;
     overflow: visible !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-avatar {
@@ -896,37 +967,64 @@
   .hero-floating-badges {
     display: none;
   }
+
+  /* Asegurar centrado perfecto en móviles */
+  .hero-section {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .hero-cards-layout {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 0.25rem;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
     height: auto;
     min-height: auto;
   }
 
   .hero-brand-header {
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 5;
   }
 
   .brand-title {
-    font-size: 1rem;
+    font-size: 1.5rem;
+    margin-top: 5px;
   }
 
   .mate-animation {
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 10px;
+    padding-bottom: 0.5rem;
   }
 
   .hero-cards-layout {
     gap: 0.75rem;
-    padding: 0 0.25rem;
+    padding: 0 0.5rem;
     margin-bottom: 0.75rem;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
   }
 
   .hero-card {
     padding: 0.75rem;
     overflow: visible !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .hero-avatar {
@@ -993,6 +1091,96 @@
 
   .floating-badge-item:nth-child(3) {
     margin-top: 1rem;
+  }
+}
+
+/* Breakpoint para móviles más grandes (tablets pequeños) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hero-section {
+    padding: 1.5rem 1rem 1rem 1rem;
+    height: auto;
+    min-height: auto;
+  }
+
+  .hero-cards-layout {
+    gap: 1rem;
+    padding: 0 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto 1rem auto;
+  }
+
+  .hero-card {
+    padding: 1.5rem;
+    overflow: visible !important;
+    min-height: 400px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .hero-avatar {
+    width: 80px;
+    height: 80px;
+  }
+
+  .hero-name {
+    font-size: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 1rem;
+  }
+
+  .hero-bio {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .navigation-title {
+    font-size: 1.25rem;
+  }
+
+  .nav-section-item {
+    padding: 1rem;
+    min-height: 60px;
+  }
+
+  .nav-section-title {
+    font-size: 1rem;
+  }
+
+  .nav-section-description {
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+
+  .project-preview-image {
+    height: 60px;
+  }
+
+  .project-preview-title {
+    font-size: 1rem;
+  }
+
+  .project-preview-description {
+    font-size: 0.875rem;
+  }
+
+  /* Asegurar centrado perfecto en tablets */
+  .hero-section {
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+
+  .hero-cards-layout {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 

@@ -270,7 +270,7 @@ const ObjectiveSection = ({
                           <CheckCircle className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
                           <div>
                             <p className="font-medium text-gray-800 text-sm">Metodologías ágiles</p>
-                            <p className="text-xs text-gray-600">Scrum, trabajo en equipo, sprints</p>
+                            <p className="text-xs text-gray-600">Scrum, teamwork, sprints</p>
                           </div>
                         </div>
                       </div>

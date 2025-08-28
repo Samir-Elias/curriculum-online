@@ -225,7 +225,7 @@ export const getTechIcon = (tech) => {
     "Scrum": <DatabaseIcon />,
     "Agile": <DatabaseIcon />,
     "Sprints": <DatabaseIcon />,
-    "Trabajo en equipo": <DatabaseIcon />,
+    "Teamwork": <DatabaseIcon />,
     "UX/UI Design": <DatabaseIcon />,
     "User Research": <DatabaseIcon />
   }

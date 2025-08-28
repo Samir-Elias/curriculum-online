@@ -55,8 +55,8 @@ const BackgroundAnimation = () => {
     { id: 10, Icon: HTML5Icon, x: 12, y: 45, size: 68, speed: 33 },
     { id: 11, Icon: TailwindIcon, x: 85, y: 70, size: 54, speed: 40 },
     
-    // Node.js detrás del mate (derecha inferior)
-    { id: 12, Icon: NodeIcon, x: 38.1, y: 4.2, size: 85, speed: 50 }
+    // Node.js detrás del mate (arriba izquierda)
+    { id: 12, Icon: NodeIcon, x: 7.8, y: 2, size: 70, speed: 50 }
   ], [])
 
   return (

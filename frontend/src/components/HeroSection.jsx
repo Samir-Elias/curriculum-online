@@ -101,19 +101,19 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                   <FileText className="button-icon" />
                 </Button>
 
-                {info.github && (
-                  <Button className="action-button github-button" onClick={() => window.open(info.github)}>
-                    <GitHubIcon />
-                  </Button>
-                )}
+                <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
+                  <InstagramIcon />
+                </Button>
 
                 <Button className="action-button whatsapp-button" onClick={() => window.open('https://wa.me/5492612345678')}>
                   <WhatsAppIcon />
                 </Button>
 
-                <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
-                  <InstagramIcon />
-                </Button>
+                {info.github && (
+                  <Button className="action-button github-button" onClick={() => window.open(info.github)}>
+                    <GitHubIcon />
+                  </Button>
+                )}
               </motion.div>
 
             </div>
