@@ -45,7 +45,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
             <Lottie 
               animationData={mateAnimation} 
               loop={true}
-              style={{ width: 120, height: 120 }}
+              style={{ width: 50, height: 50 }}
             />
           </div>
           <h1 className="brand-title">
