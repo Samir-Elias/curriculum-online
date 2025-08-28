@@ -2,6 +2,17 @@
   publish = "build"
   command = "npm run build"
 
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  
+  [plugins.inputs]
+    # Ejecutar auditoría en estas URLs
+    urls = ["/"]
+    # Configurar umbrales mínimos (opcional)
+    thresholds = { performance = 0.8, accessibility = 0.9, "best-practices" = 0.9, seo = 0.9 }
+    # Generar reporte completo
+    output_path = "lighthouse-report.html"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
