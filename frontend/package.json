@@ -65,10 +65,7 @@
     "build": "craco build",
     "test": "craco test",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
-    "lighthouse": "lighthouse http://localhost:3000 --output html --output-path=./lighthouse-report.html --chrome-flags='--headless'",
-    "lighthouse:prod": "lighthouse https://samir-elias-cv.netlify.app --output html --output-path=./lighthouse-report-prod.html --chrome-flags='--headless'",
-    "audit": "npm run lighthouse && open lighthouse-report.html"
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
