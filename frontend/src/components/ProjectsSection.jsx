@@ -76,7 +76,6 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
 
   // Optimización: Memoizar el proyecto actual
   const currentProjectData = useMemo(() => {
-    console.log('Debug - mappedProjects:', mappedProjects.length, 'currentProject:', currentProject);
     if (mappedProjects.length === 0) return null;
     return mappedProjects[currentProject] || mappedProjects[0];
   }, [mappedProjects, currentProject]);

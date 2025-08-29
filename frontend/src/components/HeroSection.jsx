@@ -10,7 +10,7 @@ import "../styles/components/hero-section.css"
 const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
   const defaultPersonalInfo = {
     nombre: "Samir Elias Salatino",
-    titulo: "Desarrollador Backend Java | Full Stack Developer",
+    titulo: "Full-Stack + AI Specialist | Prompt Engineering Expert",
     bio: "Developer apasionado especializado en Backend con Java, Spring Framework y metodologías ágiles. Experiencia en metodologías ágiles y proyectos Full-Stack. Más interesado y certificado disponible en mi portafolio.",
     ubicacion: "Mendoza, Argentina",
     experiencia: "6+ años Developer Autodidacta",
@@ -145,7 +145,7 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
               </motion.div>
 
               <motion.div className="navigation-sections" variants={variants}>
-                <div className="nav-section-item" onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}>
+                <div className="nav-section-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
                   <div className="nav-section-icon">
                     <FolderOpen className="section-icon" />
                   </div>
@@ -191,44 +191,89 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
             <div className="hero-projects-preview">
               <motion.div className="projects-preview-header" variants={variants}>
                 <h2 className="projects-preview-title">
-                  <FolderOpen className="projects-preview-icon" />
                   Proyectos Destacados
+                  <FolderOpen className="projects-preview-icon" />
                 </h2>
                 <p className="projects-preview-subtitle">Una muestra de mi trabajo</p>
               </motion.div>
 
               <motion.div className="projects-preview-grid" variants={variants}>
                 <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-text">
+                    <h3 className="project-preview-title">Estimador de Costos</h3>
+                    <p className="project-preview-description">Sistema completo de estimación y gestión de proyectos</p>
+                  </div>
                   <div className="project-preview-image">
                     <img src="/images/estimador_hero.png" alt="Estimador de Costos" />
                     <div className="project-preview-overlay">
                       <ExternalLink className="project-preview-link-icon" />
                     </div>
                   </div>
-                  <h3 className="project-preview-title">Estimador de Costos</h3>
-                  <p className="project-preview-description">Sistema completo de estimación y gestión de proyectos</p>
                 </div>
 
                 <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-text">
+                    <h3 className="project-preview-title">TeloApp</h3>
+                    <p className="project-preview-description">Aplicación móvil para gestión de telos y hoteles</p>
+                  </div>
                   <div className="project-preview-image">
                     <img src="/images/Teloapp_pcview.png" alt="TeloApp" />
                     <div className="project-preview-overlay">
                       <ExternalLink className="project-preview-link-icon" />
                     </div>
                   </div>
-                  <h3 className="project-preview-title">TeloApp</h3>
-                  <p className="project-preview-description">Aplicación móvil para gestión de telos y hoteles</p>
                 </div>
 
                 <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-text">
+                    <h3 className="project-preview-title">ServiceBook</h3>
+                    <p className="project-preview-description">Plataforma de gestión de servicios y reservas</p>
+                  </div>
                   <div className="project-preview-image">
                     <img src="/images/serviceBook_inicio.png" alt="ServiceBook" />
                     <div className="project-preview-overlay">
                       <ExternalLink className="project-preview-link-icon" />
                     </div>
                   </div>
-                  <h3 className="project-preview-title">ServiceBook</h3>
-                  <p className="project-preview-description">Plataforma de gestión de servicios y reservas</p>
+                </div>
+
+                <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-text">
+                    <h3 className="project-preview-title">CV Digital</h3>
+                    <p className="project-preview-description">Portfolio interactivo con React y IA</p>
+                  </div>
+                  <div className="project-preview-image">
+                    <img src="/images/Cv_1erFoto.png" alt="CV Digital" />
+                    <div className="project-preview-overlay">
+                      <ExternalLink className="project-preview-link-icon" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-text">
+                    <h3 className="project-preview-title">Rick & Morty</h3>
+                    <p className="project-preview-description">App de personajes con API REST</p>
+                  </div>
+                  <div className="project-preview-image">
+                    <img src="/images/rickymorty_pc.png" alt="Rick & Morty" />
+                    <div className="project-preview-overlay">
+                      <ExternalLink className="project-preview-link-icon" />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="project-preview-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="project-preview-text">
+                    <h3 className="project-preview-title">Portfolio IA</h3>
+                    <p className="project-preview-description">Desarrollo asistido con IA y prompt engineering</p>
+                  </div>
+                  <div className="project-preview-image">
+                    <img src="/images/Cv_2daFoto.png" alt="Portfolio IA" />
+                    <div className="project-preview-overlay">
+                      <ExternalLink className="project-preview-link-icon" />
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </div>
@@ -238,21 +283,21 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
         {/* Badges escalera flotantes por debajo de las cards */}
         <div className="hero-floating-badges">
           <motion.div className="floating-badge-item" variants={variants}>
-            <div className="card-badge-item">
+            <div className="card-badge-item" onClick={() => window.open(`https://maps.google.com/?q=${info.ubicacion}`, '_blank')}>
               <MapPin className="badge-icon" />
               <span>{info.ubicacion}</span>
             </div>
           </motion.div>
 
           <motion.div className="floating-badge-item" variants={variants}>
-            <div className="card-badge-item">
+            <div className="card-badge-item" onClick={() => document.getElementById('education')?.scrollIntoView({ behavior: 'smooth' })}>
               <Code className="badge-icon" />
               <span>{info.experiencia}</span>
             </div>
           </motion.div>
 
           <motion.div className="floating-badge-item" variants={variants}>
-            <div className="card-badge-item">
+            <div className="card-badge-item" onClick={() => window.open('https://linkedin.com/in/samir-elias-salatino', '_blank')}>
               <Globe className="badge-icon" />
               <span>Disponible para remoto</span>
             </div>

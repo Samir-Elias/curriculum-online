@@ -6,7 +6,7 @@ export const profileData = {
     email: "samireliassalatino@gmail.com",
     telefono: "+54 9 261 466-6991",
     foto: "/perfil.jpg",
-    titulo: "Desarrollador Full-Stack + AI Specialist | Prompt Engineering Expert",
+    titulo: "Full-Stack + AI Specialist | Prompt Engineering Expert",
     experiencia: "6 años como Developer Autodidacta",
     bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experto en desarrollo asistido por IA y prompt engineering. Experiencia en metodologías ágiles y proyectos Full-Stack con productividad 10x usando herramientas modernas de IA.",
     linkedin: "https://www.linkedin.com/in/samir-elías",

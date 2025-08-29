@@ -47,48 +47,52 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
   ]
 
   // Generar iconos fijos - Tamaño aumentado y ubicados en laterales
+  // Estrategia de posicionamiento: Los iconos se colocan en los bordes extremos
+  // para evitar cualquier superposición con el contenido del hero (centro 20-80% del viewport)
   const floatingIcons = useMemo(() => {
     const isMobileView = isMobile || isMobileState;
     
     if (isMobileView) {
       // Configuración específica para móviles - iconos más pequeños y mejor distribuidos
+      // Zona segura: centro 30-70% del viewport está libre de iconos
       return [
-        // Laterales izquierdos - más compactos
-        { id: 0, Icon: ReactIcon, x: 8, y: 20, size: 60, speed: 25 },
-        { id: 1, Icon: JavaScriptIcon, x: 12, y: 40, size: 55, speed: 28 },
-        { id: 2, Icon: JavaIcon, x: 6, y: 60, size: 62, speed: 26 },
-        { id: 3, Icon: MongoIcon, x: 10, y: 80, size: 58, speed: 27 },
+        // Laterales izquierdos - más compactos y alejados del centro
+        { id: 0, Icon: ReactIcon, x: 2, y: 15, size: 60, speed: 25 },
+        { id: 1, Icon: JavaScriptIcon, x: 5, y: 35, size: 55, speed: 28 },
+        { id: 2, Icon: JavaIcon, x: 1, y: 55, size: 62, speed: 26 },
+        { id: 3, Icon: MongoIcon, x: 4, y: 75, size: 58, speed: 27 },
         
-        // Laterales derechos - más compactos
-        { id: 4, Icon: NodeIcon, x: 88, y: 25, size: 65, speed: 32 },
-        { id: 5, Icon: CSS3Icon, x: 92, y: 45, size: 52, speed: 35 },
-        { id: 6, Icon: SpringIcon, x: 86, y: 65, size: 64, speed: 31 },
-        { id: 7, Icon: FirebaseIcon, x: 90, y: 85, size: 56, speed: 33 },
+        // Laterales derechos - más compactos y alejados del centro
+        { id: 4, Icon: NodeIcon, x: 95, y: 20, size: 65, speed: 32 },
+        { id: 5, Icon: CSS3Icon, x: 98, y: 40, size: 52, speed: 35 },
+        { id: 6, Icon: SpringIcon, x: 94, y: 60, size: 64, speed: 31 },
+        { id: 7, Icon: FirebaseIcon, x: 97, y: 80, size: 56, speed: 33 },
         
-        // Centros laterales (izquierda y derecha) - más compactos
-        { id: 8, Icon: HTML5Icon, x: 15, y: 50, size: 68, speed: 23 },
-        { id: 9, Icon: TailwindIcon, x: 82, y: 75, size: 54, speed: 30 }
+        // Centros laterales (izquierda y derecha) - más compactos y alejados
+        { id: 8, Icon: HTML5Icon, x: 8, y: 45, size: 68, speed: 23 },
+        { id: 9, Icon: TailwindIcon, x: 90, y: 70, size: 54, speed: 30 }
       ];
     } else {
-      // Configuración original para desktop
+      // Configuración original para desktop - ajustada para evitar superposición con texto
+      // Zona segura: centro 25-75% del viewport está libre de iconos
       return [
-        // Laterales izquierdos
-        { id: 0, Icon: ReactIcon, x: 5, y: 15, size: 90, speed: 35 },
-        { id: 1, Icon: JavaScriptIcon, x: 8, y: 35, size: 85, speed: 38 },
-        { id: 2, Icon: JavaIcon, x: 3, y: 55, size: 92, speed: 36 },
-        { id: 3, Icon: MongoIcon, x: 7, y: 75, size: 88, speed: 37 },
-        { id: 4, Icon: PythonIcon, x: 4, y: 85, size: 89, speed: 44 },
+        // Laterales izquierdos - movidos más hacia la izquierda (0-20% del viewport)
+        { id: 0, Icon: ReactIcon, x: 2, y: 10, size: 90, speed: 35 },
+        { id: 1, Icon: JavaScriptIcon, x: 4, y: 30, size: 85, speed: 38 },
+        { id: 2, Icon: JavaIcon, x: 1, y: 50, size: 92, speed: 36 },
+        { id: 3, Icon: MongoIcon, x: 3, y: 70, size: 88, speed: 37 },
+        { id: 4, Icon: PythonIcon, x: 0, y: 85, size: 89, speed: 44 },
         
-        // Laterales derechos
-        { id: 5, Icon: NodeIcon, x: 92, y: 20, size: 95, speed: 42 },
-        { id: 6, Icon: CSS3Icon, x: 95, y: 40, size: 82, speed: 45 },
-        { id: 7, Icon: SpringIcon, x: 90, y: 60, size: 94, speed: 41 },
-        { id: 8, Icon: FirebaseIcon, x: 93, y: 80, size: 86, speed: 43 },
-        { id: 9, Icon: MySQLIcon, x: 88, y: 90, size: 91, speed: 39 },
+        // Laterales derechos - movidos más hacia la derecha (80-100% del viewport)
+        { id: 5, Icon: NodeIcon, x: 96, y: 15, size: 95, speed: 42 },
+        { id: 6, Icon: CSS3Icon, x: 98, y: 35, size: 82, speed: 45 },
+        { id: 7, Icon: SpringIcon, x: 95, y: 55, size: 94, speed: 41 },
+        { id: 8, Icon: FirebaseIcon, x: 97, y: 75, size: 86, speed: 43 },
+        { id: 9, Icon: MySQLIcon, x: 94, y: 90, size: 91, speed: 39 },
         
-        // Centros laterales (izquierda y derecha)
-        { id: 10, Icon: HTML5Icon, x: 12, y: 45, size: 98, speed: 33 },
-        { id: 11, Icon: TailwindIcon, x: 85, y: 70, size: 84, speed: 40 }
+        // Centros laterales (izquierda y derecha) - movidos más hacia los bordes
+        { id: 10, Icon: HTML5Icon, x: 8, y: 40, size: 98, speed: 33 },
+        { id: 11, Icon: TailwindIcon, x: 90, y: 65, size: 84, speed: 40 }
       ];
     }
   }, [isMobile, isMobileState])
@@ -178,11 +182,19 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
         
         .floating-tech-icon {
           transition: all 0.3s ease;
+          /* Asegurar que los iconos estén detrás del contenido del hero */
+          z-index: -1;
+          pointer-events: none;
         }
         
         .floating-tech-icon:hover {
           transform: scale(1.1);
           opacity: 0.8 !important;
+        }
+        
+        /* Zona segura para el contenido del hero */
+        .background-animation-container {
+          z-index: -2;
         }
       `}</style>
     </div>

@@ -74,30 +74,30 @@
   transform-origin: center center;
 }
 
-/* Header PrograMate - Ahora como card */
+/* Header PrograMate - Ahora como card flotante */
 .hero-brand-card {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 58, 138, 0.8));
   backdrop-filter: blur(20px);
   border: 1px solid rgba(16, 185, 129, 0.3);
   border-radius: 8px;
-  padding: 2.5rem 3rem;
+  padding: 1.25rem 3rem;
   box-shadow: 
     0 25px 50px -12px rgba(0, 0, 0, 0.25),
     0 0 20px rgba(16, 185, 129, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   transition: all 0.4s ease;
-  margin: 2rem auto 2.5rem auto;
-  z-index: 10;
-  width: 100%;
+  position: fixed;
+  top: 2rem;
+  left: 50%;
+  transform: translateX(-50%) scale(1.111111);
+  transform-origin: center center;
+  z-index: 100;
+  width: auto;
   max-width: 550px;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
-  /* Compensar el zoom out del hero section */
-  transform: scale(1.111111);
-  transform-origin: center center;
 }
 
 .hero-brand-card::before {
@@ -128,7 +128,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
   width: 100%;
   text-align: center;
   position: relative;
@@ -163,7 +162,10 @@
   justify-content: center;
   width: 120px;
   height: 120px;
-  position: relative;
+  position: absolute;
+  left: 5%;
+  top: -100%;
+  transform: translateY(-50%);
   margin-bottom: 0;
   z-index: 2;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) drop-shadow(0 2px 4px rgba(16, 185, 129, 0.2));
@@ -200,6 +202,7 @@
   white-space: nowrap;
   transform: translateX(0px) translateY(5px);
   text-align: center;
+  margin-left: 0;
 }
 
 .brand-accent {
@@ -214,13 +217,14 @@
 /* Layout de 3 cards - Simplificado sin cards */
 .hero-cards-layout {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   width: 100%;
-  max-width: 1400px;
+  max-width: 2000px;
   align-items: flex-start;
   justify-content: center;
   margin: 0 auto;
   padding: 0 1rem;
+  padding-top: 8rem;
   position: relative;
 }
 
@@ -235,6 +239,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  padding-top: 0;
 }
 
 /* Cards principales para desktop */
@@ -243,12 +248,12 @@
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 24px;
-  padding: 2rem;
+  padding: 3rem;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
   flex: 1;
-  height: auto;
-  min-height: 450px;
+  height: 600px;
+  min-height: 600px;
   overflow: visible;
   display: flex;
   flex-direction: column;
@@ -256,6 +261,7 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  margin: 0 0.25rem;
 }
 
 /* Overlay para mejorar contraste del texto sobre iconos del fondo */
@@ -272,6 +278,12 @@
   z-index: 1;
 }
 
+/* Quitar overlay de la card del medio y izquierda */
+.hero-card-center::after,
+.hero-card-left::after {
+  display: none;
+}
+
 /* Asegurar que el contenido esté por encima del overlay */
 .hero-content,
 .hero-navigation-content,
@@ -282,28 +294,46 @@
 
 /* Card izquierda - Información personal */
 .hero-card-left {
-  flex: 1;
-  width: 32%;
-  min-width: 320px;
+  flex: 1.5;
+  width: 37%;
+  min-width: 500px;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  transition: none;
+  pointer-events: none;
 }
 
 /* Card centro - Navegación */
 .hero-card-center {
   flex: 1;
-  width: 33%;
-  min-width: 320px;
+  width: 30%;
+  min-width: 400px;
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  transition: none;
 }
 
 /* Card derecha - Preview de proyectos */
 .hero-card-right {
-  flex: 1.1;
-  width: 35%;
-  min-width: 340px;
+  flex: 1.2;
+  width: 30%;
+  min-width: 450px;
 }
 
 .hero-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* Deshabilitar hover para las cards invisibles */
+.hero-card-left:hover,
+.hero-card-center:hover {
+  transform: none;
+  box-shadow: none;
 }
 
 .hero-content {
@@ -312,8 +342,9 @@
   align-items: center;
   text-align: center;
   gap: 1.5rem;
-  height: auto;
+  height: 100%;
   justify-content: flex-start;
+  width: 100%;
 }
 
 /* Avatar section */
@@ -389,7 +420,10 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 600px;
+  max-width: 100%;
+  width: 100%;
+  align-items: center;
+  text-align: center;
 }
 
 /* Mejorar contraste del texto principal */
@@ -405,7 +439,7 @@
 }
 
 .hero-title {
-  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
   font-weight: 600;
   color: #10b981;
   margin: 0;
@@ -413,6 +447,7 @@
   text-shadow: 0 0 20px rgba(16, 185, 129, 0.5), 0 2px 4px rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 2;
+  white-space: nowrap;
 }
 
 .hero-bio {
@@ -421,58 +456,123 @@
   line-height: 1.5;
   margin: 0;
   opacity: 0.95;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  hyphens: auto;
-  text-align: justify;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-align: center;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 2;
+  white-space: normal;
+  max-width: 100%;
 }
 
 /* Badges escalera flotantes por debajo de las cards */
 .hero-floating-badges {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   width: 100%;
-  max-width: 1400px;
+  max-width: 2000px;
   margin: 0 auto 0 auto;
   padding: 0 1rem;
   justify-content: center;
   position: relative;
   z-index: 10;
-  margin-top: -0.5rem;
+  margin-top: 1rem;
 }
 
 .floating-badge-item {
   display: flex;
   justify-content: center;
+  pointer-events: auto;
+  transition: all 0.3s ease;
 }
 
-/* Badge izquierdo - mismo ancho que hero-card-left */
+/* OPCIÓN 3: Deslizamiento + Brillo (para elementos de navegación) */
+.nav-section-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+}
+
+/* OPCIÓN 2: Escala + Rotación del icono */
+/* .nav-section-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.nav-section-item:hover .section-icon {
+  transform: rotate(15deg);
+  color: #10b981;
+} */
+
+/* OPCIÓN 3: Deslizamiento + Brillo */
+/* .nav-section-item:hover {
+  transform: translateX(10px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+} */
+
+/* OPCIÓN 4: Efecto Glow completo */
+/* .nav-section-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 
+    0 10px 25px rgba(16, 185, 129, 0.4),
+    0 0 20px rgba(16, 185, 129, 0.2),
+    inset 0 0 20px rgba(16, 185, 129, 0.1);
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+} */
+
+/* OPCIÓN 5: Animación de pulso */
+/* .nav-section-item:hover {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(16, 185, 129, 0.5);
+  }
+} */
+
+/* Transición suave para todas las animaciones */
+.nav-section-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.nav-section-item .section-icon {
+  transition: all 0.3s ease;
+}
+
+/* Badges alineados - mismo ancho que las cards */
 .floating-badge-item:nth-child(1) {
-  flex: 1;
-  width: 32%;
-  min-width: 320px;
+  flex: 1.5;
+  width: 37%;
+  min-width: 500px;
   margin-top: 0;
   margin-left: 0;
 }
 
-/* Badge centro - mismo ancho que hero-card-center */
 .floating-badge-item:nth-child(2) {
   flex: 1;
-  width: 33%;
-  min-width: 320px;
-  margin-top: 0.5rem;
+  width: 30%;
+  min-width: 400px;
+  margin-top: 0;
   margin-left: 0;
 }
 
-/* Badge derecho - mismo ancho que hero-card-right */
 .floating-badge-item:nth-child(3) {
-  flex: 1.1;
-  width: 32%;
-  min-width: 300px;
-  margin-top: 1rem;
+  flex: 1.2;
+  width: 30%;
+  min-width: 450px;
+  margin-top: 0;
   margin-left: 0;
 }
 
@@ -490,23 +590,19 @@
   color: #e2e8f0;
   font-size: 0.8rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  /* FORZAR ELIMINACIÓN DE SOMBRADO */
-  box-shadow: none !important;
-  text-shadow: none !important;
-  filter: none !important;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .card-badge-item:hover {
-  background: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
-  /* FORZAR ELIMINACIÓN DE SOMBRADO EN HOVER */
-  box-shadow: none !important;
-  text-shadow: none !important;
-  filter: none !important;
+  transform: translateX(10px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+  border-color: rgba(16, 185, 129, 0.5);
 }
 
 .card-badge-item .badge-icon {
@@ -683,7 +779,7 @@
   flex-direction: column;
   height: 100%;
   gap: 1.5rem;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .navigation-header {
@@ -743,9 +839,10 @@
 }
 
 .nav-section-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(16, 185, 129, 0.3);
-  transform: translateX(5px);
+  transform: translateX(10px);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05));
+  border-color: rgba(16, 185, 129, 0.5);
 }
 
 .nav-section-icon {
@@ -820,13 +917,13 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  gap: 1rem;
+  gap: 0.5rem;
   justify-content: space-between;
 }
 
 .projects-preview-header {
-  text-align: center;
-  margin-bottom: 0.5rem;
+  text-align: right;
+  margin-bottom: 0.25rem;
   flex-shrink: 0;
 }
 
@@ -834,11 +931,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
-  font-size: 1.5rem;
+  gap: 0.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   color: white;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 2;
@@ -852,20 +949,24 @@
 
 .projects-preview-subtitle {
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin: 0;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 2;
+  text-align: center;
+  font-family: 'Poppins', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  font-weight: 500;
 }
 
 .projects-preview-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
   flex: 1;
-  overflow: hidden;
+  overflow-y: auto;
   padding-right: 0.5rem;
+  max-height: 400px;
 }
 
 /* Scrollbar personalizado para el grid de proyectos */
@@ -895,7 +996,10 @@
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.5rem;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .project-preview-item:hover {
@@ -907,9 +1011,11 @@
 
 .project-preview-image {
   position: relative;
-  width: 100%;
-  height: 80px;
+  width: 45px;
+  height: 45px;
   overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 8px;
 }
 
 .project-preview-image img {
@@ -951,50 +1057,59 @@
 }
 
 .project-preview-item h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: white;
-  margin: 0.75rem 0 0.25rem 0;
-  padding: 0 0.75rem;
-  line-height: 1.3;
+  margin: 0 0 0.15rem 0;
+  padding: 0;
+  line-height: 1.2;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
   position: relative;
   z-index: 2;
 }
 
 .project-preview-item p {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: rgba(255, 255, 255, 0.85);
-  margin: 0 0 0.75rem 0;
-  padding: 0 0.75rem;
-  line-height: 1.4;
+  margin: 0;
+  padding: 0;
+  line-height: 1.3;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 2;
 }
 
+.project-preview-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 
 
 /* Responsive design */
-@media (max-width: 1200px) {
+@media (max-width: 1600px) {
   .hero-cards-layout {
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 2rem;
     padding: 0 1.5rem;
     width: 100%;
-    max-width: 100%;
+    max-width: 1800px;
     justify-content: center;
     align-items: center;
   }
+
+  .projects-preview-grid {
+    max-height: 350px;
+  }
+}
 
   .hero-card-left,
   .hero-card-center {
     flex: 1;
     max-width: 50%;
-  }
-
-  .hero-card-right {
-    display: none;
+    min-width: 380px;
   }
 
   .hero-card {
@@ -1004,21 +1119,44 @@
 
   .hero-floating-badges {
     flex-direction: row;
-    gap: 1.5rem;
+    gap: 2rem;
     margin-top: 0.5rem;
     padding: 0 1.5rem;
     width: 100%;
-    max-width: 100%;
+    max-width: 1800px;
     justify-content: center;
   }
 
-  .floating-badge-item:nth-child(3) {
-    display: none;
+  /* Versión con iconos para pantallas medianas */
+  .project-preview-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
   }
+
+  .project-preview-image {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+  }
+
+  .project-preview-item h3 {
+    font-size: 0.9rem;
+    margin: 0 0 0.25rem 0;
+  }
+
+  .project-preview-item p {
+    font-size: 0.75rem;
+    margin: 0;
+  }
+
+
 
   .floating-badge-item {
     flex: 1;
     width: 50%;
+    min-width: 380px;
   }
 
   /* Formato escalera para tablet */
@@ -1033,7 +1171,6 @@
   .card-badge-item {
     width: 100%;
   }
-}
 
 @media (max-width: 768px) {
   .hero-section {
@@ -1042,9 +1179,15 @@
     min-height: auto;
   }
 
-  /* Ocultar la card completa en móvil */
+  /* Ajustar la card flotante en móvil */
   .hero-brand-card {
-    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    max-width: 90%;
+    padding: 0.75rem 2rem;
+    z-index: 100;
   }
 
   /* Título flotante para móvil */
@@ -1098,6 +1241,10 @@
   .hero-card-center {
     max-width: 100%;
     width: 100%;
+  }
+
+  .hero-card-right {
+    display: none;
   }
 
   .hero-card {
