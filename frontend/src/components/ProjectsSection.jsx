@@ -109,7 +109,8 @@ const ProjectsSection = () => {
     setIsTransitioning(true)
     setCurrentProject((prev) => (prev + 1) % projects.length)
     setIsDetailsExpanded(false)
-    setTimeout(() => setIsTransitioning(false), 300)
+    // Aumentar el tiempo para que coincida con la duración de la animación
+    setTimeout(() => setIsTransitioning(false), 600)
   }, [projects.length, isTransitioning])
 
   const prevProject = useCallback(() => {
@@ -117,7 +118,8 @@ const ProjectsSection = () => {
     setIsTransitioning(true)
     setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length)
     setIsDetailsExpanded(false)
-    setTimeout(() => setIsTransitioning(false), 300)
+    // Aumentar el tiempo para que coincida con la duración de la animación
+    setTimeout(() => setIsTransitioning(false), 600)
   }, [projects.length, isTransitioning])
 
   const toggleDetails = () => {
@@ -129,7 +131,8 @@ const ProjectsSection = () => {
     setIsTransitioning(true)
     setCurrentProject(index)
     setIsDetailsExpanded(false)
-    setTimeout(() => setIsTransitioning(false), 300)
+    // Aumentar el tiempo para que coincida con la duración de la animación
+    setTimeout(() => setIsTransitioning(false), 600)
   }
 
   if (!projects || projects.length === 0) {
@@ -196,15 +199,19 @@ const ProjectsSection = () => {
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentProject}
-                className="project-content-wrapper"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              >
+                         <AnimatePresence mode="wait">
+               <motion.div
+                 key={currentProject}
+                 className="project-content-wrapper"
+                                   initial={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+                  
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: "easeInOut"
+                  }}
+               >
                 {/* Contenedor de imagen mejorado */}
                 <div className="project-image-container">
                   <div className="image-wrapper">
@@ -245,7 +252,46 @@ const ProjectsSection = () => {
                  <div className="project-info-container">
                    {/* Header del proyecto */}
                    <div className="project-header">
-                     <h3 className="project-title">{project.title}</h3>
+                                           <h3 className="project-title">
+                        {project.title.split('').map((char, index) => {
+                          // Resaltar varias MAYÚSCULAS y guiones con el color verde de prograMate
+                          const shouldHighlight = char === 'S' || // S de ServiceBook
+                                                 char === 'E' || // E de Estimador
+                                                 char === 'T' || // T de TeloApp
+                                                 char === 'C' || // C de CV
+                                                 char === 'D' || // D de Digital
+                                                 char === 'P' || // P de Portfolio
+                                                 char === 'R' || // R de React
+                                                 char === 'I' || // I de Interactivo
+                                                 char === 'A' || // A de App
+                                                 char === 'M' || // M de Management
+                                                 char === 'G' || // G de Gestión
+                                                 char === 'F' || // F de Full-Stack
+                                                 char === 'B' || // B de Backend
+                                                 char === 'J' || // J de Java
+                                                 char === 'V' || // V de Virtual
+                                                 char === 'O' || // O de Online
+                                                 char === 'L' || // L de Live
+                                                 char === 'U' || // U de User
+                                                 char === 'X' || // X de eXperience
+                                                 char === 'Y' || // Y de System
+                                                 char === 'Z' || // Z de Zero
+                                                 char === 'K' || // K de Stack
+                                                 char === 'W' || // W de Web
+                                                 char === 'N' || // N de Node
+                                                 char === 'H' || // H de HTML
+                                                 char === 'Q' || // Q de Quality
+                                                 char === '-' || // Guiones
+                                                 char === '–' || // Guión medio
+                                                 char === '—';   // Guión largo
+                          
+                          return shouldHighlight ? (
+                            <span key={index} className="project-title-accent">{char}</span>
+                          ) : (
+                            <span key={index}>{char}</span>
+                          );
+                        })}
+                      </h3>
                      <p className="project-description">{project.description}</p>
                    </div>
 

@@ -23,7 +23,7 @@ export const profileData = {
   
   proyectosDestacados: [
     {
-      nombre: "CV Digital Interactivo - React Portfolio",
+      nombre: "Cv Digital Interactivo - React Portfolio",
       descripcion: "Portfolio profesional desarrollado con React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium.",
       tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO"],
       imagenes: [

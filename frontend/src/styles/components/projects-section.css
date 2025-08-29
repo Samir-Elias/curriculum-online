@@ -184,6 +184,22 @@
   margin-bottom: 30px;
   line-height: 1.1;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  white-space: normal;
+  overflow: visible;
+  word-break: keep-all;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+}
+
+.project-title-accent {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
 }
 
 .project-description {
@@ -193,6 +209,13 @@
   margin: 0;
   font-weight: 400;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  white-space: normal;
+  overflow: visible;
+  word-break: keep-all;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
 }
 
 /* Meta información */
@@ -268,6 +291,13 @@
   gap: 15px;
   position: relative;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  white-space: normal;
+  overflow: visible;
+  word-break: keep-all;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
 }
 
 .section-title.right-side {
@@ -745,10 +775,33 @@
 
   .project-title {
     font-size: 2.8rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  .project-title-accent {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
   }
 
   .project-description {
     font-size: 1.2rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
 
   .project-image-container {
@@ -801,10 +854,24 @@
 
   .project-title {
     font-size: 2.2rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
 
   .project-description {
     font-size: 1.1rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
   }
 
   .details-content {
