@@ -1,22 +1,26 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { profileData } from "../data/profileData"
-import ImageSlider from "./ImageSlider"
-import { getTechIcon, ChevronLeft, ChevronRight, ChevronDown, GitHubIcon, ExternalLinkIcon } from "../icons/TechIcons"
-import "../styles/components/projects-section.css"
+import React, { useState, useCallback, useEffect, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, ExternalLink, Github, Eye } from "lucide-react";
+import { getTechIcon } from "../icons/TechIcons";
+import ImageSlider from "./ImageSlider";
+import ProjectModal from "./ProjectModal";
+import "../styles/components/projects-section.css";
 
-const ProjectsSection = () => {
-  const [currentProject, setCurrentProject] = useState(0)
-  const [isDetailsExpanded, setIsDetailsExpanded] = useState(false)
-  const [isTransitioning, setIsTransitioning] = useState(false)
-  const [touchStart, setTouchStart] = useState(null)
-  const [touchEnd, setTouchEnd] = useState(null)
+const ProjectsSection = ({ proyectosDestacados = [] }) => {
+  const [currentProject, setCurrentProject] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const [loadedProjects, setLoadedProjects] = useState([]);
+  const [isLoadingNext, setIsLoadingNext] = useState(false);
 
   // Mapear los datos a la estructura esperada con datos mejorados
-  const rawProjects = profileData?.proyectosDestacados || []
-  const projects = rawProjects.map((project) => ({
+  const rawProjects = proyectosDestacados || []
+  const mappedProjects = rawProjects.map((project) => ({
     title: project.nombre,
     description: project.descripcion,
     technologies: project.tecnologias || [],
@@ -62,22 +66,66 @@ const ProjectsSection = () => {
     },
   }))
 
+  // Sistema de carga inicial
+  useEffect(() => {
+    if (mappedProjects.length === 0) return;
+    
+    // Cargar todos los proyectos inicialmente para evitar problemas
+    setLoadedProjects(mappedProjects);
+  }, [mappedProjects]);
+
+  // Optimización: Memoizar el proyecto actual
+  const currentProjectData = useMemo(() => {
+    console.log('Debug - mappedProjects:', mappedProjects.length, 'currentProject:', currentProject);
+    if (mappedProjects.length === 0) return null;
+    return mappedProjects[currentProject] || mappedProjects[0];
+  }, [mappedProjects, currentProject]);
+
+  // Optimización: Detectar visibilidad para lazy loading
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    const element = document.getElementById('proyectos');
+    if (element) {
+      observer.observe(element);
+    }
+
+    return () => {
+      if (element) {
+        observer.unobserve(element);
+      }
+    };
+  }, []);
+
   // Navegación con teclado
   useEffect(() => {
     const handleKeyPress = (e) => {
-      if (e.key === "ArrowLeft") {
-        prevProject()
-      } else if (e.key === "ArrowRight") {
-        nextProject()
-      } else if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault()
-        toggleDetails()
+      if (isModalOpen) {
+        // Solo permitir cerrar con Escape cuando el modal está abierto
+        if (e.key === "Escape") {
+          closeModal()
+        }
+      } else {
+        // Navegación normal solo cuando el modal está cerrado
+        if (e.key === "ArrowLeft") {
+          prevProject()
+        } else if (e.key === "ArrowRight") {
+          nextProject()
+        } else if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          openModal()
+        }
       }
     }
 
     window.addEventListener("keydown", handleKeyPress)
     return () => window.removeEventListener("keydown", handleKeyPress)
-  }, [])
+  }, [isModalOpen])
 
   // Manejo de gestos táctiles
   const minSwipeDistance = 50
@@ -104,38 +152,52 @@ const ProjectsSection = () => {
     }
   }
 
-  const nextProject = useCallback(() => {
+  const nextProject = useCallback((keepModalOpen = false) => {
     if (isTransitioning) return
     setIsTransitioning(true)
-    setCurrentProject((prev) => (prev + 1) % projects.length)
-    setIsDetailsExpanded(false)
-    // Aumentar el tiempo para que coincida con la duración de la animación
-    setTimeout(() => setIsTransitioning(false), 600)
-  }, [projects.length, isTransitioning])
+    setCurrentProject((prev) => (prev + 1) % mappedProjects.length)
+    if (!keepModalOpen) {
+      setIsModalOpen(false)
+    }
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [mappedProjects.length, isTransitioning])
 
-  const prevProject = useCallback(() => {
+  const prevProject = useCallback((keepModalOpen = false) => {
     if (isTransitioning) return
     setIsTransitioning(true)
-    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length)
-    setIsDetailsExpanded(false)
-    // Aumentar el tiempo para que coincida con la duración de la animación
-    setTimeout(() => setIsTransitioning(false), 600)
-  }, [projects.length, isTransitioning])
+    setCurrentProject((prev) => (prev - 1 + mappedProjects.length) % mappedProjects.length)
+    if (!keepModalOpen) {
+      setIsModalOpen(false)
+    }
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [mappedProjects.length, isTransitioning])
 
-  const toggleDetails = () => {
-    setIsDetailsExpanded(!isDetailsExpanded)
+  const openModal = () => {
+    setIsModalOpen(true)
   }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
+  // Funciones específicas para navegación desde el modal
+  const nextProjectInModal = useCallback(() => {
+    nextProject(true) // Mantener modal abierto
+  }, [nextProject])
+
+  const prevProjectInModal = useCallback(() => {
+    prevProject(true) // Mantener modal abierto
+  }, [prevProject])
 
   const goToProject = (index) => {
     if (index === currentProject || isTransitioning) return
     setIsTransitioning(true)
     setCurrentProject(index)
-    setIsDetailsExpanded(false)
-    // Aumentar el tiempo para que coincida con la duración de la animación
-    setTimeout(() => setIsTransitioning(false), 600)
+    setIsModalOpen(false)
+    setTimeout(() => setIsTransitioning(false), 300)
   }
 
-  if (!projects || projects.length === 0) {
+  if (!mappedProjects || mappedProjects.length === 0) {
     return (
       <section className="projects-section">
         <div className="projects-container">
@@ -149,7 +211,7 @@ const ProjectsSection = () => {
     )
   }
 
-  const project = projects[currentProject]
+  const project = currentProjectData
 
   if (!project) {
     return (
@@ -157,28 +219,66 @@ const ProjectsSection = () => {
         <div className="projects-container">
           <div className="error-state">
             <h3>Error cargando proyecto</h3>
+            <p>Loaded: {loadedProjects.length}, Current: {currentProject}</p>
           </div>
         </div>
       </section>
     )
   }
 
+  // Optimización: Renderizar contenido pesado solo cuando es visible
+  if (!isVisible) {
+    return (
+      <section className="projects-section" id="proyectos">
+        <motion.div
+          className="projects-header"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h2 className="projects-title">
+            <span className="title-decoration">✦</span>
+            <span className="title-text">
+              <span className="title-accent">P</span>royectos <span className="title-accent">D</span>estacados
+            </span>
+            <span className="title-decoration">✦</span>
+          </h2>
+        </motion.div>
+        <motion.div 
+          className="projects-loading"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
+        >
+          <div className="loading-placeholder">Cargando proyectos...</div>
+        </motion.div>
+      </section>
+    );
+  }
+
   return (
-    <section className="projects-section" id="proyectos">
-      {/* Header mejorado */}
-      <motion.div
-        className="projects-header"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="projects-title">Proyectos Destacados</h2>
-        <div className="projects-counter">
-          <span className="current-project">{currentProject + 1}</span>
-          <span className="separator">/</span>
-          <span className="total-projects">{projects.length}</span>
-        </div>
-      </motion.div>
+    <>
+      <section className="projects-section" id="proyectos">
+        {/* Header mejorado */}
+        <motion.div
+          className="projects-header"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+        >
+          <h2 className="projects-title">
+            <span className="title-decoration">✦</span>
+            <span className="title-text">
+              <span className="title-accent">P</span>royectos <span className="title-accent">D</span>estacados
+            </span>
+            <span className="title-decoration">✦</span>
+          </h2>
+          <div className="projects-counter">
+            <span className="current-project">{currentProject + 1}</span>
+            <span className="separator">/</span>
+            <span className="total-projects">{mappedProjects.length}</span>
+          </div>
+        </motion.div>
 
         {/* Contenedor principal del proyecto con navegación lateral */}
         <div className="project-main-wrapper">
@@ -199,34 +299,32 @@ const ProjectsSection = () => {
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
           >
-                         <AnimatePresence mode="wait">
-               <motion.div
-                 key={currentProject}
-                 className="project-content-wrapper"
-                                   initial={{ opacity: 0, scale: 1.2, filter: "blur(10px)" }}
-                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-                  exit={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-                  
-                  transition={{ 
-                    duration: 0.6, 
-                    ease: "easeInOut"
-                  }}
-               >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentProject}
+                className="project-content-wrapper"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ 
+                  duration: 0.3, 
+                  ease: "easeOut"
+                }}
+              >
                 {/* Contenedor de imagen mejorado */}
                 <div className="project-image-container">
-                  <div className="image-wrapper">
-                    {project.images && project.images.length > 1 ? (
-                      <ImageSlider images={project.images} />
-                    ) : (
-                      <img
-                        src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
-                        alt={project.title}
-                        className="project-image no-hover-effects"
-                        loading="lazy"
-                      />
-                    )}
-
-                  </div>
+                                     <div className="image-wrapper">
+                     {project.images && project.images.length > 1 ? (
+                       <ImageSlider images={project.images} isPaused={isModalOpen} />
+                     ) : (
+                       <img
+                         src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
+                         alt={project.title}
+                         className="project-image no-hover-effects"
+                         loading="lazy"
+                       />
+                     )}
+                   </div>
                   
                   {/* Tecnologías en el lado derecho */}
                   <div className="technologies-section right-side">
@@ -236,9 +334,9 @@ const ProjectsSection = () => {
                         <motion.div
                           key={tech}
                           className="tech-item right-side"
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ delay: index * 0.1 }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: index * 0.02, duration: 0.2 }}
                         >
                           <div className="tech-icon right-side">{getTechIcon(tech)}</div>
                           <span className="tech-name right-side">{tech}</span>
@@ -248,256 +346,109 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                                 {/* Contenido del proyecto mejorado */}
-                 <div className="project-info-container">
-                   {/* Header del proyecto */}
-                   <div className="project-header">
-                                           <h3 className="project-title">
-                        {project.title.split('').map((char, index) => {
-                          // Resaltar varias MAYÚSCULAS y guiones con el color verde de prograMate
-                          const shouldHighlight = char === 'S' || // S de ServiceBook
-                                                 char === 'E' || // E de Estimador
-                                                 char === 'T' || // T de TeloApp
-                                                 char === 'C' || // C de CV
-                                                 char === 'D' || // D de Digital
-                                                 char === 'P' || // P de Portfolio
-                                                 char === 'R' || // R de React
-                                                 char === 'I' || // I de Interactivo
-                                                 char === 'A' || // A de App
-                                                 char === 'M' || // M de Management
-                                                 char === 'G' || // G de Gestión
-                                                 char === 'F' || // F de Full-Stack
-                                                 char === 'B' || // B de Backend
-                                                 char === 'J' || // J de Java
-                                                 char === 'V' || // V de Virtual
-                                                 char === 'O' || // O de Online
-                                                 char === 'L' || // L de Live
-                                                 char === 'U' || // U de User
-                                                 char === 'X' || // X de eXperience
-                                                 char === 'Y' || // Y de System
-                                                 char === 'Z' || // Z de Zero
-                                                 char === 'K' || // K de Stack
-                                                 char === 'W' || // W de Web
-                                                 char === 'N' || // N de Node
-                                                 char === 'H' || // H de HTML
-                                                 char === 'Q' || // Q de Quality
-                                                 char === '-' || // Guiones
-                                                 char === '–' || // Guión medio
-                                                 char === '—';   // Guión largo
-                          
-                          return shouldHighlight ? (
-                            <span key={index} className="project-title-accent">{char}</span>
-                          ) : (
-                            <span key={index}>{char}</span>
-                          );
-                        })}
-                      </h3>
-                     <p className="project-description">{project.description}</p>
-                   </div>
+                {/* Contenido del proyecto mejorado */}
+                <div className="project-info-container">
+                  {/* Header del proyecto */}
+                  <div className="project-header">
+                    <h3 className="project-title">
+                      {project.title.split('').map((char, index) => {
+                        // Resaltar varias MAYÚSCULAS y guiones con el color verde de prograMate
+                        const shouldHighlight = char === 'S' || // S de ServiceBook
+                                               char === 'E' || // E de Estimador
+                                               char === 'T' || // T de TeloApp
+                                               char === 'C' || // C de CV
+                                               char === 'D' || // D de Digital
+                                               char === 'P' || // P de Portfolio
+                                               char === 'R' || // R de React
+                                               char === 'I' || // I de Interactivo
+                                               char === 'A' || // A de App
+                                               char === 'M' || // M de Management
+                                               char === 'G' || // G de Gestión
+                                               char === 'F' || // F de Full-Stack
+                                               char === 'B' || // B de Backend
+                                               char === 'J' || // J de Java
+                                               char === 'V' || // V de Virtual
+                                               char === 'O' || // O de Online
+                                               char === 'L' || // L de Live
+                                               char === 'U' || // U de User
+                                               char === 'X' || // X de eXperience
+                                               char === 'Y' || // Y de System
+                                               char === 'Z' || // Z de Zero
+                                               char === 'K' || // K de Stack
+                                               char === 'W' || // W de Web
+                                               char === 'N' || // N de Node
+                                               char === 'H' || // H de HTML
+                                               char === 'Q' || // Q de Quality
+                                               char === '-' || // Guiones
+                                               char === '–' || // Guión medio
+                                               char === '—';   // Guión largo
+                        
+                        return shouldHighlight ? (
+                          <span key={index} className="project-title-accent">{char}</span>
+                        ) : (
+                          <span key={index}>{char}</span>
+                        );
+                      })}
+                    </h3>
+                    <p className="project-description">{project.description}</p>
+                  </div>
 
-                   {/* Información del proyecto */}
-                   <div className="project-meta">
-                     <div className="meta-item">
-                       <span className="meta-icon">👤</span>
-                       <span className="meta-text">{project.type}</span>
-                     </div>
-                     <div className="meta-item">
-                       <span className="meta-icon">💼</span>
-                       <span className="meta-text">{project.role}</span>
-                     </div>
-                   </div>
-
-
-
-                   {/* Botones de acción */}
-                   <div className="project-actions">
-                     {project.github && (
-                       <motion.a
-                         href={project.github}
-                         target="_blank"
-                         rel="noopener noreferrer"
-                         className="action-button github-button"
-                         whileHover={{ scale: 1.05 }}
-                         whileTap={{ scale: 0.95 }}
-                       >
-                         <GitHubIcon />
-                         <span>Código</span>
-                       </motion.a>
-                     )}
-                     {project.demo && (
-                       <motion.a
-                         href={project.demo}
-                         target="_blank"
-                         rel="noopener noreferrer"
-                         className="action-button demo-button"
-                         whileHover={{ scale: 1.05 }}
-                         whileTap={{ scale: 0.95 }}
-                       >
-                         <ExternalLinkIcon />
-                         <span>Demo en Vivo</span>
-                       </motion.a>
-                     )}
-                   </div>
-
-                   {/* Botón de detalles mejorado */}
-                   <motion.button
-                     className="details-toggle-button"
-                     onClick={toggleDetails}
-                     whileHover={{ scale: 1.02 }}
-                     whileTap={{ scale: 0.98 }}
-                   >
-                     <span>{isDetailsExpanded ? "Ocultar Detalles" : "Ver Características Completas"}</span>
-                     <motion.div animate={{ rotate: isDetailsExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                       <ChevronDown />
-                     </motion.div>
-                   </motion.button>
-                 </div>
-              </motion.div>
-            </AnimatePresence>
-
-                         {/* Detalles expandidos completamente rediseñados */}
-             <AnimatePresence>
-               {isDetailsExpanded && (
-                 <motion.div
-                   className="project-details-expanded"
-                   initial={{ opacity: 0, scaleY: 0 }}
-                   animate={{ opacity: 1, scaleY: 1 }}
-                   exit={{ opacity: 0, scaleY: 0 }}
-                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                   style={{ transformOrigin: "top" }}
-                 >
-                  <div className="details-content">
-                    {/* Resumen principal */}
-                    {project.overview && (
-                      <motion.div
-                        className="detail-section overview-section"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                      >
-                        <div className="section-header">
-                          <span className="section-icon">📋</span>
-                          <h4>Resumen del Proyecto</h4>
-                        </div>
-                        <p className="overview-text">{project.overview}</p>
-                      </motion.div>
-                    )}
-
-                    {/* Grid de características */}
-                    {project.features && project.features.length > 0 && (
-                      <motion.div
-                        className="detail-section features-section"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                      >
-                        <div className="section-header">
-                          <span className="section-icon">⭐</span>
-                          <h4>Características Principales</h4>
-                        </div>
-                        <div className="features-grid">
-                          {project.features.map((feature, index) => (
-                            <motion.div
-                              key={index}
-                              className="feature-item"
-                              initial={{ opacity: 0, scale: 0.9 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.3 + index * 0.1 }}
-                            >
-                              <div className="feature-bullet"></div>
-                              <span>{feature}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* Desafíos y Soluciones lado a lado */}
-                    <div className="challenges-solutions-row">
-                      {project.challenges && project.challenges.length > 0 && (
-                        <motion.div
-                          className="detail-section challenges-section"
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.4 }}
-                        >
-                          <div className="section-header">
-                            <span className="section-icon">🎯</span>
-                            <h4>Desafíos Técnicos</h4>
-                          </div>
-                          <ul className="challenges-list">
-                            {project.challenges.map((challenge, index) => (
-                              <motion.li
-                                key={index}
-                                initial={{ opacity: 0, x: -10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.5 + index * 0.1 }}
-                              >
-                                {challenge}
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
-
-                      {project.solutions && project.solutions.length > 0 && (
-                        <motion.div
-                          className="detail-section solutions-section"
-                          initial={{ opacity: 0, x: 20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.4 }}
-                        >
-                          <div className="section-header">
-                            <span className="section-icon">💡</span>
-                            <h4>Soluciones</h4>
-                          </div>
-                          <ul className="solutions-list">
-                            {project.solutions.map((solution, index) => (
-                              <motion.li
-                                key={index}
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: 0.5 + index * 0.1 }}
-                              >
-                                {solution}
-                              </motion.li>
-                            ))}
-                          </ul>
-                        </motion.div>
-                      )}
+                  {/* Información del proyecto */}
+                  <div className="project-meta">
+                    <div className="meta-item">
+                      <span className="meta-icon">👤</span>
+                      <span className="meta-text">{project.type}</span>
                     </div>
+                    <div className="meta-item">
+                      <span className="meta-icon">💼</span>
+                      <span className="meta-text">{project.role}</span>
+                    </div>
+                  </div>
 
-                    {/* Resultados */}
-                    {project.results && project.results.length > 0 && (
-                      <motion.div
-                        className="detail-section results-section"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
+                  {/* Botones de acción */}
+                  <div className="project-actions">
+                    {project.github && (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="action-button github-button"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
-                        <div className="section-header">
-                          <span className="section-icon">📈</span>
-                          <h4>Resultados y Logros</h4>
-                        </div>
-                        <div className="results-grid">
-                          {project.results.map((result, index) => (
-                            <motion.div
-                              key={index}
-                              className="result-item"
-                              initial={{ opacity: 0, scale: 0.9 }}
-                              animate={{ opacity: 1, scale: 1 }}
-                              transition={{ delay: 0.7 + index * 0.1 }}
-                            >
-                              <div className="result-check">✓</div>
-                              <span>{result}</span>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
+                        <Github />
+                        <span>Código</span>
+                      </motion.a>
+                    )}
+                    {project.demo && (
+                      <motion.a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="action-button demo-button"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <ExternalLink />
+                        <span>Demo en Vivo</span>
+                      </motion.a>
                     )}
                   </div>
-                </motion.div>
-              )}
+
+                  {/* Botón de detalles mejorado */}
+                  <motion.button
+                    className="details-toggle-button"
+                    onClick={openModal}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span>Ver Detalles Completos</span>
+                    <motion.div whileHover={{ rotate: 5 }} transition={{ duration: 0.2 }}>
+                      <Eye />
+                    </motion.div>
+                  </motion.button>
+                </div>
+              </motion.div>
             </AnimatePresence>
           </motion.div>
 
@@ -514,7 +465,7 @@ const ProjectsSection = () => {
 
         {/* Indicadores de proyecto mejorados */}
         <div className="project-indicators">
-          {projects.map((_, index) => (
+          {mappedProjects.map((_, index) => (
             <motion.button
               key={index}
               className={`indicator ${index === currentProject ? "active" : ""}`}
@@ -526,7 +477,19 @@ const ProjectsSection = () => {
             />
           ))}
         </div>
-    </section>
+      </section>
+
+      {/* Modal de Detalles del Proyecto - Renderizado con Portal */}
+      <ProjectModal 
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        project={project}
+        onNextProject={nextProjectInModal}
+        onPrevProject={prevProjectInModal}
+        hasNextProject={currentProject < mappedProjects.length - 1}
+        hasPrevProject={currentProject > 0}
+      />
+    </>
   )
 }
 

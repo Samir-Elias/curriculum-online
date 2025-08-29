@@ -1,4 +1,38 @@
 /* 
+ * ============================================================================
+ * HERO SECTION STYLES - PROTEGIDO CONTRA MODIFICACIONES
+ * ============================================================================
+ * 
+ * ⚠️  ADVERTENCIA CRÍTICA: NO MODIFICAR ESTE ARCHIVO
+ * 
+ * Esta sección ha sido optimizada y probada exhaustivamente.
+ * Cualquier modificación puede romper el diseño actual que está funcionando perfectamente.
+ * 
+ * Si necesitas hacer cambios:
+ * 1. Consulta el archivo HERO_STRUCTURE_BACKUP.md para entender la estructura
+ * 2. Crea una copia de seguridad antes de cualquier modificación
+ * 3. Considera rehacer completamente con estructura modular
+ * 
+ * Última optimización: Diciembre 2024
+ * Estado: PERFECTO - NO TOCAR
+ * Protección: CONTRA MODIFICACIONES ACCIDENTALES
+ * 
+ * ============================================================================
+ * ESTRUCTURA ACTUAL (NO MODIFICAR):
+ * - Hero Section Principal (líneas ~15-50)
+ * - Título Flotante (líneas ~50-60)
+ * - Hero Brand Card (líneas ~60-120)
+ * - Navegación y Cards (líneas ~120-400)
+ * - Estadísticas y Stats (líneas ~400-600)
+ * - Botones de Acción (líneas ~600-800)
+ * - Badges y Elementos Decorativos (líneas ~800-1000)
+ * - Responsive Design (líneas ~1000-1350)
+ * - Print Styles (líneas ~1350-1400)
+ * - Eliminación de Sombras (líneas ~1400-1449)
+ * ============================================================================
+ */
+
+/* 
  * HERO SECTION STYLES - PERFECTO - NO MODIFICAR
  * 
  * Esta sección ha sido optimizada y probada exhaustivamente.

@@ -1,0 +1,421 @@
+/* ===== UTILIDADES Y EFECTOS ESPECIALES DE PROYECTOS ===== */
+
+/* ==========================================================================
+   CLASE ESPECÍFICA PARA DESHABILITAR EFECTOS HOVER
+   ========================================================================== */
+
+/* Clase específica para deshabilitar efectos hover */
+.no-hover-effects,
+.no-hover-effects:hover,
+.no-hover-effects:focus,
+.no-hover-effects:active {
+  transform: none !important;
+  scale: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Aplicar a todos los elementos hijos */
+.no-hover-effects *,
+.no-hover-effects *:hover,
+.no-hover-effects *:focus,
+.no-hover-effects *:active {
+  transform: none !important;
+  scale: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Aplicar específicamente a imágenes */
+.no-hover-effects img,
+.no-hover-effects img:hover,
+.no-hover-effects img:focus,
+.no-hover-effects img:active {
+  transform: none !important;
+  scale: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Aplicar a contenedores de imágenes */
+.no-hover-effects .image-wrapper,
+.no-hover-effects .image-wrapper:hover,
+.no-hover-effects .slider-container,
+.no-hover-effects .slider-container:hover,
+.no-hover-effects .image-slider,
+.no-hover-effects .image-slider:hover {
+  transform: none !important;
+  scale: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+  transition: none !important;
+  animation: none !important;
+  backdrop-filter: none !important;
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ========================================================================== */
+
+/* Optimizaciones de rendimiento para la sección de proyectos */
+.projects-section {
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.project-content-wrapper {
+  will-change: opacity;
+  transform: translateZ(0);
+}
+
+.tech-item {
+  will-change: opacity;
+}
+
+/* Optimización para PCs con scroll lento */
+@media (min-width: 1024px) {
+  .projects-title .title-decoration {
+    animation-duration: 3s;
+  }
+  
+  .project-content-wrapper {
+    transition-duration: 0.15s;
+  }
+  
+  .tech-item {
+    transition-duration: 0.1s;
+  }
+}
+
+/* Detección de hardware lento */
+@media (max-resolution: 1dppx) {
+  .projects-title .title-decoration {
+    animation: none;
+  }
+  
+  .project-content-wrapper {
+    transition: none;
+  }
+  
+  .tech-item {
+    transition: none;
+  }
+}
+
+/* Optimización para scroll suave */
+@media (prefers-reduced-motion: reduce) {
+  .projects-title .title-decoration {
+    animation: none;
+  }
+  
+  .project-content-wrapper {
+    transition: none;
+  }
+  
+  .tech-item {
+    transition: none;
+  }
+}
+
+/* ==========================================================================
+   ACCESIBILIDAD
+   ========================================================================== */
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus states */
+.nav-button:focus,
+.details-toggle-button:focus,
+.action-button:focus,
+.indicator:focus {
+  outline: 3px solid #ffd700;
+  outline-offset: 3px;
+}
+
+/* ==========================================================================
+   ANIMACIONES
+   ========================================================================== */
+
+/* Animaciones */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-content-wrapper {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   ESTADOS DE CARGA Y ERROR
+   ========================================================================== */
+
+/* Estados de carga */
+.loading-state,
+.error-state {
+  text-align: center;
+  padding: 100px 20px;
+  color: white;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid #ffd700;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 30px;
+}
+
+/* Placeholder de carga para optimización */
+.projects-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+
+.loading-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+}
+
+/* ==========================================================================
+   CLASES UTILITARIAS
+   ========================================================================== */
+
+.current-project {
+  color: #ffd700;
+  font-weight: 900;
+}
+
+.separator {
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   RESPONSIVE UTILITIES
+   ========================================================================== */
+
+/* Responsive utilities */
+@media (max-width: 1200px) {
+  .project-content-wrapper {
+    gap: 60px;
+  }
+  
+  .project-title {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-content-wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .project-image-container {
+    order: 1;
+    aspect-ratio: 16 / 9;
+    padding: 0;
+  }
+
+  .image-wrapper {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  }
+
+  .project-info-container {
+    order: 2;
+  }
+
+  .challenges-solutions-row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-section {
+    padding: 80px 15px;
+  }
+
+  .projects-title {
+    font-size: 2.5rem;
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+
+  .projects-title .title-symbol {
+    font-size: 0.7em;
+  }
+
+  .project-title {
+    font-size: 2.8rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  .project-title-accent {
+    background: linear-gradient(135deg, #10b981 0%, #34d399 50%, #10b981 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.8);
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.4));
+  }
+
+  .project-description {
+    font-size: 1.2rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  .project-image-container {
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    order: 1;
+  }
+
+  .image-wrapper {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .project-info-container {
+    order: 2;
+  }
+
+  .project-meta {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .project-actions {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .details-content {
+    padding: 40px 25px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-button.nav-lateral {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-title {
+    font-size: 2rem;
+    flex-direction: row;
+    gap: 0.2rem;
+  }
+
+  .projects-title .title-symbol {
+    font-size: 0.6em;
+  }
+
+  .projects-title .title-text {
+    flex-direction: row;
+    gap: 0.1rem;
+  }
+
+  .project-title {
+    font-size: 2.2rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  .project-description {
+    font-size: 1.1rem;
+    white-space: normal;
+    overflow: visible;
+    word-break: keep-all;
+    hyphens: none;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+  }
+
+  .details-content {
+    padding: 30px 20px;
+  }
+
+  .detail-section {
+    padding: 25px;
+  }
+
+  .tech-item {
+    padding: 12px 20px;
+    font-size: 1rem;
+  }
+}

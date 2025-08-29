@@ -51,9 +51,9 @@
    ESTILOS GLOBALES UNIFICADOS CON BACKGROUND ANIMATION
    ========================================================================== */
 
-/* Smooth scroll global */
+/* Smooth scroll global - Optimizado para rendimiento */
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scroll-padding-top: 2rem;
 }
 

@@ -17,7 +17,7 @@ import {
   FastAPIIcon 
 } from '../icons/TechIcons'
 
-const BackgroundAnimation = ({ isMobile = false }) => {
+const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
   const containerRef = useRef(null)
   const [isMobileState, setIsMobileState] = useState(false)
 
@@ -125,7 +125,14 @@ const BackgroundAnimation = ({ isMobile = false }) => {
       />
 
       {/* Iconos de tecnologías flotantes */}
-      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 1 }}>
+      <div 
+        className="absolute inset-0 pointer-events-none" 
+        style={{ 
+          zIndex: 1,
+          filter: isPaused ? 'blur(8px)' : 'none',
+          transition: 'filter 0.3s ease'
+        }}
+      >
         {floatingIcons.map((icon) => (
           <div
             key={`bg-icon-${icon.id}-${icon.x}-${icon.y}`}

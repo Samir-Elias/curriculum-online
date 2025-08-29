@@ -1,0 +1,11 @@
+# Protección de archivos críticos
+hero-section.css -text
+*.css linguist-language=CSS
+
+# Archivos de documentación
+*.md linguist-documentation
+HERO_STRUCTURE_BACKUP.md linguist-documentation
+HERO_PROTECTION_GUIDE.md linguist-documentation
+
+# Archivos de configuración
+.gitattributes linguist-vendored

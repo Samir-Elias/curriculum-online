@@ -1,0 +1,625 @@
+/* ===== DETALLES EXPANDIDOS DE PROYECTOS ===== */
+
+/* Detalles expandidos optimizados */
+.project-details-expanded {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  position: relative;
+  will-change: height, opacity;
+  transform: translateZ(0);
+}
+
+.details-content {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  transform-origin: top;
+  will-change: transform;
+}
+
+.detail-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-icon {
+  font-size: 1.8rem;
+  color: #ffd700;
+}
+
+.section-header h4 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Sección de resumen */
+.overview-section {
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 237, 78, 0.1) 100%);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.overview-section .section-header {
+  border-bottom-color: rgba(255, 215, 0, 0.3);
+}
+
+.overview-text {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Grid de características */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  border-left: 4px solid #ffd700;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  will-change: transform;
+}
+
+.feature-item:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.feature-bullet {
+  width: 8px;
+  height: 8px;
+  background: #ffd700;
+  border-radius: 50%;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.feature-item span {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Desafíos y Soluciones */
+.challenges-solutions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.challenges-section {
+  border-left: 4px solid #ff6b6b;
+}
+
+.solutions-section {
+  border-left: 4px solid #51cf66;
+}
+
+.challenges-list,
+.solutions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.challenges-list li,
+.solutions-list li {
+  padding: 15px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+  padding-left: 45px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  will-change: transform;
+}
+
+.challenges-list li:hover,
+.solutions-list li:hover {
+  transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.challenges-list li::before {
+  content: "⚡";
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  font-size: 1rem;
+}
+
+.solutions-list li::before {
+  content: "✅";
+  position: absolute;
+  left: 15px;
+  top: 15px;
+  font-size: 1rem;
+}
+
+/* Resultados */
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: linear-gradient(135deg, rgba(81, 207, 102, 0.2) 0%, rgba(51, 207, 102, 0.1) 100%);
+  color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 1rem;
+  border: 1px solid rgba(81, 207, 102, 0.3);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.result-item:hover {
+  transform: translateY(-2px);
+  background: rgba(81, 207, 102, 0.15);
+}
+
+.result-check {
+  width: 25px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+/* Estilos para subsecciones integradas */
+.card-section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  margin: 20px 0;
+}
+
+.card-subsection {
+  margin-top: 15px;
+}
+
+.subsection-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.features-list-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.feature-item-compact {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.feature-bullet-compact {
+  width: 6px;
+  height: 6px;
+  background: #10b981;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.overview-text-compact {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.challenges-solutions-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.challenge-section-compact,
+.solution-section-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subsection-subtitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #10b981;
+  margin-bottom: 8px;
+}
+
+.challenges-list-compact,
+.solutions-list-compact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.challenges-list-compact li,
+.solutions-list-compact li {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  padding-left: 16px;
+  position: relative;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.challenges-list-compact li::before {
+  content: "•";
+  color: #ef4444;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.solutions-list-compact li::before {
+  content: "✓";
+  color: #10b981;
+  position: absolute;
+  left: 0;
+  font-weight: bold;
+}
+
+.no-content-message {
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Responsive Design para detalles */
+@media (max-width: 1024px) {
+  .challenges-solutions-row {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .details-content {
+    padding: 40px 25px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Estilos para subsecciones en mobile */
+  .card-section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    margin: 15px 0;
+  }
+
+  .subsection-title {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .feature-item-compact {
+    font-size: 0.85rem;
+  }
+
+  .overview-text-compact {
+    font-size: 0.9rem;
+  }
+
+  .subsection-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .challenges-list-compact li,
+  .solutions-list-compact li {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .details-content {
+    padding: 30px 20px;
+  }
+
+  .detail-section {
+    padding: 25px;
+  }
+}
+
+/* Desktop: 5 cards en línea horizontal */
+@media (min-width: 1024px) and (min-height: 600px) {
+  .modal-cards-container {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr 2fr 1.2fr 0.8fr;
+    gap: 20px;
+    width: 100%;
+    padding: 30px 20px 50px;
+    align-items: stretch;
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+    min-height: 500px;
+  }
+  
+  /* Card 1: Stack Tecnológico (Solo badges flotantes, sin container) */
+  .modal-card:nth-child(1) {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+  }
+  
+  /* Card 2: Descripción del Proyecto */
+  .modal-card:nth-child(2) {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.05));
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Card 3: Características (Centro - Principal) */
+  .modal-card:nth-child(3) {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.12));
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(102, 126, 234, 0.2);
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+    overflow: hidden;
+  }
+  
+  /* Scroll personalizado para las características */
+  .modal-card:nth-child(3) .card-content {
+    overflow-y: auto;
+    max-height: calc(70vh - 80px);
+    padding-right: 10px;
+  }
+  
+  .modal-card:nth-child(3) .card-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal-card:nth-child(3) .card-content::-webkit-scrollbar-track {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 3px;
+  }
+  
+  .modal-card:nth-child(3) .card-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.5), rgba(118, 75, 162, 0.5));
+    border-radius: 3px;
+  }
+  
+  .modal-card:nth-child(3) .card-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.7), rgba(118, 75, 162, 0.7));
+  }
+  
+  /* Card 4: Desafíos y Soluciones */
+  .modal-card:nth-child(4) {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.05));
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Card 5: Ver Imágenes (Texto vertical flotante) */
+  .modal-card:nth-child(5) {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 10px;
+    position: relative;
+  }
+  
+  /* Ajustes para Stack Tecnológico (Card 1) - Solo badges flotantes */
+  .modal-card:nth-child(1) .card-header {
+    display: none;
+  }
+  
+  .modal-card:nth-child(1) .modal-tech-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    width: 100%;
+  }
+  
+  .modal-card:nth-child(1) .modal-tech-item {
+    padding: 15px 20px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
+    border: 1px solid rgba(102, 126, 234, 0.25);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  
+  .modal-card:nth-child(1) .modal-tech-item:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.25), rgba(118, 75, 162, 0.2));
+    border-color: rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+  
+  /* Ajustes para la card central (Características - Card 3) */
+  .modal-card:nth-child(3) .features-list-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .modal-card:nth-child(3) .feature-item-compact {
+    padding: 12px;
+    border-radius: 8px;
+    background: rgba(102, 126, 234, 0.1);
+    border: 1px solid rgba(102, 126, 234, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .modal-card:nth-child(3) .feature-item-compact:hover {
+    background: rgba(102, 126, 234, 0.15);
+    border-color: rgba(102, 126, 234, 0.3);
+    transform: translateX(5px);
+  }
+  
+  /* Ajustes para Desafíos y Soluciones (Card 4) */
+  .modal-card:nth-child(4) .challenges-solutions-compact {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Scroll personalizado para Desafíos y Soluciones */
+  .modal-card:nth-child(4) .card-content {
+    overflow-y: auto;
+    max-height: calc(70vh - 80px);
+    padding-right: 10px;
+  }
+  
+  .modal-card:nth-child(4) .card-content::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .modal-card:nth-child(4) .card-content::-webkit-scrollbar-track {
+    background: rgba(102, 126, 234, 0.1);
+    border-radius: 3px;
+  }
+  
+  .modal-card:nth-child(4) .card-content::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.4), rgba(118, 75, 162, 0.4));
+    border-radius: 3px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .modal-card:nth-child(4) .card-content::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.6), rgba(118, 75, 162, 0.6));
+  }
+  
+  /* Estilos para la card de Ver Imágenes (Card 5) - Texto vertical */
+  .modal-card:nth-child(5) .card-header {
+    display: none;
+  }
+  
+  .modal-card:nth-child(5) .card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    height: 100%;
+  }
+  
+  .modal-card:nth-child(5) .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 20px 10px;
+    border: 2px solid rgba(102, 126, 234, 0.3);
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+  }
+  
+  .modal-card:nth-child(5) .vertical-text:hover {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.15));
+    border-color: rgba(102, 126, 234, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  }
+  
+  /* Badge del número de imágenes */
+  .modal-card:nth-child(5) .image-count-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* Ajuste para la card central */
+  .modal-card:nth-child(2) .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+}

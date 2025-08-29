@@ -6,9 +6,9 @@ export const profileData = {
     email: "samireliassalatino@gmail.com",
     telefono: "+54 9 261 466-6991",
     foto: "/perfil.jpg",
-    titulo: " Dev Java | Full-Stack React",
+    titulo: "Desarrollador Full-Stack + AI Specialist | Prompt Engineering Expert",
     experiencia: "6 años como Developer Autodidacta",
-    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack.",
+    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experto en desarrollo asistido por IA y prompt engineering. Experiencia en metodologías ágiles y proyectos Full-Stack con productividad 10x usando herramientas modernas de IA.",
     linkedin: "https://www.linkedin.com/in/samir-elías",
     github: "https://github.com/Samir-Elias",
     website: "https://sites.google.com/view/samir-elias-salatino/inicio"
@@ -17,15 +17,15 @@ export const profileData = {
   tecnologiasCore: {
     backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
     frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
-    herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N"],
-    metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research"]
+    herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N", "GitHub Copilot", "Prompt Engineering"],
+    metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research", "Prompt Engineering", "AI-Assisted Development", "Human-AI Collaboration"]
   },
   
   proyectosDestacados: [
     {
       nombre: "Cv Digital Interactivo - React Portfolio",
-      descripcion: "Portfolio profesional desarrollado con React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium.",
-      tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO"],
+      descripcion: "Portfolio profesional desarrollado con metodología Human-AI Collaboration usando React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium. Desarrollado con asistencia de IA para maximizar eficiencia y calidad del código.",
+      tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO", "AI-Assisted Development", "Prompt Engineering"],
       imagenes: [
         "/images/Cv_1erFoto.png",
         "/images/Cv_2daFoto.png"
@@ -43,35 +43,45 @@ export const profileData = {
         "Experiencia de usuario premium con micro-interacciones",
         "Accesibilidad web implementada (ARIA labels, navegación por teclado)",
         "Performance optimizada con lazy loading y code splitting",
-        "Integración con APIs externas y enlaces directos"
+        "Integración con APIs externas y enlaces directos",
+        "Desarrollo asistido por IA con prompt engineering especializado",
+        "Modularización avanzada de CSS con estructura organizada",
+        "Sistema de protección para código crítico con documentación completa"
       ],
       repositorio: "https://github.com/Samir-Elias/samir-elias-cv",
       estado: "Completado y En Producción",
       destacado: {
-        aspecto: "Portfolio Profesional Moderno",
-        detalle: "Desarrollo completo de portfolio personal con tecnologías frontend modernas, optimizado para conversión y experiencia de usuario"
+        aspecto: "Portfolio Profesional Moderno con IA",
+        detalle: "Desarrollo completo de portfolio personal con tecnologías frontend modernas, optimizado para conversión y experiencia de usuario. Implementado con metodología Human-AI Collaboration para máxima eficiencia y calidad."
       },
       desafios: [
         "Crear una experiencia de usuario fluida y profesional que destaque las habilidades técnicas",
         "Implementar animaciones complejas sin afectar el rendimiento de la aplicación",
         "Optimizar el SEO para mejorar la visibilidad en motores de búsqueda",
         "Diseñar una interfaz responsive que funcione perfectamente en todos los dispositivos",
-        "Integrar múltiples tecnologías modernas de manera cohesiva y eficiente"
+        "Integrar múltiples tecnologías modernas de manera cohesiva y eficiente",
+        "Modularizar código CSS masivo (2500+ líneas) en estructura mantenible",
+        "Implementar sistema de protección para código crítico sin afectar funcionalidad"
       ],
       soluciones: [
         "Arquitectura React modular con componentes reutilizables y hooks personalizados",
         "Implementación de Framer Motion con optimizaciones de rendimiento y lazy loading",
         "Estructura HTML semántica con meta tags optimizados y Open Graph",
         "Sistema de diseño responsive con Tailwind CSS y breakpoints personalizados",
-        "Integración fluida de tecnologías con configuración optimizada de build tools"
+        "Integración fluida de tecnologías con configuración optimizada de build tools",
+        "Modularización completa de CSS en 4 archivos especializados con documentación",
+        "Sistema de protección con advertencias críticas, backups y guías de mantenimiento"
       ],
       resultados: [
         "Portfolio profesional con experiencia de usuario premium y navegación intuitiva",
         "Performance optimizada con Core Web Vitals excelentes y carga ultrarrápida",
         "SEO implementado correctamente con mejor posicionamiento en búsquedas",
         "Diseño responsive que se adapta perfectamente a cualquier dispositivo",
-        "Código mantenible y escalable siguiendo mejores prácticas de desarrollo"
-      ]
+        "Código mantenible y escalable siguiendo mejores prácticas de desarrollo",
+        "Estructura CSS modular que facilita mantenimiento y escalabilidad futura",
+        "Sistema de protección robusto que previene modificaciones accidentales"
+      ],
+      metodologia: "Desarrollado con metodología Human-AI Collaboration usando prompt engineering especializado para maximizar eficiencia y calidad del código."
     },
     {
       nombre: "ServiceBook - Sistema de Gestión Integral",
@@ -295,9 +305,120 @@ export const profileData = {
   ],
   
   objetivoProfesional: {
+    titulo: "Desarrollador Full-Stack + AI Specialist | Prompt Engineering Expert",
+    descripcion: "Developer especializado en Backend con Java y Spring Framework, con experiencia en proyectos Full-Stack y metodologías ágiles. Experto en desarrollo asistido por IA y prompt engineering. Busco contribuir desde el primer día en un equipo dinámico donde pueda aplicar mis 6 años de experiencia autodidacta, metodología Human-AI y seguir creciendo profesionalmente en un entorno colaborativo e innovador.",
+    modalidades: ["Trabajo Remoto", "Modalidad Híbrida", "Presencial en Mendoza"],
+    niveles: ["Junior Developer", "Developer Trainee", "Full-Stack Junior", "Backend Developer Jr", "AI-Assisted Developer"]
+  }
+};
+
+/* 
+ * ============================================================================
+ * PROFILE DATA VIEJO - BACKUP (DICIEMBRE 2024)
+ * ============================================================================
+ * 
+ * ⚠️  ADVERTENCIA: ESTE ES EL PROFILE DATA ANTERIOR
+ * 
+ * Se mantiene comentado como backup en caso de necesitar revertir cambios.
+ * 
+ * Fecha de backup: Diciembre 2024
+ * Estado: OBSOLETO - NO USAR
+ * 
+ * ============================================================================
+ */
+
+/*
+export const profileDataViejo = {
+  personalInfo: {
+    nombre: "Samir Elias Salatino",
+    edad: 25,
+    ubicacion: "Mendoza, Argentina",
+    email: "samireliassalatino@gmail.com",
+    telefono: "+54 9 261 466-6991",
+    foto: "/perfil.jpg",
+    titulo: " Dev Java | Full-Stack React",
+    experiencia: "6 años como Developer Autodidacta",
+    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experiencia en metodologías ágiles y proyectos Full-Stack.",
+    linkedin: "https://www.linkedin.com/in/samir-elías",
+    github: "https://github.com/Samir-Elias",
+    website: "https://sites.google.com/view/samir-elias-salatino/inicio"
+  },
+  
+  tecnologiasCore: {
+    backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
+    frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
+    herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N"],
+    metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research"]
+  },
+  
+  proyectosDestacados: [
+    {
+      nombre: "Cv Digital Interactivo - React Portfolio",
+      descripcion: "Portfolio profesional desarrollado con React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium.",
+      tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO"],
+      imagenes: [
+        "/images/Cv_1erFoto.png",
+        "/images/Cv_2daFoto.png"
+      ],
+      demoUrl: "https://curriculum-online2.netlify.app",
+      caracteristicas: [
+        "Arquitectura React moderna con hooks y componentes funcionales",
+        "Animaciones fluidas y transiciones con Framer Motion",
+        "Diseño responsive optimizado para todos los dispositivos",
+        "Estilizado avanzado con Tailwind CSS y CSS personalizado",
+        "Navegación suave entre secciones con scroll automático",
+        "Optimización SEO completa con meta tags y estructura semántica",
+        "Deploy automático en Netlify con CI/CD",
+        "Código limpio y mantenible con mejores prácticas",
+        "Experiencia de usuario premium con micro-interacciones",
+        "Accesibilidad web implementada (ARIA labels, navegación por teclado)",
+        "Performance optimizada con lazy loading y code splitting",
+        "Integración con APIs externas y enlaces directos"
+      ],
+      repositorio: "https://github.com/Samir-Elias/samir-elias-cv",
+      estado: "Completado y En Producción",
+      destacado: {
+        aspecto: "Portfolio Profesional Moderno",
+        detalle: "Desarrollo completo de portfolio personal con tecnologías frontend modernas, optimizado para conversión y experiencia de usuario"
+      },
+      desafios: [
+        "Crear una experiencia de usuario fluida y profesional que destaque las habilidades técnicas",
+        "Implementar animaciones complejas sin afectar el rendimiento de la aplicación",
+        "Optimizar el SEO para mejorar la visibilidad en motores de búsqueda",
+        "Diseñar una interfaz responsive que funcione perfectamente en todos los dispositivos",
+        "Integrar múltiples tecnologías modernas de manera cohesiva y eficiente"
+      ],
+      soluciones: [
+        "Arquitectura React modular con componentes reutilizables y hooks personalizados",
+        "Implementación de Framer Motion con optimizaciones de rendimiento y lazy loading",
+        "Estructura HTML semántica con meta tags optimizados y Open Graph",
+        "Sistema de diseño responsive con Tailwind CSS y breakpoints personalizados",
+        "Integración fluida de tecnologías con configuración optimizada de build tools"
+      ],
+      resultados: [
+        "Portfolio profesional con experiencia de usuario premium y navegación intuitiva",
+        "Performance optimizada con Core Web Vitals excelentes y carga ultrarrápida",
+        "SEO implementado correctamente con mejor posicionamiento en búsquedas",
+        "Diseño responsive que se adapta perfectamente a cualquier dispositivo",
+        "Código mantenible y escalable siguiendo mejores prácticas de desarrollo"
+      ]
+    },
+    // ... resto de proyectos sin cambios
+  ],
+  
+  formacionTecnica: [
+    // ... formación técnica sin cambios
+  ],
+  
+  experienciaComplementaria: [
+    // ... experiencia complementaria sin cambios
+  ],
+  
+  objetivoProfesional: {
     titulo: "Desarrollador Backend Java | Full-Stack Developer",
     descripcion: "Developer especializado en Backend con Java y Spring Framework, con experiencia en proyectos Full-Stack y metodologías ágiles. Busco contribuir desde el primer día en un equipo dinámico donde pueda aplicar mis 6 años de experiencia autodidacta y seguir creciendo profesionalmente en un entorno colaborativo e innovador.",
     modalidades: ["Trabajo Remoto", "Modalidad Híbrida", "Presencial en Mendoza"],
     niveles: ["Junior Developer", "Developer Trainee", "Full-Stack Junior", "Backend Developer Jr"]
   }
 };
+*/

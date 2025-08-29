@@ -10,6 +10,7 @@ import LoadingScreen from './LoadingScreen';
 import BackgroundAnimation from './BackgroundAnimation';
 import CertificateModal from './CertificateModal';
 import { profileData } from '../data/profileData';
+import { useModal } from '../context/ModalContext';
 
 const Resume = ({ onAppLoadingComplete }) => {
   const [showLoading, setShowLoading] = useState(true);
@@ -17,6 +18,7 @@ const Resume = ({ onAppLoadingComplete }) => {
   const [expandedEducation, setExpandedEducation] = useState({});
   const [expandedObjective, setExpandedObjective] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { isModalOpen } = useModal();
   
   // Estados para controlar la visibilidad de secciones
   const [isVisible, setIsVisible] = useState({
@@ -159,7 +161,7 @@ const Resume = ({ onAppLoadingComplete }) => {
           transition: 'opacity 1s ease-in-out'
         }}
       >
-        <BackgroundAnimation isMobile={isMobile} />
+        <BackgroundAnimation isMobile={isMobile} isPaused={isModalOpen} />
       </motion.div>
       
       {/* Contenido principal con transición suave */}

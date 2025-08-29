@@ -66,7 +66,11 @@ const HeroSection = ({ personalInfo = {}, itemVariants = {} }) => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                Progra<span className="brand-accent">M</span>ate
+                <span className="title-decoration">⚡</span>
+                <span className="title-text">
+                  Progra<span className="brand-accent">M</span>ate
+                </span>
+                <span className="title-decoration">⚡</span>
               </motion.h1>
 
               {/* Avatar section */}

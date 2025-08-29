@@ -4,20 +4,20 @@ import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import "../styles/components/image-slider.css"
 
-const ImageSlider = ({ images = [] }) => {
+const ImageSlider = ({ images = [], isPaused = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
 
-  // Auto-play functionality
+  // Auto-play functionality - Optimizado para rendimiento
   useEffect(() => {
-    if (!isAutoPlaying || images.length <= 1) return
+    if (!isAutoPlaying || images.length <= 1 || isPaused) return
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
-    }, 4000)
+    }, 6000) // Aumentado de 4s a 6s para menos frecuencia
 
     return () => clearInterval(interval)
-  }, [currentIndex, isAutoPlaying, images.length])
+  }, [isAutoPlaying, images.length, isPaused]) // Agregado isPaused a las dependencias
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length)
@@ -78,10 +78,10 @@ const ImageSlider = ({ images = [] }) => {
             src={images[currentIndex]}
             alt={`Project image ${currentIndex + 1}`}
             className="slider-image"
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             loading="lazy"
           />
         </AnimatePresence>

@@ -16,6 +16,7 @@ import { getTechIcon } from "../icons/TechIcons";
 const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants }) => {
   const [currentCard, setCurrentCard] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLowPerformance, setIsLowPerformance] = useState(false);
 
   // Detectar si es móvil
   useEffect(() => {
@@ -26,6 +27,24 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Detectar rendimiento del dispositivo
+  useEffect(() => {
+    const checkPerformance = () => {
+      // Detectar si es un PC con hardware limitado
+      const isPC = window.innerWidth >= 1024;
+      const hasLowMemory = navigator.deviceMemory && navigator.deviceMemory < 4;
+      const hasSlowConnection = navigator.connection && 
+        (navigator.connection.effectiveType === 'slow-2g' || 
+         navigator.connection.effectiveType === '2g');
+      
+      if (isPC && (hasLowMemory || hasSlowConnection)) {
+        setIsLowPerformance(true);
+      }
+    };
+
+    checkPerformance();
   }, []);
 
   // Navegación del carrusel
@@ -52,6 +71,11 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
     window.addEventListener("keydown", handleKeyPress);
     return () => window.removeEventListener("keydown", handleKeyPress);
   }, [isMobile]);
+
+  // Clases condicionales para optimización
+  const titleDecorationClass = isLowPerformance ? "title-decoration no-animation" : "title-decoration";
+  const badgeClass = isLowPerformance ? "techstack-floating-badge no-transition" : "techstack-floating-badge";
+
   return (
     <motion.section 
       id="techstack"
@@ -65,11 +89,13 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
           className="techstack-floating-title"
           variants={itemVariants}
         >
-          <Zap className="techstack-floating-icon" />
+          <Zap className={titleDecorationClass} />
           <div className="title-text">
-            <span><span style={{ color: '#10b981' }}>S</span>TACK</span>
-            <span>TE<span style={{ color: '#10b981' }}>C</span>H</span>
+            <span className="techstack-main-title">
+              <span style={{ color: '#10b981' }}>S</span>TACK TE<span style={{ color: '#10b981' }}>C</span>H
+            </span>
           </div>
+          <Zap className={titleDecorationClass} />
         </motion.h2>
         {isMobile ? (
           // Carrusel para móvil
@@ -86,10 +112,10 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
               <AnimatePresence mode="wait">
                 <motion.div
                   key={currentCard}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.3 }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
                   className="carousel-card"
                 >
                   {currentCard === 0 && (
@@ -103,7 +129,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                       <CardContent className="techstack-floating-card-content">
                         <div className="techstack-floating-badges">
                           {tecnologiasCore.backend.map((tech, index) => (
-                            <Badge key={index} className="techstack-floating-badge backend-badge">
+                            <Badge key={index} className={`${badgeClass} backend-badge`}>
                               <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                               <span className="tech-name">{tech}</span>
                             </Badge>
@@ -124,7 +150,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                       <CardContent className="techstack-floating-card-content">
                         <div className="techstack-floating-badges">
                           {tecnologiasCore.frontend.map((tech, index) => (
-                            <Badge key={index} className="techstack-floating-badge frontend-badge">
+                            <Badge key={index} className={`${badgeClass} frontend-badge`}>
                               <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                               <span className="tech-name">{tech}</span>
                             </Badge>
@@ -145,7 +171,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                       <CardContent className="techstack-floating-card-content">
                         <div className="techstack-floating-badges">
                           {tecnologiasCore.herramientas.map((tech, index) => (
-                            <Badge key={index} className="techstack-floating-badge tools-badge">
+                            <Badge key={index} className={`${badgeClass} tools-badge`}>
                               <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                               <span className="tech-name">{tech}</span>
                             </Badge>
@@ -166,7 +192,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                       <CardContent className="techstack-floating-card-content">
                         <div className="techstack-floating-badges">
                           {tecnologiasCore.metodologias.map((tech, index) => (
-                            <Badge key={index} className="techstack-floating-badge methodologies-badge">
+                            <Badge key={index} className={`${badgeClass} methodologies-badge`}>
                               <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                               <span className="tech-name">{tech}</span>
                             </Badge>
@@ -213,7 +239,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                 <CardContent className="techstack-floating-card-content">
                   <div className="techstack-floating-badges">
                     {tecnologiasCore.backend.map((tech, index) => (
-                      <Badge key={index} className="techstack-floating-badge backend-badge">
+                      <Badge key={index} className={`${badgeClass} backend-badge`}>
                         <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                         <span className="tech-name">{tech}</span>
                       </Badge>
@@ -234,7 +260,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                 <CardContent className="techstack-floating-card-content">
                   <div className="techstack-floating-badges">
                     {tecnologiasCore.frontend.map((tech, index) => (
-                      <Badge key={index} className="techstack-floating-badge frontend-badge">
+                      <Badge key={index} className={`${badgeClass} frontend-badge`}>
                         <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                         <span className="tech-name">{tech}</span>
                       </Badge>
@@ -255,7 +281,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                 <CardContent className="techstack-floating-card-content">
                   <div className="techstack-floating-badges">
                     {tecnologiasCore.herramientas.map((tech, index) => (
-                      <Badge key={index} className="techstack-floating-badge tools-badge">
+                      <Badge key={index} className={`${badgeClass} tools-badge`}>
                         <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                         <span className="tech-name">{tech}</span>
                       </Badge>
@@ -276,7 +302,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                 <CardContent className="techstack-floating-card-content">
                   <div className="techstack-floating-badges">
                     {tecnologiasCore.metodologias.map((tech, index) => (
-                      <Badge key={index} className="techstack-floating-badge methodologies-badge">
+                      <Badge key={index} className={`${badgeClass} methodologies-badge`}>
                         <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                         <span className="tech-name">{tech}</span>
                       </Badge>
