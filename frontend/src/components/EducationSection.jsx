@@ -17,7 +17,6 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { Badge } from "./ui/badge"
-import ImageSlider from "./ImageSlider"
 import "../styles/components/education-section.css"
 
 const EducationSection = ({ formacionTecnica, isVisible, containerVariants, itemVariants, setSelectedCertificate }) => {
@@ -184,33 +183,26 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                 <div className="metadata-item">
                   <Clock className="metadata-icon" />
                   <div>
-                    <p className="metadata-label">Duración</p>
-                    <p className="metadata-value">{currentFormacion.duracion}</p>
+                    <div className="metadata-label">DURACIÓN</div>
+                    <div className="metadata-value">{currentFormacion.duracion}</div>
                   </div>
                 </div>
-                {currentFormacion.modalidad && (
-                  <div className="metadata-item">
-                    <MapPin className="metadata-icon" />
-                    <div>
-                      <p className="metadata-label">Modalidad</p>
-                      <p className="metadata-value">{currentFormacion.modalidad}</p>
-                    </div>
+                <div className="metadata-item">
+                  <MapPin className="metadata-icon" />
+                  <div>
+                    <div className="metadata-label">MODALIDAD</div>
+                    <div className="metadata-value">{currentFormacion.modalidad}</div>
                   </div>
-                )}
-                {currentFormacion.periodo && (
-                  <div className="metadata-item">
-                    <Calendar className="metadata-icon" />
-                    <div>
-                      <p className="metadata-label">Período</p>
-                      <p className="metadata-value">{currentFormacion.periodo}</p>
-                    </div>
+                </div>
+                <div className="metadata-item">
+                  <Calendar className="metadata-icon" />
+                  <div>
+                    <div className="metadata-label">PERÍODO</div>
+                    <div className="metadata-value">{currentFormacion.periodo}</div>
                   </div>
-                )}
+                </div>
               </div>
-            </div>
 
-            {/* Content */}
-            <div className="education-card-content">
               {/* Description */}
               <div className="education-description">
                 <p>{currentFormacion.descripcion}</p>
@@ -223,21 +215,21 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                   Competencias desarrolladas ({currentFormacion.competencias.length}):
                 </h4>
                 <div className="competencies-grid">
-                  {currentFormacion.competencias.slice(0, 6).map((competencia, compIndex) => (
+                  {currentFormacion.competencias.slice(0, 4).map((competencia, compIndex) => (
                     <div key={compIndex} className="competency-item">
                       <div className="competency-bullet"></div>
                       <span>{competencia}</span>
                     </div>
                   ))}
                 </div>
-                {currentFormacion.competencias.length > 6 && (
+                {currentFormacion.competencias.length > 4 && (
                   <p className="more-indicator">
-                    +{currentFormacion.competencias.length - 6} competencias más...
+                    +{currentFormacion.competencias.length - 4} competencias más...
                   </p>
                 )}
               </div>
 
-              {/* Certificates Preview */}
+              {/* Certificates Preview - Simplified */}
               {currentFormacion.certificaciones && currentFormacion.certificaciones.length > 0 && (
                 <div className="education-certificates">
                   <h4 className="education-section-title">
@@ -247,11 +239,11 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                   <div className="certificates-grid">
                     {currentFormacion.certificaciones.slice(0, 2).map((cert, certIndex) => (
                       <div key={certIndex} className="certificate-preview">
-                        {cert.tipo === "imagen" ? (
+                        {cert.tipo === "imagen" && cert.imagenes && cert.imagenes.length > 0 ? (
                           <div>
                             <div className="certificate-image-container">
-                              <ImageSlider
-                                images={cert.imagenes}
+                              <img 
+                                src={cert.imagenes[0]} 
                                 alt={`Certificado ${cert.nombre}`}
                                 className="certificate-image"
                               />
@@ -261,73 +253,73 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                             <div className="certificate-actions">
                               <button
                                 onClick={() => setSelectedCertificate(cert)}
-                                className="action-button"
+                                className="certificate-action-btn view-btn"
                               >
-                                <Eye className="w-3 h-3 mr-1" />
+                                <Eye className="w-4 h-4" />
                                 Ver
                               </button>
-                              <button
-                                onClick={() => window.open(cert.url)}
-                                className="action-button"
-                              >
-                                <ExternalLink className="w-3 h-3 mr-1" />
-                                Enlace
-                              </button>
+                              {cert.url && (
+                                <a
+                                  href={cert.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="certificate-action-btn link-btn"
+                                >
+                                  <ExternalLink className="w-4 h-4" />
+                                  Enlace
+                                </a>
+                              )}
                             </div>
                           </div>
                         ) : (
-                          <div className="certificate-link">
-                            <div className="certificate-link-content">
-                              <FileText className="certificate-icon" />
-                              <div>
-                                <h5 className="certificate-title">{cert.nombre}</h5>
-                                <p className="certificate-issuer">{cert.emisor}</p>
-                              </div>
-                            </div>
-                            <button
-                              onClick={() => window.open(cert.url)}
-                              className="action-button"
-                            >
-                              <ExternalLink className="w-3 h-3" />
-                            </button>
+                          <div className="certificate-text">
+                            <FileText className="certificate-icon" />
+                            <h5 className="certificate-title">{cert.nombre}</h5>
+                            <p className="certificate-issuer">{cert.emisor}</p>
+                            {cert.url && (
+                              <a
+                                href={cert.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="certificate-action-btn link-btn"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                Ver Certificado
+                              </a>
+                            )}
                           </div>
                         )}
                       </div>
                     ))}
                   </div>
-                  {currentFormacion.certificaciones.length > 2 && (
-                    <p className="more-indicator">
-                      +{currentFormacion.certificaciones.length - 2} certificaciones más...
-                    </p>
-                  )}
                 </div>
               )}
-            </div>
 
-            {/* Expand Button */}
-            <div className="education-card-footer">
-              <button
-                onClick={toggleDetails}
-                className="expand-button"
-                disabled={isTransitioning}
-              >
-                {isDetailsExpanded ? (
-                  <>
-                    <ChevronUp className="w-5 h-5 mr-2" />
-                    Ocultar Detalles Completos
-                  </>
-                ) : (
-                  <>
-                    <ChevronDown className="w-5 h-5 mr-2" />
-                    Ver Detalles Completos
-                  </>
-                )}
-              </button>
+              {/* Expand Button */}
+              <div className="education-card-footer">
+                <button
+                  onClick={toggleDetails}
+                  className="expand-button"
+                  disabled={isTransitioning}
+                >
+                  {isDetailsExpanded ? (
+                    <>
+                      <ChevronUp className="w-5 h-5" />
+                      Ocultar Detalles Completos
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="w-5 h-5" />
+                      Ver Detalles Completos
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         </motion.div>
 
-        {/* Expanded Details */}
+        {/* Expanded Details - Simplified */}
         <AnimatePresence>
           {isDetailsExpanded && (
             <motion.div
@@ -356,7 +348,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                       </div>
                     </div>
 
-                    {/* All Certificates */}
+                    {/* All Certificates - Simplified */}
                     <div className="expanded-section">
                       <h4 className="education-section-title">
                         <Award className="section-icon" />
@@ -366,11 +358,11 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                         <div className="certificates-list">
                           {currentFormacion.certificaciones.map((cert, certIndex) => (
                             <div key={certIndex} className="certificate-card">
-                              {cert.tipo === "imagen" ? (
+                              {cert.tipo === "imagen" && cert.imagenes && cert.imagenes.length > 0 ? (
                                 <div>
                                   <div className="certificate-image-container-large">
-                                    <ImageSlider
-                                      images={cert.imagenes}
+                                    <img 
+                                      src={cert.imagenes[0]} 
                                       alt={`Certificado ${cert.nombre}`}
                                       className="certificate-image"
                                     />
@@ -380,35 +372,40 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                                   <div className="certificate-actions-large">
                                     <button
                                       onClick={() => setSelectedCertificate(cert)}
-                                      className="action-button-large"
+                                      className="certificate-action-btn view-btn"
                                     >
-                                      <Eye className="w-4 h-4 mr-2" />
+                                      <Eye className="w-4 h-4" />
                                       Ver
                                     </button>
-                                    <button
-                                      onClick={() => window.open(cert.url)}
-                                      className="action-button-large"
-                                    >
-                                      <ExternalLink className="w-4 h-4 mr-2" />
-                                      Enlace
-                                    </button>
+                                    {cert.url && (
+                                      <a
+                                        href={cert.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="certificate-action-btn link-btn"
+                                      >
+                                        <ExternalLink className="w-4 h-4" />
+                                        Enlace
+                                      </a>
+                                    )}
                                   </div>
                                 </div>
                               ) : (
-                                <div className="certificate-link-large">
-                                  <div className="certificate-link-content">
-                                    <FileText className="certificate-icon-large" />
-                                    <div>
-                                      <h5 className="certificate-title-large">{cert.nombre}</h5>
-                                      <p className="certificate-issuer-large">{cert.emisor}</p>
-                                    </div>
-                                  </div>
-                                  <button
-                                    onClick={() => window.open(cert.url)}
-                                    className="action-button-large"
-                                  >
-                                    <ExternalLink className="w-4 h-4" />
-                                  </button>
+                                <div className="certificate-text-large">
+                                  <FileText className="certificate-icon-large" />
+                                  <h5 className="certificate-title-large">{cert.nombre}</h5>
+                                  <p className="certificate-issuer-large">{cert.emisor}</p>
+                                  {cert.url && (
+                                    <a
+                                      href={cert.url}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="certificate-action-btn link-btn"
+                                    >
+                                      <ExternalLink className="w-4 h-4" />
+                                      Ver Certificado
+                                    </a>
+                                  )}
                                 </div>
                               )}
                             </div>

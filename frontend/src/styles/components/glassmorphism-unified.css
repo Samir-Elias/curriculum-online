@@ -182,17 +182,13 @@
 .glassmorphism-card.education-card-enhanced,
 .glassmorphism-card.objective-card-enhanced,
 .glassmorphism-card.project-card-enhanced {
-  background: var(--glass-bg-primary) !important;
-  backdrop-filter: var(--glass-backdrop) !important;
-  -webkit-backdrop-filter: var(--glass-backdrop) !important;
-  border: var(--glass-border) !important;
-  box-shadow: var(--glass-shadow) !important;
+  background: var(--glass-bg-primary);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
 .glassmorphism-card-secondary.certificate-card-enhanced {
-  background: var(--glass-bg-secondary) !important;
-  backdrop-filter: blur(6px) !important;
-  -webkit-backdrop-filter: blur(6px) !important;
+  background: var(--glass-bg-secondary);
 }
 
 /* Asegurar que los textos sean legibles */

@@ -24,24 +24,54 @@ export const profileData = {
   proyectosDestacados: [
     {
       nombre: "CV Digital Interactivo - React Portfolio",
-      descripcion: "CV digital moderno desarrollado con React y Tailwind CSS. Diseño responsive con animaciones fluidas, paleta profesional y optimizado para conversión. Incluye secciones interactivas, descarga PDF y enlaces directos.",
-      tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "Responsive Design"],
+      descripcion: "Portfolio profesional desarrollado con React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium.",
+      tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO"],
       imagenes: [
         "/images/Cv_1erFoto.png",
-        "/images/Cv_2daFoto.png",
-        "/images/Cv_3erFoto.png"
+        "/images/Cv_2daFoto.png"
       ],
       demoUrl: "https://curriculum-online2.netlify.app",
       caracteristicas: [
-        "Diseño responsive optimizado para móviles y desktop",
-        "Animaciones suaves con Framer Motion",
-        "Paleta de colores profesional para startups",
-        "Función de descarga PDF integrada",
-        "Secciones interactivas expandibles",
-        "SEO optimizado y carga ultrarrápida"
+        "Arquitectura React moderna con hooks y componentes funcionales",
+        "Animaciones fluidas y transiciones con Framer Motion",
+        "Diseño responsive optimizado para todos los dispositivos",
+        "Estilizado avanzado con Tailwind CSS y CSS personalizado",
+        "Navegación suave entre secciones con scroll automático",
+        "Optimización SEO completa con meta tags y estructura semántica",
+        "Deploy automático en Netlify con CI/CD",
+        "Código limpio y mantenible con mejores prácticas",
+        "Experiencia de usuario premium con micro-interacciones",
+        "Accesibilidad web implementada (ARIA labels, navegación por teclado)",
+        "Performance optimizada con lazy loading y code splitting",
+        "Integración con APIs externas y enlaces directos"
       ],
       repositorio: "https://github.com/Samir-Elias/samir-elias-cv",
-      estado: "Completado y En Producción"
+      estado: "Completado y En Producción",
+      destacado: {
+        aspecto: "Portfolio Profesional Moderno",
+        detalle: "Desarrollo completo de portfolio personal con tecnologías frontend modernas, optimizado para conversión y experiencia de usuario"
+      },
+      desafios: [
+        "Crear una experiencia de usuario fluida y profesional que destaque las habilidades técnicas",
+        "Implementar animaciones complejas sin afectar el rendimiento de la aplicación",
+        "Optimizar el SEO para mejorar la visibilidad en motores de búsqueda",
+        "Diseñar una interfaz responsive que funcione perfectamente en todos los dispositivos",
+        "Integrar múltiples tecnologías modernas de manera cohesiva y eficiente"
+      ],
+      soluciones: [
+        "Arquitectura React modular con componentes reutilizables y hooks personalizados",
+        "Implementación de Framer Motion con optimizaciones de rendimiento y lazy loading",
+        "Estructura HTML semántica con meta tags optimizados y Open Graph",
+        "Sistema de diseño responsive con Tailwind CSS y breakpoints personalizados",
+        "Integración fluida de tecnologías con configuración optimizada de build tools"
+      ],
+      resultados: [
+        "Portfolio profesional con experiencia de usuario premium y navegación intuitiva",
+        "Performance optimizada con Core Web Vitals excelentes y carga ultrarrápida",
+        "SEO implementado correctamente con mejor posicionamiento en búsquedas",
+        "Diseño responsive que se adapta perfectamente a cualquier dispositivo",
+        "Código mantenible y escalable siguiendo mejores prácticas de desarrollo"
+      ]
     },
     {
       nombre: "ServiceBook - Sistema de Gestión Integral",
@@ -105,12 +135,6 @@ export const profileData = {
       tecnologias: ["React", "Node.js", "JavaScript", "HTML/CSS", "APIs de Google Maps"],
       imagenes: [
         "/images/Teloapp_pcview2.png",
-        "/images/Teloapp_celview6.png",
-        "/images/Teloapp_celview1.png",
-        "/images/Teloapp_celview2.png",
-        "/images/Teloapp_celview3.png",
-        "/images/Teloapp_celview4.png",
-        "/images/Teloapp_celview5.png",
         "/images/Teloapp_pcview.png"        
       ],
       demoUrl: null,
@@ -129,9 +153,7 @@ export const profileData = {
       descripcion: "Aplicación web interactiva que consume la API de Rick & Morty. Desarrollada para practicar integración de APIs REST y manejo de datos dinámicos.",
       tecnologias: ["JavaScript", "HTML/CSS", "API REST", "JSON"],
       imagenes: [
-        "/images/rickymorty_pc.png",
-        "/images/rickymorty_cel.png",
-        "/images/rickymorty_cel2.png"
+        "/images/rickymorty_pc.png"
       ],
       demoUrl: "https://rick-morty-1.netlify.app",
       caracteristicas: [

@@ -308,76 +308,92 @@
 
 .certificate-image-container {
   aspect-ratio: 16/9;
-  margin-bottom: 0.75rem;
   border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .certificate-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.certificate-image:hover {
+  transform: scale(1.05);
 }
 
 .certificate-title {
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 600;
   color: white;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
 .certificate-issuer {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: rgba(255, 255, 255, 0.7);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .certificate-actions {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.action-button {
-  flex: 1;
-  padding: 0.5rem;
-  background: rgba(59, 130, 246, 0.2);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 6px;
-  color: #60a5fa;
-  font-size: 0.75rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.certificate-action-btn {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.25rem;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
 }
 
-.action-button:hover {
+.certificate-action-btn.view-btn {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.certificate-action-btn.view-btn:hover {
   background: rgba(59, 130, 246, 0.3);
   transform: translateY(-1px);
 }
 
-.certificate-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.certificate-action-btn.link-btn {
+  background: rgba(34, 197, 94, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(34, 197, 94, 0.3);
 }
 
-.certificate-link-content {
+.certificate-action-btn.link-btn:hover {
+  background: rgba(34, 197, 94, 0.3);
+  transform: translateY(-1px);
+}
+
+.certificate-text {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  flex: 1;
-  min-width: 0;
-  gap: 0.75rem;
+  text-align: center;
+  padding: 1rem;
 }
 
 .certificate-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 3rem;
+  height: 3rem;
   color: #60a5fa;
-  flex-shrink: 0;
+  margin-bottom: 1rem;
 }
 
 /* Card footer */
@@ -484,20 +500,22 @@
 
 .certificate-image-container-large {
   aspect-ratio: 16/9;
-  margin-bottom: 1rem;
   border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .certificate-title-large {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: white;
   margin-bottom: 0.5rem;
+  line-height: 1.3;
 }
 
 .certificate-issuer-large {
-  font-size: 0.875rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.7);
   margin-bottom: 1rem;
 }
@@ -505,60 +523,42 @@
 .certificate-actions-large {
   display: flex;
   gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
-.action-button-large {
-  flex: 1;
-  padding: 0.75rem;
-  background: rgba(59, 130, 246, 0.2);
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 8px;
-  color: #60a5fa;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
+.certificate-text-large {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.action-button-large:hover {
-  background: rgba(59, 130, 246, 0.3);
-  transform: translateY(-1px);
-}
-
-.certificate-link-large {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  text-align: center;
+  padding: 1rem;
 }
 
 .certificate-icon-large {
-  width: 2rem;
-  height: 2rem;
+  width: 4rem;
+  height: 4rem;
   color: #60a5fa;
-  flex-shrink: 0;
+  margin-bottom: 1rem;
 }
 
 .empty-certificates {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  padding: 3rem;
+  padding: 2rem;
   color: rgba(255, 255, 255, 0.6);
-  border: 2px dashed rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
 }
 
 .empty-icon {
-  width: 4rem;
-  height: 4rem;
-  margin: 0 auto 1rem;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 1rem;
   opacity: 0.5;
 }
 
 .empty-certificates h3 {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   color: rgba(255, 255, 255, 0.8);
@@ -566,22 +566,23 @@
 
 .empty-certificates p {
   font-size: 0.875rem;
+  line-height: 1.5;
 }
 
-/* Progress dots */
+/* Progress indicators */
 .education-progress-dots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin-top: 2rem;
 }
 
 .progress-dot {
   width: 12px;
   height: 12px;
+  border: none;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.3);
-  border: none;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -725,6 +726,15 @@
   .certificate-preview,
   .certificate-card {
     padding: 0.75rem;
+  }
+
+  .certificate-actions,
+  .certificate-actions-large {
+    flex-direction: column;
+  }
+
+  .certificate-action-btn {
+    justify-content: center;
   }
 }
 

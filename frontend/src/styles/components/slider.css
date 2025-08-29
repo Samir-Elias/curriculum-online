@@ -1,19 +1,19 @@
-/* Slider styles */
-.image-slider {
+/* Slider styles - Solo para componentes específicos */
+.slider-component .image-slider {
     position: relative;
     overflow: hidden;
 }
 
-.image-slider img {
+.slider-component .image-slider img {
     transition: transform 0.3s ease;
 }
 
-.image-slider:hover img {
+.slider-component .image-slider:hover img {
     transform: scale(1.05);
 }
 
-/* Slider controls */
-.slider-control {
+/* Slider controls - Solo para componentes específicos */
+.slider-component .slider-control {
     background: rgba(0, 0, 0, 0.5);
     border: none;
     color: white;
@@ -25,18 +25,18 @@
     pointer-events: none;
 }
 
-.slider-control:hover {
+.slider-component .slider-control:hover {
     background: rgba(0, 0, 0, 0.7);
     transform: scale(1.1);
 }
 
-.image-slider:hover .slider-control {
+.slider-component .image-slider:hover .slider-control {
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Slider indicators */
-.slider-indicators {
+/* Slider indicators - Solo para componentes específicos */
+.slider-component .slider-indicators {
     display: flex;
     gap: 0.25rem;
     position: absolute;
@@ -45,7 +45,7 @@
     transform: translateX(-50%);
 }
 
-.slider-dot {
+.slider-component .slider-dot {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
@@ -55,17 +55,17 @@
     transition: all 0.3s ease;
 }
 
-.slider-dot.active {
+.slider-component .slider-dot.active {
     background: white;
     transform: scale(1.2);
 }
 
-.slider-dot:hover {
+.slider-component .slider-dot:hover {
     background: rgba(255, 255, 255, 0.8);
 }
 
-/* Counter badge */
-.image-counter {
+/* Counter badge - Solo para componentes específicos */
+.slider-component .image-counter {
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -78,15 +78,15 @@
     z-index: 10;
 }
 
-/* Mejoras para las imágenes */
-.image-container-enhanced {
+/* Mejoras para las imágenes - Solo para componentes específicos */
+.slider-component .image-container-enhanced {
   position: relative;
   overflow: hidden;
   border-radius: 0.5rem;
   background: linear-gradient(45deg, #f8fafc, #f1f5f9);
 }
 
-.image-container-enhanced::before {
+.slider-component .image-container-enhanced::before {
   content: '';
   position: absolute;
   top: 0;
@@ -98,7 +98,7 @@
   transition: transform 0.6s ease;
 }
 
-.image-container-enhanced:hover::before {
+.slider-component .image-container-enhanced:hover::before {
   transform: translateX(100%);
 }
 

@@ -119,3 +119,123 @@
   50% { background-position: 400% 0; }
   100% { background-position: 0 0; }
 }
+
+/* ==========================================================================
+   DESHABILITACIÓN DE EFECTOS SHINE EN PROJECTS SECTION
+   ========================================================================== */
+
+/* Deshabilitar efectos shine solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.shine-effect,
+.projects-section .project-image-container.shine-effect::before,
+.projects-section .project-image-container.shine-effect:hover::before,
+.projects-section .image-wrapper.shine-effect,
+.projects-section .image-wrapper.shine-effect::before,
+.projects-section .image-wrapper.shine-effect:hover::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* Deshabilitar efectos de glassmorphism solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.glass-effect,
+.projects-section .image-wrapper.glass-effect {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  border: none !important;
+}
+
+/* Deshabilitar efectos de gradiente animado solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.gradient-animation,
+.projects-section .image-wrapper.gradient-animation {
+  background: transparent !important;
+  animation: none !important;
+}
+
+/* Deshabilitar efectos de pulsación solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.pulse-effect,
+.projects-section .image-wrapper.pulse-effect {
+  animation: none !important;
+}
+
+/* Deshabilitar efectos de flotación solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.float-effect,
+.projects-section .image-wrapper.float-effect {
+  animation: none !important;
+  transform: none !important;
+}
+
+/* Deshabilitar efectos de bordes iluminados solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.neon-border,
+.projects-section .project-image-container.neon-border::before,
+.projects-section .image-wrapper.neon-border,
+.projects-section .image-wrapper.neon-border::before {
+  border: none !important;
+  background: none !important;
+  animation: none !important;
+  filter: none !important;
+}
+
+/* ==========================================================================
+   PROTECCIÓN DE EFECTOS VISUALES EN TECHSTACK SECTION
+   ========================================================================== */
+
+/* Proteger efectos shine en la sección de TechStack */
+.techstack-floating-section .shine-effect,
+.techstack-floating-section .shine-effect::before,
+.techstack-floating-section .shine-effect:hover::before {
+  display: block !important;
+  content: '' !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  ) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  transform: translateX(-100%) !important;
+  transition: left 0.6s ease !important;
+}
+
+.techstack-floating-section .shine-effect:hover::before {
+  transform: translateX(100%) !important;
+}
+
+/* Proteger efectos de glassmorphism en la sección de TechStack */
+.techstack-floating-section .glass-effect {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+}
+
+/* Proteger efectos de gradiente animado en la sección de TechStack */
+.techstack-floating-section .gradient-animation {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab) !important;
+  background-size: 400% 400% !important;
+  animation: gradient 15s ease infinite !important;
+}
+
+/* Proteger efectos de pulsación en la sección de TechStack */
+.techstack-floating-section .pulse-effect {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite !important;
+}
+
+/* Proteger efectos de flotación en la sección de TechStack */
+.techstack-floating-section .float-effect {
+  animation: float 3s ease-in-out infinite !important;
+}
+
+/* Proteger efectos de bordes iluminados en la sección de TechStack */
+.techstack-floating-section .neon-border,
+.techstack-floating-section .neon-border::before {
+  border: 2px solid transparent !important;
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000) !important;
+  animation: glowing 20s linear infinite !important;
+  filter: blur(6px) !important;
+}

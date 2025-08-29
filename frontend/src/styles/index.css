@@ -107,21 +107,19 @@ section[id] {
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.project-image-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+/* Deshabilitado para evitar efectos de iluminación no deseados */
+.projects-section .project-image-container::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
 }
 
-.project-image-container:hover::after {
-  opacity: 1;
+.projects-section .project-image-container:hover::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
 }
 
 /* Optimización para las cards de proyecto */
@@ -479,4 +477,56 @@ section[id]:focus-visible {
   opacity: 0;
   overflow: hidden;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s, opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================================================
+   DESHABILITACIÓN COMPLETA DE EFECTOS DE ILUMINACIÓN EN PROJECTS SECTION
+   ========================================================================== */
+
+/* Deshabilitar completamente el pseudo-elemento ::after en projects-section */
+.projects-section .project-image-container::after,
+.projects-section .project-image-container:hover::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Deshabilitar efectos de iluminación específicamente en contenedores de imágenes de proyectos */
+.projects-section .project-image-container::after,
+.projects-section .project-image-container::before,
+.projects-section .image-wrapper::after,
+.projects-section .image-wrapper::before,
+.projects-section .slider-container::after,
+.projects-section .slider-container::before {
+  background: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* Asegurar que las imágenes no tengan efectos de iluminación */
+.projects-section img,
+.projects-section img:hover,
+.projects-section img:focus {
+  filter: none !important;
+  box-shadow: none !important;
+  transform: none !important;
+  scale: none !important;
+}
+
+/* Deshabilitar efectos de glassmorphism y shine solo en contenedores de imágenes de proyectos */
+.projects-section .project-image-container.glassmorphism-card::before,
+.projects-section .project-image-container.glassmorphism-card::after,
+.projects-section .project-image-container.shine-effect::before,
+.projects-section .project-image-container.shine-effect::after,
+.projects-section .image-wrapper.glassmorphism-card::before,
+.projects-section .image-wrapper.glassmorphism-card::after,
+.projects-section .image-wrapper.shine-effect::before,
+.projects-section .image-wrapper.shine-effect::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
 }

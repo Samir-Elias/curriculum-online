@@ -196,7 +196,7 @@
   height: 1.25rem;
   flex-shrink: 0;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.8);
+  background: transparent;
   padding: 1px;
 }
 
@@ -221,14 +221,14 @@
 }
 
 .backend-badge {
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #475569 !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(10px);
 }
 
 .backend-badge:hover {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   transform: translateX(6px);
 }
 
@@ -241,14 +241,14 @@
 }
 
 .frontend-badge {
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #1e40af !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(10px);
 }
 
 .frontend-badge:hover {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   transform: translateX(6px);
 }
 
@@ -261,14 +261,14 @@
 }
 
 .tools-badge {
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #047857 !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(10px);
 }
 
 .tools-badge:hover {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   transform: translateX(6px);
 }
 
@@ -281,14 +281,14 @@
 }
 
 .methodologies-badge {
-  background: rgba(255, 255, 255, 0.9) !important;
-  color: #6d28d9 !important;
-  border-color: rgba(255, 255, 255, 0.3) !important;
+  background: transparent !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
   backdrop-filter: blur(10px);
 }
 
 .methodologies-badge:hover {
-  background: rgba(255, 255, 255, 0.95) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
   transform: translateX(6px);
 }
 

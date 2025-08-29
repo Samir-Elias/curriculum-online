@@ -162,34 +162,302 @@ const ProjectsSection = () => {
 
   return (
     <section className="projects-section" id="proyectos">
-      <div className="projects-container">
-        {/* Header mejorado */}
-        <motion.div
-          className="projects-header"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="projects-title">Proyectos Destacados</h2>
-          <div className="projects-counter">
-            <span className="current-project">{currentProject + 1}</span>
-            <span className="separator">/</span>
-            <span className="total-projects">{projects.length}</span>
-          </div>
-        </motion.div>
+      {/* Header mejorado */}
+      <motion.div
+        className="projects-header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="projects-title">Proyectos Destacados</h2>
+        <div className="projects-counter">
+          <span className="current-project">{currentProject + 1}</span>
+          <span className="separator">/</span>
+          <span className="total-projects">{projects.length}</span>
+        </div>
+      </motion.div>
 
-        {/* Navegación superior */}
-        <div className="projects-navigation-top">
+        {/* Contenedor principal del proyecto con navegación lateral */}
+        <div className="project-main-wrapper">
+          {/* Flecha de navegación izquierda */}
           <button
-            className="nav-button nav-prev"
+            className="nav-button nav-lateral nav-prev"
             onClick={prevProject}
             disabled={isTransitioning}
             aria-label="Proyecto anterior"
           >
             <ChevronLeft />
           </button>
+
+          {/* Contenedor principal del proyecto */}
+          <motion.div
+            className="project-main-container"
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentProject}
+                className="project-content-wrapper"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+              >
+                {/* Contenedor de imagen mejorado */}
+                <div className="project-image-container">
+                  <div className="image-wrapper">
+                    {project.images && project.images.length > 1 ? (
+                      <ImageSlider images={project.images} />
+                    ) : (
+                      <img
+                        src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
+                        alt={project.title}
+                        className="project-image no-hover-effects"
+                        loading="lazy"
+                      />
+                    )}
+
+                  </div>
+                  
+                  {/* Tecnologías en el lado derecho */}
+                  <div className="technologies-section right-side">
+                    <h4 className="section-title right-side">Stack Tecnológico</h4>
+                    <div className="technologies-grid right-side">
+                      {project.technologies.map((tech, index) => (
+                        <motion.div
+                          key={tech}
+                          className="tech-item right-side"
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <div className="tech-icon right-side">{getTechIcon(tech)}</div>
+                          <span className="tech-name right-side">{tech}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                                 {/* Contenido del proyecto mejorado */}
+                 <div className="project-info-container">
+                   {/* Header del proyecto */}
+                   <div className="project-header">
+                     <h3 className="project-title">{project.title}</h3>
+                     <p className="project-description">{project.description}</p>
+                   </div>
+
+                   {/* Información del proyecto */}
+                   <div className="project-meta">
+                     <div className="meta-item">
+                       <span className="meta-icon">👤</span>
+                       <span className="meta-text">{project.type}</span>
+                     </div>
+                     <div className="meta-item">
+                       <span className="meta-icon">💼</span>
+                       <span className="meta-text">{project.role}</span>
+                     </div>
+                   </div>
+
+
+
+                   {/* Botones de acción */}
+                   <div className="project-actions">
+                     {project.github && (
+                       <motion.a
+                         href={project.github}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className="action-button github-button"
+                         whileHover={{ scale: 1.05 }}
+                         whileTap={{ scale: 0.95 }}
+                       >
+                         <GitHubIcon />
+                         <span>Código</span>
+                       </motion.a>
+                     )}
+                     {project.demo && (
+                       <motion.a
+                         href={project.demo}
+                         target="_blank"
+                         rel="noopener noreferrer"
+                         className="action-button demo-button"
+                         whileHover={{ scale: 1.05 }}
+                         whileTap={{ scale: 0.95 }}
+                       >
+                         <ExternalLinkIcon />
+                         <span>Demo en Vivo</span>
+                       </motion.a>
+                     )}
+                   </div>
+
+                   {/* Botón de detalles mejorado */}
+                   <motion.button
+                     className="details-toggle-button"
+                     onClick={toggleDetails}
+                     whileHover={{ scale: 1.02 }}
+                     whileTap={{ scale: 0.98 }}
+                   >
+                     <span>{isDetailsExpanded ? "Ocultar Detalles" : "Ver Características Completas"}</span>
+                     <motion.div animate={{ rotate: isDetailsExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                       <ChevronDown />
+                     </motion.div>
+                   </motion.button>
+                 </div>
+              </motion.div>
+            </AnimatePresence>
+
+                         {/* Detalles expandidos completamente rediseñados */}
+             <AnimatePresence>
+               {isDetailsExpanded && (
+                 <motion.div
+                   className="project-details-expanded"
+                   initial={{ opacity: 0, scaleY: 0 }}
+                   animate={{ opacity: 1, scaleY: 1 }}
+                   exit={{ opacity: 0, scaleY: 0 }}
+                   transition={{ duration: 0.3, ease: "easeInOut" }}
+                   style={{ transformOrigin: "top" }}
+                 >
+                  <div className="details-content">
+                    {/* Resumen principal */}
+                    {project.overview && (
+                      <motion.div
+                        className="detail-section overview-section"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.1 }}
+                      >
+                        <div className="section-header">
+                          <span className="section-icon">📋</span>
+                          <h4>Resumen del Proyecto</h4>
+                        </div>
+                        <p className="overview-text">{project.overview}</p>
+                      </motion.div>
+                    )}
+
+                    {/* Grid de características */}
+                    {project.features && project.features.length > 0 && (
+                      <motion.div
+                        className="detail-section features-section"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 }}
+                      >
+                        <div className="section-header">
+                          <span className="section-icon">⭐</span>
+                          <h4>Características Principales</h4>
+                        </div>
+                        <div className="features-grid">
+                          {project.features.map((feature, index) => (
+                            <motion.div
+                              key={index}
+                              className="feature-item"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.3 + index * 0.1 }}
+                            >
+                              <div className="feature-bullet"></div>
+                              <span>{feature}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+
+                    {/* Desafíos y Soluciones lado a lado */}
+                    <div className="challenges-solutions-row">
+                      {project.challenges && project.challenges.length > 0 && (
+                        <motion.div
+                          className="detail-section challenges-section"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.4 }}
+                        >
+                          <div className="section-header">
+                            <span className="section-icon">🎯</span>
+                            <h4>Desafíos Técnicos</h4>
+                          </div>
+                          <ul className="challenges-list">
+                            {project.challenges.map((challenge, index) => (
+                              <motion.li
+                                key={index}
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.5 + index * 0.1 }}
+                              >
+                                {challenge}
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </motion.div>
+                      )}
+
+                      {project.solutions && project.solutions.length > 0 && (
+                        <motion.div
+                          className="detail-section solutions-section"
+                          initial={{ opacity: 0, x: 20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.4 }}
+                        >
+                          <div className="section-header">
+                            <span className="section-icon">💡</span>
+                            <h4>Soluciones</h4>
+                          </div>
+                          <ul className="solutions-list">
+                            {project.solutions.map((solution, index) => (
+                              <motion.li
+                                key={index}
+                                initial={{ opacity: 0, x: 10 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: 0.5 + index * 0.1 }}
+                              >
+                                {solution}
+                              </motion.li>
+                            ))}
+                          </ul>
+                        </motion.div>
+                      )}
+                    </div>
+
+                    {/* Resultados */}
+                    {project.results && project.results.length > 0 && (
+                      <motion.div
+                        className="detail-section results-section"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.6 }}
+                      >
+                        <div className="section-header">
+                          <span className="section-icon">📈</span>
+                          <h4>Resultados y Logros</h4>
+                        </div>
+                        <div className="results-grid">
+                          {project.results.map((result, index) => (
+                            <motion.div
+                              key={index}
+                              className="result-item"
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: 0.7 + index * 0.1 }}
+                            >
+                              <div className="result-check">✓</div>
+                              <span>{result}</span>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Flecha de navegación derecha */}
           <button
-            className="nav-button nav-next"
+            className="nav-button nav-lateral nav-next"
             onClick={nextProject}
             disabled={isTransitioning}
             aria-label="Siguiente proyecto"
@@ -197,298 +465,6 @@ const ProjectsSection = () => {
             <ChevronRight />
           </button>
         </div>
-
-        {/* Contenedor principal del proyecto */}
-        <motion.div
-          className="project-main-container"
-          onTouchStart={onTouchStart}
-          onTouchMove={onTouchMove}
-          onTouchEnd={onTouchEnd}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentProject}
-              className="project-content-wrapper"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.4, ease: "easeInOut" }}
-            >
-              {/* Contenedor de imagen mejorado */}
-              <div className="project-image-container">
-                <div className="image-wrapper">
-                  {project.images && project.images.length > 1 ? (
-                    <ImageSlider images={project.images} />
-                  ) : (
-                    <img
-                      src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
-                      alt={project.title}
-                      className="project-image"
-                      loading="lazy"
-                    />
-                  )}
-                  <div className="image-overlay">
-                    <div className="project-status">
-                      <span className="status-badge">{project.duration}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contenido del proyecto mejorado */}
-              <div className="project-info-container">
-                <div className="project-header">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                </div>
-
-                {/* Tecnologías con mejor diseño */}
-                <div className="technologies-section">
-                  <h4 className="section-title">Tecnologías</h4>
-                  <div className="technologies-grid">
-                    {project.technologies.map((tech, index) => (
-                      <motion.div
-                        key={tech}
-                        className="tech-item"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: index * 0.1 }}
-                      >
-                        <div className="tech-icon">{getTechIcon(tech)}</div>
-                        <span className="tech-name">{tech}</span>
-                      </motion.div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Métricas de rendimiento */}
-                <div className="project-metrics">
-                  <div className="metrics-grid">
-                    <div className="metric-item">
-                      <span className="metric-value">{project.metrics.performance}</span>
-                      <span className="metric-label">Performance</span>
-                    </div>
-                    <div className="metric-item">
-                      <span className="metric-value">{project.metrics.accessibility}</span>
-                      <span className="metric-label">Accessibility</span>
-                    </div>
-                    <div className="metric-item">
-                      <span className="metric-value">{project.metrics.seo}</span>
-                      <span className="metric-label">SEO</span>
-                    </div>
-                    <div className="metric-item">
-                      <span className="metric-value">{project.metrics.bestPractices}</span>
-                      <span className="metric-label">Best Practices</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Información del proyecto */}
-                <div className="project-meta">
-                  <div className="meta-item">
-                    <span className="meta-icon">📅</span>
-                    <span className="meta-text">{project.duration}</span>
-                  </div>
-                  <div className="meta-item">
-                    <span className="meta-icon">👤</span>
-                    <span className="meta-text">{project.type}</span>
-                  </div>
-                  <div className="meta-item">
-                    <span className="meta-icon">💼</span>
-                    <span className="meta-text">{project.role}</span>
-                  </div>
-                </div>
-
-                {/* Botón de detalles mejorado */}
-                <motion.button
-                  className="details-toggle-button"
-                  onClick={toggleDetails}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span>{isDetailsExpanded ? "Ocultar Detalles" : "Ver Características Completas"}</span>
-                  <motion.div animate={{ rotate: isDetailsExpanded ? 180 : 0 }} transition={{ duration: 0.3 }}>
-                    <ChevronDown />
-                  </motion.div>
-                </motion.button>
-
-                {/* Botones de acción */}
-                <div className="project-actions">
-                  {project.github && (
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="action-button github-button"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <GitHubIcon />
-                      <span>Código</span>
-                    </motion.a>
-                  )}
-                  {project.demo && (
-                    <motion.a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="action-button demo-button"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <ExternalLinkIcon />
-                      <span>Demo en Vivo</span>
-                    </motion.a>
-                  )}
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Detalles expandidos completamente rediseñados */}
-          <AnimatePresence>
-            {isDetailsExpanded && (
-              <motion.div
-                className="project-details-expanded"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-              >
-                <div className="details-content">
-                  {/* Resumen principal */}
-                  {project.overview && (
-                    <motion.div
-                      className="detail-section overview-section"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      <div className="section-header">
-                        <span className="section-icon">📋</span>
-                        <h4>Resumen del Proyecto</h4>
-                      </div>
-                      <p className="overview-text">{project.overview}</p>
-                    </motion.div>
-                  )}
-
-                  {/* Grid de características */}
-                  {project.features && project.features.length > 0 && (
-                    <motion.div
-                      className="detail-section features-section"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      <div className="section-header">
-                        <span className="section-icon">⭐</span>
-                        <h4>Características Principales</h4>
-                      </div>
-                      <div className="features-grid">
-                        {project.features.map((feature, index) => (
-                          <motion.div
-                            key={index}
-                            className="feature-item"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.3 + index * 0.1 }}
-                          >
-                            <div className="feature-bullet"></div>
-                            <span>{feature}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {/* Desafíos y Soluciones lado a lado */}
-                  <div className="challenges-solutions-row">
-                    {project.challenges && project.challenges.length > 0 && (
-                      <motion.div
-                        className="detail-section challenges-section"
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 }}
-                      >
-                        <div className="section-header">
-                          <span className="section-icon">🎯</span>
-                          <h4>Desafíos Técnicos</h4>
-                        </div>
-                        <ul className="challenges-list">
-                          {project.challenges.map((challenge, index) => (
-                            <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.5 + index * 0.1 }}
-                            >
-                              {challenge}
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-
-                    {project.solutions && project.solutions.length > 0 && (
-                      <motion.div
-                        className="detail-section solutions-section"
-                        initial={{ opacity: 0, x: 20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4 }}
-                      >
-                        <div className="section-header">
-                          <span className="section-icon">💡</span>
-                          <h4>Soluciones</h4>
-                        </div>
-                        <ul className="solutions-list">
-                          {project.solutions.map((solution, index) => (
-                            <motion.li
-                              key={index}
-                              initial={{ opacity: 0, x: 10 }}
-                              animate={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.5 + index * 0.1 }}
-                            >
-                              {solution}
-                            </motion.li>
-                          ))}
-                        </ul>
-                      </motion.div>
-                    )}
-                  </div>
-
-                  {/* Resultados */}
-                  {project.results && project.results.length > 0 && (
-                    <motion.div
-                      className="detail-section results-section"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.6 }}
-                    >
-                      <div className="section-header">
-                        <span className="section-icon">📈</span>
-                        <h4>Resultados y Logros</h4>
-                      </div>
-                      <div className="results-grid">
-                        {project.results.map((result, index) => (
-                          <motion.div
-                            key={index}
-                            className="result-item"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.7 + index * 0.1 }}
-                          >
-                            <div className="result-check">✓</div>
-                            <span>{result}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
 
         {/* Indicadores de proyecto mejorados */}
         <div className="project-indicators">
@@ -504,7 +480,6 @@ const ProjectsSection = () => {
             />
           ))}
         </div>
-      </div>
     </section>
   )
 }
