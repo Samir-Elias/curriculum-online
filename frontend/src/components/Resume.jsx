@@ -242,6 +242,9 @@ const Resume = ({ onAppLoadingComplete }) => {
             />
           </div>
 
+          {/* Espaciado adicional antes del footer */}
+          <div className="h-8 sm:h-12"></div>
+
           {/* Footer */}
           <Footer personalInfo={profileData.personalInfo} />
 

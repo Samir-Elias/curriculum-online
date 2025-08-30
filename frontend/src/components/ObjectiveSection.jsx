@@ -124,6 +124,27 @@ const ObjectiveSection = ({
                 </div>
               </div>
             </div>
+
+            {/* Call to Action - Movido a la card izquierda */}
+            <div className="objective-cta-section">
+              <h4 className="objective-section-title">
+                <Heart className="section-icon" />
+                ¿Interesado en trabajar juntos?
+              </h4>
+              <p className="objective-description">
+                Estoy listo para contribuir desde el primer día con mi experiencia y pasión por el desarrollo.
+              </p>
+              <div className="objective-cta-actions">
+                <Button className="objective-cta-button primary">
+                  <Users className="w-4 h-4 mr-2" />
+                  Conectar
+                </Button>
+                <Button variant="outline" className="objective-cta-button secondary">
+                  <ArrowRight className="w-4 h-4 mr-2" />
+                  Ver Proyectos
+                </Button>
+              </div>
+            </div>
           </motion.div>
 
           {/* Right Column - Sidebar */}
@@ -194,28 +215,11 @@ const ObjectiveSection = ({
                         {index === 2 && "Rol versátil con crecimiento"}
                         {index === 3 && "Especialización en mi área fuerte"}
                         {index === 4 && "Innovación con tecnologías emergentes"}
+                        {index === 5 && "Desarrollo frontend con React"}
                       </div>
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Call to Action */}
-            <div className="objective-sidebar-card cta-card">
-              <h4 className="cta-title">¿Interesado en trabajar juntos?</h4>
-              <p className="cta-description">
-                Estoy listo para contribuir desde el primer día con mi experiencia y pasión por el desarrollo.
-              </p>
-              <div className="cta-actions">
-                <Button className="cta-button primary">
-                  <Users className="w-4 h-4 mr-2" />
-                  Conectar
-                </Button>
-                <Button variant="outline" className="cta-button secondary">
-                  <ArrowRight className="w-4 h-4 mr-2" />
-                  Ver Proyectos
-                </Button>
               </div>
             </div>
           </motion.div>

@@ -309,7 +309,7 @@ export const profileData = {
     titulo: "Desarrollador Full-Stack + AI Specialist | Prompt Engineering Expert",
     descripcion: "Developer especializado en Backend con Java y Spring Framework, con experiencia en proyectos Full-Stack y metodologías ágiles. Experto en desarrollo asistido por IA y prompt engineering. Busco contribuir desde el primer día en un equipo dinámico donde pueda aplicar mis 6 años de experiencia autodidacta, metodología Human-AI y seguir creciendo profesionalmente en un entorno colaborativo e innovador.",
     modalidades: ["Trabajo Remoto", "Modalidad Híbrida", "Presencial en Mendoza"],
-    niveles: ["Junior Developer", "Developer Trainee", "Full-Stack Junior", "Backend Developer Jr", "AI-Assisted Developer"]
+    niveles: ["Junior Developer", "Developer Trainee", "Full-Stack Junior", "Backend Developer Jr", "AI-Assisted Developer", "Frontend React Junior"]
   }
 };
 
