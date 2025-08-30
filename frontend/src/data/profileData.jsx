@@ -6,7 +6,7 @@ export const profileData = {
     email: "samireliassalatino@gmail.com",
     telefono: "+54 9 261 466-6991",
     foto: "/perfil.jpg",
-    titulo: "Full-Stack + AI Specialist | Prompt Engineering Expert",
+    titulo: "Full-Stack + AI Specialist\nPrompt Engineering Expert",
     experiencia: "6 años como Developer Autodidacta",
     bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experto en desarrollo asistido por IA y prompt engineering. Experiencia en metodologías ágiles y proyectos Full-Stack con productividad 10x usando herramientas modernas de IA.",
     linkedin: "https://www.linkedin.com/in/samir-elías",
@@ -16,14 +16,15 @@ export const profileData = {
   
   tecnologiasCore: {
     backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
-    frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
-    herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N", "GitHub Copilot", "Prompt Engineering"],
-    metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research", "Prompt Engineering", "AI-Assisted Development", "Human-AI Collaboration"]
+    frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript"],
+    herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "N8N"],
+    metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research"],
+    inteligenciaArtificial: ["Claude", "Cursor", "GitHub Copilot", "OpenAI", "Gemini", "Perplexity", "Mistral", "DeepSeek", "Meta AI", "Prompt Engineering", "AI-Assisted Development", "Human-AI Collaboration"]
   },
   
   proyectosDestacados: [
     {
-      nombre: "Cv Digital Interactivo - React Portfolio",
+      nombre: "Portfolio Digital Interactivo - React",
       descripcion: "Portfolio profesional desarrollado con metodología Human-AI Collaboration usando React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium. Desarrollado con asistencia de IA para maximizar eficiencia y calidad del código.",
       tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO", "AI-Assisted Development", "Prompt Engineering"],
       imagenes: [
@@ -346,7 +347,7 @@ export const profileDataViejo = {
   
   tecnologiasCore: {
     backend: ["Java", "JavaScript", "Spring Boot", "JPA", "Maven", "SQL", "PostgreSQL", "MySQL"],
-    frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript", "SCSS"],
+    frontend: ["React", "Thymeleaf", "HTML5", "CSS3", "JavaScript"],
     herramientas: ["GitHub", "IntelliJ IDEA", "Docker", "Figma", "Claude", "Cursor", "N8N"],
     metodologias: ["Scrum", "Agile", "Sprints", "Teamwork", "UX/UI Design", "User Research"]
   },

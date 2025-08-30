@@ -1,0 +1,17 @@
+/* ============================================================================
+   HERO STYLES - INDEX PRINCIPAL
+   ============================================================================
+   
+   Este archivo importa todos los módulos de estilos del hero section
+   para mantener una estructura modular y organizada.
+   ============================================================================ */
+
+/* Importar todos los módulos del hero */
+@import './hero-section.css';
+@import './hero-cards-container.css';
+@import './hero-brand-card.css';
+@import './hero-avatar.css';
+@import './hero-navigation.css';
+@import './hero-projects.css';
+@import './hero-floating-texts.css';
+@import './hero-responsive.css';

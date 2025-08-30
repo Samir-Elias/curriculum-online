@@ -1,0 +1,814 @@
+/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
+
+.objective-section {
+  min-height: 100vh;
+  max-height: 100vh;
+  background: transparent;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.objective-container {
+  max-width: 1200px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===== HEADER COMPACTO ===== */
+.objective-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.objective-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.75rem;
+  line-height: 1.1;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.objective-title-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #fbbf24;
+  filter: drop-shadow(0 2px 8px rgba(251, 191, 36, 0.3));
+}
+
+.objective-subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* ===== CONTENT GRID COMPACTO ===== */
+.objective-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 2rem;
+  align-items: start;
+  max-height: 70vh;
+}
+
+/* ===== MAIN CARD COMPACTO ===== */
+.objective-main-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+/* Card Header Compacto */
+.objective-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.objective-title-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.objective-card-title {
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.objective-card-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+}
+
+.objective-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 20px;
+  color: #4ade80;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+.status-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ===== SECTIONS COMPACTAS ===== */
+.objective-description-section,
+.objective-value-section {
+  margin-bottom: 1.5rem;
+}
+
+.objective-section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.section-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #60a5fa;
+}
+
+.objective-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 400;
+}
+
+/* ===== VALUE PROPOSITION COMPACTO ===== */
+.objective-value-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.objective-value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card Principal - Compacta */
+.objective-value-item:nth-child(1) {
+  grid-column: 1 / -1;
+  padding: 1.5rem;
+  gap: 1.25rem;
+}
+
+.objective-value-item:nth-child(1) .value-icon-container {
+  width: 3rem;
+  height: 3rem;
+}
+
+.objective-value-item:nth-child(1) .value-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.objective-value-item:nth-child(1) .value-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.objective-value-item:nth-child(1) .value-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Cards Secundarias - Compactas */
+.objective-value-item:nth-child(2),
+.objective-value-item:nth-child(3),
+.objective-value-item:nth-child(4) {
+  padding: 1rem;
+  gap: 0.75rem;
+}
+
+.objective-value-item:nth-child(2) .value-icon-container,
+.objective-value-item:nth-child(3) .value-icon-container,
+.objective-value-item:nth-child(4) .value-icon-container {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.objective-value-item:nth-child(2) .value-icon,
+.objective-value-item:nth-child(3) .value-icon,
+.objective-value-item:nth-child(4) .value-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.objective-value-item:nth-child(2) .value-title,
+.objective-value-item:nth-child(3) .value-title,
+.objective-value-item:nth-child(4) .value-title {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.objective-value-item:nth-child(2) .value-description,
+.objective-value-item:nth-child(3) .value-description,
+.objective-value-item:nth-child(4) .value-description {
+  font-size: 0.8rem;
+  line-height: 1.3;
+}
+
+.objective-value-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #3b82f6, #10b981, #f59e0b, #8b5cf6);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.objective-value-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.objective-value-item:hover::before {
+  opacity: 1;
+}
+
+.value-icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.objective-value-item:hover .value-icon-container {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.value-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #60a5fa;
+  transition: all 0.3s ease;
+}
+
+.objective-value-item:nth-child(1) .value-icon {
+  color: #3b82f6;
+}
+
+.objective-value-item:nth-child(2) .value-icon {
+  color: #10b981;
+}
+
+.objective-value-item:nth-child(3) .value-icon {
+  color: #f59e0b;
+}
+
+.objective-value-item:nth-child(4) .value-icon {
+  color: #8b5cf6;
+}
+
+.objective-value-item:hover .value-icon {
+  transform: scale(1.05);
+}
+
+.value-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.value-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.25rem;
+  line-height: 1.2;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.value-description {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.4;
+  font-weight: 400;
+}
+
+/* ===== SIDEBAR COMPACTO ===== */
+.objective-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.objective-sidebar-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Status Card Compacto */
+.status-card {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.status-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: #4ade80;
+}
+
+.status-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.status-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.status-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-item-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #60a5fa;
+  flex-shrink: 0;
+}
+
+.status-item-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.125rem;
+}
+
+.status-item-value {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Sidebar Card Titles Compactos */
+.sidebar-card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sidebar-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #60a5fa;
+}
+
+/* Modalities Compactas */
+.modalities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modality-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.modality-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.modality-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #4ade80;
+  flex-shrink: 0;
+}
+
+.modality-text {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 500;
+}
+
+/* Levels Compactos */
+.levels-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.level-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.level-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(2px);
+}
+
+.level-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #fbbf24;
+  margin-top: 0.125rem;
+  flex-shrink: 0;
+}
+
+.level-content {
+  flex: 1;
+}
+
+.level-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.125rem;
+}
+
+.level-description {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.2;
+}
+
+/* CTA Card Compacto */
+.cta-card {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.cta-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cta-button {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.cta-button.primary {
+  background: #3b82f6;
+  color: white;
+  border: 1px solid #3b82f6;
+}
+
+.cta-button.primary:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.cta-button.secondary {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cta-button.secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+/* ===== RESPONSIVE DESIGN COMPACTO ===== */
+@media (max-width: 1200px) {
+  .objective-section {
+    padding: 1rem;
+  }
+  
+  .objective-content-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-height: none;
+  }
+  
+  .objective-main-card {
+    padding: 1.5rem;
+    max-height: none;
+  }
+  
+  .objective-card-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .objective-status-badge {
+    align-self: flex-start;
+  }
+  
+  .objective-sidebar {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .objective-section {
+    padding: 0.75rem;
+  }
+  
+  .objective-header {
+    margin-bottom: 1.5rem;
+  }
+  
+  .objective-title {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .objective-main-card {
+    padding: 1.25rem;
+  }
+  
+  .objective-value-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .objective-value-item:nth-child(1) {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-icon-container {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-title {
+    font-size: 1.1rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-description {
+    font-size: 0.9rem;
+  }
+  
+  .objective-value-item:nth-child(2),
+  .objective-value-item:nth-child(3),
+  .objective-value-item:nth-child(4) {
+    padding: 0.875rem;
+    gap: 0.625rem;
+  }
+  
+  .objective-value-item:nth-child(2) .value-icon-container,
+  .objective-value-item:nth-child(3) .value-icon-container,
+  .objective-value-item:nth-child(4) .value-icon-container {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .objective-value-item:nth-child(2) .value-icon,
+  .objective-value-item:nth-child(3) .value-icon,
+  .objective-value-item:nth-child(4) .value-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .objective-sidebar-card {
+    padding: 1.25rem;
+  }
+  
+  .status-details {
+    gap: 0.5rem;
+  }
+  
+  .status-item {
+    padding: 0.625rem;
+  }
+  
+  .modalities-list,
+  .levels-list {
+    gap: 0.375rem;
+  }
+  
+  .modality-item,
+  .level-item {
+    padding: 0.625rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .objective-section {
+    padding: 0.5rem;
+  }
+  
+  .objective-main-card {
+    padding: 1rem;
+  }
+  
+  .objective-card-title {
+    font-size: 1.25rem;
+  }
+  
+  .objective-card-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .objective-section-title {
+    font-size: 1.1rem;
+  }
+  
+  .objective-description {
+    font-size: 0.9rem;
+  }
+  
+  .objective-value-grid {
+    gap: 0.5rem;
+  }
+  
+  .objective-value-item:nth-child(1) {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-icon-container {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-icon {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-title {
+    font-size: 1rem;
+  }
+  
+  .objective-value-item:nth-child(1) .value-description {
+    font-size: 0.85rem;
+  }
+  
+  .objective-value-item:nth-child(2),
+  .objective-value-item:nth-child(3),
+  .objective-value-item:nth-child(4) {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .objective-value-item:nth-child(2) .value-icon-container,
+  .objective-value-item:nth-child(3) .value-icon-container,
+  .objective-value-item:nth-child(4) .value-icon-container {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  
+  .objective-value-item:nth-child(2) .value-icon,
+  .objective-value-item:nth-child(3) .value-icon,
+  .objective-value-item:nth-child(4) .value-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .objective-value-item:nth-child(2) .value-title,
+  .objective-value-item:nth-child(3) .value-title,
+  .objective-value-item:nth-child(4) .value-title {
+    font-size: 0.8rem;
+  }
+  
+  .objective-value-item:nth-child(2) .value-description,
+  .objective-value-item:nth-child(3) .value-description,
+  .objective-value-item:nth-child(4) .value-description {
+    font-size: 0.75rem;
+  }
+  
+  .objective-sidebar-card {
+    padding: 1rem;
+  }
+  
+  .status-title {
+    font-size: 1rem;
+  }
+  
+  .sidebar-card-title {
+    font-size: 1rem;
+  }
+  
+  .cta-title {
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    padding: 0.625rem 1rem;
+    font-size: 0.8rem;
+  }
+}

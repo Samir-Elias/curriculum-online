@@ -41,7 +41,7 @@ const MateIcon = ({ className = "", width = 80, height = 80 }) => {
                     strokeDashoffset: 0, 
                     strokeLinejoin: 'miter', 
                     strokeMiterlimit: 4, 
-                    fill: '#000000', 
+                    fill: '#10b981', 
                     fillRule: 'nonzero', 
                     opacity: 1
                   }}
@@ -60,7 +60,7 @@ const MateIcon = ({ className = "", width = 80, height = 80 }) => {
                     strokeDashoffset: 0, 
                     strokeLinejoin: 'miter', 
                     strokeMiterlimit: 4, 
-                    fill: '#000000', 
+                    fill: '#10b981', 
                     fillRule: 'nonzero', 
                     opacity: 1
                   }}
@@ -86,7 +86,7 @@ const MateIcon = ({ className = "", width = 80, height = 80 }) => {
                 strokeDashoffset: 0, 
                 strokeLinejoin: 'miter', 
                 strokeMiterlimit: 4, 
-                fill: 'currentColor', 
+                fill: '#10b981', 
                 fillRule: 'nonzero', 
                 opacity: 1, 
                 whiteSpace: 'pre'
@@ -99,7 +99,7 @@ const MateIcon = ({ className = "", width = 80, height = 80 }) => {
                   strokeWidth: 1, 
                   fontStyle: 'normal', 
                   fontWeight: 'normal', 
-                  fill: 'currentColor'
+                  fill: '#10b981'
                 }}
               >
                 &lt;/&gt;

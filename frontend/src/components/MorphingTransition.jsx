@@ -172,7 +172,7 @@ const MorphingTransition = ({ children, isLoading, onTransitionComplete }) => {
         {children}
       </motion.div>
 
-      <style jsx>{`
+      <style>{`
         .morphing-transition {
           position: relative;
           width: 100%;

@@ -59,15 +59,11 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
   // Efecto para cambiar estados de procesamiento después de que termine la escritura
   useEffect(() => {
     if (writingComplete) {
-      console.log('Writing complete, processing state:', processingState);
       const processingTimer = setTimeout(() => {
         if (processingState < processingStates.length - 1) {
-          console.log('Moving to next processing state:', processingState + 1);
           setProcessingState(processingState + 1);
         } else {
-          console.log('Processing complete, finishing loading immediately');
           // Terminar inmediatamente después del último estado
-          console.log('Setting isLoading to false');
           setIsLoading(false);
           // Restaurar scroll
           document.body.style.overflow = 'auto';
@@ -118,13 +114,13 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           exit={{ 
             opacity: 0,
-            scale: 1.2,
-            filter: 'blur(20px)',
+            scale: 1.1,
+            filter: 'blur(10px)',
             transition: { 
-              duration: 1,
+              duration: 0.8,
               ease: "easeInOut"
             }
           }}
@@ -261,12 +257,13 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
                   textAlign: 'center',
                   fontWeight: '400'
                 }}
-                animate={{ opacity: [0.6, 0.9, 0.6] }}
+                animate={{ opacity: [0.7, 0.9, 0.7] }}
                 transition={{ 
-                  duration: 2,
+                  duration: 3,
                   repeat: Infinity,
                   repeatType: "reverse",
-                  delay: 0.3
+                  delay: 0.3,
+                  ease: "easeInOut"
                 }}
               >
                 Desarrollador Full-Stack • Freelancer
@@ -282,12 +279,13 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
                   fontWeight: '500'
                 }}
                 animate={{
-                  opacity: [1, 0.5, 1]
+                  opacity: [1, 0.6, 1]
                 }}
                 transition={{
-                  duration: 1.5,
+                  duration: 2,
                   repeat: Infinity,
-                  repeatType: "reverse"
+                  repeatType: "reverse",
+                  ease: "easeInOut"
                 }}
               >
                 {writingComplete ? processingStates[processingState] : `Esperando indicaciones${'.'.repeat(dotsCount)}`}
@@ -337,7 +335,7 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
         </motion.div>
       )}
       
-      <style jsx>{`
+      <style>{`
         @keyframes blink {
           0%, 50% { opacity: 1; }
           51%, 100% { opacity: 0; }

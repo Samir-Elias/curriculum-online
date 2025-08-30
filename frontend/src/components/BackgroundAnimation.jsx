@@ -14,7 +14,15 @@ import {
   AndroidIcon, 
   BootstrapIcon, 
   PythonIcon, 
-  FastAPIIcon 
+  FastAPIIcon,
+  OpenAIIcon,
+  ClaudeIcon,
+  GeminiIcon,
+  GitHubCopilotIcon,
+  ViteIcon,
+  TypeScriptIcon,
+  CursorIcon,
+  N8NIcon
 } from '../icons/TechIcons'
 
 const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
@@ -43,56 +51,42 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
   const techIcons = [
     ReactIcon, NodeIcon, JavaScriptIcon, CSS3Icon, HTML5Icon, 
     TailwindIcon, MongoIcon, FirebaseIcon, JavaIcon, SpringIcon, 
-    MySQLIcon, AndroidIcon, BootstrapIcon, PythonIcon, FastAPIIcon
+    MySQLIcon, AndroidIcon, BootstrapIcon, PythonIcon, FastAPIIcon,
+    OpenAIIcon, ClaudeIcon, GeminiIcon, GitHubCopilotIcon, ViteIcon, 
+    TypeScriptIcon, CursorIcon, N8NIcon
   ]
 
-  // Generar iconos fijos - Tamaño aumentado y ubicados en laterales
-  // Estrategia de posicionamiento: Los iconos se colocan en los bordes extremos
-  // para evitar cualquier superposición con el contenido del hero (centro 20-80% del viewport)
+  // Generar iconos fijos - Optimizado para rendimiento
   const floatingIcons = useMemo(() => {
     const isMobileView = isMobile || isMobileState;
     
     if (isMobileView) {
-      // Configuración específica para móviles - iconos más pequeños y mejor distribuidos
-      // Zona segura: centro 30-70% del viewport está libre de iconos
+      // Configuración móvil - menos iconos para mejor rendimiento
       return [
-        // Laterales izquierdos - más compactos y alejados del centro
-        { id: 0, Icon: ReactIcon, x: 2, y: 15, size: 60, speed: 25 },
-        { id: 1, Icon: JavaScriptIcon, x: 5, y: 35, size: 55, speed: 28 },
-        { id: 2, Icon: JavaIcon, x: 1, y: 55, size: 62, speed: 26 },
-        { id: 3, Icon: MongoIcon, x: 4, y: 75, size: 58, speed: 27 },
-        
-        // Laterales derechos - más compactos y alejados del centro
-        { id: 4, Icon: NodeIcon, x: 95, y: 20, size: 65, speed: 32 },
-        { id: 5, Icon: CSS3Icon, x: 98, y: 40, size: 52, speed: 35 },
-        { id: 6, Icon: SpringIcon, x: 94, y: 60, size: 64, speed: 31 },
-        { id: 7, Icon: FirebaseIcon, x: 97, y: 80, size: 56, speed: 33 },
-        
-        // Centros laterales (izquierda y derecha) - más compactos y alejados
-        { id: 8, Icon: HTML5Icon, x: 8, y: 45, size: 68, speed: 23 },
-        { id: 9, Icon: TailwindIcon, x: 90, y: 70, size: 54, speed: 30 }
+        { id: 0, Icon: ReactIcon, x: 2, y: 15, size: 60, speed: 30 },
+        { id: 1, Icon: JavaScriptIcon, x: 5, y: 35, size: 55, speed: 35 },
+        { id: 2, Icon: JavaIcon, x: 1, y: 55, size: 62, speed: 32 },
+        { id: 3, Icon: NodeIcon, x: 95, y: 20, size: 65, speed: 38 },
+        { id: 4, Icon: CSS3Icon, x: 98, y: 40, size: 52, speed: 40 },
+        { id: 5, Icon: SpringIcon, x: 94, y: 60, size: 64, speed: 36 }
       ];
     } else {
-      // Configuración original para desktop - ajustada para evitar superposición con texto
-      // Zona segura: centro 25-75% del viewport está libre de iconos
+      // Configuración desktop - solo iconos originales de tecnologías
       return [
-        // Laterales izquierdos - movidos más hacia la izquierda (0-20% del viewport)
-        { id: 0, Icon: ReactIcon, x: 2, y: 10, size: 90, speed: 35 },
-        { id: 1, Icon: JavaScriptIcon, x: 4, y: 30, size: 85, speed: 38 },
-        { id: 2, Icon: JavaIcon, x: 1, y: 50, size: 92, speed: 36 },
-        { id: 3, Icon: MongoIcon, x: 3, y: 70, size: 88, speed: 37 },
-        { id: 4, Icon: PythonIcon, x: 0, y: 85, size: 89, speed: 44 },
-        
-        // Laterales derechos - movidos más hacia la derecha (80-100% del viewport)
-        { id: 5, Icon: NodeIcon, x: 96, y: 15, size: 95, speed: 42 },
-        { id: 6, Icon: CSS3Icon, x: 98, y: 35, size: 82, speed: 45 },
-        { id: 7, Icon: SpringIcon, x: 95, y: 55, size: 94, speed: 41 },
-        { id: 8, Icon: FirebaseIcon, x: 97, y: 75, size: 86, speed: 43 },
-        { id: 9, Icon: MySQLIcon, x: 94, y: 90, size: 91, speed: 39 },
-        
-        // Centros laterales (izquierda y derecha) - movidos más hacia los bordes
-        { id: 10, Icon: HTML5Icon, x: 8, y: 40, size: 98, speed: 33 },
-        { id: 11, Icon: TailwindIcon, x: 90, y: 65, size: 84, speed: 40 }
+        { id: 0, Icon: ReactIcon, x: 2, y: 10, size: 90, speed: 40 },
+        { id: 1, Icon: JavaScriptIcon, x: 4, y: 30, size: 85, speed: 45 },
+        { id: 2, Icon: JavaIcon, x: 1, y: 50, size: 92, speed: 42 },
+        { id: 3, Icon: MongoIcon, x: 3, y: 70, size: 88, speed: 44 },
+        { id: 4, Icon: NodeIcon, x: 96, y: 15, size: 95, speed: 48 },
+        { id: 5, Icon: CSS3Icon, x: 98, y: 35, size: 82, speed: 50 },
+        { id: 6, Icon: SpringIcon, x: 95, y: 55, size: 94, speed: 46 },
+        { id: 7, Icon: FirebaseIcon, x: 97, y: 75, size: 86, speed: 49 },
+        { id: 8, Icon: OpenAIIcon, x: 85, y: 85, size: 78, speed: 43 },
+        { id: 9, Icon: ClaudeIcon, x: 15, y: 85, size: 76, speed: 47 },
+        { id: 10, Icon: GeminiIcon, x: 75, y: 25, size: 80, speed: 41 },
+        { id: 11, Icon: GitHubCopilotIcon, x: 25, y: 25, size: 74, speed: 39 },
+        { id: 12, Icon: TypeScriptIcon, x: 45, y: 65, size: 72, speed: 51 },
+        { id: 13, Icon: ViteIcon, x: 55, y: 45, size: 70, speed: 53 }
       ];
     }
   }, [isMobile, isMobileState])
@@ -169,10 +163,10 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
         ))}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes float {
           0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-10px) rotate(180deg); }
+          50% { transform: translateY(-5px) rotate(90deg); }
         }
         
         @keyframes rotate {
@@ -181,18 +175,17 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
         }
         
         .floating-tech-icon {
-          transition: all 0.3s ease;
-          /* Asegurar que los iconos estén detrás del contenido del hero */
+          transition: all 0.5s ease;
           z-index: -1;
           pointer-events: none;
+          will-change: transform;
         }
         
         .floating-tech-icon:hover {
-          transform: scale(1.1);
+          transform: scale(1.05);
           opacity: 0.8 !important;
         }
         
-        /* Zona segura para el contenido del hero */
         .background-animation-container {
           z-index: -2;
         }

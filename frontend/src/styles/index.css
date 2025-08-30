@@ -23,12 +23,15 @@
 @import "./components/slider.css";
 @import "./components/avatar.css";
 @import "./components/loading.css";
-@import "./components/education-section.css";
-@import "./components/objective-section.css";
+@import "./components/education/education-section.css";
+@import "./components/objective/objective-section.css";
 @import "./components/linkedin-badge.css";
 @import "./components/mobile-projects.css";
 @import "./components/background-animation.css";
 @import "./components/techstack.css";
+
+/* Hero Section - Módulo modularizado */
+@import "./hero/index.css";
 
 /* Effects and animations */
 @import "./effects/animations.css";

@@ -7,11 +7,27 @@ import {
   Layout,
   Users,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  Brain
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { getTechIcon } from "../icons/TechIcons";
+import { getSpriteTechIcon } from "../icons/TechIconSprite";
+
+// Fallback function in case the import fails
+const getTechIcon = (tech) => {
+  try {
+    return getSpriteTechIcon(tech);
+  } catch (error) {
+    console.warn('Error loading tech icon:', error);
+    // Return a simple fallback icon
+    return (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12,3C7.58,3 4,4.79 4,7C4,9.21 7.58,11 12,11C16.42,11 20,9.21 20,7C20,4.79 16.42,3 12,3M4,9V12C4,14.21 7.58,16 12,16C16.42,16 20,14.21 20,12V9C20,11.21 16.42,13 12,13C7.58,13 4,11.21 4,9M4,14V17C4,19.21 7.58,21 12,21C16.42,21 20,19.21 20,17V14C20,16.21 16.42,18 12,18C7.58,18 4,16.21 4,14Z" />
+      </svg>
+    );
+  }
+};
 
 const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants }) => {
   const [currentCard, setCurrentCard] = useState(0);
@@ -49,11 +65,11 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
 
   // Navegación del carrusel
   const nextCard = () => {
-    setCurrentCard((prev) => (prev + 1) % 4);
+    setCurrentCard((prev) => (prev + 1) % 5);
   };
 
   const prevCard = () => {
-    setCurrentCard((prev) => (prev - 1 + 4) % 4);
+    setCurrentCard((prev) => (prev - 1 + 5) % 5);
   };
 
   // Navegación con teclado
@@ -90,11 +106,12 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
           variants={itemVariants}
         >
           <Zap className={titleDecorationClass} />
-          <div className="title-text">
-            <span className="techstack-main-title">
-              <span style={{ color: '#10b981' }}>S</span>TACK TE<span style={{ color: '#10b981' }}>C</span>H
-            </span>
-          </div>
+          <span className="title-text">
+            <span style={{ color: '#10b981' }}>S</span>
+            <span style={{ color: 'white' }}>TACK TE</span>
+            <span style={{ color: '#10b981' }}>C</span>
+            <span style={{ color: 'white' }}>H</span>
+          </span>
           <Zap className={titleDecorationClass} />
         </motion.h2>
         {isMobile ? (
@@ -201,6 +218,27 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                       </CardContent>
                     </Card>
                   )}
+                  
+                  {currentCard === 4 && (
+                    <Card className="techstack-floating-card ai-card">
+                      <CardHeader className="techstack-floating-card-header">
+                        <CardTitle className="techstack-floating-card-title">
+                          <Brain className="techstack-floating-card-icon" />
+                          Inteligencia Artificial
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="techstack-floating-card-content">
+                        <div className="techstack-floating-badges">
+                          {tecnologiasCore.inteligenciaArtificial.map((tech, index) => (
+                            <Badge key={index} className={`${badgeClass} ai-badge`}>
+                              <span className="tech-icon-medium">{getTechIcon(tech)}</span>
+                              <span className="tech-name">{tech}</span>
+                            </Badge>
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
                 </motion.div>
               </AnimatePresence>
             </div>
@@ -215,7 +253,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
             
             {/* Indicadores */}
             <div className="carousel-indicators">
-              {[0, 1, 2, 3].map((index) => (
+              {[0, 1, 2, 3, 4].map((index) => (
                 <button
                   key={index}
                   className={`carousel-indicator ${currentCard === index ? 'active' : ''}`}
@@ -303,6 +341,27 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
                   <div className="techstack-floating-badges">
                     {tecnologiasCore.metodologias.map((tech, index) => (
                       <Badge key={index} className={`${badgeClass} methodologies-badge`}>
+                        <span className="tech-icon-medium">{getTechIcon(tech)}</span>
+                        <span className="tech-name">{tech}</span>
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <Card className="techstack-floating-card ai-card">
+                <CardHeader className="techstack-floating-card-header">
+                  <CardTitle className="techstack-floating-card-title">
+                    <Brain className="techstack-floating-card-icon" />
+                    Inteligencia Artificial
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="techstack-floating-card-content">
+                  <div className="techstack-floating-badges">
+                    {tecnologiasCore.inteligenciaArtificial.map((tech, index) => (
+                      <Badge key={index} className={`${badgeClass} ai-badge`}>
                         <span className="tech-icon-medium">{getTechIcon(tech)}</span>
                         <span className="tech-name">{tech}</span>
                       </Badge>

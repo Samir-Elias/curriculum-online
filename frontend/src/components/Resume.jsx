@@ -16,7 +16,6 @@ const Resume = ({ onAppLoadingComplete }) => {
   const [showLoading, setShowLoading] = useState(true);
   const [selectedCertificate, setSelectedCertificate] = useState(null);
   const [expandedEducation, setExpandedEducation] = useState({});
-  const [expandedObjective, setExpandedObjective] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const { isModalOpen } = useModal();
   
@@ -133,7 +132,7 @@ const Resume = ({ onAppLoadingComplete }) => {
 
   // Función que se ejecuta cuando termina la carga
   const handleLoadingComplete = () => {
-    console.log('Loading complete! Setting showLoading to false');
+    
     setShowLoading(false);
     // Notificar a App.js que la carga terminó
     if (onAppLoadingComplete) {
@@ -184,7 +183,7 @@ const Resume = ({ onAppLoadingComplete }) => {
           overflowY: 'auto'
         }}
       >
-        {console.log('Rendering main content, showLoading:', showLoading)}
+
       
         {/* Contenido principal con z-index para estar sobre el background */}
         <div className="relative z-1">
@@ -240,8 +239,6 @@ const Resume = ({ onAppLoadingComplete }) => {
               }}
               containerVariants={containerVariants}
               itemVariants={itemVariants}
-              expandedObjective={expandedObjective}
-              setExpandedObjective={setExpandedObjective}
             />
           </div>
 

@@ -3,7 +3,7 @@
 import React, { useState, useCallback, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, ExternalLink, Github, Eye } from "lucide-react";
-import { getTechIcon } from "../icons/TechIcons";
+import { getSpriteTechIcon } from "../icons/TechIconSprite";
 import ImageSlider from "./ImageSlider";
 import ProjectModal from "./ProjectModal";
 import "../styles/components/projects-section.css";
@@ -15,8 +15,6 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
-  const [loadedProjects, setLoadedProjects] = useState([]);
-  const [isLoadingNext, setIsLoadingNext] = useState(false);
 
   // Mapear los datos a la estructura esperada con datos mejorados
   const rawProjects = proyectosDestacados || []
@@ -66,13 +64,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
     },
   }))
 
-  // Sistema de carga inicial
-  useEffect(() => {
-    if (mappedProjects.length === 0) return;
-    
-    // Cargar todos los proyectos inicialmente para evitar problemas
-    setLoadedProjects(mappedProjects);
-  }, [mappedProjects]);
+
 
   // Optimización: Memoizar el proyecto actual
   const currentProjectData = useMemo(() => {
@@ -80,25 +72,12 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
     return mappedProjects[currentProject] || mappedProjects[0];
   }, [mappedProjects, currentProject]);
 
-  // Optimización: Detectar visibilidad para lazy loading
+  // Detectar visibilidad una sola vez
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1, rootMargin: '50px' }
-    );
-
     const element = document.getElementById('proyectos');
     if (element) {
-      observer.observe(element);
+      setIsVisible(true);
     }
-
-    return () => {
-      if (element) {
-        observer.unobserve(element);
-      }
-    };
   }, []);
 
   // Navegación con teclado
@@ -151,7 +130,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
     }
   }
 
-  const nextProject = useCallback((keepModalOpen = false) => {
+  const nextProject = (keepModalOpen = false) => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentProject((prev) => (prev + 1) % mappedProjects.length)
@@ -159,9 +138,9 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
       setIsModalOpen(false)
     }
     setTimeout(() => setIsTransitioning(false), 300)
-  }, [mappedProjects.length, isTransitioning])
+  }
 
-  const prevProject = useCallback((keepModalOpen = false) => {
+  const prevProject = (keepModalOpen = false) => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentProject((prev) => (prev - 1 + mappedProjects.length) % mappedProjects.length)
@@ -169,7 +148,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
       setIsModalOpen(false)
     }
     setTimeout(() => setIsTransitioning(false), 300)
-  }, [mappedProjects.length, isTransitioning])
+  }
 
   const openModal = () => {
     setIsModalOpen(true)
@@ -180,13 +159,13 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
   }
 
   // Funciones específicas para navegación desde el modal
-  const nextProjectInModal = useCallback(() => {
+  const nextProjectInModal = () => {
     nextProject(true) // Mantener modal abierto
-  }, [nextProject])
+  }
 
-  const prevProjectInModal = useCallback(() => {
+  const prevProjectInModal = () => {
     prevProject(true) // Mantener modal abierto
-  }, [prevProject])
+  }
 
   const goToProject = (index) => {
     if (index === currentProject || isTransitioning) return
@@ -218,7 +197,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
         <div className="projects-container">
           <div className="error-state">
             <h3>Error cargando proyecto</h3>
-            <p>Loaded: {loadedProjects.length}, Current: {currentProject}</p>
+            <p>Current: {currentProject}</p>
           </div>
         </div>
       </section>
@@ -310,42 +289,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                   ease: "easeOut"
                 }}
               >
-                {/* Contenedor de imagen mejorado */}
-                <div className="project-image-container">
-                                     <div className="image-wrapper">
-                     {project.images && project.images.length > 1 ? (
-                       <ImageSlider images={project.images} isPaused={isModalOpen} />
-                     ) : (
-                       <img
-                         src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
-                         alt={project.title}
-                         className="project-image no-hover-effects"
-                         loading="lazy"
-                       />
-                     )}
-                   </div>
-                  
-                  {/* Tecnologías en el lado derecho */}
-                  <div className="technologies-section right-side">
-                    <h4 className="section-title right-side">Stack Tecnológico</h4>
-                    <div className="technologies-grid right-side">
-                      {project.technologies.map((tech, index) => (
-                        <motion.div
-                          key={tech}
-                          className="tech-item right-side"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: index * 0.02, duration: 0.2 }}
-                        >
-                          <div className="tech-icon right-side">{getTechIcon(tech)}</div>
-                          <span className="tech-name right-side">{tech}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Contenido del proyecto mejorado */}
+                {/* CONTENEDOR IZQUIERDO - Información del proyecto (transparente) */}
                 <div className="project-info-container">
                   {/* Header del proyecto */}
                   <div className="project-header">
@@ -389,8 +333,10 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                         );
                       })}
                     </h3>
-                    <p className="project-description">{project.description}</p>
                   </div>
+                  
+                  {/* Descripción del proyecto - FUERA del header */}
+                  <p className="project-description">{project.description}</p>
 
                   {/* Información del proyecto */}
                   <div className="project-meta">
@@ -445,7 +391,48 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                     <motion.div whileHover={{ rotate: 5 }} transition={{ duration: 0.2 }}>
                       <Eye />
                     </motion.div>
+                    <div className="keyboard-hint">
+                      <span className="key-indicator">ESPACIO - IN</span>
+                    </div>
                   </motion.button>
+                </div>
+
+                {/* CONTENEDOR DERECHO - Card con carrusel y stack (con fondo) */}
+                <div className="project-card-container">
+                  {/* Carrusel de imágenes (50% superior) */}
+                  <div className="project-carousel-section">
+                    <div className="image-wrapper">
+                      {project.images && project.images.length > 1 ? (
+                        <ImageSlider images={project.images} isPaused={isModalOpen} />
+                      ) : (
+                        <img
+                          src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
+                          alt={project.title}
+                          className="project-image no-hover-effects"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Stack Tecnológico (50% inferior) */}
+                  <div className="project-stack-section">
+                    <h4 className="section-title">Stack Tecnológico</h4>
+                    <div className="technologies-grid">
+                      {project.technologies.map((tech, index) => (
+                        <motion.div
+                          key={`${tech}-${index}`}
+                          className="tech-item"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: index * 0.02, duration: 0.2 }}
+                        >
+                          <div className="tech-icon">{getSpriteTechIcon(tech)}</div>
+                          <span className="tech-name">{tech}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>

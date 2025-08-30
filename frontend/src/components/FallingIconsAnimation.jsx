@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { NodeIcon, ReactIcon, JavaScriptIcon, PythonIcon, GitHubIcon, CSS3Icon, HTML5Icon, TailwindIcon, MongoIcon, FirebaseIcon, JavaIcon, SpringIcon, MySQLIcon, AndroidIcon, BootstrapIcon, PostgreSQLIcon } from '../icons/TechIcons';
+import { 
+  NodeIcon, ReactIcon, JavaScriptIcon, PythonIcon, GitHubIcon, CSS3Icon, HTML5Icon, TailwindIcon, 
+  MongoIcon, FirebaseIcon, JavaIcon, SpringIcon, MySQLIcon, AndroidIcon, BootstrapIcon, PostgreSQLIcon,
+  OpenAIIcon, ClaudeIcon, GeminiIcon, GitHubCopilotIcon, ViteIcon, TypeScriptIcon, CursorIcon, N8NIcon
+} from '../icons/TechIcons';
 
 const FallingIconsAnimation = ({ isAnimating = true }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -21,42 +25,50 @@ const FallingIconsAnimation = ({ isAnimating = true }) => {
     return null;
   }
 
-  // Configuración base de iconos
+  // Configuración base de iconos - 3 filas lineales con zigzag organizado
   const baseIcons = [
-    { Icon: ReactIcon, baseLeft: '0%', delay: 0, rotationDuration: 6, size: 120 },
-    { Icon: JavaIcon, baseLeft: '4%', delay: 1.6, rotationDuration: 5.5, size: 125 },
-    { Icon: MySQLIcon, baseLeft: '0%', delay: 3.2, rotationDuration: 7, size: 118 },
-    { Icon: GitHubIcon, baseLeft: '4%', delay: 4.8, rotationDuration: 5.8, size: 122 },
-    { Icon: JavaScriptIcon, baseLeft: '18%', delay: 0.8, rotationDuration: 6.2, size: 115 },
-    { Icon: SpringIcon, baseLeft: '22%', delay: 2.4, rotationDuration: 7.5, size: 124 },
-    { Icon: MongoIcon, baseLeft: '18%', delay: 4.0, rotationDuration: 5.2, size: 116 },
-    { Icon: TailwindIcon, baseLeft: '22%', delay: 5.6, rotationDuration: 6.8, size: 123 },
-    { Icon: HTML5Icon, baseLeft: '54%', delay: 0.4, rotationDuration: 6.5, size: 128 },
-    { Icon: NodeIcon, baseLeft: '58%', delay: 2.0, rotationDuration: 5.4, size: 117 },
-    { Icon: PostgreSQLIcon, baseLeft: '54%', delay: 3.6, rotationDuration: 7.2, size: 119 },
-    { Icon: BootstrapIcon, baseLeft: '58%', delay: 5.2, rotationDuration: 6.1, size: 121 },
-    { Icon: CSS3Icon, baseLeft: '76%', delay: 1.2, rotationDuration: 5.6, size: 114 },
-    { Icon: PythonIcon, baseLeft: '80%', delay: 2.8, rotationDuration: 6.4, size: 126 },
-    { Icon: FirebaseIcon, baseLeft: '76%', delay: 4.4, rotationDuration: 5.8, size: 120 },
-    { Icon: AndroidIcon, baseLeft: '80%', delay: 6.0, rotationDuration: 4.2, size: 127 }
+    // Fila 1 - Tecnologías principales (izquierda a derecha)
+    { Icon: ReactIcon, baseLeft: '10%', delay: 0, rotationDuration: 8, size: 110 },
+    { Icon: JavaScriptIcon, baseLeft: '30%', delay: 0.5, rotationDuration: 9, size: 105 },
+    { Icon: TypeScriptIcon, baseLeft: '50%', delay: 1, rotationDuration: 7, size: 108 },
+    { Icon: NodeIcon, baseLeft: '70%', delay: 1.5, rotationDuration: 8, size: 112 },
+    { Icon: PythonIcon, baseLeft: '90%', delay: 2, rotationDuration: 6, size: 106 },
+    
+    // Fila 2 - IA y herramientas (derecha a izquierda)
+    { Icon: OpenAIIcon, baseLeft: '85%', delay: 2.5, rotationDuration: 8, size: 100 },
+    { Icon: ClaudeIcon, baseLeft: '65%', delay: 3, rotationDuration: 7, size: 102 },
+    { Icon: GeminiIcon, baseLeft: '45%', delay: 3.5, rotationDuration: 9, size: 98 },
+    { Icon: GitHubCopilotIcon, baseLeft: '25%', delay: 4, rotationDuration: 6, size: 104 },
+    { Icon: CursorIcon, baseLeft: '5%', delay: 4.5, rotationDuration: 8, size: 96 },
+    
+    // Fila 3 - Frameworks y bases de datos (izquierda a derecha)
+    { Icon: SpringIcon, baseLeft: '15%', delay: 5, rotationDuration: 7, size: 108 },
+    { Icon: TailwindIcon, baseLeft: '35%', delay: 5.5, rotationDuration: 8, size: 102 },
+    { Icon: ViteIcon, baseLeft: '55%', delay: 6, rotationDuration: 6, size: 106 },
+    { Icon: MongoIcon, baseLeft: '75%', delay: 6.5, rotationDuration: 9, size: 104 },
+    { Icon: MySQLIcon, baseLeft: '95%', delay: 7, rotationDuration: 7, size: 110 },
+    
+    // Fila 4 - Herramientas adicionales (derecha a izquierda)
+    { Icon: FirebaseIcon, baseLeft: '80%', delay: 7.5, rotationDuration: 6, size: 100 },
+    { Icon: GitHubIcon, baseLeft: '60%', delay: 8, rotationDuration: 8, size: 98 },
+    { Icon: CSS3Icon, baseLeft: '40%', delay: 8.5, rotationDuration: 7, size: 102 },
+    { Icon: HTML5Icon, baseLeft: '20%', delay: 9, rotationDuration: 9, size: 104 },
+    { Icon: BootstrapIcon, baseLeft: '0%', delay: 9.5, rotationDuration: 6, size: 106 }
   ];
 
   // Función para ajustar posiciones según el tamaño de pantalla
   const getResponsiveLeft = (baseLeft) => {
     if (isMobile) {
-      // En móviles, distribuir los iconos horizontalmente en una fila centrada
+      // En móviles, distribuir los iconos en 3 columnas para mejor rendimiento
       const leftValue = parseFloat(baseLeft);
-      if (leftValue <= 4) {
+      if (leftValue <= 30) {
         // Primera columna: 20% desde el borde izquierdo
         return '20%';
-      } else if (leftValue <= 22) {
-        // Segunda columna: 40% desde el borde izquierdo
-        return '40%';
-      } else if (leftValue <= 58) {
-        // Tercera columna: 60% desde el borde izquierdo
-        return '60%';
+      } else if (leftValue <= 60) {
+        // Segunda columna: 50% desde el borde izquierdo
+        return '50%';
       } else {
-        // Cuarta columna: 80% desde el borde izquierdo
+        // Tercera columna: 80% desde el borde izquierdo
         return '80%';
       }
     }
@@ -101,13 +113,15 @@ const FallingIconsAnimation = ({ isAnimating = true }) => {
              y: '120vh'
            }}
                        transition={{
-              duration: 6.5,
+              duration: 6,
               repeat: isAnimating ? Infinity : 0,
               ease: "linear",
-              delay: delay
+              delay: delay,
+              type: "tween"
             }}
         >
           <div 
+            className="falling-icon"
             style={{ 
               width: `${size}px`, 
               height: `${size}px`,
@@ -123,7 +137,7 @@ const FallingIconsAnimation = ({ isAnimating = true }) => {
         </motion.div>
       ))}
       
-      <style jsx>{`
+      <style>{`
         @keyframes rotate {
           from {
             transform: scale(${icons[0].size / 40}) rotate(0deg);
@@ -131,6 +145,11 @@ const FallingIconsAnimation = ({ isAnimating = true }) => {
           to {
             transform: scale(${icons[0].size / 40}) rotate(360deg);
           }
+        }
+        
+        .falling-icon {
+          will-change: transform;
+          backface-visibility: hidden;
         }
       `}</style>
     </div>

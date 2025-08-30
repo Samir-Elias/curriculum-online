@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { motion } from "framer-motion";
 import { ExternalLink, Github, Maximize2, Minimize2, ChevronLeft, ChevronRight } from "lucide-react";
-import { getTechIcon } from "../icons/TechIcons";
+import { getSpriteTechIcon } from "../icons/TechIconSprite";
 import ImageSlider from "./ImageSlider";
 
 const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, hasNextProject, hasPrevProject }) => {
@@ -108,6 +108,9 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
              whileTap={{ scale: 0.9 }}
            >
              <span>×</span>
+             <div className="keyboard-hint">
+               <span className="key-indicator">ESC - OUT</span>
+             </div>
            </motion.button>
          </div>
 
@@ -211,13 +214,13 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                      <div className="modal-tech-grid">
                        {project.technologies.map((tech, index) => (
                          <motion.div
-                           key={tech}
+                           key={`${tech}-${index}`}
                            className="modal-tech-item"
                            initial={{ opacity: 0, scale: 0.8 }}
                            animate={{ opacity: 1, scale: 1 }}
                            transition={{ delay: index * 0.05 }}
                          >
-                           <div className="tech-icon">{getTechIcon(tech)}</div>
+                           <div className="tech-icon">{getSpriteTechIcon(tech)}</div>
                            <span className="tech-name">{tech}</span>
                          </motion.div>
                        ))}

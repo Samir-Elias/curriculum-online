@@ -1,7 +1,7 @@
 /* TechStack Section - Unión profesional entre secciones */
 .techstack-floating-section {
   position: relative;
-  z-index: 20;
+  z-index: 9999 !important;
   margin: -1rem 0 80px 0; /* Reducido el margen superior para PC */
   padding: 0 2rem;
   overflow: hidden;
@@ -16,31 +16,37 @@
   position: relative;
   overflow: hidden;
   border-radius: 20px;
+  z-index: 10000 !important;
 }
 
 .techstack-floating-title {
-  font-size: clamp(1.2rem, 2vw, 1.6rem);
-  font-weight: 700;
-  color: white;
-  text-align: center;
-  margin-bottom: 4rem;
-  line-height: 1.2;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-  position: relative;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
-  white-space: nowrap;
-  overflow: visible;
-  word-break: keep-all;
-  hyphens: none;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+  font-size: clamp(1.2rem, 2vw, 1.6rem) !important;
+  font-weight: 700 !important;
+  color: white !important;
+  text-align: center !important;
+  margin-bottom: 4rem !important;
+  line-height: 1.2 !important;
+  text-shadow: none !important;
+  position: relative !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  word-break: keep-all !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  min-width: max-content !important;
+  z-index: 10001 !important;
 }
 
 .techstack-floating-title .title-decoration {
@@ -92,56 +98,44 @@
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
+  z-index: 1005 !important;
+  position: relative !important;
 }
 
-.techstack-main-title {
-  display: inline;
-  white-space: nowrap;
-  overflow: visible;
-  word-break: keep-all;
-  hyphens: none;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
-}
-
+/* Regla específica para asegurar que todos los spans del título se vean */
 .title-text span {
-  display: inline;
-  line-height: 1.1;
-  position: relative;
-  padding: 0.25rem 0;
-  white-space: nowrap;
-  overflow: visible;
-  word-break: keep-all;
-  hyphens: none;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
+  display: inline-block !important;
+  line-height: 1.1 !important;
+  position: relative !important;
+  padding: 0.25rem 0 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  word-break: keep-all !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: never !important;
+  z-index: 10002 !important;
+  -webkit-text-fill-color: initial !important;
+  color: inherit !important;
 }
 
-.title-text span span {
-  font-size: 1.1em;
-  font-weight: 900;
-  text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
-  position: relative;
-  z-index: 1;
-  background: linear-gradient(135deg, #10b981, #34d399);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  filter: drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3));
-  white-space: nowrap;
-  overflow: visible;
-  word-break: keep-all;
-  hyphens: none;
-  -webkit-hyphens: none;
-  -moz-hyphens: none;
-  -ms-hyphens: none;
+/* Eliminada la regla problemática que hacía el texto transparente */
+
+/* Forzar que el texto del título se vea */
+.techstack-floating-title * {
+  -webkit-text-fill-color: initial !important;
+  color: inherit !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 .techstack-floating-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
   margin-top: 4.5rem;
   width: 100%;
@@ -231,8 +225,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.75rem;
+  height: 1.75rem;
   flex-shrink: 0;
   border-radius: 4px;
   background: transparent;
@@ -240,8 +234,8 @@
 }
 
 .tech-icon-medium svg {
-  width: 1rem !important;
-  height: 1rem !important;
+  width: 1.5rem !important;
+  height: 1.5rem !important;
 }
 
 .tech-name {
@@ -331,7 +325,91 @@
   transform: translateX(6px);
 }
 
+.ai-card {
+  --card-accent-color: #f59e0b;
+}
+
+.ai-card .techstack-floating-card-icon {
+  color: #f59e0b;
+}
+
+.ai-badge {
+  background: transparent !important;
+  color: white !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px);
+}
+
+.ai-badge:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: translateX(6px);
+}
+
+/* Grid especial para la card de IA - 2 columnas */
+.ai-card .techstack-floating-badges {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+}
+
+/* Hacer la card de IA más ancha expandiéndose hacia la derecha */
+.ai-card {
+  grid-column: 4 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ai-card .techstack-floating-card-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Evitar que el título de IA se rompa en múltiples líneas */
+.ai-card .techstack-floating-card-title {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: clip;
+  min-width: max-content;
+}
+
+/* Layout vertical para badges de IA - icono arriba, texto abajo */
+.ai-card .techstack-floating-badge {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 0.5rem !important;
+  padding: 0.75rem 0.5rem !important;
+}
+
+.ai-card .tech-icon-medium {
+  margin-bottom: 0.25rem;
+}
+
+.ai-card .tech-name {
+  font-size: 0.65rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Responsive para la card de IA */
+@media (max-width: 768px) {
+  .ai-card .techstack-floating-badges {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Responsive design */
+@media (max-width: 1400px) {
+  .techstack-floating-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+}
+
 @media (max-width: 1200px) {
   .techstack-floating-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -425,13 +503,13 @@
   }
 
   .tech-icon-medium {
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 1.75rem;
+    height: 1.75rem;
   }
 
   .tech-icon-medium svg {
-    width: 1rem !important;
-    height: 1rem !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
   }
 }
 

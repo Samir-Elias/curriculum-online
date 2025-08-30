@@ -116,21 +116,7 @@ const ImageSlider = ({ images = [], isPaused = false }) => {
         )}
       </div>
 
-      {/* Thumbnail navigation */}
-      <div className="slider-thumbnails">
-        {images.map((image, index) => (
-          <button
-            key={index}
-            className={`thumbnail ${index === currentIndex ? "active" : ""}`}
-            onClick={() => goToSlide(index)}
-            aria-label={`Go to image ${index + 1}`}
-          >
-            <img src={image || "/placeholder.svg"} alt={`Thumbnail ${index + 1}`} className="thumbnail-image" />
-          </button>
-        ))}
-      </div>
-
-      {/* Dot indicators */}
+      {/* Dot indicators only */}
       <div className="slider-dots">
         {images.map((_, index) => (
           <button

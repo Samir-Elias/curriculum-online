@@ -6,75 +6,71 @@ import {
   Award,
   Eye,
   ExternalLink,
-  FileText,
   Calendar,
   MapPin,
   Clock,
   CheckCircle,
-  ChevronDown,
-  ChevronUp,
   ChevronLeft,
   ChevronRight,
+  GraduationCap,
+  Users,
+  Target,
+  Star,
+  X
 } from "lucide-react"
 import { Badge } from "./ui/badge"
-import "../styles/components/education-section.css"
+import "../styles/components/education/education-section.css"
 
 const EducationSection = ({ formacionTecnica, isVisible, containerVariants, itemVariants, setSelectedCertificate }) => {
   const [currentEducation, setCurrentEducation] = useState(0)
-  const [isDetailsExpanded, setIsDetailsExpanded] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
 
   // Navigation functions
-  const nextEducation = useCallback(() => {
+  const nextEducation = useCallback((keepModalOpen = false) => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentEducation((prev) => (prev + 1) % formacionTecnica.length)
-    setIsDetailsExpanded(false)
+    if (!keepModalOpen) {
+      setIsModalOpen(false)
+    }
     setTimeout(() => setIsTransitioning(false), 300)
   }, [formacionTecnica.length, isTransitioning])
 
-  const prevEducation = useCallback(() => {
+  const prevEducation = useCallback((keepModalOpen = false) => {
     if (isTransitioning) return
     setIsTransitioning(true)
     setCurrentEducation((prev) => (prev - 1 + formacionTecnica.length) % formacionTecnica.length)
-    setIsDetailsExpanded(false)
+    if (!keepModalOpen) {
+      setIsModalOpen(false)
+    }
     setTimeout(() => setIsTransitioning(false), 300)
   }, [formacionTecnica.length, isTransitioning])
-
-  const toggleDetails = useCallback(() => {
-    setIsDetailsExpanded(!isDetailsExpanded)
-  }, [isDetailsExpanded])
 
   // Keyboard navigation
   useEffect(() => {
     const handleKeyPress = (e) => {
-      if (!isVisible.education) return
-
-      switch (e.key) {
-        case "ArrowLeft":
-          e.preventDefault()
+      if (isModalOpen) {
+        if (e.key === "Escape") {
+          closeModal()
+        }
+      } else {
+        if (e.key === "ArrowLeft") {
           prevEducation()
-          break
-        case "ArrowRight":
-          e.preventDefault()
+        } else if (e.key === "ArrowRight") {
           nextEducation()
-          break
-        case "Enter":
-        case " ":
+        } else if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
-          toggleDetails()
-          break
-        case "Escape":
-          setIsDetailsExpanded(false)
-          break
+          openModal()
+        }
       }
     }
 
     window.addEventListener("keydown", handleKeyPress)
     return () => window.removeEventListener("keydown", handleKeyPress)
-  }, [isVisible.education, prevEducation, nextEducation, toggleDetails])
+  }, [isModalOpen, prevEducation, nextEducation])
 
   // Touch gestures
   const minSwipeDistance = 50
@@ -96,15 +92,53 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
 
     if (isLeftSwipe) {
       nextEducation()
-    }
-    if (isRightSwipe) {
+    } else if (isRightSwipe) {
       prevEducation()
     }
   }
 
+  const openModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
+  // Funciones específicas para navegación desde el modal
+  const nextEducationInModal = () => {
+    nextEducation(true) // Mantener modal abierto
+  }
+
+  const prevEducationInModal = () => {
+    prevEducation(true) // Mantener modal abierto
+  }
+
+  const goToEducation = (index) => {
+    if (index === currentEducation || isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentEducation(index)
+    setIsModalOpen(false)
+    setTimeout(() => setIsTransitioning(false), 300)
+  }
+
   const currentFormacion = formacionTecnica[currentEducation]
 
+  if (!currentFormacion) {
+    return (
+      <section className="education-section">
+        <div className="education-container">
+          <div className="error-state">
+            <h3>Error cargando educación</h3>
+            <p>Current: {currentEducation}</p>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   return (
+    <>
     <motion.section
       id="education"
       className="education-section"
@@ -112,337 +146,358 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
       initial="hidden"
       animate={isVisible.education ? "visible" : "hidden"}
     >
-      <div className="education-container">
-        {/* Header */}
+        {/* Header mejorado */}
         <motion.div className="education-header" variants={itemVariants}>
           <h2 className="education-title">
-            <BookOpen className="education-title-icon" />
-            Formación Técnica Especializada
+            <span className="title-decoration">✦</span>
+            <span className="title-text">
+              <span className="title-accent">F</span>ormación <span className="title-accent">T</span>écnica
+            </span>
+            <span className="title-decoration">✦</span>
           </h2>
           <div className="education-counter">
             <span className="current-education">{currentEducation + 1}</span>
             <span className="separator">/</span>
-            <span>{formacionTecnica.length}</span>
+            <span className="total-education">{formacionTecnica.length}</span>
           </div>
         </motion.div>
 
-        {/* Navigation Controls */}
-        <div className="education-navigation-top">
+        {/* Contenedor principal de educación con navegación lateral */}
+        <div className="education-main-wrapper">
+          {/* Flecha de navegación izquierda */}
           <button 
+            className="nav-button education-nav-lateral education-prev"
             onClick={prevEducation} 
-            className="nav-button" 
-            disabled={formacionTecnica.length <= 1 || isTransitioning}
+            disabled={isTransitioning}
             aria-label="Educación anterior"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft />
           </button>
-          <button 
-            onClick={nextEducation} 
-            className="nav-button" 
-            disabled={formacionTecnica.length <= 1 || isTransitioning}
-            aria-label="Siguiente educación"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-        </div>
 
-        {/* Main Education Card */}
+          {/* Contenedor principal de educación */}
         <motion.div
-          key={currentEducation}
-          className="education-carousel-container"
+            className="education-main-container"
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
-          variants={itemVariants}
-        >
-          <div className="education-card">
-            {/* Header */}
-            <div className="education-card-header">
-              <div className="flex justify-between items-start mb-6">
-                <div className="flex-1 min-w-0">
-                  <h3 className="education-card-title">{currentFormacion.titulo}</h3>
-                  <p className="education-card-institution">{currentFormacion.institucion}</p>
-                </div>
-                <div className="flex gap-3 flex-shrink-0">
-                  {currentFormacion.estado && (
-                    <Badge
-                      className={`education-status-badge ${
-                        currentFormacion.estado.includes("Completado")
-                          ? "completed"
-                          : "in-progress"
-                      }`}
-                    >
-                      {currentFormacion.estado}
-                    </Badge>
-                  )}
-                </div>
-              </div>
-
-              {/* Metadata Grid */}
-              <div className="education-metadata-grid">
-                <div className="metadata-item">
-                  <Clock className="metadata-icon" />
-                  <div>
-                    <div className="metadata-label">DURACIÓN</div>
-                    <div className="metadata-value">{currentFormacion.duracion}</div>
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentEducation}
+                className="education-content-wrapper"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ 
+                  duration: 0.3, 
+                  ease: "easeOut"
+                }}
+              >
+                {/* CONTENEDOR IZQUIERDO - Información de la educación (transparente) */}
+                <div className="education-info-container">
+                  {/* Header de la educación */}
+                  <div className="education-header-info">
+                    <h3 className="education-title-info">
+                      {currentFormacion.titulo.split('').map((char, index) => {
+                        // Resaltar varias MAYÚSCULAS con el color verde de prograMate
+                        const shouldHighlight = char === 'F' || // F de Full-Stack
+                                               char === 'B' || // B de Backend
+                                               char === 'F' || // F de Frontend
+                                               char === 'D' || // D de Desarrollo
+                                               char === 'W' || // W de Web
+                                               char === 'A' || // A de App
+                                               char === 'M' || // M de Mobile
+                                               char === 'J' || // J de Java
+                                               char === 'P' || // P de Python
+                                               char === 'R' || // R de React
+                                               char === 'N' || // N de Node
+                                               char === 'S' || // S de Spring
+                                               char === 'U' || // U de UX/UI
+                                               char === 'I' || // I de Interactivo
+                                               char === 'C' || // C de Certificación
+                                               char === 'T' || // T de Tecnología
+                                               char === 'E' || // E de Especializada
+                                               char === 'G' || // G de Gestión
+                                               char === 'Q' || // Q de Quality
+                                               char === 'V' || // V de Virtual
+                                               char === 'O' || // O de Online
+                                               char === 'L' || // L de Live
+                                               char === 'X' || // X de eXperience
+                                               char === 'Y' || // Y de System
+                                               char === 'Z' || // Z de Zero
+                                               char === 'K' || // K de Stack
+                                               char === 'H' || // H de HTML
+                                               char === 'Q' || // Q de Quality
+                                               char === '-' || // Guiones
+                                               char === '–' || // Guión medio
+                                               char === '—';   // Guión largo
+                        
+                        return shouldHighlight ? (
+                          <span key={index} className="education-title-accent">{char}</span>
+                        ) : (
+                          <span key={index}>{char}</span>
+                        );
+                      })}
+                    </h3>
                   </div>
-                </div>
-                <div className="metadata-item">
-                  <MapPin className="metadata-icon" />
-                  <div>
-                    <div className="metadata-label">MODALIDAD</div>
-                    <div className="metadata-value">{currentFormacion.modalidad}</div>
-                  </div>
-                </div>
-                <div className="metadata-item">
-                  <Calendar className="metadata-icon" />
-                  <div>
-                    <div className="metadata-label">PERÍODO</div>
-                    <div className="metadata-value">{currentFormacion.periodo}</div>
-                  </div>
-                </div>
-              </div>
+                  
+                  {/* Institución */}
+                  <p className="education-institution">{currentFormacion.institucion}</p>
 
-              {/* Description */}
-              <div className="education-description">
-                <p>{currentFormacion.descripcion}</p>
-              </div>
-
-              {/* Competencies Preview */}
-              <div className="education-competencies">
-                <h4 className="education-section-title">
-                  <CheckCircle className="section-icon" />
-                  Competencias desarrolladas ({currentFormacion.competencias.length}):
-                </h4>
-                <div className="competencies-grid">
-                  {currentFormacion.competencias.slice(0, 4).map((competencia, compIndex) => (
-                    <div key={compIndex} className="competency-item">
-                      <div className="competency-bullet"></div>
-                      <span>{competencia}</span>
+                  {/* Información básica de la educación */}
+                  <div className="education-meta">
+                    <div className="meta-item">
+                      <Clock className="meta-icon" />
+                      <span className="meta-text">{currentFormacion.duracion}</span>
                     </div>
-                  ))}
-                </div>
-                {currentFormacion.competencias.length > 4 && (
-                  <p className="more-indicator">
-                    +{currentFormacion.competencias.length - 4} competencias más...
+                    <div className="meta-item">
+                      <MapPin className="meta-icon" />
+                      <span className="meta-text">{currentFormacion.modalidad}</span>
+                    </div>
+                    <div className="meta-item">
+                      <Calendar className="meta-icon" />
+                      <span className="meta-text">{currentFormacion.periodo}</span>
+                    </div>
+              </div>
+
+                  {/* Estado de la educación */}
+                {currentFormacion.estado && (
+                    <div className="education-status">
+                      <CheckCircle className="status-icon" />
+                      <span>{currentFormacion.estado}</span>
+                    </div>
+                  )}
+
+                  {/* Descripción resumida */}
+                  <p className="education-description-summary">
+                    {currentFormacion.descripcion.length > 150 
+                      ? `${currentFormacion.descripcion.substring(0, 150)}...`
+                      : currentFormacion.descripcion
+                    }
                   </p>
+
+                  {/* Botón de detalles mejorado */}
+                  <motion.button
+                    className="details-toggle-button"
+                    onClick={openModal}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <Eye />
+                    <span>Ver Detalles Completos</span>
+                    <div className="keyboard-hint">
+                      <span className="key-indicator">ESPACIO - IN</span>
+                    </div>
+                  </motion.button>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+          {/* CONTENEDOR DERECHO - Card con información expandida (fuera del wrapper) */}
+          <div className="education-card-container">
+            {/* Sección superior - Información destacada */}
+            <div className="education-highlight-section">
+              <GraduationCap className="highlight-icon" />
+              <div>
+                <h4 className="highlight-title">Formación Especializada</h4>
+                <p className="highlight-subtitle">Desarrollo de competencias técnicas avanzadas</p>
+              </div>
+            </div>
+
+            {/* Sección inferior - Competencias y certificaciones */}
+            <div className="education-details-section">
+              <h4 className="section-title">
+                <Target />
+                Competencias Clave
+              </h4>
+              <div className="competencies-preview">
+                {currentFormacion.competencias.slice(0, 3).map((competencia, compIndex) => (
+                  <div key={compIndex} className="competency-preview-item">
+                    <span>{competencia}</span>
+                  </div>
+                ))}
+                {currentFormacion.competencias.length > 3 && (
+                  <div className="more-competencies">
+                    <span>+{currentFormacion.competencias.length - 3} más</span>
+                  </div>
                 )}
               </div>
 
-              {/* Certificates Preview - Simplified */}
-              {currentFormacion.certificaciones && currentFormacion.certificaciones.length > 0 && (
-                <div className="education-certificates">
-                  <h4 className="education-section-title">
-                    <Award className="section-icon" />
-                    Certificaciones ({currentFormacion.certificaciones.length}):
-                  </h4>
-                  <div className="certificates-grid">
-                    {currentFormacion.certificaciones.slice(0, 2).map((cert, certIndex) => (
-                      <div key={certIndex} className="certificate-preview">
-                        {cert.tipo === "imagen" && cert.imagenes && cert.imagenes.length > 0 ? (
-                          <div>
-                            <div className="certificate-image-container">
-                              <img 
-                                src={cert.imagenes[0]} 
-                                alt={`Certificado ${cert.nombre}`}
-                                className="certificate-image"
-                              />
-                            </div>
-                            <h5 className="certificate-title">{cert.nombre}</h5>
-                            <p className="certificate-issuer">{cert.emisor}</p>
-                            <div className="certificate-actions">
-                              <button
-                                onClick={() => setSelectedCertificate(cert)}
-                                className="certificate-action-btn view-btn"
-                              >
-                                <Eye className="w-4 h-4" />
-                                Ver
-                              </button>
-                              {cert.url && (
-                                <a
-                                  href={cert.url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="certificate-action-btn link-btn"
-                                >
-                                  <ExternalLink className="w-4 h-4" />
-                                  Enlace
-                                </a>
-                              )}
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="certificate-text">
-                            <FileText className="certificate-icon" />
-                            <h5 className="certificate-title">{cert.nombre}</h5>
-                            <p className="certificate-issuer">{cert.emisor}</p>
-                            {cert.url && (
-                              <a
-                                href={cert.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="certificate-action-btn link-btn"
-                              >
-                                <ExternalLink className="w-4 h-4" />
-                                Ver Certificado
-                              </a>
-                            )}
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Expand Button */}
-              <div className="education-card-footer">
-                <button
-                  onClick={toggleDetails}
-                  className="expand-button"
-                  disabled={isTransitioning}
-                >
-                  {isDetailsExpanded ? (
-                    <>
-                      <ChevronUp className="w-5 h-5" />
-                      Ocultar Detalles Completos
-                    </>
+              {/* Certificaciones preview */}
+              <div className="certificates-preview-section">
+                <Award className="certificate-icon" />
+                <div className="certificates-info">
+                  <h5 className="certificates-title">Certificaciones</h5>
+                  {currentFormacion.certificaciones && currentFormacion.certificaciones.length > 0 ? (
+                    <div>
+                      <span className="certificates-count">
+                        {currentFormacion.certificaciones.length} certificación{currentFormacion.certificaciones.length > 1 ? 'es' : ''}
+                      </span>
+                      <button
+                        onClick={() => setSelectedCertificate(currentFormacion.certificaciones[0])}
+                        className="view-certificates-btn"
+                      >
+                        <Eye className="w-4 h-4" />
+                        Ver Certificados
+                      </button>
+                    </div>
                   ) : (
-                    <>
-                      <ChevronDown className="w-5 h-5" />
-                      Ver Detalles Completos
-                    </>
-                  )}
-                </button>
+                    <div className="empty-certificates">
+                      <p>Certificaciones en proceso</p>
+                    </div>
+                )}
               </div>
             </div>
+            </div>
           </div>
-        </motion.div>
 
-        {/* Expanded Details - Simplified */}
-        <AnimatePresence>
-          {isDetailsExpanded && (
-            <motion.div
-              className="education-expanded-details"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="education-card">
-                <div className="education-card-content">
-                  <div className="expanded-content-grid">
-                    {/* All Competencies */}
-                    <div className="expanded-section">
-                      <h4 className="education-section-title">
-                        <CheckCircle className="section-icon" />
-                        Todas las Competencias:
-                      </h4>
-                      <div className="competencies-list">
-                        {currentFormacion.competencias.map((competencia, compIndex) => (
-                          <div key={compIndex} className="competency-card">
-                            <div className="competency-bullet-large"></div>
-                            <span>{competencia}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+          {/* Flecha de navegación derecha */}
+          <button
+            className="nav-button education-nav-lateral education-next"
+            onClick={nextEducation}
+            disabled={isTransitioning}
+            aria-label="Siguiente educación"
+          >
+            <ChevronRight />
+          </button>
+        </div>
 
-                    {/* All Certificates - Simplified */}
-                    <div className="expanded-section">
-                      <h4 className="education-section-title">
-                        <Award className="section-icon" />
-                        Todas las Certificaciones:
-                      </h4>
-                      {currentFormacion.certificaciones && currentFormacion.certificaciones.length > 0 ? (
-                        <div className="certificates-list">
-                          {currentFormacion.certificaciones.map((cert, certIndex) => (
-                            <div key={certIndex} className="certificate-card">
-                              {cert.tipo === "imagen" && cert.imagenes && cert.imagenes.length > 0 ? (
-                                <div>
-                                  <div className="certificate-image-container-large">
-                                    <img 
-                                      src={cert.imagenes[0]} 
-                                      alt={`Certificado ${cert.nombre}`}
-                                      className="certificate-image"
-                                    />
-                                  </div>
-                                  <h5 className="certificate-title-large">{cert.nombre}</h5>
-                                  <p className="certificate-issuer-large">{cert.emisor}</p>
-                                  <div className="certificate-actions-large">
-                                    <button
-                                      onClick={() => setSelectedCertificate(cert)}
-                                      className="certificate-action-btn view-btn"
-                                    >
-                                      <Eye className="w-4 h-4" />
-                                      Ver
-                                    </button>
-                                    {cert.url && (
-                                      <a
-                                        href={cert.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="certificate-action-btn link-btn"
-                                      >
-                                        <ExternalLink className="w-4 h-4" />
-                                        Enlace
-                                      </a>
-                                    )}
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="certificate-text-large">
-                                  <FileText className="certificate-icon-large" />
-                                  <h5 className="certificate-title-large">{cert.nombre}</h5>
-                                  <p className="certificate-issuer-large">{cert.emisor}</p>
-                                  {cert.url && (
-                                    <a
-                                      href={cert.url}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className="certificate-action-btn link-btn"
-                                    >
-                                      <ExternalLink className="w-4 h-4" />
-                                      Ver Certificado
-                                    </a>
-                                  )}
-                                </div>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      ) : (
-                        <div className="empty-certificates">
-                          <Award className="empty-icon" />
-                          <h3>Certificaciones en proceso</h3>
-                          <p>Las certificaciones estarán disponibles próximamente</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Progress Indicators */}
-        <div className="education-progress-dots">
+        {/* Indicadores de educación mejorados */}
+        <div className="education-indicators">
           {formacionTecnica.map((_, index) => (
-            <button
+            <motion.button
               key={index}
-              onClick={() => {
-                setCurrentEducation(index)
-                setIsDetailsExpanded(false)
-              }}
-              className={`progress-dot ${index === currentEducation ? "active" : ""}`}
+              className={`indicator ${index === currentEducation ? "active" : ""}`}
+              onClick={() => goToEducation(index)}
               disabled={isTransitioning}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
               aria-label={`Ir a educación ${index + 1}`}
             />
           ))}
         </div>
-      </div>
-    </motion.section>
+      </motion.section>
+
+      {/* Modal de Detalles de Educación - Fullscreen Sticky */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div
+            className="education-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            <motion.div
+              className="education-modal"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+            >
+              {/* Header del modal */}
+              <div className="modal-header">
+                <div className="modal-title-section">
+                  <h2 className="modal-title">{currentFormacion.titulo}</h2>
+                  <p className="modal-subtitle">{currentFormacion.institucion}</p>
+                </div>
+                <div className="modal-actions">
+                  <button
+                    className="modal-nav-button"
+                    onClick={prevEducationInModal}
+                    disabled={currentEducation === 0}
+                  >
+                    <ChevronLeft />
+                  </button>
+                  <button
+                    className="modal-nav-button"
+                    onClick={nextEducationInModal}
+                    disabled={currentEducation === formacionTecnica.length - 1}
+                  >
+                    <ChevronRight />
+                  </button>
+                  <button className="modal-close-button" onClick={closeModal}>
+                    <X />
+                  </button>
+                </div>
+              </div>
+
+              {/* Contenido del modal */}
+              <div className="modal-content">
+                {/* Información completa */}
+                <div className="modal-info-section">
+                  <div className="modal-metadata">
+              <div className="metadata-item">
+                <Clock className="metadata-icon" />
+                <div>
+                  <div className="metadata-label">DURACIÓN</div>
+                  <div className="metadata-value">{currentFormacion.duracion}</div>
+                </div>
+              </div>
+              <div className="metadata-item">
+                <MapPin className="metadata-icon" />
+                <div>
+                  <div className="metadata-label">MODALIDAD</div>
+                  <div className="metadata-value">{currentFormacion.modalidad}</div>
+                </div>
+              </div>
+              <div className="metadata-item">
+                <Calendar className="metadata-icon" />
+                <div>
+                  <div className="metadata-label">PERÍODO</div>
+                  <div className="metadata-value">{currentFormacion.periodo}</div>
+                </div>
+              </div>
+            </div>
+
+                  <div className="modal-description">
+                    <h3>Descripción Completa</h3>
+              <p>{currentFormacion.descripcion}</p>
+            </div>
+
+                  <div className="modal-competencies">
+                    <h3>Competencias Desarrolladas</h3>
+              <div className="competencies-grid">
+                {currentFormacion.competencias.map((competencia, compIndex) => (
+                  <div key={compIndex} className="competency-item">
+                    <div className="competency-bullet"></div>
+                    <span>{competencia}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+                  {currentFormacion.certificaciones && currentFormacion.certificaciones.length > 0 && (
+                    <div className="modal-certificates">
+                      <h3>Certificaciones Disponibles</h3>
+                      <div className="certificates-grid">
+                        {currentFormacion.certificaciones.map((cert, certIndex) => (
+                          <div key={certIndex} className="certificate-item">
+                            <Award className="certificate-icon" />
+                            <div className="certificate-info">
+                              <h4>{cert.nombre}</h4>
+                              <p>{cert.descripcion}</p>
+                  </div>
+                  <button
+                              onClick={() => setSelectedCertificate(cert)}
+                              className="view-certificate-btn"
+                  >
+                    <Eye className="w-4 h-4" />
+                              Ver
+                  </button>
+                </div>
+                        ))}
+                      </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   )
 }
 

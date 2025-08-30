@@ -132,7 +132,7 @@ const TransitionManager = ({ children, isLoading, onTransitionComplete }) => {
         {children}
       </motion.div>
 
-      <style jsx>{`
+      <style>{`
         .transition-manager {
           position: relative;
           width: 100%;
