@@ -1,0 +1,226 @@
+/* ==========================================================================
+   OBJECTIVE PROFESSIONAL CARDS - CENTRADAS EN TODOS LOS DISPOSITIVOS
+   Archivo: src/styles/components/objective/objective-centered.css
+   ========================================================================== */
+
+/* ==========================================================================
+   CENTRADO UNIVERSAL PARA TABLET Y MÓVIL
+   ========================================================================== */
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 2rem 1rem !important;
+  }
+
+  .objective-container {
+    width: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-main-card {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-sidebar {
+    width: 100% !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  .objective-sidebar-card {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* Móvil (hasta 767px) */
+@media (max-width: 767px) {
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .objective-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .objective-header {
+    width: 100% !important;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-main-card {
+    width: 100% !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+
+  .objective-sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .objective-sidebar-card {
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL PEQUEÑO (hasta 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .objective-section {
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  .objective-container {
+    padding: 0 0.5rem !important;
+  }
+
+  .objective-content-grid {
+    gap: 0.75rem !important;
+  }
+
+  .objective-sidebar {
+    gap: 0.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL MUY PEQUEÑO (hasta 360px)
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .objective-section {
+    padding: 0.5rem 0.25rem !important;
+  }
+
+  .objective-container {
+    padding: 0 0.25rem !important;
+  }
+
+  .objective-content-grid {
+    gap: 0.5rem !important;
+  }
+
+  .objective-sidebar {
+    gap: 0.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   ASEGURAR CENTRADO ABSOLUTO
+   ========================================================================== */
+
+/* Aplicar centrado a todos los breakpoints */
+.objective-section {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.objective-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.objective-content-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  width: 100% !important;
+}
+
+/* Centrar todas las cards */
+.objective-main-card,
+.objective-sidebar-card {
+  align-self: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES PARA MEJOR CENTRADO
+   ========================================================================== */
+
+/* Eliminar márgenes innecesarios */
+.objective-section,
+.objective-container,
+.objective-content-grid {
+  margin: 0 !important;
+}
+
+/* Asegurar que el contenido no se desborde */
+.objective-main-card,
+.objective-sidebar-card {
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+/* Centrado vertical perfecto */
+.objective-section {
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Responsive centering */
+@media (max-width: 1023px) {
+  .objective-section {
+    padding: 1rem !important;
+  }
+  
+  .objective-container {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}

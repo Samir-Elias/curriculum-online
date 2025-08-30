@@ -7,7 +7,7 @@ import EducationSection from './EducationSection';
 import ObjectiveSection from './ObjectiveSection';
 import Footer from './Footer';
 import LoadingScreen from './LoadingScreen';
-import BackgroundAnimation from './BackgroundAnimation';
+import BackgroundIcons from './BackgroundAnimation';
 import CertificateModal from './CertificateModal';
 import { profileData } from '../data/profileData';
 import { useModal } from '../context/ModalContext';
@@ -145,27 +145,9 @@ const Resume = ({ onAppLoadingComplete }) => {
       {/* LoadingScreen con AnimatePresence para transición suave */}
       <LoadingScreen onLoadingComplete={handleLoadingComplete} showLoading={showLoading} />
       
-      {/* Background Animation con transición suave */}
-      <motion.div
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100vw',
-          height: '100vh',
-          zIndex: 0,
-          opacity: showLoading ? 0 : 1,
-          transition: 'opacity 1s ease-in-out'
-        }}
-      >
-        <BackgroundAnimation isMobile={isMobile} isPaused={isModalOpen} />
-      </motion.div>
-      
       {/* Contenido principal con transición suave */}
       <motion.div 
-        className="relative min-h-screen"
+        className="relative min-h-screen main-content-wrapper"
         style={{
           opacity: showLoading ? 0 : 1,
           filter: showLoading ? 'blur(20px)' : 'blur(0px)',
@@ -173,20 +155,24 @@ const Resume = ({ onAppLoadingComplete }) => {
           transition: 'all 1s ease-in-out',
           pointerEvents: showLoading ? 'none' : 'auto',
           minHeight: '100vh',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          width: '100vw',
-          height: '100vh',
-          overflowY: 'auto'
+          position: 'relative',
+          width: '100%',
+          overflowY: 'auto',
+          background: '#0f172a',
+          backgroundAttachment: 'scroll',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          display: 'flex',
+          flexDirection: 'column'
         }}
       >
+        {/* Background Icons como contenedor que envuelve todo */}
+        <BackgroundIcons isMobile={isMobile} />
 
       
         {/* Contenido principal con z-index para estar sobre el background */}
-        <div className="relative z-1">
+        <div className="relative z-1" style={{ flex: '0 0 auto' }}>
           {/* Hero Section con título del TechStack */}
           <HeroSection 
             personalInfo={profileData.personalInfo}
@@ -241,19 +227,18 @@ const Resume = ({ onAppLoadingComplete }) => {
               itemVariants={itemVariants}
             />
           </div>
-
-          {/* Espaciado adicional antes del footer */}
-          <div className="h-8 sm:h-12"></div>
-
-          {/* Footer */}
-          <Footer personalInfo={profileData.personalInfo} />
-
-          {/* Modal para certificaciones */}
-          <CertificateModal 
-            selectedCertificate={selectedCertificate}
-            setSelectedCertificate={setSelectedCertificate}
-          />
         </div>
+
+        {/* Footer - Ahora ocupa todo el espacio restante */}
+        <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
+          <Footer personalInfo={profileData.personalInfo} />
+        </div>
+
+        {/* Modal para certificaciones */}
+        <CertificateModal 
+          selectedCertificate={selectedCertificate}
+          setSelectedCertificate={setSelectedCertificate}
+        />
       </motion.div>
     </>
   );

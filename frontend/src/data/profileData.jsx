@@ -28,7 +28,7 @@ export const profileData = {
       descripcion: "Portfolio profesional desarrollado con metodología Human-AI Collaboration usando React y tecnologías modernas. Diseño responsive con animaciones fluidas usando Framer Motion, estilizado con Tailwind CSS y optimizado para SEO. Incluye secciones interactivas, navegación suave y experiencia de usuario premium. Desarrollado con asistencia de IA para maximizar eficiencia y calidad del código.",
       tecnologias: ["React", "Tailwind CSS", "Framer Motion", "JavaScript", "CSS3", "HTML5", "Netlify", "Git", "Responsive Design", "SEO", "AI-Assisted Development", "Prompt Engineering"],
       imagenes: [
-        "/images/Cv_1erFoto.png",
+        "/images/PortfolioReact.png",
         "/images/Cv_2daFoto.png"
       ],
       demoUrl: "https://curriculum-online2.netlify.app",

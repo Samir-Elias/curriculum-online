@@ -25,16 +25,26 @@ import {
   N8NIcon
 } from '../icons/TechIcons'
 
-const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
+const BackgroundIcons = ({ isMobile = false }) => {
   const containerRef = useRef(null)
   const [isMobileState, setIsMobileState] = useState(false)
+  const [isLowPerformance, setIsLowPerformance] = useState(false)
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobileState(window.innerWidth <= 768);
     };
 
+    const checkPerformance = () => {
+      // Detectar dispositivos con menor rendimiento
+      const isLowEnd = window.navigator.hardwareConcurrency <= 4 || 
+                      window.innerWidth <= 480 ||
+                      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      setIsLowPerformance(isLowEnd);
+    };
+
     checkScreenSize();
+    checkPerformance();
     window.addEventListener('resize', checkScreenSize);
 
     return () => window.removeEventListener('resize', checkScreenSize);
@@ -56,107 +66,191 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
     TypeScriptIcon, CursorIcon, N8NIcon
   ]
 
+  // Array de iconos de IA (más grandes)
+  const aiIcons = [
+    OpenAIIcon, ClaudeIcon, GeminiIcon, GitHubCopilotIcon, CursorIcon
+  ]
+
   // Generar iconos fijos - Optimizado para rendimiento
   const floatingIcons = useMemo(() => {
     const isMobileView = isMobile || isMobileState;
     
-    if (isMobileView) {
-      // Configuración móvil - menos iconos para mejor rendimiento
+    if (isLowPerformance) {
+      // Configuración para dispositivos de bajo rendimiento - optimizada para móviles
       return [
-        { id: 0, Icon: ReactIcon, x: 2, y: 15, size: 60, speed: 30 },
-        { id: 1, Icon: JavaScriptIcon, x: 5, y: 35, size: 55, speed: 35 },
-        { id: 2, Icon: JavaIcon, x: 1, y: 55, size: 62, speed: 32 },
-        { id: 3, Icon: NodeIcon, x: 95, y: 20, size: 65, speed: 38 },
-        { id: 4, Icon: CSS3Icon, x: 98, y: 40, size: 52, speed: 40 },
-        { id: 5, Icon: SpringIcon, x: 94, y: 60, size: 64, speed: 36 }
+        // Lado izquierdo - Iconos de IA más grandes
+        { id: 0, Icon: OpenAIIcon, x: 1, y: 10, size: 140, speed: 0 },
+        { id: 1, Icon: ClaudeIcon, x: 1, y: 35, size: 130, speed: 0 },
+        { id: 2, Icon: GeminiIcon, x: 1, y: 60, size: 135, speed: 0 },
+        { id: 3, Icon: GitHubCopilotIcon, x: 1, y: 85, size: 125, speed: 0 },
+        
+        // Lado derecho - Iconos de tech regulares
+        { id: 4, Icon: ReactIcon, x: 95, y: 15, size: 70, speed: 0 },
+        { id: 5, Icon: JavaScriptIcon, x: 95, y: 40, size: 65, speed: 0 },
+        { id: 6, Icon: JavaIcon, x: 95, y: 65, size: 72, speed: 0 },
+        { id: 7, Icon: NodeIcon, x: 95, y: 90, size: 68, speed: 0 },
+        
+        // Esquinas superiores
+        { id: 8, Icon: CSS3Icon, x: 15, y: 2, size: 60, speed: 0 },
+        { id: 9, Icon: SpringIcon, x: 85, y: 2, size: 64, speed: 0 }
+      ];
+    } else if (isMobileView) {
+      // Configuración móvil optimizada - iconos más grandes y mejor distribuidos
+      return [
+        // Lado izquierdo - Iconos de IA más grandes y espaciados
+        { id: 0, Icon: OpenAIIcon, x: 1, y: 8, size: 130, speed: 0 },
+        { id: 1, Icon: ClaudeIcon, x: 1, y: 28, size: 125, speed: 0 },
+        { id: 2, Icon: GeminiIcon, x: 1, y: 48, size: 135, speed: 0 },
+        { id: 3, Icon: GitHubCopilotIcon, x: 1, y: 68, size: 120, speed: 0 },
+        { id: 4, Icon: CursorIcon, x: 1, y: 88, size: 115, speed: 0 },
+        
+        // Lado derecho - Iconos de IA más grandes y espaciados
+        { id: 5, Icon: OpenAIIcon, x: 95, y: 8, size: 130, speed: 0 },
+        { id: 6, Icon: ClaudeIcon, x: 95, y: 28, size: 125, speed: 0 },
+        { id: 7, Icon: GeminiIcon, x: 95, y: 48, size: 135, speed: 0 },
+        { id: 8, Icon: GitHubCopilotIcon, x: 95, y: 68, size: 120, speed: 0 },
+        { id: 9, Icon: CursorIcon, x: 95, y: 88, size: 115, speed: 0 },
+        
+        // Esquinas superiores - Iconos de tech regulares
+        { id: 10, Icon: ReactIcon, x: 8, y: 1, size: 70, speed: 0 },
+        { id: 11, Icon: JavaScriptIcon, x: 25, y: 1, size: 65, speed: 0 },
+        { id: 12, Icon: JavaIcon, x: 42, y: 1, size: 72, speed: 0 },
+        { id: 13, Icon: NodeIcon, x: 59, y: 1, size: 68, speed: 0 },
+        { id: 14, Icon: CSS3Icon, x: 76, y: 1, size: 60, speed: 0 },
+        
+        // Esquinas inferiores - Iconos de tech regulares
+        { id: 15, Icon: SpringIcon, x: 8, y: 95, size: 70, speed: 0 },
+        { id: 16, Icon: FirebaseIcon, x: 25, y: 95, size: 65, speed: 0 },
+        { id: 17, Icon: PythonIcon, x: 42, y: 95, size: 72, speed: 0 },
+        { id: 18, Icon: TypeScriptIcon, x: 59, y: 95, size: 68, speed: 0 },
+        { id: 19, Icon: ViteIcon, x: 76, y: 95, size: 60, speed: 0 }
       ];
     } else {
-      // Configuración desktop - solo iconos originales de tecnologías
+      // Configuración desktop - Muchos iconos estáticos en bordes exteriores
       return [
-        { id: 0, Icon: ReactIcon, x: 2, y: 10, size: 90, speed: 40 },
-        { id: 1, Icon: JavaScriptIcon, x: 4, y: 30, size: 85, speed: 45 },
-        { id: 2, Icon: JavaIcon, x: 1, y: 50, size: 92, speed: 42 },
-        { id: 3, Icon: MongoIcon, x: 3, y: 70, size: 88, speed: 44 },
-        { id: 4, Icon: NodeIcon, x: 96, y: 15, size: 95, speed: 48 },
-        { id: 5, Icon: CSS3Icon, x: 98, y: 35, size: 82, speed: 50 },
-        { id: 6, Icon: SpringIcon, x: 95, y: 55, size: 94, speed: 46 },
-        { id: 7, Icon: FirebaseIcon, x: 97, y: 75, size: 86, speed: 49 },
-        { id: 8, Icon: OpenAIIcon, x: 85, y: 85, size: 78, speed: 43 },
-        { id: 9, Icon: ClaudeIcon, x: 15, y: 85, size: 76, speed: 47 },
-        { id: 10, Icon: GeminiIcon, x: 75, y: 25, size: 80, speed: 41 },
-        { id: 11, Icon: GitHubCopilotIcon, x: 25, y: 25, size: 74, speed: 39 },
-        { id: 12, Icon: TypeScriptIcon, x: 45, y: 65, size: 72, speed: 51 },
-        { id: 13, Icon: ViteIcon, x: 55, y: 45, size: 70, speed: 53 }
+        // Lado izquierdo - Columna 1 (Iconos de IA más grandes)
+        { id: 0, Icon: OpenAIIcon, x: 2, y: 5, size: 140, speed: 0 },
+        { id: 1, Icon: ClaudeIcon, x: 2, y: 20, size: 130, speed: 0 },
+        { id: 2, Icon: GeminiIcon, x: 2, y: 35, size: 135, speed: 0 },
+        { id: 3, Icon: GitHubCopilotIcon, x: 2, y: 50, size: 125, speed: 0 },
+        { id: 4, Icon: CursorIcon, x: 2, y: 65, size: 120, speed: 0 },
+        { id: 5, Icon: ReactIcon, x: 2, y: 80, size: 85, speed: 0 },
+        { id: 6, Icon: JavaScriptIcon, x: 2, y: 95, size: 80, speed: 0 },
+        
+        // Lado izquierdo - Columna 2
+        { id: 10, Icon: GeminiIcon, x: 8, y: 8, size: 82, speed: 0 },
+        { id: 11, Icon: GitHubCopilotIcon, x: 8, y: 18, size: 78, speed: 0 },
+        { id: 12, Icon: TypeScriptIcon, x: 8, y: 28, size: 80, speed: 0 },
+        { id: 13, Icon: ViteIcon, x: 8, y: 38, size: 76, speed: 0 },
+        { id: 14, Icon: HTML5Icon, x: 8, y: 48, size: 84, speed: 0 },
+        { id: 15, Icon: TailwindIcon, x: 8, y: 58, size: 86, speed: 0 },
+        { id: 16, Icon: PythonIcon, x: 8, y: 68, size: 88, speed: 0 },
+        { id: 17, Icon: FastAPIIcon, x: 8, y: 78, size: 82, speed: 0 },
+        { id: 18, Icon: MySQLIcon, x: 8, y: 88, size: 80, speed: 0 },
+        { id: 19, Icon: AndroidIcon, x: 8, y: 98, size: 84, speed: 0 },
+        
+        // Lado derecho - Columna 1 (Iconos de IA más grandes)
+        { id: 20, Icon: OpenAIIcon, x: 92, y: 5, size: 140, speed: 0 },
+        { id: 21, Icon: ClaudeIcon, x: 92, y: 20, size: 130, speed: 0 },
+        { id: 22, Icon: GeminiIcon, x: 92, y: 35, size: 135, speed: 0 },
+        { id: 23, Icon: GitHubCopilotIcon, x: 92, y: 50, size: 125, speed: 0 },
+        { id: 24, Icon: CursorIcon, x: 92, y: 65, size: 120, speed: 0 },
+        { id: 25, Icon: BootstrapIcon, x: 92, y: 80, size: 86, speed: 0 },
+        { id: 26, Icon: PythonIcon, x: 92, y: 95, size: 84, speed: 0 },
+        
+        // Lado derecho - Columna 2
+        { id: 30, Icon: JavaScriptIcon, x: 98, y: 8, size: 82, speed: 0 },
+        { id: 31, Icon: JavaIcon, x: 98, y: 18, size: 78, speed: 0 },
+        { id: 32, Icon: NodeIcon, x: 98, y: 28, size: 80, speed: 0 },
+        { id: 33, Icon: CSS3Icon, x: 98, y: 38, size: 76, speed: 0 },
+        { id: 34, Icon: SpringIcon, x: 98, y: 48, size: 84, speed: 0 },
+        
+        // Esquinas superiores (Iconos de IA más grandes)
+        { id: 35, Icon: OpenAIIcon, x: 5, y: 2, size: 110, speed: 0 },
+        { id: 36, Icon: ClaudeIcon, x: 20, y: 2, size: 105, speed: 0 },
+        { id: 37, Icon: GeminiIcon, x: 35, y: 2, size: 115, speed: 0 },
+        { id: 38, Icon: GitHubCopilotIcon, x: 50, y: 2, size: 100, speed: 0 },
+        { id: 39, Icon: CursorIcon, x: 65, y: 2, size: 95, speed: 0 },
+        { id: 40, Icon: ReactIcon, x: 80, y: 2, size: 70, speed: 0 },
+        { id: 41, Icon: JavaScriptIcon, x: 95, y: 2, size: 68, speed: 0 },
+        
+        // Esquinas inferiores (Iconos de IA más grandes)
+        { id: 44, Icon: OpenAIIcon, x: 5, y: 98, size: 110, speed: 0 },
+        { id: 45, Icon: ClaudeIcon, x: 20, y: 98, size: 105, speed: 0 },
+        { id: 46, Icon: GeminiIcon, x: 35, y: 98, size: 115, speed: 0 },
+        { id: 47, Icon: GitHubCopilotIcon, x: 50, y: 98, size: 100, speed: 0 },
+        { id: 48, Icon: CursorIcon, x: 65, y: 98, size: 95, speed: 0 },
+        { id: 49, Icon: TypeScriptIcon, x: 80, y: 98, size: 72, speed: 0 },
+        { id: 50, Icon: ViteIcon, x: 95, y: 98, size: 74, speed: 0 },
+        
+        // Distribución adicional en bordes (Iconos de IA más grandes)
+        { id: 53, Icon: OpenAIIcon, x: 95, y: 12, size: 120, speed: 0 },
+        { id: 54, Icon: ClaudeIcon, x: 95, y: 27, size: 115, speed: 0 },
+        { id: 55, Icon: GeminiIcon, x: 95, y: 42, size: 125, speed: 0 },
+        { id: 56, Icon: GitHubCopilotIcon, x: 95, y: 57, size: 110, speed: 0 },
+        { id: 57, Icon: CursorIcon, x: 95, y: 72, size: 105, speed: 0 },
+        { id: 58, Icon: BootstrapIcon, x: 95, y: 87, size: 72, speed: 0 },
+        { id: 59, Icon: PythonIcon, x: 95, y: 95, size: 70, speed: 0 }
       ];
     }
-  }, [isMobile, isMobileState])
+  }, [isMobile, isMobileState, isLowPerformance])
 
   return (
     <div 
       ref={containerRef}
-      className="background-animation-container"
+      className="background-icons-container"
       style={{
-        position: 'fixed',
+        position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
         bottom: 0,
-        width: '100vw',
-        height: '100vh',
+        width: '100%',
+        height: '100%',
         zIndex: -1,
         pointerEvents: 'none',
         overflow: 'hidden',
-        transform: 'translateZ(0)'
+        background: '#0f172a',
+        backgroundAttachment: 'scroll',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat'
       }}
     >
-      {/* Fondo con gradiente */}
-      <div 
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #0f172a 100%)',
-          zIndex: 0
-        }}
-      />
-
-      {/* Iconos de tecnologías flotantes */}
+      {/* Iconos de tecnologías estáticos - Solo en bordes exteriores */}
       <div 
         className="absolute inset-0 pointer-events-none" 
         style={{ 
-          zIndex: 1,
-          filter: isPaused ? 'blur(8px)' : 'none',
-          transition: 'filter 0.3s ease'
+          zIndex: 1
         }}
       >
         {floatingIcons.map((icon) => (
           <div
             key={`bg-icon-${icon.id}-${icon.x}-${icon.y}`}
-            className="floating-tech-icon"
+            className="static-tech-icon"
             style={{
               position: 'absolute',
               left: `${icon.x}%`,
               top: `${icon.y}%`,
               width: `${icon.size}px`,
-              height: `${icon.size}px`,
-              animation: `float ${icon.speed}s infinite ease-in-out`,
-              '--rotation-speed': `${icon.speed}s`
+              height: `${icon.size}px`
             }}
           >
-            <div style={{ 
-              width: `${icon.size}px`, 
-              height: `${icon.size}px`,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              transform: `scale(${icon.size / 25})`,
-              opacity: icon.Icon === NodeIcon ? 1.0 : 0.6,
-              filter: icon.Icon === NodeIcon ? 'brightness(3.0) contrast(1.5) drop-shadow(0 0 20px rgba(16, 185, 129, 1.0)) hue-rotate(0deg) saturate(2.0)' : 'none',
-              color: icon.Icon === NodeIcon ? '#10b981' : 'inherit',
-              animation: `rotate ${icon.speed}s linear infinite`
-            }}>
+            <div 
+              className="icon-static-container"
+              style={{ 
+                width: `${icon.size}px`, 
+                height: `${icon.size}px`,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transform: `scale(${icon.size / 25})`,
+                opacity: icon.Icon === NodeIcon ? 1.0 : 0.4,
+                filter: icon.Icon === NodeIcon ? 'brightness(2.0) contrast(1.2) drop-shadow(0 0 15px rgba(16, 185, 129, 0.8))' : 'none',
+                color: icon.Icon === NodeIcon ? '#10b981' : 'inherit',
+                transformOrigin: 'center center'
+              }}
+            >
               {React.createElement(icon.Icon)}
             </div>
           </div>
@@ -164,34 +258,33 @@ const BackgroundAnimation = ({ isMobile = false, isPaused = false }) => {
       </div>
 
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotate(0deg); }
-          50% { transform: translateY(-5px) rotate(90deg); }
-        }
-        
-        @keyframes rotate {
-          from { transform: scale(${floatingIcons[0]?.size / 25}) rotate(0deg); }
-          to { transform: scale(${floatingIcons[0]?.size / 25}) rotate(360deg); }
-        }
-        
-        .floating-tech-icon {
-          transition: all 0.5s ease;
+        .static-tech-icon {
           z-index: -1;
           pointer-events: none;
           will-change: transform;
+          backface-visibility: hidden;
+          perspective: 1000px;
+          transform: translateZ(0);
         }
         
-        .floating-tech-icon:hover {
-          transform: scale(1.05);
-          opacity: 0.8 !important;
+        .icon-static-container {
+          will-change: transform;
+          backface-visibility: hidden;
+          transform-style: preserve-3d;
         }
         
-        .background-animation-container {
+        .static-tech-icon:hover .icon-static-container {
+          opacity: 0.6 !important;
+        }
+        
+        .background-icons-container {
           z-index: -2;
+          transform: translateZ(0);
+          backface-visibility: hidden;
         }
       `}</style>
     </div>
   )
 }
 
-export default BackgroundAnimation
+export default BackgroundIcons

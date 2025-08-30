@@ -15,3 +15,6 @@
 @import './hero-projects.css';
 @import './hero-floating-texts.css';
 @import './hero-responsive.css';
+@import './hero-actions-fix.css';
+@import './hero-mobile-only.css';
+@import './mobile-view.css';

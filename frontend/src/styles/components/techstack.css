@@ -879,3 +879,311 @@
 .techstack-floating-badge.no-transition:hover {
   opacity: 1 !important;
 }
+
+/* ============================================================================
+   EXCEPCIÓN ESPECIAL PARA CARD DE IA - SIMPLIFICACIÓN DE TÍTULOS LARGOS
+   ============================================================================ */
+
+/* Card de IA con títulos simplificados */
+.ai-card .techstack-floating-badge {
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  gap: 0.375rem !important;
+  padding: 0.625rem 0.375rem !important;
+  min-height: 2.75rem !important;
+  max-height: 3rem !important;
+  overflow: hidden !important;
+}
+
+.ai-card .tech-icon-medium {
+  margin-bottom: 0.125rem !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  min-width: 1.25rem !important;
+  max-width: 1.25rem !important;
+  flex-shrink: 0 !important;
+}
+
+.ai-card .tech-icon-medium svg {
+  width: 1rem !important;
+  height: 1rem !important;
+}
+
+.ai-card .tech-name {
+  font-size: 0.6rem !important;
+  text-align: center !important;
+  line-height: 1.1 !important;
+  max-width: 100% !important;
+  max-height: 1.5rem !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.025em !important;
+}
+
+/* Simplificación específica de títulos largos de IA */
+.ai-card .tech-name[data-tech="Claude"] {
+  content: "Claude" !important;
+}
+
+.ai-card .tech-name[data-tech="GitHub Copilot"] {
+  content: "Copilot" !important;
+}
+
+.ai-card .tech-name[data-tech="OpenAI"] {
+  content: "OpenAI" !important;
+}
+
+.ai-card .tech-name[data-tech="Gemini"] {
+  content: "Gemini" !important;
+}
+
+.ai-card .tech-name[data-tech="Perplexity"] {
+  content: "Perplexity" !important;
+}
+
+.ai-card .tech-name[data-tech="Cursor"] {
+  content: "Cursor" !important;
+}
+
+/* Grid optimizado para IA */
+.ai-card .techstack-floating-badges {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 0.375rem !important;
+  width: 100% !important;
+  overflow: hidden !important;
+  padding: 0.5rem !important;
+}
+
+/* Responsive para la card de IA */
+@media (max-width: 768px) {
+  .ai-card .techstack-floating-badges {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+  
+  .ai-card .techstack-floating-badge {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: left !important;
+    min-height: 2.25rem !important;
+    max-height: 2.5rem !important;
+    padding: 0.5rem 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  .ai-card .tech-icon-medium {
+    margin-bottom: 0 !important;
+    margin-right: 0.375rem !important;
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    min-width: 1.5rem !important;
+    max-width: 1.5rem !important;
+  }
+  
+  .ai-card .tech-icon-medium svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+  
+  .ai-card .tech-name {
+    text-align: left !important;
+    max-width: calc(100% - 2rem) !important;
+    font-size: 0.65rem !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-card .techstack-floating-badges {
+    grid-template-columns: 1fr !important;
+    gap: 0.375rem !important;
+  }
+  
+  .ai-card .techstack-floating-badge {
+    min-height: 2rem !important;
+    max-height: 2.25rem !important;
+    padding: 0.375rem 0.625rem !important;
+  }
+  
+  .ai-card .tech-icon-medium {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    min-width: 1.25rem !important;
+    max-width: 1.25rem !important;
+  }
+  
+  .ai-card .tech-icon-medium svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+  
+  .ai-card .tech-name {
+    font-size: 0.6rem !important;
+    max-width: calc(100% - 1.75rem) !important;
+  }
+}
+
+/* Optimización para pantallas muy pequeñas */
+@media (max-width: 360px) {
+  .ai-card .techstack-floating-badges {
+    gap: 0.25rem !important;
+  }
+  
+  .ai-card .techstack-floating-badge {
+    padding: 0.25rem 0.5rem !important;
+    min-height: 1.75rem !important;
+    max-height: 2rem !important;
+  }
+  
+  .ai-card .tech-icon-medium {
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem !important;
+    max-width: 1rem !important;
+  }
+  
+  .ai-card .tech-icon-medium svg {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+  
+  .ai-card .tech-name {
+    font-size: 0.55rem !important;
+    max-width: calc(100% - 1.5rem) !important;
+  }
+}
+
+/* ============================================================================
+   MEJORAS PARA MÓVIL - SCROLL VERTICAL Y SWIPE GESTURES
+   ============================================================================ */
+
+/* Contenido scrollable en móvil */
+.mobile-scrollable {
+  max-height: 400px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
+}
+
+.mobile-scrollable::-webkit-scrollbar {
+  width: 4px !important;
+}
+
+.mobile-scrollable::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.mobile-scrollable::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border-radius: 2px !important;
+}
+
+.mobile-scrollable::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Indicador de scroll vertical */
+.scroll-hint-indicator {
+  position: absolute !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.25rem !important;
+  padding: 0.375rem 0.5rem !important;
+  background: rgba(16, 185, 129, 0.2) !important;
+  border: 1px solid rgba(16, 185, 129, 0.3) !important;
+  border-radius: 12px !important;
+  color: #10b981 !important;
+  font-size: 0.625rem !important;
+  font-weight: 500 !important;
+  z-index: 10 !important;
+  backdrop-filter: blur(10px) !important;
+  animation: scrollHint 2s ease-in-out infinite !important;
+  pointer-events: none !important;
+}
+
+.scroll-hint-icon {
+  width: 0.75rem !important;
+  height: 0.75rem !important;
+  animation: scrollHintIcon 2s ease-in-out infinite !important;
+}
+
+@keyframes scrollHint {
+  0%, 100% {
+    opacity: 0.7;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes scrollHintIcon {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+}
+
+/* Ajustes adicionales para móvil */
+@media (max-width: 768px) {
+  .techstack-floating-card-content {
+    padding: 1rem !important;
+    position: relative !important;
+  }
+
+  .techstack-floating-badges {
+    gap: 0.5rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  /* Ajustar altura del contenedor del carrusel */
+  .carousel-container {
+    height: 500px !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Mejorar el espaciado entre elementos */
+  .techstack-floating-card-header {
+    padding: 1rem 1rem 0.5rem 1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .techstack-floating-card-title {
+    font-size: 1.125rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-container {
+    height: 450px !important;
+  }
+
+  .mobile-scrollable {
+    max-height: 350px !important;
+  }
+
+  .scroll-hint-indicator {
+    font-size: 0.6rem !important;
+    padding: 0.25rem 0.375rem !important;
+  }
+
+  .scroll-hint-icon {
+    width: 0.625rem !important;
+    height: 0.625rem !important;
+  }
+}

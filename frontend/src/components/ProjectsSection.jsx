@@ -237,7 +237,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
   return (
     <>
       <section className="projects-section" id="proyectos">
-        {/* Header mejorado */}
+        {/* Header con título */}
         <motion.div
           className="projects-header"
           initial={{ opacity: 0 }}
@@ -258,7 +258,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
           </div>
         </motion.div>
 
-        {/* Contenedor principal del proyecto con navegación lateral */}
+        {/* Contenedor principal con nueva estructura */}
         <div className="project-main-wrapper">
           {/* Flecha de navegación izquierda */}
           <button
@@ -289,7 +289,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                   ease: "easeOut"
                 }}
               >
-                {/* CONTENEDOR IZQUIERDO - Información del proyecto (transparente) */}
+                {/* CONTENEDOR IZQUIERDO - Información del proyecto (solo en desktop) */}
                 <div className="project-info-container">
                   {/* Header del proyecto */}
                   <div className="project-header">
@@ -335,7 +335,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                     </h3>
                   </div>
                   
-                  {/* Descripción del proyecto - FUERA del header */}
+                  {/* Descripción del proyecto */}
                   <p className="project-description">{project.description}</p>
 
                   {/* Información del proyecto */}
@@ -379,28 +379,55 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                       </motion.a>
                     )}
                   </div>
-
-                  {/* Botón de detalles mejorado */}
-                  <motion.button
-                    className="details-toggle-button"
-                    onClick={openModal}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <span>Ver Detalles Completos</span>
-                    <motion.div whileHover={{ rotate: 5 }} transition={{ duration: 0.2 }}>
-                      <Eye />
-                    </motion.div>
-                    <div className="keyboard-hint">
-                      <span className="key-indicator">ESPACIO - IN</span>
-                    </div>
-                  </motion.button>
                 </div>
 
-                {/* CONTENEDOR DERECHO - Card con carrusel y stack (con fondo) */}
+                {/* CONTENEDOR DERECHO - Card con título (móvil), ImageSlider, tecnologías y modal */}
                 <div className="project-card-container">
-                  {/* Carrusel de imágenes (50% superior) */}
-                  <div className="project-carousel-section">
+                  {/* Título del proyecto dentro de la card (solo en móvil) */}
+                  <div className="project-title-section">
+                    <h3 className="project-title">
+                      {project.title.split('').map((char, index) => {
+                        // Resaltar varias MAYÚSCULAS y guiones con el color verde de prograMate
+                        const shouldHighlight = char === 'S' || // S de ServiceBook
+                                               char === 'E' || // E de Estimador
+                                               char === 'T' || // T de TeloApp
+                                               char === 'C' || // C de CV
+                                               char === 'D' || // D de Digital
+                                               char === 'P' || // P de Portfolio
+                                               char === 'R' || // R de React
+                                               char === 'I' || // I de Interactivo
+                                               char === 'A' || // A de App
+                                               char === 'M' || // M de Management
+                                               char === 'G' || // G de Gestión
+                                               char === 'F' || // F de Full-Stack
+                                               char === 'B' || // B de Backend
+                                               char === 'J' || // J de Java
+                                               char === 'V' || // V de Virtual
+                                               char === 'O' || // O de Online
+                                               char === 'L' || // L de Live
+                                               char === 'U' || // U de User
+                                               char === 'X' || // X de eXperience
+                                               char === 'Y' || // Y de System
+                                               char === 'Z' || // Z de Zero
+                                               char === 'K' || // K de Stack
+                                               char === 'W' || // W de Web
+                                               char === 'N' || // N de Node
+                                               char === 'H' || // H de HTML
+                                               char === 'Q' || // Q de Quality
+                                               char === '-' || // Guiones
+                                               char === '–' || // Guión medio
+                                               char === '—';   // Guión largo
+                        
+                        return shouldHighlight ? (
+                          <span key={index} className="project-title-accent">{char}</span>
+                        ) : (
+                          <span key={index}>{char}</span>
+                        );
+                      })}
+                    </h3>
+                  </div>
+                  {/* Sección del ImageSlider */}
+                  <div className="project-imageslider-section">
                     <div className="image-wrapper">
                       {project.images && project.images.length > 1 ? (
                         <ImageSlider images={project.images} isPaused={isModalOpen} />
@@ -415,23 +442,46 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                     </div>
                   </div>
 
-                  {/* Stack Tecnológico (50% inferior) */}
-                  <div className="project-stack-section">
+                  {/* Sección de tecnologías con scroll interno */}
+                  <div className="project-tech-section">
                     <h4 className="section-title">Stack Tecnológico</h4>
-                    <div className="technologies-grid">
-                      {project.technologies.map((tech, index) => (
-                        <motion.div
-                          key={`${tech}-${index}`}
-                          className="tech-item"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ delay: index * 0.02, duration: 0.2 }}
-                        >
-                          <div className="tech-icon">{getSpriteTechIcon(tech)}</div>
-                          <span className="tech-name">{tech}</span>
-                        </motion.div>
-                      ))}
+                    <div className="technologies-scroll-container">
+                      <div className="technologies-scroll-grid">
+                        {project.technologies.map((tech, index) => (
+                          <motion.div
+                            key={`${tech}-${index}`}
+                            className="tech-scroll-item"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: index * 0.05, duration: 0.3 }}
+                          >
+                            <div className="tech-scroll-icon">{getSpriteTechIcon(tech)}</div>
+                            <span className="tech-scroll-name">{tech}</span>
+                          </motion.div>
+                        ))}
+                      </div>
                     </div>
+                  </div>
+
+                  {/* Botón del modal */}
+                  <div className="project-modal-section">
+                    <motion.button
+                      className="project-modal-button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        openModal();
+                      }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
+                      <span>Ver Detalles Completos</span>
+                      <motion.div whileHover={{ rotate: 5 }} transition={{ duration: 0.2 }}>
+                        <Eye />
+                      </motion.div>
+                      <div className="keyboard-hint">
+                        <span className="key-indicator">ESPACIO - IN</span>
+                      </div>
+                    </motion.button>
                   </div>
                 </div>
               </motion.div>

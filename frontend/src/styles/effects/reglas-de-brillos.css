@@ -1,0 +1,362 @@
+/* ==========================================================================
+   REGLAS DE BRILLOS - EFECTOS DE ILUMINACIÓN POR SECCIÓN
+   ========================================================================== */
+
+/* ==========================================================================
+   BRILLO INDIVIDUAL PARA CADA SECCIÓN
+   ========================================================================== */
+
+/* Hero Section - Brillo azul */
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* TechStack Section - Brillo verde */
+#techstack::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Projects Section - Brillo púrpura */
+#projects::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Education Section - Brillo naranja */
+#education::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(251, 146, 60, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Objective Section - Brillo rosa */
+#objective::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(236, 72, 153, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ==========================================================================
+   BRILLO ESPECÍFICO PARA PROYECTOS (CAROUSEL)
+   ========================================================================== */
+
+/* Ajuste específico para el carousel de proyectos */
+#projects .project-main-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.2) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ajuste para el contenedor del carousel */
+#projects .project-content-wrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.15) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ==========================================================================
+   CONFIGURACIONES BASE PARA SECCIONES
+   ========================================================================== */
+
+/* Asegurar que todas las secciones tengan posición relativa */
+#hero, #techstack, #projects, #education, #objective {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   RESPONSIVE PARA BRILLOS DE SECCIONES
+   ========================================================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  #hero::before {
+    background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.25) 0%, transparent 65%);
+  }
+  
+  #techstack::before {
+    background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.25) 0%, transparent 65%);
+  }
+  
+  #projects::before {
+    background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.25) 0%, transparent 65%);
+  }
+  
+  #education::before {
+    background: radial-gradient(ellipse at center, rgba(251, 146, 60, 0.25) 0%, transparent 65%);
+  }
+  
+  #objective::before {
+    background: radial-gradient(ellipse at center, rgba(236, 72, 153, 0.25) 0%, transparent 65%);
+  }
+}
+
+/* Mobile (480px - 768px) */
+@media (max-width: 768px) {
+  #hero::before {
+    background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.2) 0%, transparent 60%);
+  }
+  
+  #techstack::before {
+    background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.2) 0%, transparent 60%);
+  }
+  
+  #projects::before {
+    background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.2) 0%, transparent 60%);
+  }
+  
+  #education::before {
+    background: radial-gradient(ellipse at center, rgba(251, 146, 60, 0.2) 0%, transparent 60%);
+  }
+  
+  #objective::before {
+    background: radial-gradient(ellipse at center, rgba(236, 72, 153, 0.2) 0%, transparent 60%);
+  }
+}
+
+/* Small Mobile (hasta 480px) */
+@media (max-width: 480px) {
+  #hero::before {
+    background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.15) 0%, transparent 55%);
+  }
+  
+  #techstack::before {
+    background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.15) 0%, transparent 55%);
+  }
+  
+  #projects::before {
+    background: radial-gradient(ellipse at center, rgba(147, 51, 234, 0.15) 0%, transparent 55%);
+  }
+  
+  #education::before {
+    background: radial-gradient(ellipse at center, rgba(251, 146, 60, 0.15) 0%, transparent 55%);
+  }
+  
+  #objective::before {
+    background: radial-gradient(ellipse at center, rgba(236, 72, 153, 0.15) 0%, transparent 55%);
+  }
+}
+
+/* ==========================================================================
+   EFECTOS DE BRILLO ADICIONALES
+   ========================================================================== */
+
+/* Brillo sutil para elementos interactivos */
+.interactive-glow {
+  transition: all 0.3s ease;
+}
+
+.interactive-glow:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+}
+
+/* Brillo para botones de acción */
+.action-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.action-button:hover::before {
+  left: 100%;
+}
+
+/* Brillo para cards con hover */
+.card-glow {
+  transition: all 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   ANIMACIONES DE BRILLO
+   ========================================================================== */
+
+/* Animación de pulso para elementos importantes */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(16, 185, 129, 0.5);
+  }
+}
+
+.glow-pulse {
+  animation: glowPulse 2s ease-in-out infinite;
+}
+
+/* Animación de brillo que se mueve */
+@keyframes movingGlow {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.moving-glow {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.1), transparent);
+  background-size: 200% 100%;
+  animation: movingGlow 3s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ========================================================================== */
+
+/* Optimización para dispositivos de bajo rendimiento */
+@media (prefers-reduced-motion: reduce) {
+  .glow-pulse,
+  .moving-glow {
+    animation: none;
+  }
+  
+  .interactive-glow:hover,
+  .card-glow:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Optimización para pantallas de alta densidad */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  #hero::before,
+  #techstack::before,
+  #projects::before,
+  #education::before,
+  #objective::before {
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+/* ==========================================================================
+   VARIABLES CSS PARA BRILLOS
+   ========================================================================== */
+
+:root {
+  /* Colores de brillo por sección */
+  --glow-hero: rgba(30, 58, 138, 0.3);
+  --glow-techstack: rgba(16, 185, 129, 0.3);
+  --glow-projects: rgba(147, 51, 234, 0.3);
+  --glow-education: rgba(251, 146, 60, 0.3);
+  --glow-objective: rgba(236, 72, 153, 0.3);
+  
+  /* Intensidades de brillo */
+  --glow-intensity-high: 0.3;
+  --glow-intensity-medium: 0.2;
+  --glow-intensity-low: 0.15;
+  
+  /* Radios de brillo */
+  --glow-radius-large: 70%;
+  --glow-radius-medium: 65%;
+  --glow-radius-small: 60%;
+  --glow-radius-mini: 55%;
+}
+
+/* ==========================================================================
+   UTILIDADES DE BRILLO
+   ========================================================================== */
+
+/* Clases utilitarias para aplicar brillos rápidamente */
+.glow-hero { box-shadow: 0 0 20px var(--glow-hero); }
+.glow-techstack { box-shadow: 0 0 20px var(--glow-techstack); }
+.glow-projects { box-shadow: 0 0 20px var(--glow-projects); }
+.glow-education { box-shadow: 0 0 20px var(--glow-education); }
+.glow-objective { box-shadow: 0 0 20px var(--glow-objective); }
+
+/* Intensidades de brillo */
+.glow-high { filter: brightness(1.2); }
+.glow-medium { filter: brightness(1.1); }
+.glow-low { filter: brightness(1.05); }
+
+/* ==========================================================================
+   NOTAS DE IMPLEMENTACIÓN
+   ========================================================================== */
+
+/*
+NOTAS IMPORTANTES:
+
+1. Todos los brillos usan pseudo-elementos ::before para no interferir con el contenido
+2. Los z-index están configurados en -1 para estar detrás del contenido
+3. pointer-events: none evita que los brillos interfieran con la interacción
+4. Las animaciones están optimizadas para rendimiento
+5. Se incluyen fallbacks para dispositivos de bajo rendimiento
+6. Las variables CSS permiten fácil personalización de colores e intensidades
+
+COLORES POR SECCIÓN:
+- Hero: Azul (#1e3a8a)
+- TechStack: Verde (#10b981) 
+- Projects: Púrpura (#9333ea)
+- Education: Naranja (#fb923c)
+- Objective: Rosa (#ec4899)
+
+RESPONSIVE:
+- Desktop: 30% opacidad, 70% radio
+- Tablet: 25% opacidad, 65% radio  
+- Mobile: 20% opacidad, 60% radio
+- Small Mobile: 15% opacidad, 55% radio
+*/

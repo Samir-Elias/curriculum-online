@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MateIcon from './MateIcon';
 import FallingIconsAnimation from './FallingIconsAnimation';
-import BackgroundAnimation from './BackgroundAnimation';
+import BackgroundIcons from './BackgroundAnimation';
 
 const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -125,8 +125,8 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
             }
           }}
         >
-          {/* BackgroundAnimation solo en móviles */}
-          {isMobile && <BackgroundAnimation isMobile={isMobile} />}
+          {/* BackgroundIcons solo en móviles */}
+          {isMobile && <BackgroundIcons isMobile={isMobile} />}
           
                         {/* CONTENEDOR FLEXBOX PRINCIPAL */}
             <motion.div

@@ -16,8 +16,11 @@ html {
   overflow-x: hidden; /* Previene scroll horizontal */
   max-width: 100vw;
   width: 100vw;
-  background: transparent;
+  background: transparent !important;
   min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 body {
@@ -31,8 +34,12 @@ body {
   overflow-x: hidden; /* Previene scroll horizontal */
   max-width: 100vw;
   width: 100vw;
-  background: transparent;
+  background: transparent !important;
   min-height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 /* Root container - React App */
@@ -42,6 +49,7 @@ body {
   overflow-x: hidden;
   margin: 0;
   padding: 0;
+  background: transparent !important;
 }
 
 /* Headings reset */
@@ -206,7 +214,7 @@ body::-webkit-scrollbar {
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
   body {
-    background-color: #0f172a;
+    background: transparent !important;
     color: #e2e8f0;
   }
 }

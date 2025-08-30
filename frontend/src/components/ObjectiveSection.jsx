@@ -24,6 +24,8 @@ import {
 import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import "../styles/components/objective/objective-section.css"
+import "../styles/components/objective/objective-mobile.css"
+import "../styles/components/objective/objective-centered.css"
 
 const ObjectiveSection = ({
   objetivoProfesional,
@@ -179,10 +181,26 @@ const ObjectiveSection = ({
                   </div>
                 </div>
               </div>
+              
+              {/* Modalidades integradas en móvil */}
+              <div className="modalities-integrated">
+                <h4 className="sidebar-card-title">
+                  <Globe className="sidebar-icon" />
+                  Modalidades de Trabajo
+                </h4>
+                <div className="modalities-list">
+                  {objetivoProfesional.modalidades?.map((modalidad, index) => (
+                    <div key={index} className="modality-item">
+                      <CheckCircle className="modality-icon" />
+                      <span className="modality-text">{modalidad}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Work Modalities */}
-            <div className="objective-sidebar-card">
+            {/* Work Modalities - Oculto en móvil, integrado en status card */}
+            <div className="objective-sidebar-card modalities-card">
               <h4 className="sidebar-card-title">
                 <Globe className="sidebar-icon" />
                 Modalidades de Trabajo
@@ -198,7 +216,7 @@ const ObjectiveSection = ({
             </div>
 
             {/* Interest Levels */}
-            <div className="objective-sidebar-card">
+            <div className="objective-sidebar-card levels-card">
               <h4 className="sidebar-card-title">
                 <Building className="sidebar-icon" />
                 Niveles de Interés

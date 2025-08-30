@@ -37,6 +37,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
     <div className="hero-cards-container">
       <div className="hero-container">
         <div className="hero-cards-layout">
+
           {/* Card izquierda - Información personal */}
           <motion.div
             className="hero-card hero-card-left"
@@ -45,20 +46,6 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="hero-content">
-              {/* Título flotante para móvil - arriba de la imagen */}
-              <motion.h1 
-                className="floating-brand-title"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-              >
-                <span className="title-decoration">⚡</span>
-                <span className="title-text">
-                  Progra<span className="brand-accent">M</span>ate
-                </span>
-                <span className="title-decoration">⚡</span>
-              </motion.h1>
-
               {/* Avatar section */}
               <motion.div className="hero-avatar-section" variants={variants}>
                 <div className="avatar-container">
@@ -101,16 +88,16 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                 </Button>
 
                 <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
-                  <InstagramIcon />
+                  <InstagramIcon className="button-icon" />
                 </Button>
 
                 <Button className="action-button whatsapp-button" onClick={() => window.open('https://wa.me/5492612345678')}>
-                  <WhatsAppIcon />
+                  <WhatsAppIcon className="button-icon" />
                 </Button>
 
                 {info.github && (
                   <Button className="action-button github-button" onClick={() => window.open(info.github)}>
-                    <GitHubIcon />
+                    <GitHubIcon className="button-icon" />
                   </Button>
                 )}
               </motion.div>
@@ -126,7 +113,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
             <div className="hero-navigation-content">
-              {/* Header PrograMate integrado */}
+              {/* Título PrograMate dentro de la card de navegación */}
               <motion.div 
                 className="brand-card-content"
                 initial={{ opacity: 0, y: -20 }}
@@ -140,7 +127,6 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   <MateIcon width={120} height={120} />
                 </div>
               </motion.div>
-
               <motion.div className="navigation-header" variants={variants}>
                 <h2 className="navigation-title">
                   <Zap className="navigation-icon" />
@@ -227,7 +213,10 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
               </motion.div>
 
               <motion.div className="projects-preview-grid" variants={variants}>
-                <div className="project-preview-item" onClick={openModal}>
+                <div className="project-preview-item" onClick={(e) => {
+                  e.stopPropagation();
+                  openModal();
+                }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">Estimador de Costos</h3>
                     <p className="project-preview-description">Sistema completo de estimación y gestión de proyectos</p>
@@ -240,7 +229,10 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   </div>
                 </div>
 
-                <div className="project-preview-item" onClick={openModal}>
+                <div className="project-preview-item" onClick={(e) => {
+                  e.stopPropagation();
+                  openModal();
+                }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">TeloApp</h3>
                     <p className="project-preview-description">Aplicación móvil para gestión de telos y hoteles</p>
@@ -253,7 +245,10 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   </div>
                 </div>
 
-                <div className="project-preview-item" onClick={openModal}>
+                <div className="project-preview-item" onClick={(e) => {
+                  e.stopPropagation();
+                  openModal();
+                }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">ServiceBook</h3>
                     <p className="project-preview-description">Plataforma de gestión de servicios y reservas</p>
@@ -268,7 +263,10 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
 
 
 
-                <div className="project-preview-item" onClick={openModal}>
+                <div className="project-preview-item" onClick={(e) => {
+                  e.stopPropagation();
+                  openModal();
+                }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">Rick & Morty</h3>
                     <p className="project-preview-description">App de personajes con API REST</p>
@@ -281,7 +279,10 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   </div>
                 </div>
 
-                <div className="project-preview-item" onClick={openModal}>
+                <div className="project-preview-item" onClick={(e) => {
+                  e.stopPropagation();
+                  openModal();
+                }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">Portfolio React</h3>
                     <p className="project-preview-description">Desarrollo asistido con IA y prompt engineering</p>

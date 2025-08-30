@@ -1,5 +1,8 @@
 /* ===== MODAL DE DETALLES DEL PROYECTO ===== */
 
+/* Importar estilos móviles específicos */
+@import './project-modal-mobile.css';
+
 .project-modal-overlay {
   position: fixed;
   top: 0;

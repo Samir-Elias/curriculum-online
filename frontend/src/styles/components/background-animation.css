@@ -1,86 +1,118 @@
-/* Background Animation Styles */
-.background-animation-container {
-  position: fixed;
+/* Background Icons Styles */
+.background-icons-container {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
   pointer-events: none;
   overflow: hidden;
+  background: #0f172a !important;
+  background-attachment: scroll !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  /* Asegurar que el fondo se extienda más allá de los bordes para evitar líneas negras */
+  transform: scale(1.02);
+  transform-origin: center center;
 }
 
-.floating-tech-icon {
+/* Brillo que sigue el scroll */
+.background-icons-container::before {
+  content: '';
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.static-tech-icon {
   position: absolute;
-  transition: all 0.3s ease;
   /* Evitar interferencia con otros elementos */
   pointer-events: none !important;
   z-index: 1;
 }
 
-.floating-tech-icon:hover {
-  transform: scale(1.1);
-  opacity: 0.8 !important;
+.icon-static-container {
+  /* Contenedor simple para los iconos */
+}
+
+.static-tech-icon:hover .icon-static-container {
+  opacity: 0.6 !important;
   /* Mantener pointer-events none incluso en hover */
   pointer-events: none !important;
 }
 
-/* Animaciones de flotación */
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px) rotate(0deg); 
+/* Iconos estáticos - Sin animaciones para mejor rendimiento */
+
+/* ==========================================================================
+   RESPONSIVE PARA DIFERENTES DISPOSITIVOS
+   ========================================================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .background-icons-container {
+    background: #0f172a !important;
   }
-  50% { 
-    transform: translateY(-10px) rotate(180deg); 
+  
+  .background-icons-container::before {
+    background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.25) 0%, transparent 65%);
+  }
+  
+  .static-tech-icon {
+    transform: scale(1.1);
+    opacity: 0.5;
+  }
+  
+  .icon-static-container {
+    filter: brightness(1.05) contrast(1.05);
   }
 }
 
-/* Animaciones de rotación */
-@keyframes rotate {
-  from { 
-    transform: rotate(0deg); 
-  }
-  to { 
-    transform: rotate(360deg); 
-  }
-}
-
-/* Animación de pulso para el icono especial */
-@keyframes pulse-glow {
-  0%, 100% { 
-    filter: brightness(3.0) contrast(1.5) drop-shadow(0 0 20px rgba(16, 185, 129, 1.0)) hue-rotate(0deg) saturate(2.0);
-    transform: scale(1);
-  }
-  50% { 
-    filter: brightness(4.0) contrast(1.8) drop-shadow(0 0 30px rgba(16, 185, 129, 1.2)) hue-rotate(10deg) saturate(2.5);
-    transform: scale(1.05);
-  }
-}
-
-/* Aplicar animación de pulso al icono especial */
-.floating-tech-icon .special-icon {
-  animation: pulse-glow 3s infinite ease-in-out;
-}
-
-/* Responsive adjustments */
+/* Mobile (480px - 768px) */
 @media (max-width: 768px) {
-  .floating-tech-icon {
-    transform: scale(0.8);
+  .background-icons-container {
+    background: #0f172a !important;
   }
   
-  .floating-tech-icon:hover {
-    transform: scale(0.9);
+  .background-icons-container::before {
+    background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.2) 0%, transparent 60%);
+  }
+  
+  .static-tech-icon {
+    transform: scale(1.2);
+    opacity: 0.6;
+  }
+  
+  .icon-static-container {
+    filter: brightness(1.1) contrast(1.1);
   }
 }
 
+/* Small Mobile (hasta 480px) */
 @media (max-width: 480px) {
-  .floating-tech-icon {
-    transform: scale(0.6);
+  .background-icons-container {
+    background: #0f172a !important;
   }
   
-  .floating-tech-icon:hover {
-    transform: scale(0.7);
+  .background-icons-container::before {
+    background: radial-gradient(ellipse at center, rgba(30, 58, 138, 0.15) 0%, transparent 55%);
+  }
+  
+  .static-tech-icon {
+    transform: scale(1.4);
+    opacity: 0.7;
+  }
+  
+  .icon-static-container {
+    filter: brightness(1.2) contrast(1.2);
   }
 }

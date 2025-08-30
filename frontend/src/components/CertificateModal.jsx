@@ -1,21 +1,56 @@
 "use client"
 import { motion, AnimatePresence } from "framer-motion"
+import { createPortal } from "react-dom"
+import { useEffect, useState } from "react"
 import { ExternalLink, X, Award, Calendar, MapPin } from "lucide-react"
 import { Button } from "./ui/button"
 import ImageSlider from "./ImageSlider"
 import "../styles/components/education/certificate-modal.css"
 
 const CertificateModal = ({ selectedCertificate, setSelectedCertificate }) => {
+  const [scrollPosition, setScrollPosition] = useState(0)
+  const [modalPosition, setModalPosition] = useState({ top: '2rem' })
+
+  useEffect(() => {
+    if (selectedCertificate) {
+      // Hacer scroll a la sección de educación primero
+      const educationSection = document.getElementById('education')
+      if (educationSection) {
+        educationSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+        
+        // Esperar a que el scroll se complete antes de calcular la posición
+        setTimeout(() => {
+          const rect = educationSection.getBoundingClientRect()
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+          
+          // Calcular la posición del modal para que aparezca sobre la sección
+          const modalTop = Math.max(2, rect.top + scrollTop - 50) // 50px de margen superior
+          
+          setModalPosition({ top: `${modalTop}px` })
+        }, 400) // Delay para que el scroll se complete
+      } else {
+        setModalPosition({ top: '2rem' })
+      }
+    }
+  }, [selectedCertificate])
+
   if (!selectedCertificate) return null
 
-  return (
+  // Usar Portal para renderizar fuera del contenedor de EducationSection
+  return createPortal(
     <AnimatePresence>
       <motion.div
         className="certificate-modal-overlay"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        onClick={() => setSelectedCertificate(null)}
+        onClick={(e) => {
+          e.stopPropagation();
+          setSelectedCertificate(null);
+        }}
       >
         <motion.div
           className="certificate-modal-container"
@@ -24,6 +59,7 @@ const CertificateModal = ({ selectedCertificate, setSelectedCertificate }) => {
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
           onClick={(e) => e.stopPropagation()}
+          style={modalPosition}
         >
           {/* Header */}
           <div className="certificate-modal-header">
@@ -35,7 +71,10 @@ const CertificateModal = ({ selectedCertificate, setSelectedCertificate }) => {
               <p className="certificate-modal-issuer">{selectedCertificate.emisor}</p>
             </div>
             <button
-              onClick={() => setSelectedCertificate(null)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedCertificate(null);
+              }}
               className="certificate-modal-close"
               aria-label="Cerrar modal"
             >
@@ -91,7 +130,10 @@ const CertificateModal = ({ selectedCertificate, setSelectedCertificate }) => {
                   
                   <Button
                     variant="outline"
-                    onClick={() => setSelectedCertificate(null)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCertificate(null);
+                    }}
                     className="certificate-action-btn secondary"
                   >
                     Cerrar
@@ -129,7 +171,8 @@ const CertificateModal = ({ selectedCertificate, setSelectedCertificate }) => {
           </div>
         </motion.div>
       </motion.div>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   )
 }
 

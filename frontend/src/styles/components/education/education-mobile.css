@@ -1,0 +1,307 @@
+/* ============================================================================
+   EDUCATION MOBILE - ESTILOS ESPECÍFICOS PARA MÓVIL
+   ============================================================================
+   
+   Este archivo contiene estilos específicos para el carrusel de educación
+   en dispositivos móviles, manteniendo la funcionalidad.
+   ============================================================================ */
+
+/* Importar el componente reutilizable de swipe gestures */
+@import '../swipe-gestures.css';
+
+/* ===== MOBILE LAYOUT (≤768px) ===== */
+@media (max-width: 768px) {
+  /* Layout principal para móvil */
+  .education-main-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    max-height: none !important;
+    position: relative !important;
+    overflow: visible !important;
+  }
+
+  /* Contenedor principal */
+  .education-main-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    padding: 1rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 1rem !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Contenido del carrusel */
+  .education-content-wrapper {
+    width: 100% !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Información de educación */
+  .education-info-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 1rem !important;
+  }
+
+  /* Título de educación */
+  .education-title-info {
+    font-size: 1.25rem !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Institución */
+  .education-institution {
+    font-size: 0.9rem !important;
+    text-align: center !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Meta información */
+  .education-meta {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    margin-bottom: 1rem !important;
+    padding: 1rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 0.75rem !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .meta-item {
+    padding: 0.5rem 0.75rem !important;
+    font-size: 0.85rem !important;
+    justify-content: center !important;
+  }
+
+  .meta-text {
+    font-size: 0.85rem !important;
+  }
+
+  /* Estado de educación */
+  .education-status {
+    align-self: center !important;
+    margin-bottom: 0.5rem !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Descripción */
+  .education-description-summary {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* Botón de detalles */
+  .details-toggle-button {
+    width: 100% !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
+    margin-top: 0.5rem !important;
+    border-radius: 0.75rem !important;
+  }
+
+  /* Navegación móvil - botones táctiles */
+  .nav-button.education-nav-lateral {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    position: absolute !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 3rem !important;
+    height: 3rem !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 2px solid rgba(255, 255, 255, 0.2) !important;
+    border-radius: 50% !important;
+    z-index: 10 !important;
+    backdrop-filter: blur(10px) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Aplicar la clase swipe-container al contenedor principal */
+  .education-main-container {
+    position: relative !important;
+  }
+
+  /* Usar las clases del componente reutilizable */
+  .education-main-container.swipe-container {
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .nav-button.education-nav-lateral.education-prev {
+    left: 0.5rem !important;
+  }
+
+  .nav-button.education-nav-lateral.education-next {
+    right: 0.5rem !important;
+  }
+
+  .nav-button.education-nav-lateral svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .nav-button.education-nav-lateral:hover {
+    background: rgba(255, 255, 255, 0.2) !important;
+    transform: translateY(-50%) scale(1.1) !important;
+  }
+
+  /* Indicadores de navegación */
+  .education-indicators {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+  }
+
+  .indicator {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+    border-radius: 50% !important;
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .indicator.active {
+    background: #10b981 !important;
+    border-color: #10b981 !important;
+    transform: scale(1.2) !important;
+  }
+
+  .indicator:hover {
+    background: rgba(255, 255, 255, 0.5) !important;
+    transform: scale(1.1) !important;
+  }
+
+  /* Contador de educación */
+  .education-counter {
+    margin-bottom: 1rem !important;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* Ocultar card derecha en móvil */
+  .education-card-container {
+    display: none !important;
+  }
+}
+
+/* ===== MOBILE MUY PEQUEÑO (≤480px) ===== */
+@media (max-width: 480px) {
+  .education-main-container {
+    padding: 0.75rem !important;
+  }
+
+  .education-title-info {
+    font-size: 1.1rem !important;
+  }
+
+  .education-institution {
+    font-size: 0.8rem !important;
+  }
+
+  .education-meta {
+    padding: 0.75rem !important;
+  }
+
+  .meta-item {
+    padding: 0.375rem 0.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .meta-text {
+    font-size: 0.8rem !important;
+  }
+
+  .education-status {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .education-description-summary {
+    font-size: 0.85rem !important;
+  }
+
+  .details-toggle-button {
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  /* Botones de navegación más pequeños */
+  .nav-button.education-nav-lateral {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  .nav-button.education-nav-lateral.education-prev {
+    left: 0.25rem !important;
+  }
+
+  .nav-button.education-nav-lateral.education-next {
+    right: 0.25rem !important;
+  }
+
+  .nav-button.education-nav-lateral svg {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* Indicadores más pequeños */
+  .indicator {
+    width: 0.625rem !important;
+    height: 0.625rem !important;
+  }
+
+  .education-counter {
+    padding: 0.375rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* ===== TABLET (768px-1024px) ===== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .education-main-wrapper {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+
+  .education-card-container {
+    order: -1 !important;
+  }
+
+  .nav-button.education-nav-lateral {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+  }
+}

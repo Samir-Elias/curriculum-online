@@ -1,6 +1,6 @@
 "use client"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import {
   BookOpen,
   Award,
@@ -27,6 +27,8 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
+  const [showSwipeHint, setShowSwipeHint] = useState(true)
+  const educationSectionRef = useRef(null)
 
   // Navigation functions
   const nextEducation = useCallback((keepModalOpen = false) => {
@@ -61,7 +63,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
           prevEducation()
         } else if (e.key === "ArrowRight") {
           nextEducation()
-        } else if (e.key === "Enter" || e.key === " ") {
+        } else if (e.key === "Enter" || e.key === "E" || e.key === "e") {
           e.preventDefault()
           openModal()
         }
@@ -92,13 +94,28 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
 
     if (isLeftSwipe) {
       nextEducation()
+      setShowSwipeHint(false) // Ocultar indicadores después del primer swipe
     } else if (isRightSwipe) {
       prevEducation()
+      setShowSwipeHint(false) // Ocultar indicadores después del primer swipe
     }
   }
 
   const openModal = () => {
-    setIsModalOpen(true)
+    // Hacer scroll a la sección de educación antes de abrir el modal
+    if (educationSectionRef.current) {
+      educationSectionRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      })
+      
+      // Pequeño delay para que el scroll se complete antes de abrir el modal
+      setTimeout(() => {
+        setIsModalOpen(true)
+      }, 300)
+    } else {
+      setIsModalOpen(true)
+    }
   }
 
   const closeModal = () => {
@@ -140,6 +157,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
   return (
     <>
     <motion.section
+      ref={educationSectionRef}
       id="education"
       className="education-section"
       variants={containerVariants}
@@ -151,7 +169,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
           <h2 className="education-title">
             <span className="title-decoration">✦</span>
             <span className="title-text">
-              <span className="title-accent">F</span>ormación <span className="title-accent">T</span>écnica
+              Formación Técnica
             </span>
             <span className="title-decoration">✦</span>
           </h2>
@@ -176,11 +194,22 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
 
           {/* Contenedor principal de educación */}
         <motion.div
-            className="education-main-container"
+            className={`education-main-container swipe-container ${!showSwipeHint ? 'swipe-hint-hidden' : ''}`}
           onTouchStart={onTouchStart}
           onTouchMove={onTouchMove}
           onTouchEnd={onTouchEnd}
           >
+            {/* Indicadores de gesto de swipe para móvil */}
+            <div className="swipe-gesture-indicator">
+              Desliza
+            </div>
+            <div className="swipe-arrow-left">←</div>
+            <div className="swipe-arrow-right">→</div>
+            <div className="swipe-dots">
+              <div className="swipe-dot"></div>
+              <div className="swipe-dot"></div>
+              <div className="swipe-dot"></div>
+            </div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentEducation}
@@ -279,14 +308,17 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                   {/* Botón de detalles mejorado */}
                   <motion.button
                     className="details-toggle-button"
-                    onClick={openModal}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openModal();
+                    }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     <Eye />
                     <span>Ver Detalles Completos</span>
                     <div className="keyboard-hint">
-                      <span className="key-indicator">ESPACIO - IN</span>
+                      <span className="key-indicator">E - IN</span>
                     </div>
                   </motion.button>
                 </div>
@@ -480,7 +512,10 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                               <p>{cert.descripcion}</p>
                   </div>
                   <button
-                              onClick={() => setSelectedCertificate(cert)}
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setSelectedCertificate(cert);
+                              }}
                               className="view-certificate-btn"
                   >
                     <Eye className="w-4 h-4" />

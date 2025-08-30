@@ -1,4 +1,8 @@
-/* Asegurar que el footer también ocupe todo el ancho */
+/* ==========================================================================
+   FOOTER - POSICIONAMIENTO CORRECTO
+   ========================================================================== */
+
+/* Asegurar que el footer ocupe todo el ancho y esté al final */
 footer {
     width: 100vw;
     position: relative;
@@ -6,4 +10,40 @@ footer {
     right: 50%;
     margin-left: -50vw;
     margin-right: -50vw;
+    margin-top: 0; /* Eliminar margen superior */
+    flex-shrink: 0; /* Evitar que se comprima */
+    min-height: 100vh; /* Asegurar que ocupe al menos toda la altura de la pantalla */
+}
+
+/* Contenedor principal que empuja el footer hacia abajo */
+.main-content-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content-wrapper > div:not(footer) {
+    flex: 1; /* Hacer que el contenido principal ocupe todo el espacio disponible */
+}
+
+/* Asegurar que el footer esté siempre al final y ocupe todo el espacio restante */
+footer {
+    margin-top: 0; /* Sin espaciado adicional */
+    flex: 1; /* Hacer que el footer ocupe todo el espacio restante */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrar el contenido verticalmente */
+}
+
+/* Responsive adjustments - mantener sin espaciado */
+@media (max-width: 768px) {
+    footer {
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        margin-top: 0;
+    }
 }

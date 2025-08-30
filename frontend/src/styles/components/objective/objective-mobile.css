@@ -1,0 +1,388 @@
+/* ============================================================================
+   OBJECTIVE SECTION - VERSIÓN MÓVIL SIMPLIFICADA
+   ============================================================================ */
+
+/* ===== OVERRIDE PARA MÓVIL - SIMPLIFICACIÓN EXTREMA ===== */
+@media (max-width: 768px) {
+  /* ===== HEADER MÓVIL COMPACTO ===== */
+  .objective-header {
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-title {
+    font-size: 1.75rem !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .objective-title-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+
+  .objective-subtitle {
+    font-size: 0.875rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* ===== GRID MÓVIL - UNA SOLA COLUMNA ===== */
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ===== CARD PRINCIPAL MÓVIL - UNA VISTA ===== */
+  .objective-main-card {
+    padding: 1.25rem !important;
+    border-radius: 16px !important;
+    max-height: 70vh !important;
+    overflow: hidden !important;
+  }
+
+  /* Header de la card principal */
+  .objective-card-header {
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+    gap: 1rem !important;
+  }
+
+  .objective-card-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 0.125rem !important;
+  }
+
+  .objective-card-subtitle {
+    font-size: 0.75rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .objective-status-badge {
+    font-size: 0.625rem !important;
+    padding: 0.375rem 0.75rem !important;
+    gap: 0.25rem !important;
+  }
+
+  .objective-status-badge .status-icon {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+
+  /* Descripción simplificada */
+  .objective-description-section {
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-section-title {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.5rem !important;
+    gap: 0.375rem !important;
+  }
+
+  .objective-section-title .section-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-description {
+    font-size: 0.75rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Propuesta de valor compacta - Badges como modalidades */
+  .objective-value-section {
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-value-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-value-item {
+    padding: 0.25rem 0.5rem !important;
+    gap: 0.25rem !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    display: flex !important;
+    align-items: center !important;
+    font-size: 0.625rem !important;
+  }
+
+  .value-icon-container {
+    width: 1rem !important;
+    height: 1rem !important;
+    min-width: 1rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .value-icon {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
+
+  .value-title {
+    font-size: 0.625rem !important;
+    font-weight: 500 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .value-description {
+    display: none !important;
+  }
+
+  /* CTA simplificado */
+  .objective-cta-section {
+    margin-bottom: 0 !important;
+  }
+
+  .objective-cta-actions {
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-cta-button {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem !important;
+    height: auto !important;
+  }
+
+  .objective-cta-button .w-4 {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  /* ===== SIDEBAR MÓVIL - CARD INTEGRADA ===== */
+  .objective-sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  /* Card integrada: Disponibilidad + Modalidades */
+  .objective-sidebar-card.status-card {
+    order: 1 !important;
+    margin-bottom: 0 !important;
+  }
+
+  .objective-sidebar-card:not(.status-card) {
+    order: 2 !important;
+  }
+
+  /* Ocultar la card de modalidades (se integra en status card) */
+  .objective-sidebar-card.modalities-card {
+    display: none !important;
+  }
+
+  /* Integrar modalidades en la card de disponibilidad */
+  .objective-sidebar-card.status-card {
+    position: relative !important;
+  }
+
+  .objective-sidebar-card.status-card::after {
+    content: '' !important;
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 1rem !important;
+    right: 1rem !important;
+    height: 1px !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* Agregar modalidades después del status */
+  .objective-sidebar-card.status-card .status-details {
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated {
+    margin-top: 1rem !important;
+    padding-top: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-card-title {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.75rem !important;
+    gap: 0.375rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modalities-list {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-item {
+    font-size: 0.625rem !important;
+    padding: 0.25rem 0.5rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px !important;
+    gap: 0.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-icon {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
+
+  /* ===== CARD DE NIVELES CON SWIPE VERTICAL ===== */
+  .objective-sidebar-card.levels-card {
+    order: 3 !important;
+    display: block !important;
+    max-height: 200px !important;
+    overflow: hidden !important;
+  }
+
+  .objective-sidebar-card.levels-card .sidebar-card-title {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.75rem !important;
+    gap: 0.375rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .sidebar-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list {
+    max-height: 140px !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list::-webkit-scrollbar {
+    width: 3px !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 2px !important;
+  }
+
+  /* Mostrar solo 2 niveles de interés */
+  .objective-sidebar-card.levels-card .level-item:nth-child(n+3) {
+    display: none !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-item {
+    padding: 0.5rem !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+    min-width: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-title {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.125rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-description {
+    font-size: 0.625rem !important;
+    line-height: 1.3 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  /* Indicador de swipe vertical */
+  .objective-sidebar-card.levels-card .levels-list::after {
+    content: '↓ Desliza para ver más' !important;
+    display: block !important;
+    text-align: center !important;
+    font-size: 0.5rem !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    padding: 0.5rem !important;
+    margin-top: 0.5rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* ===== MÓVIL PEQUEÑO - AJUSTES ADICIONALES ===== */
+@media (max-width: 480px) {
+  .objective-main-card {
+    padding: 1rem !important;
+    max-height: 65vh !important;
+  }
+
+  .objective-card-title {
+    font-size: 1.125rem !important;
+  }
+
+  .objective-value-item {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.6rem !important;
+  }
+
+  .objective-value-item .value-icon {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
+
+  .objective-value-item .value-title {
+    font-size: 0.6rem !important;
+  }
+
+  .objective-sidebar-card.levels-card {
+    max-height: 180px !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list {
+    max-height: 120px !important;
+  }
+}
+
+/* ===== MÓVIL MUY PEQUEÑO ===== */
+@media (max-width: 360px) {
+  .objective-main-card {
+    padding: 0.875rem !important;
+    max-height: 60vh !important;
+  }
+
+  .objective-card-title {
+    font-size: 1rem !important;
+  }
+
+  .objective-value-item {
+    padding: 0.25rem 0.5rem !important;
+    font-size: 0.55rem !important;
+  }
+
+  .objective-value-item .value-icon {
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+  }
+
+  .objective-value-item .value-title {
+    font-size: 0.55rem !important;
+  }
+
+  .objective-sidebar-card.levels-card {
+    max-height: 160px !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list {
+    max-height: 100px !important;
+  }
+}
