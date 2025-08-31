@@ -61,7 +61,7 @@
 
 /* Smooth scroll global - Optimizado para rendimiento */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   scroll-padding-top: 2rem;
 }
 

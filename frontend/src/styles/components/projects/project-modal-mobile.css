@@ -98,6 +98,14 @@
 
   .project-title-accent {
     color: #10b981 !important;
+    
+  /* ===== BOTÓN DEL MODAL EN MÓVIL ===== */
+  .project-modal-button {
+    flex-direction: row !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.8rem !important;
+    min-height: auto !important;
+  }
     text-shadow: 0 0 10px rgba(16, 185, 129, 0.5) !important;
   }
 

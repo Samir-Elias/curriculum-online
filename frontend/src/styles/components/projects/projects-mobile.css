@@ -97,6 +97,62 @@
     width: 100% !important;
   }
 
+  /* ===== LAYOUT Y ACCIONES EN MÓVIL ===== */
+  
+  /* Layout vertical en móvil */
+  .project-actions-row {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+  
+  /* Ajustes específicos para móvil en la sección de tecnologías */
+  .project-tech-section {
+    flex: none !important;
+    height: 180px !important; /* Altura ajustada en móvil */
+    padding: 0.75rem !important;
+    background: transparent !important; /* Fondo transparente para iconos flotantes */
+    border: none !important; /* Sin borde */
+  }
+  
+  .project-modal-section {
+    flex: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    background: transparent !important; /* Fondo transparente */
+    border: none !important; /* Sin borde */
+  }
+
+  .modal-section-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+  }
+
+  .modal-section-title::before {
+    content: "🔍" !important;
+    font-size: 0.875rem !important;
+  }
+  
+  /* Tech scroll items movidos a tech-icons-mobile.css */
+  
+  /* Botón del modal movido a project-modal-mobile.css */
+  
+  /* Imágenes en móvil */
+  .image-wrapper {
+    height: 250px !important; /* Altura fija para móvil */
+  }
+  
+  .project-image {
+    object-fit: contain !important;
+  }
+
   /* ===== CARRUSEL DE IMÁGENES (PRIMERA SECCIÓN) ===== */
   .project-carousel-section {
     width: 100% !important;
@@ -120,7 +176,7 @@
   .project-image {
     width: 100% !important;
     height: 100% !important;
-    object-fit: cover !important;
+    object-fit: contain !important;
     border-radius: 16px !important;
     transition: transform 0.3s ease !important;
   }
