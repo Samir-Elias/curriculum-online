@@ -202,14 +202,16 @@
     padding: 0.75rem 0.5rem !important;
   }
 
-  /* ===== MODALES MÁS COMPACTOS ===== */
+  /* ===== MODALES PANTALLA COMPLETA ===== */
   .project-modal-overlay {
-    padding: 0.5rem !important;
+    padding: 0 !important;
   }
 
   .project-modal {
-    max-height: 98vh !important;
-    border-radius: 0.75rem !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
   }
 
   .modal-content {
