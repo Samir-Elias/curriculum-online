@@ -11,11 +11,10 @@ Esta carpeta contiene los estilos y componentes para la sección de educación c
 - Responsive design con breakpoints optimizados
 - Efectos de glassmorphism y animaciones suaves
 
-### `certificate-modal.css`
-- Estilos para el modal de certificaciones
-- Layout de dos columnas: información a la izquierda, imagen a la derecha
-- Diseño responsive que se adapta a dispositivos móviles
-- Animaciones de entrada y salida con Framer Motion
+### Certificaciones
+- Los certificados ahora se muestran dentro del modal de educación unificado
+- Layout responsive integrado en education-section.css
+- Slider de imágenes de certificados dentro del modal principal
 
 ## Características Principales
 

@@ -1,15 +1,32 @@
 "use client"
 import { motion } from "framer-motion"
+import { useState, useEffect } from "react"
 import { Mail, MapPin, FileText, Code, Globe, Zap, FolderOpen, GraduationCap, Target, ChevronRight, ExternalLink } from "lucide-react"
 import { GitHubIcon, WhatsAppIcon, InstagramIcon } from "../icons/TechIcons"
 import { Button } from "./ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar"
 import MateIcon from "./MateIcon"
 import { useModal } from "../context/ModalContext"
-import "../styles/hero/index.css"
+import { profileData } from "../data/profileData"
+import "../styles/components/hero/index.css"
 
 const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
-  const { openModal } = useModal();
+  const { openProjectModal } = useModal();
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Obtener los proyectos para la navegación
+  const proyectos = profileData.proyectosDestacados || [];
   
   const defaultPersonalInfo = {
     nombre: "Samir Elias Salatino",
@@ -77,30 +94,32 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                 <p className="hero-bio">{info.bio}</p>
               </motion.div>
 
-              {/* Action buttons */}
-              <motion.div className="hero-actions" variants={variants}>
-                <Button className="action-button email-button" onClick={() => window.open(`mailto:${info.email}`)}>
-                  <Mail className="button-icon" />
-                </Button>
-
-                <Button className="action-button download-button">
-                  <FileText className="button-icon" />
-                </Button>
-
-                <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
-                  <InstagramIcon className="button-icon" />
-                </Button>
-
-                <Button className="action-button whatsapp-button" onClick={() => window.open('https://wa.me/5492612345678')}>
-                  <WhatsAppIcon className="button-icon" />
-                </Button>
-
-                {info.github && (
-                  <Button className="action-button github-button" onClick={() => window.open(info.github)}>
-                    <GitHubIcon className="button-icon" />
+              {/* Action buttons - Solo mostrar en desktop */}
+              {!isMobile && (
+                <motion.div className="hero-actions" variants={variants}>
+                  <Button className="action-button email-button" onClick={() => window.open(`mailto:${info.email}`)}>
+                    <Mail className="button-icon" />
                   </Button>
-                )}
-              </motion.div>
+
+                  <Button className="action-button download-button">
+                    <FileText className="button-icon" />
+                  </Button>
+
+                  <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
+                    <InstagramIcon className="button-icon" />
+                  </Button>
+
+                  <Button className="action-button whatsapp-button" onClick={() => window.open('https://wa.me/5492612345678')}>
+                    <WhatsAppIcon className="button-icon" />
+                  </Button>
+
+                  {info.github && (
+                    <Button className="action-button github-button" onClick={() => window.open(info.github)}>
+                      <GitHubIcon className="button-icon" />
+                    </Button>
+                  )}
+                </motion.div>
+              )}
 
             </div>
           </motion.div>
@@ -136,6 +155,17 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
               </motion.div>
 
               <motion.div className="navigation-sections" variants={variants}>
+                <div className="nav-section-item" onClick={() => document.getElementById('techstack')?.scrollIntoView({ behavior: 'smooth' })}>
+                  <div className="nav-section-icon">
+                    <Code className="section-icon" />
+                  </div>
+                  <div className="nav-section-content">
+                    <h3 className="nav-section-title">Tech Stack</h3>
+                    <p className="nav-section-description">Tecnologías y herramientas que domino</p>
+                  </div>
+                  <ChevronRight className="nav-section-arrow" />
+                </div>
+
                 <div className="nav-section-item" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
                   <div className="nav-section-icon">
                     <FolderOpen className="section-icon" />
@@ -193,6 +223,33 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   </span>
                 </div>
               </motion.div>
+
+              {/* Action buttons - Solo mostrar en móvil dentro de la card de navegación */}
+              {isMobile && (
+                <motion.div className="hero-actions" variants={variants}>
+                  <Button className="action-button email-button" onClick={() => window.open(`mailto:${info.email}`)}>
+                    <Mail className="button-icon" />
+                  </Button>
+
+                  <Button className="action-button download-button">
+                    <FileText className="button-icon" />
+                  </Button>
+
+                  <Button className="action-button instagram-button" onClick={() => window.open('https://instagram.com/samir_elias_dev')}>
+                    <InstagramIcon className="button-icon" />
+                  </Button>
+
+                  <Button className="action-button whatsapp-button" onClick={() => window.open('https://wa.me/5492612345678')}>
+                    <WhatsAppIcon className="button-icon" />
+                  </Button>
+
+                  {info.github && (
+                    <Button className="action-button github-button" onClick={() => window.open(info.github)}>
+                      <GitHubIcon className="button-icon" />
+                    </Button>
+                  )}
+                </motion.div>
+              )}
             </div>
           </motion.div>
 
@@ -215,7 +272,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
               <motion.div className="projects-preview-grid" variants={variants}>
                 <div className="project-preview-item" onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openProjectModal(2); // Estimador de Proyectos - índice 2
                 }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">Estimador de Costos</h3>
@@ -231,7 +288,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
 
                 <div className="project-preview-item" onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openProjectModal(3); // TeloApp - índice 3
                 }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">TeloApp</h3>
@@ -247,7 +304,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
 
                 <div className="project-preview-item" onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openProjectModal(1); // ServiceBook - índice 1
                 }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">ServiceBook</h3>
@@ -265,7 +322,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
 
                 <div className="project-preview-item" onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openProjectModal(4); // Rick & Morty - índice 4
                 }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">Rick & Morty</h3>
@@ -281,7 +338,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
 
                 <div className="project-preview-item" onClick={(e) => {
                   e.stopPropagation();
-                  openModal();
+                  openProjectModal(0); // Portfolio React - índice 0
                 }}>
                   <div className="project-preview-text">
                     <h3 className="project-preview-title">Portfolio React</h3>

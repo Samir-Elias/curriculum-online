@@ -6,15 +6,17 @@ import { ChevronLeft, ChevronRight, ExternalLink, Github, Eye } from "lucide-rea
 import { getSpriteTechIcon } from "../icons/TechIconSprite";
 import ImageSlider from "./ImageSlider";
 import ProjectModal from "./ProjectModal";
+import { useModal } from "../context/ModalContext";
 import "../styles/components/projects-section.css";
 
-const ProjectsSection = ({ proyectosDestacados = [] }) => {
+const ProjectsSection = ({ proyectosDestacados = [], isVisible, containerVariants, itemVariants }) => {
   const [currentProject, setCurrentProject] = useState(0);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
+  
+  // Usar el contexto del modal
+  const { isModalOpen, openModal, closeModal, selectedProjectIndex, openProjectModal } = useModal();
 
   // Mapear los datos a la estructura esperada con datos mejorados
   const rawProjects = proyectosDestacados || []
@@ -72,13 +74,14 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
     return mappedProjects[currentProject] || mappedProjects[0];
   }, [mappedProjects, currentProject]);
 
-  // Detectar visibilidad una sola vez
+  // Eliminado el useEffect de visibilidad local - ahora usa el sistema centralizado
+
+  // Sincronizar el proyecto actual cuando se selecciona desde el contexto
   useEffect(() => {
-    const element = document.getElementById('proyectos');
-    if (element) {
-      setIsVisible(true);
+    if (isModalOpen && selectedProjectIndex !== currentProject) {
+      setCurrentProject(selectedProjectIndex);
     }
-  }, []);
+  }, [isModalOpen, selectedProjectIndex, currentProject]);
 
   // Navegación con teclado
   useEffect(() => {
@@ -103,7 +106,51 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
 
     window.addEventListener("keydown", handleKeyPress)
     return () => window.removeEventListener("keydown", handleKeyPress)
-  }, [isModalOpen])
+  }, [isModalOpen, closeModal, openModal])
+
+  // Memoizar las funciones de navegación
+  const nextProject = useCallback((keepModalOpen = false) => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentProject((prev) => (prev + 1) % mappedProjects.length)
+    if (!keepModalOpen) {
+      closeModal()
+    }
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [isTransitioning, mappedProjects.length, closeModal])
+
+  const prevProject = useCallback((keepModalOpen = false) => {
+    if (isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentProject((prev) => (prev - 1 + mappedProjects.length) % mappedProjects.length)
+    if (!keepModalOpen) {
+      closeModal()
+    }
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [isTransitioning, mappedProjects.length, closeModal])
+
+  // Funciones específicas para navegación desde el modal
+  const nextProjectInModal = useCallback(() => {
+    const nextIndex = (currentProject + 1) % mappedProjects.length;
+    setCurrentProject(nextIndex);
+    // Actualizar el contexto para mantener sincronización
+    openProjectModal(nextIndex);
+  }, [currentProject, mappedProjects.length, openProjectModal])
+
+  const prevProjectInModal = useCallback(() => {
+    const prevIndex = (currentProject - 1 + mappedProjects.length) % mappedProjects.length;
+    setCurrentProject(prevIndex);
+    // Actualizar el contexto para mantener sincronización
+    openProjectModal(prevIndex);
+  }, [currentProject, mappedProjects.length, openProjectModal])
+
+  const goToProject = useCallback((index) => {
+    if (index === currentProject || isTransitioning) return
+    setIsTransitioning(true)
+    setCurrentProject(index)
+    closeModal()
+    setTimeout(() => setIsTransitioning(false), 300)
+  }, [currentProject, isTransitioning, closeModal])
 
   // Manejo de gestos táctiles
   const minSwipeDistance = 50
@@ -130,54 +177,9 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
     }
   }
 
-  const nextProject = (keepModalOpen = false) => {
-    if (isTransitioning) return
-    setIsTransitioning(true)
-    setCurrentProject((prev) => (prev + 1) % mappedProjects.length)
-    if (!keepModalOpen) {
-      setIsModalOpen(false)
-    }
-    setTimeout(() => setIsTransitioning(false), 300)
-  }
-
-  const prevProject = (keepModalOpen = false) => {
-    if (isTransitioning) return
-    setIsTransitioning(true)
-    setCurrentProject((prev) => (prev - 1 + mappedProjects.length) % mappedProjects.length)
-    if (!keepModalOpen) {
-      setIsModalOpen(false)
-    }
-    setTimeout(() => setIsTransitioning(false), 300)
-  }
-
-  const openModal = () => {
-    setIsModalOpen(true)
-  }
-
-  const closeModal = () => {
-    setIsModalOpen(false)
-  }
-
-  // Funciones específicas para navegación desde el modal
-  const nextProjectInModal = () => {
-    nextProject(true) // Mantener modal abierto
-  }
-
-  const prevProjectInModal = () => {
-    prevProject(true) // Mantener modal abierto
-  }
-
-  const goToProject = (index) => {
-    if (index === currentProject || isTransitioning) return
-    setIsTransitioning(true)
-    setCurrentProject(index)
-    setIsModalOpen(false)
-    setTimeout(() => setIsTransitioning(false), 300)
-  }
-
   if (!mappedProjects || mappedProjects.length === 0) {
     return (
-      <section className="projects-section">
+      <section className="projects-section" id="proyectos">
         <div className="projects-container">
           <div className="loading-state">
             <div className="loading-spinner"></div>
@@ -193,7 +195,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
 
   if (!project) {
     return (
-      <section className="projects-section">
+      <section className="projects-section" id="proyectos">
         <div className="projects-container">
           <div className="error-state">
             <h3>Error cargando proyecto</h3>
@@ -205,7 +207,7 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
   }
 
   // Optimización: Renderizar contenido pesado solo cuando es visible
-  if (!isVisible) {
+  if (!isVisible?.projects) {
     return (
       <section className="projects-section" id="proyectos">
         <motion.div
@@ -327,9 +329,9 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                                                char === '—';   // Guión largo
                         
                         return shouldHighlight ? (
-                          <span key={index} className="project-title-accent">{char}</span>
+                          <span key={`char-${project.title}-${index}-${char}`} className="project-title-accent">{char}</span>
                         ) : (
-                          <span key={index}>{char}</span>
+                          <span key={`char-${project.title}-${index}-${char}`}>{char}</span>
                         );
                       })}
                     </h3>
@@ -381,107 +383,86 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
                   </div>
                 </div>
 
-                {/* CONTENEDOR DERECHO - Card con título (móvil), ImageSlider, tecnologías y modal */}
+                {/* CONTENEDOR DERECHO - Layout de desktop y móvil */}
                 <div className="project-card-container">
-                  {/* Título del proyecto dentro de la card (solo en móvil) */}
-                  <div className="project-title-section">
-                    <h3 className="project-title">
-                      {project.title.split('').map((char, index) => {
-                        // Resaltar varias MAYÚSCULAS y guiones con el color verde de prograMate
-                        const shouldHighlight = char === 'S' || // S de ServiceBook
-                                               char === 'E' || // E de Estimador
-                                               char === 'T' || // T de TeloApp
-                                               char === 'C' || // C de CV
-                                               char === 'D' || // D de Digital
-                                               char === 'P' || // P de Portfolio
-                                               char === 'R' || // R de React
-                                               char === 'I' || // I de Interactivo
-                                               char === 'A' || // A de App
-                                               char === 'M' || // M de Management
-                                               char === 'G' || // G de Gestión
-                                               char === 'F' || // F de Full-Stack
-                                               char === 'B' || // B de Backend
-                                               char === 'J' || // J de Java
-                                               char === 'V' || // V de Virtual
-                                               char === 'O' || // O de Online
-                                               char === 'L' || // L de Live
-                                               char === 'U' || // U de User
-                                               char === 'X' || // X de eXperience
-                                               char === 'Y' || // Y de System
-                                               char === 'Z' || // Z de Zero
-                                               char === 'K' || // K de Stack
-                                               char === 'W' || // W de Web
-                                               char === 'N' || // N de Node
-                                               char === 'H' || // H de HTML
-                                               char === 'Q' || // Q de Quality
-                                               char === '-' || // Guiones
-                                               char === '–' || // Guión medio
-                                               char === '—';   // Guión largo
-                        
-                        return shouldHighlight ? (
-                          <span key={index} className="project-title-accent">{char}</span>
-                        ) : (
-                          <span key={index}>{char}</span>
-                        );
-                      })}
-                    </h3>
-                  </div>
-                  {/* Sección del ImageSlider */}
-                  <div className="project-imageslider-section">
-                    <div className="image-wrapper">
-                      {project.images && project.images.length > 1 ? (
+                  {/* Layout de desktop: imagen, grid de tecnologías y botón */}
+                  <div className="project-card-section">
+                    {/* Imagen del proyecto */}
+                    <div className="project-image-section">
+                      {project.images && project.images.length > 0 ? (
                         <ImageSlider images={project.images} isPaused={isModalOpen} />
                       ) : (
-                        <img
-                          src={project.image || "/placeholder.svg?height=400&width=600&query=project-preview"}
-                          alt={project.title}
-                          className="project-image no-hover-effects"
-                          loading="lazy"
-                        />
+                        <div className="project-image-placeholder">
+                          <p>Sin imágenes</p>
+                        </div>
                       )}
+                    </div>
+
+                    {/* Grid de tecnologías */}
+                    <div className="project-tech-section">
+                      <h4 className="tech-grid-title">Stack Tecnológico</h4>
+                      <div className="tech-grid-container">
+                        {project.technologies.map((tech, index) => (
+                          <div key={`tech-${project.title}-${tech}-${index}`} className="tech-grid-item">
+                            <div className="tech-grid-icon">{getSpriteTechIcon(tech)}</div>
+                            <span className="tech-grid-name">{tech}</span>
+                          </div>
+                        ))}
+                      </div>
+                      
+                      {/* Botón "Ver Más" dentro del mismo contenedor */}
+                      <div className="tech-section-button">
+                        <motion.button
+                          className="details-button"
+                          onClick={openModal}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          <span>Ver Más</span>
+                          <Eye />
+                        </motion.button>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Sección de tecnologías con scroll interno */}
-                  <div className="project-tech-section">
-                    <h4 className="section-title">Stack Tecnológico</h4>
-                    <div className="technologies-scroll-container">
-                      <div className="technologies-scroll-grid">
+                  {/* Layout móvil: estructura simplificada */}
+                  <div className="project-card-container-mobile">
+                    {/* 1. ImageSlider arriba */}
+                    <div className="mobile-image-section">
+                      {project.images && project.images.length > 0 ? (
+                        <ImageSlider images={project.images} isPaused={isModalOpen} />
+                      ) : (
+                        <div className="mobile-image-placeholder">
+                          <p>Sin imágenes</p>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* 2. Stack Tecnológico en el medio */}
+                    <div className="mobile-tech-section">
+                      <h4 className="mobile-tech-title">Stack Tecnológico</h4>
+                      <div className="mobile-tech-grid">
                         {project.technologies.map((tech, index) => (
-                          <motion.div
-                            key={`${tech}-${index}`}
-                            className="tech-scroll-item"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: index * 0.05, duration: 0.3 }}
-                          >
-                            <div className="tech-scroll-icon">{getSpriteTechIcon(tech)}</div>
-                            <span className="tech-scroll-name">{tech}</span>
-                          </motion.div>
+                          <div key={`tech-${project.title}-${tech}-${index}`} className="mobile-tech-item">
+                            <div className="mobile-tech-icon">{getSpriteTechIcon(tech)}</div>
+                            <span className="mobile-tech-name">{tech}</span>
+                          </div>
                         ))}
                       </div>
                     </div>
-                  </div>
 
-                  {/* Botón del modal */}
-                  <div className="project-modal-section">
-                    <motion.button
-                      className="project-modal-button"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        openModal();
-                      }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      <span>Ver Detalles Completos</span>
-                      <motion.div whileHover={{ rotate: 5 }} transition={{ duration: 0.2 }}>
+                    {/* 3. Botón abajo */}
+                    <div className="mobile-button-section">
+                      <motion.button
+                        className="mobile-modal-button"
+                        onClick={openModal}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        <span>Ver Más</span>
                         <Eye />
-                      </motion.div>
-                      <div className="keyboard-hint">
-                        <span className="key-indicator">ESPACIO - IN</span>
-                      </div>
-                    </motion.button>
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -516,15 +497,20 @@ const ProjectsSection = ({ proyectosDestacados = [] }) => {
       </section>
 
       {/* Modal de Detalles del Proyecto - Renderizado con Portal */}
-      <ProjectModal 
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        project={project}
-        onNextProject={nextProjectInModal}
-        onPrevProject={prevProjectInModal}
-        hasNextProject={currentProject < mappedProjects.length - 1}
-        hasPrevProject={currentProject > 0}
-      />
+      <AnimatePresence>
+        {isModalOpen && (
+          <ProjectModal 
+            isOpen={isModalOpen}
+            onClose={closeModal}
+            project={project}
+            onNextProject={nextProjectInModal}
+            onPrevProject={prevProjectInModal}
+            hasNextProject={currentProject < mappedProjects.length - 1}
+            hasPrevProject={currentProject > 0}
+          />
+        )}
+      </AnimatePresence>
+
     </>
   )
 }

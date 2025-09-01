@@ -39,7 +39,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* Root container - React App */
@@ -170,7 +170,7 @@ h1, h2, h3, h4, h5, h6, p, span, a {
 
 /* Smooth scrolling - Optimizado para rendimiento */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
 }
 
 /* Ocultar barra de scroll */
@@ -203,11 +203,11 @@ body::-webkit-scrollbar {
 /* Optimización específica para PCs con scroll lento */
 @media (min-width: 1024px) {
   html {
-    scroll-behavior: auto !important;
+    scroll-behavior: smooth !important;
   }
   
   * {
-    scroll-behavior: auto !important;
+    scroll-behavior: smooth !important;
   }
 }
 

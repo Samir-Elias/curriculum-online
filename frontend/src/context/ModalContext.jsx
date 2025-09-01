@@ -12,12 +12,25 @@ export const useModal = () => {
 
 export const ModalProvider = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProjectIndex, setSelectedProjectIndex] = useState(0);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  
+  // Nueva función para abrir modal con proyecto específico
+  const openProjectModal = (projectIndex) => {
+    setSelectedProjectIndex(projectIndex);
+    setIsModalOpen(true);
+  };
 
   return (
-    <ModalContext.Provider value={{ isModalOpen, openModal, closeModal }}>
+    <ModalContext.Provider value={{ 
+      isModalOpen, 
+      openModal, 
+      closeModal, 
+      selectedProjectIndex, 
+      openProjectModal 
+    }}>
       {children}
     </ModalContext.Provider>
   );

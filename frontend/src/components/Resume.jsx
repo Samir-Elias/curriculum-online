@@ -8,13 +8,13 @@ import ObjectiveSection from './ObjectiveSection';
 import Footer from './Footer';
 import LoadingScreen from './LoadingScreen';
 import BackgroundIcons from './BackgroundAnimation';
-import CertificateModal from './CertificateModal';
+
 import { profileData } from '../data/profileData';
 import { useModal } from '../context/ModalContext';
 
 const Resume = ({ onAppLoadingComplete }) => {
   const [showLoading, setShowLoading] = useState(true);
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+
   const [expandedEducation, setExpandedEducation] = useState({});
   const [isMobile, setIsMobile] = useState(false);
   const { isModalOpen } = useModal();
@@ -155,6 +155,7 @@ const Resume = ({ onAppLoadingComplete }) => {
           transition: 'all 1s ease-in-out',
           pointerEvents: showLoading ? 'none' : 'auto',
           minHeight: '100vh',
+          height: 'auto',
           position: 'relative',
           width: '100%',
           overflowY: 'auto',
@@ -164,7 +165,8 @@ const Resume = ({ onAppLoadingComplete }) => {
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          justifyContent: 'flex-start'
         }}
       >
         {/* Background Icons como contenedor que envuelve todo */}
@@ -172,14 +174,14 @@ const Resume = ({ onAppLoadingComplete }) => {
 
       
         {/* Contenido principal con z-index para estar sobre el background */}
-        <div className="relative z-1" style={{ flex: '0 0 auto' }}>
+        <div className="relative z-1" style={{ flex: '0 0 auto', minHeight: '0' }}>
           {/* Hero Section con título del TechStack */}
           <HeroSection 
             personalInfo={profileData.personalInfo}
             itemVariants={itemVariants}
           />
 
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
             {/* Stack Tecnológico sin título */}
             <TechStack 
               tecnologiasCore={profileData.tecnologiasCore}
@@ -196,7 +198,7 @@ const Resume = ({ onAppLoadingComplete }) => {
               proyectosDestacados={profileData.proyectosDestacados}
               isVisible={{
                 ...isVisible,
-                projects: getSectionVisibility('projects') === 'visible'
+                projects: getSectionVisibility('proyectos') === 'visible'
               }}
               containerVariants={containerVariants}
               itemVariants={itemVariants}
@@ -211,7 +213,6 @@ const Resume = ({ onAppLoadingComplete }) => {
               }}
               containerVariants={containerVariants}
               itemVariants={itemVariants}
-              setSelectedCertificate={setSelectedCertificate}
               expandedEducation={expandedEducation}
               setExpandedEducation={setExpandedEducation}
             />
@@ -229,16 +230,10 @@ const Resume = ({ onAppLoadingComplete }) => {
           </div>
         </div>
 
-        {/* Footer - Ahora ocupa todo el espacio restante */}
-        <div style={{ flex: '1 1 auto', display: 'flex', flexDirection: 'column' }}>
-          <Footer personalInfo={profileData.personalInfo} />
-        </div>
+        {/* Footer - Altura natural */}
+        <Footer personalInfo={profileData.personalInfo} />
 
-        {/* Modal para certificaciones */}
-        <CertificateModal 
-          selectedCertificate={selectedCertificate}
-          setSelectedCertificate={setSelectedCertificate}
-        />
+
       </motion.div>
     </>
   );

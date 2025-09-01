@@ -10,7 +10,7 @@ import { Button } from "./ui/button";
 
 const Footer = ({ personalInfo }) => {
   return (
-    <footer id="footer" className="bg-slate-900 text-white py-8 sm:py-12 print:hidden">
+    <footer id="footer" className="bg-slate-900 text-white py-2 pb-1 sm:py-4 print:hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

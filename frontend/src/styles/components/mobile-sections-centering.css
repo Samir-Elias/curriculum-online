@@ -203,13 +203,11 @@
   }
 
   /* ===== MODALES MÁS COMPACTOS ===== */
-  .project-modal-overlay,
-  .certificate-modal-overlay {
+  .project-modal-overlay {
     padding: 0.5rem !important;
   }
 
-  .project-modal,
-  .certificate-modal {
+  .project-modal {
     max-height: 98vh !important;
     border-radius: 0.75rem !important;
   }

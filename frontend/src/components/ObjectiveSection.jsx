@@ -124,6 +124,15 @@ const ObjectiveSection = ({
                     <div className="value-description">Trabajo en equipo y entregas iterativas</div>
                   </div>
                 </div>
+                <div className="objective-value-item">
+                  <div className="value-icon-container">
+                    <Zap className="value-icon" />
+                  </div>
+                  <div className="value-content">
+                    <div className="value-title">Experto en React y Frontend</div>
+                    <div className="value-description">Interfaces modernas y experiencia de usuario</div>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -199,21 +208,7 @@ const ObjectiveSection = ({
               </div>
             </div>
 
-            {/* Work Modalities - Oculto en móvil, integrado en status card */}
-            <div className="objective-sidebar-card modalities-card">
-              <h4 className="sidebar-card-title">
-                <Globe className="sidebar-icon" />
-                Modalidades de Trabajo
-              </h4>
-              <div className="modalities-list">
-                {objetivoProfesional.modalidades?.map((modalidad, index) => (
-                  <div key={index} className="modality-item">
-                    <CheckCircle className="modality-icon" />
-                    <span className="modality-text">{modalidad}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+
 
             {/* Interest Levels */}
             <div className="objective-sidebar-card levels-card">

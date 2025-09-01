@@ -26,16 +26,22 @@
 @import "./components/swipe-gestures.css";
 @import "./components/education/education-section.css";
 @import "./components/education/education-mobile.css";
-@import "./components/education/certificate-modal.css";
 @import "./components/projects/project-modal.css";
+@import "./components/projects/project-layout.css";
+@import "./components/projects/project-details.css";
+@import "./components/projects/project-utilities.css";
+@import "./components/projects/mobile-projects-unified.css";
+@import "./components/projects/desktop-projects-fix.css";
 @import "./components/objective/objective-section.css";
+@import "./components/objective/objective-mobile.css";
+@import "./components/objective/objective-centered.css";
 @import "./components/linkedin-badge.css";
-@import "./components/mobile-projects.css";
+@import "./components/projects-section.css";
 @import "./components/background-animation.css";
 @import "./components/techstack.css";
 
 /* Hero Section - Módulo modularizado */
-@import "./hero/index.css";
+@import "./components/hero/index.css";
 
 /* Effects and animations */
 @import "./effects/animations.css";
@@ -44,6 +50,9 @@
 @import "./effects/section-effects.css";
 @import "./effects/slide-animations.css";
 @import "./effects/reglas-de-brillos.css";
+@import "./effects/glassmorphism-unified.css";
+@import "./effects/button-effects.css";
+@import "./effects/image-slider.css";
 
 /* Themes */
 @import "./themes/colors.css";
@@ -54,6 +63,8 @@
 @import "./utils/print.css";
 @import "./utils/debugging.css";
 @import "./utils/section-responsive.css";
+@import "./utils/spacing-safety.css";
+@import "./components/mobile-sections-centering.css";
 
 /* ==========================================================================
    ESTILOS GLOBALES UNIFICADOS CON BACKGROUND ANIMATION
@@ -73,7 +84,7 @@ html {
 /* Espaciado para secciones */
 section[id] {
   scroll-margin-top: 4rem;
-  scroll-margin-bottom: 2rem;
+  scroll-margin-bottom: 0;
 }
 
 /* Mejoras específicas para la sección de proyectos */

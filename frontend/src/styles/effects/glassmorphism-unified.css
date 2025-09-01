@@ -1,0 +1,219 @@
+/* ==========================================================================
+   GLASSMORPHISM UNIFICADO - ESTILOS CONSOLIDADOS
+   ========================================================================== */
+
+/* Variables CSS para glassmorphism */
+:root {
+  --glass-bg-primary: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  --glass-bg-secondary: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  --glass-border: 1px solid rgba(255, 255, 255, 0.18);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  --glass-backdrop: blur(8px);
+  --glass-hover-transform: translateY(-2px);
+  --glass-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sección base con glassmorphism */
+.glassmorphism-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.glassmorphism-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Container principal */
+.glassmorphism-container {
+  width: 90%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* Título de sección */
+.glassmorphism-title {
+  color: #ffffff;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff 0%, #f0f9ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Cards principales con glassmorphism */
+.glassmorphism-card {
+  background: var(--glass-bg-primary);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  border-radius: 20px;
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  padding: 2rem;
+  transition: var(--glass-transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.glassmorphism-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+}
+
+.glassmorphism-card:hover {
+  transform: var(--glass-hover-transform);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Cards secundarias */
+.glassmorphism-card-secondary {
+  background: var(--glass-bg-secondary);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.25);
+  padding: 1.5rem;
+  transition: var(--glass-transition);
+}
+
+.glassmorphism-card-secondary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.35);
+}
+
+/* Botones glassmorphism */
+.glassmorphism-button {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  color: #ffffff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--glass-transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.glassmorphism-button:hover {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Layout dual cards */
+.glassmorphism-dual-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .glassmorphism-dual-layout {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .glassmorphism-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .glassmorphism-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .glassmorphism-section {
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .glassmorphism-title {
+    font-size: 1.75rem;
+  }
+
+  .glassmorphism-card {
+    padding: 1.25rem;
+    margin: 0 -0.25rem;
+  }
+
+  .glassmorphism-dual-layout {
+    gap: 1.5rem;
+  }
+}
+
+/* Overrides para evitar conflictos */
+.glassmorphism-card.education-card-enhanced,
+.glassmorphism-card.objective-card-enhanced,
+.glassmorphism-card.project-card-enhanced {
+  background: var(--glass-bg-primary);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glassmorphism-card-secondary.certificate-card-enhanced {
+  background: var(--glass-bg-secondary);
+}
+
+/* Asegurar que los textos sean legibles */
+.glassmorphism-card h2,
+.glassmorphism-card h3,
+.glassmorphism-card h4 {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.glassmorphism-card p,
+.glassmorphism-card span,
+.glassmorphism-card div {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Estados especiales */
+.glassmorphism-card.completed {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.glassmorphism-card.in-progress {
+  border-color: rgba(251, 191, 36, 0.4);
+}
+
+.glassmorphism-card.planned {
+  border-color: rgba(59, 130, 246, 0.4);
+}

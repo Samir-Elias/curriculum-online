@@ -19,9 +19,10 @@ import {
   X
 } from "lucide-react"
 import { Badge } from "./ui/badge"
+import ImageSlider from "./ImageSlider"
 import "../styles/components/education/education-section.css"
 
-const EducationSection = ({ formacionTecnica, isVisible, containerVariants, itemVariants, setSelectedCertificate }) => {
+const EducationSection = ({ formacionTecnica, isVisible, containerVariants, itemVariants, expandedEducation, setExpandedEducation }) => {
   const [currentEducation, setCurrentEducation] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -169,7 +170,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
           <h2 className="education-title">
             <span className="title-decoration">✦</span>
             <span className="title-text">
-              Formación Técnica
+              <span className="education-title-accent">F</span>ormación <span className="education-title-accent">T</span>écnica
             </span>
             <span className="title-decoration">✦</span>
           </h2>
@@ -411,7 +412,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
         </div>
       </motion.section>
 
-      {/* Modal de Detalles de Educación - Fullscreen Sticky */}
+      {/* Modal Unificado de Educación y Certificados */}
       <AnimatePresence>
         {isModalOpen && (
           <motion.div
@@ -460,45 +461,45 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                 {/* Información completa */}
                 <div className="modal-info-section">
                   <div className="modal-metadata">
-              <div className="metadata-item">
-                <Clock className="metadata-icon" />
-                <div>
-                  <div className="metadata-label">DURACIÓN</div>
-                  <div className="metadata-value">{currentFormacion.duracion}</div>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <MapPin className="metadata-icon" />
-                <div>
-                  <div className="metadata-label">MODALIDAD</div>
-                  <div className="metadata-value">{currentFormacion.modalidad}</div>
-                </div>
-              </div>
-              <div className="metadata-item">
-                <Calendar className="metadata-icon" />
-                <div>
-                  <div className="metadata-label">PERÍODO</div>
-                  <div className="metadata-value">{currentFormacion.periodo}</div>
-                </div>
-              </div>
-            </div>
+                    <div className="metadata-item">
+                      <Clock className="metadata-icon" />
+                      <div>
+                        <div className="metadata-label">DURACIÓN</div>
+                        <div className="metadata-value">{currentFormacion.duracion}</div>
+                      </div>
+                    </div>
+                    <div className="metadata-item">
+                      <MapPin className="metadata-icon" />
+                      <div>
+                        <div className="metadata-label">MODALIDAD</div>
+                        <div className="metadata-value">{currentFormacion.modalidad}</div>
+                      </div>
+                    </div>
+                    <div className="metadata-item">
+                      <Calendar className="metadata-icon" />
+                      <div>
+                        <div className="metadata-label">PERÍODO</div>
+                        <div className="metadata-value">{currentFormacion.periodo}</div>
+                      </div>
+                    </div>
+                  </div>
 
                   <div className="modal-description">
                     <h3>Descripción Completa</h3>
-              <p>{currentFormacion.descripcion}</p>
-            </div>
+                    <p>{currentFormacion.descripcion}</p>
+                  </div>
 
                   <div className="modal-competencies">
                     <h3>Competencias Desarrolladas</h3>
-              <div className="competencies-grid">
-                {currentFormacion.competencias.map((competencia, compIndex) => (
-                  <div key={compIndex} className="competency-item">
-                    <div className="competency-bullet"></div>
-                    <span>{competencia}</span>
+                    <div className="competencies-grid">
+                      {currentFormacion.competencias.map((competencia, compIndex) => (
+                        <div key={compIndex} className="competency-item">
+                          <div className="competency-bullet"></div>
+                          <span>{competencia}</span>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
 
                   {currentFormacion.certificaciones && currentFormacion.certificaciones.length > 0 && (
                     <div className="modal-certificates">
@@ -510,25 +511,45 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
                             <div className="certificate-info">
                               <h4>{cert.nombre}</h4>
                               <p>{cert.descripcion}</p>
-                  </div>
-                  <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setSelectedCertificate(cert);
-                              }}
-                              className="view-certificate-btn"
-                  >
-                    <Eye className="w-4 h-4" />
-                              Ver
-                  </button>
-                </div>
+                            </div>
+                          </div>
                         ))}
                       </div>
+                      
+                      {/* Sección de imágenes de certificados */}
+                      <div className="certificates-images-section">
+                        <h3>Certificados Obtenidos</h3>
+                        <div className="certificates-images-grid">
+                          {currentFormacion.certificaciones.map((cert, certIndex) => (
+                            cert.tipo === "imagen" && cert.imagenes && cert.imagenes.length > 0 && (
+                              <div key={certIndex} className="certificate-image-item">
+                                <h4 className="certificate-image-title">{cert.nombre}</h4>
+                                <div className="certificate-image-container">
+                                  <ImageSlider
+                                    images={cert.imagenes}
+                                    alt={`Certificado ${cert.nombre}`}
+                                    className="certificate-image-slider"
+                                  />
+                                </div>
+                                {cert.url && (
+                                  <button
+                                    onClick={() => window.open(cert.url, '_blank')}
+                                    className="certificate-external-btn"
+                                  >
+                                    <ExternalLink className="w-4 h-4" />
+                                    Ver Original
+                                  </button>
+                                )}
+                              </div>
+                            )
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
-        </motion.div>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

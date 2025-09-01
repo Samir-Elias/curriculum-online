@@ -11,8 +11,11 @@ footer {
     margin-left: -50vw;
     margin-right: -50vw;
     margin-top: 0; /* Eliminar margen superior */
+    margin-bottom: 0; /* Eliminar margen inferior */
     flex-shrink: 0; /* Evitar que se comprima */
     min-height: auto; /* Altura automática basada en el contenido */
+    max-height: none; /* Sin límite de altura */
+    overflow: visible; /* Permitir contenido normal */
 }
 
 /* Contenedor principal que empuja el footer hacia abajo */
@@ -20,30 +23,39 @@ footer {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start; /* Alinear contenido al inicio */
 }
 
 .main-content-wrapper > div:not(footer) {
-    flex: 1; /* Hacer que el contenido principal ocupe todo el espacio disponible */
+    flex: 0 0 auto; /* No expandir, mantener altura natural */
 }
 
 /* Asegurar que el footer esté siempre al final con altura apropiada */
 footer {
-    margin-top: 0; /* Sin espaciado adicional */
+    margin-top: 2rem; /* Espaciado adicional arriba */
+    margin-bottom: 0; /* Sin espaciado inferior */
     flex: 0 0 auto; /* No expandir, mantener altura natural */
     display: flex;
     flex-direction: column;
     justify-content: center; /* Centrar el contenido verticalmente */
+    padding-bottom: 1rem; /* Más espacio para la barra de tareas */
 }
 
 /* Responsive adjustments - mantener sin espaciado */
 @media (max-width: 768px) {
     footer {
-        margin-top: 0;
+        margin-top: 1rem;
+        margin-bottom: 0;
+        padding-bottom: 0.5rem; /* Espacio mínimo en móvil */
+        max-height: none; /* Sin límite de altura */
     }
 }
 
 @media (max-width: 480px) {
     footer {
         margin-top: 0;
+        margin-bottom: 0;
+        padding-bottom: 0.125rem; /* Espacio mínimo en móvil pequeño */
+        max-height: none; /* Sin límite de altura */
     }
 }

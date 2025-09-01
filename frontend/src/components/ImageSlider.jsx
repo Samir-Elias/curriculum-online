@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import "../styles/components/image-slider.css"
+import "../styles/effects/image-slider.css"
 
 const ImageSlider = ({ images = [], isPaused = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -116,8 +116,8 @@ const ImageSlider = ({ images = [], isPaused = false }) => {
         )}
       </div>
 
-      {/* Dot indicators only */}
-      <div className="slider-dots">
+      {/* Dot indicators ocultos - ya tenemos el 1/2 arriba */}
+      {/* <div className="slider-dots">
         {images.map((_, index) => (
           <button
             key={index}
@@ -126,7 +126,7 @@ const ImageSlider = ({ images = [], isPaused = false }) => {
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-      </div>
+      </div> */}
     </div>
   )
 }

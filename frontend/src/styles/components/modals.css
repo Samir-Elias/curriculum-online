@@ -1,13 +1,6 @@
 /* Modal responsive */
 @media (max-width: 768px) {
-  .certificate-modal {
-    margin: 1rem;
-    max-height: calc(100vh - 2rem);
-  }
-
-  .certificate-modal img {
-    max-height: calc(100vh - 8rem);
-  }
+  /* Responsive modal styles */
 }
 
 /* Mejoras para el modal de imágenes */

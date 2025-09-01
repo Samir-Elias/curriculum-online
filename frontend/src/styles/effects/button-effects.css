@@ -1,0 +1,794 @@
+/* ==========================================================================
+   EFECTOS DE BOTONES COMPLETAMENTE UNIFICADOS - ARCHIVO ÚNICO
+   ========================================================================== */
+
+/* Variables CSS para los colores de los botones */
+:root {
+  --button-color: #000000;
+  --button-hover: #10b981;
+  --button-text: #ffffff;
+}
+
+/* ===== BOTONES DE ACCIÓN PRINCIPALES ===== */
+
+/* Botones base con efecto offset limpio */
+.action-button:not(.hero-actions .action-button),
+.github-button,
+.demo-button,
+.download-button,
+.email-button,
+.instagram-button,
+.whatsapp-button,
+.desktop-action-btn,
+.desktop-action-btn.primary,
+.desktop-action-btn.secondary,
+.modal-action-button,
+.certificate-action-button,
+.details-toggle-button {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 12px 24px !important;
+  border-radius: 0 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  transition: all 0.25s ease !important;
+  border: 2px solid #000000 !important;
+  justify-content: center !important;
+  position: relative !important;
+  /* Estado normal: negro sólido con letras blancas */
+  background: #000000 !important;
+  color: #ffffff !important;
+  /* Efecto offset: múltiples sombras para efecto completo */
+  box-shadow: 
+    0.3em 0.3em 0 0 #10b981,
+    inset 0.3em 0.3em 0 0 #10b981 !important;
+  /* Override de otros estilos */
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  cursor: pointer !important;
+}
+
+/* ===== HOVERS UNIFICADOS PARA TODOS LOS BOTONES ===== */
+
+/* Hover principal para todos los botones de acción */
+.action-button:not(.hero-actions .action-button):hover,
+.github-button:hover,
+.demo-button:hover,
+.download-button:hover,
+.email-button:hover,
+.instagram-button:hover,
+.whatsapp-button:hover,
+.desktop-action-btn:hover,
+.desktop-action-btn.primary:hover,
+.desktop-action-btn.secondary:hover,
+.modal-action-button:hover,
+.certificate-action-button:hover,
+.details-toggle-button:hover {
+  /* Efecto offset en hover - animación suave del offset */
+  box-shadow: 
+    0 0 0 0 #10b981,
+    inset 6em 3.5em 0 0 #10b981 !important;
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ===== BOTONES ESPECÍFICOS CON COLORES ÚNICOS ===== */
+
+/* Botón de email */
+.email-button {
+  background: #000000 !important;
+  color: white !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 
+    0.3em 0.3em 0 0 #3b82f6,
+    inset 0.3em 0.3em 0 0 #3b82f6 !important;
+}
+
+.email-button:hover {
+  background: #3b82f6 !important;
+  border-color: #3b82f6 !important;
+  box-shadow: 
+    0 0 0 0 #3b82f6,
+    inset 6em 3.5em 0 0 #3b82f6 !important;
+}
+
+/* Botón de descarga */
+.download-button {
+  background: #000000 !important;
+  color: white !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 
+    0.3em 0.3em 0 0 #10b981,
+    inset 0.3em 0.3em 0 0 #10b981 !important;
+}
+
+.download-button:hover {
+  background: #10b981 !important;
+  border-color: #10b981 !important;
+  box-shadow: 
+    0 0 0 0 #10b981,
+    inset 6em 3.5em 0 0 #10b981 !important;
+}
+
+/* Botón de Instagram */
+.instagram-button {
+  background: #000000 !important;
+  color: white !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 
+    0.3em 0.3em 0 0 #e91e63,
+    inset 0.3em 0.3em 0 0 #e91e63 !important;
+}
+
+.instagram-button:hover {
+  background: #e91e63 !important;
+  border-color: #e91e63 !important;
+  box-shadow: 
+    0 0 0 0 #e91e63,
+    inset 6em 3.5em 0 0 #e91e63 !important;
+}
+
+/* Botón de WhatsApp */
+.whatsapp-button {
+  background: #000000 !important;
+  color: white !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 
+    0.3em 0.3em 0 0 #25d366,
+    inset 0.3em 0.3em 0 0 #25d366 !important;
+}
+
+.whatsapp-button:hover {
+  background: #25d366 !important;
+  border-color: #25d366 !important;
+  box-shadow: 
+    0 0 0 0 #25d366,
+    inset 6em 3.5em 0 0 #25d366 !important;
+}
+
+/* Botón de GitHub */
+.github-button {
+  background: #000000 !important;
+  color: white !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 
+    0.3em 0.3em 0 0 #333,
+    inset 0.3em 0.3em 0 0 #333 !important;
+}
+
+.github-button:hover {
+  background: #333 !important;
+  border-color: #333 !important;
+  box-shadow: 
+    0 0 0 0 #333,
+    inset 6em 3.5em 0 0 #333 !important;
+}
+
+/* Botón de Demo */
+.demo-button {
+  background: #000000 !important;
+  color: white !important;
+  border: 2px solid #000000 !important;
+  box-shadow: 
+    0.3em 0.3em 0 0 #007bff,
+    inset 0.3em 0.3em 0 0 #007bff !important;
+}
+
+.demo-button:hover {
+  background: #007bff !important;
+  border-color: #007bff !important;
+  box-shadow: 
+    0 0 0 0 #007bff,
+    inset 6em 3.5em 0 0 #007bff !important;
+}
+
+/* ===== BOTÓN MODAL ===== */
+
+/* Botón modal con efectos especiales */
+.project-modal-button {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  padding: 1.25rem 1rem !important;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 0 !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100px !important;
+  max-width: 200px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.project-modal-button:hover {
+  transform: translateY(-2px) scale(1.01) !important;
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4), 0 0 25px rgba(16, 185, 129, 0.2) !important;
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+}
+
+.project-modal-button:active {
+  transform: translateY(0) !important;
+}
+
+/* Indicador flotante debajo del botón modal */
+.project-status-indicator {
+  position: absolute !important;
+  bottom: -30px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  background: rgba(16, 185, 129, 0.9) !important;
+  color: white !important;
+  padding: 4px 12px !important;
+  border-radius: 12px !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  z-index: 10 !important;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* ===== BOTONES DE HERO (CÍRCULARES) ===== */
+
+/* Botones circulares del hero */
+.hero-actions .action-button {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 0.75rem !important;
+  padding: 0.875rem !important;
+  border: none !important;
+  /* Override de los estilos base para botones rectangulares */
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+  /* Sin efecto offset para botones circulares */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  /* Override específico para clases de Tailwind */
+  transition: all 0.3s ease !important;
+  /* Eliminar cualquier efecto de iluminación de Tailwind */
+  outline: none !important;
+  outline-offset: 0 !important;
+}
+
+.hero-actions .action-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2) !important;
+  /* Sin cambio de color en hover para botones circulares */
+  background: rgba(255, 255, 255, 0.2) !important;
+  border: none !important;
+  /* Eliminar efectos de iluminación en hover */
+  outline: none !important;
+  outline-offset: 0 !important;
+}
+
+/* Eliminar efectos de focus en botones del hero */
+.hero-actions .action-button:focus,
+.hero-actions .action-button:focus-visible {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  /* Sin efectos de ring o iluminación */
+  ring: none !important;
+  ring-offset: none !important;
+  ring-color: transparent !important;
+}
+
+/* Override específico para clases de Tailwind CSS que causan iluminaciones */
+.hero-actions .action-button.rounded-md {
+  border-radius: 0.75rem !important;
+}
+
+.hero-actions .action-button.focus-visible\:outline-none:focus-visible {
+  outline: none !important;
+}
+
+.hero-actions .action-button.focus-visible\:ring-2:focus-visible {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+  /* Eliminar el ring de Tailwind */
+  --tw-ring-opacity: 0 !important;
+  --tw-ring-shadow: none !important;
+}
+
+.hero-actions .action-button.focus-visible\:ring-ring:focus-visible {
+  --tw-ring-color: transparent !important;
+}
+
+.hero-actions .action-button.focus-visible\:ring-offset-2:focus-visible {
+  --tw-ring-offset-width: 0 !important;
+  --tw-ring-offset-color: transparent !important;
+}
+
+/* ===== ELIMINAR TODOS LOS PSEUDO-ELEMENTOS QUE CAUSAN ILUMINACIONES ===== */
+
+/* Eliminar ::after y ::before de todos los botones */
+.action-button::after,
+.action-button::before,
+.github-button::after,
+.github-button::before,
+.demo-button::after,
+.demo-button::before,
+.download-button::after,
+.download-button::before,
+.email-button::after,
+.email-button::before,
+.instagram-button::after,
+.instagram-button::before,
+.whatsapp-button::after,
+.whatsapp-button::before,
+.desktop-action-btn::after,
+.desktop-action-btn::before,
+.modal-action-button::after,
+.modal-action-button::before,
+.certificate-action-button::after,
+.certificate-action-button::before,
+.details-toggle-button::after,
+.details-toggle-button::before,
+.project-modal-button::after,
+.project-modal-button::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Eliminar específicamente los pseudo-elementos de los botones del hero */
+.hero-actions .action-button::after,
+.hero-actions .action-button::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  box-shadow: none !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Eliminar efectos de shine-effect y neon-border en botones */
+.action-button.shine-effect::before,
+.action-button.shine-effect::after,
+.github-button.shine-effect::before,
+.github-button.shine-effect::after,
+.demo-button.shine-effect::before,
+.demo-button.shine-effect::after,
+.download-button.shine-effect::before,
+.download-button.shine-effect::after,
+.email-button.shine-effect::before,
+.email-button.shine-effect::after,
+.instagram-button.shine-effect::before,
+.instagram-button.shine-effect::after,
+.whatsapp-button.shine-effect::before,
+.whatsapp-button.shine-effect::after,
+.desktop-action-btn.shine-effect::before,
+.desktop-action-btn.shine-effect::after,
+.modal-action-button.shine-effect::before,
+.modal-action-button.shine-effect::after,
+.certificate-action-button.shine-effect::before,
+.certificate-action-button.shine-effect::after,
+.details-toggle-button.shine-effect::before,
+.details-toggle-button.shine-effect::after,
+.project-modal-button.shine-effect::before,
+.project-modal-button.shine-effect::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Eliminar efectos de glassmorphism en botones */
+.action-button.glassmorphism-card::before,
+.action-button.glassmorphism-card::after,
+.github-button.glassmorphism-card::before,
+.github-button.glassmorphism-card::after,
+.demo-button.glassmorphism-card::before,
+.demo-button.glassmorphism-card::after,
+.download-button.glassmorphism-card::before,
+.download-button.glassmorphism-card::after,
+.email-button.glassmorphism-card::before,
+.email-button.glassmorphism-card::after,
+.instagram-button.glassmorphism-card::before,
+.instagram-button.glassmorphism-card::after,
+.whatsapp-button.glassmorphism-card::before,
+.whatsapp-button.glassmorphism-card::after,
+.desktop-action-btn.glassmorphism-card::before,
+.desktop-action-btn.glassmorphism-card::after,
+.modal-action-button.glassmorphism-card::before,
+.modal-action-button.glassmorphism-card::after,
+.certificate-action-button.glassmorphism-card::before,
+.certificate-action-button.glassmorphism-card::after,
+.details-toggle-button.glassmorphism-card::before,
+.details-toggle-button.glassmorphism-card::after,
+.project-modal-button.glassmorphism-card::before,
+.project-modal-button.glassmorphism-card::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* ===== ELIMINAR EFECTOS DE ILUMINACIÓN DE OTROS ARCHIVOS CSS ===== */
+
+/* Eliminar efectos de visual-effects.css */
+.action-button.shine-effect,
+.github-button.shine-effect,
+.demo-button.shine-effect,
+.download-button.shine-effect,
+.email-button.shine-effect,
+.instagram-button.shine-effect,
+.whatsapp-button.shine-effect,
+.desktop-action-btn.shine-effect,
+.modal-action-button.shine-effect,
+.certificate-action-button.shine-effect,
+.details-toggle-button.shine-effect,
+.project-modal-button.shine-effect {
+  position: relative !important;
+  overflow: visible !important;
+}
+
+.action-button.shine-effect::before,
+.github-button.shine-effect::before,
+.demo-button.shine-effect::before,
+.download-button.shine-effect::before,
+.email-button.shine-effect::before,
+.instagram-button.shine-effect::before,
+.whatsapp-button.shine-effect::before,
+.desktop-action-btn.shine-effect::before,
+.modal-action-button.shine-effect::before,
+.certificate-action-button.shine-effect::before,
+.details-toggle-button.shine-effect::before,
+.project-modal-button.shine-effect::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  animation: none !important;
+}
+
+/* Eliminar efectos de neon-border */
+.action-button.neon-border,
+.github-button.neon-border,
+.demo-button.neon-border,
+.download-button.neon-border,
+.email-button.neon-border,
+.instagram-button.neon-border,
+.whatsapp-button.neon-border,
+.desktop-action-btn.neon-border,
+.modal-action-button.neon-border,
+.certificate-action-button.neon-border,
+.details-toggle-button.neon-border,
+.project-modal-button.neon-border {
+  border: 2px solid currentColor !important;
+  box-shadow: none !important;
+}
+
+.action-button.neon-border::before,
+.github-button.neon-border::before,
+.demo-button.neon-border::before,
+.download-button.neon-border::before,
+.email-button.neon-border::before,
+.instagram-button.neon-border::before,
+.whatsapp-button.neon-border::before,
+.desktop-action-btn.neon-border::before,
+.modal-action-button.neon-border::before,
+.certificate-action-button.neon-border::before,
+.details-toggle-button.neon-border::before,
+.project-modal-button.neon-border::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  animation: none !important;
+}
+
+/* Eliminar efectos de glassmorphism */
+.action-button.glassmorphism-card,
+.github-button.glassmorphism-card,
+.demo-button.glassmorphism-card,
+.download-button.glassmorphism-card,
+.email-button.glassmorphism-card,
+.instagram-button.glassmorphism-card,
+.whatsapp-button.glassmorphism-card,
+.desktop-action-btn.glassmorphism-card,
+.modal-action-button.glassmorphism-card,
+.certificate-action-button.glassmorphism-card,
+.details-toggle-button.glassmorphism-card,
+.project-modal-button.glassmorphism-card {
+  backdrop-filter: none !important;
+  background: currentColor !important;
+}
+
+/* Eliminar efectos de button-enhanced */
+.action-button.button-enhanced::before,
+.github-button.button-enhanced::before,
+.demo-button.button-enhanced::before,
+.download-button.button-enhanced::before,
+.email-button.button-enhanced::before,
+.instagram-button.button-enhanced::before,
+.whatsapp-button.button-enhanced::before,
+.desktop-action-btn.button-enhanced::before,
+.modal-action-button.button-enhanced::before,
+.certificate-action-button.button-enhanced::before,
+.details-toggle-button.button-enhanced::before,
+.project-modal-button.button-enhanced::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  animation: none !important;
+}
+
+/* ===== ELIMINAR EFECTOS ESPECÍFICOS DE PROYECTOS ===== */
+
+/* Eliminar efectos de project-action-button */
+.project-action-button::before,
+.project-action-button::after,
+.project-action-button:hover::before,
+.project-action-button:hover::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  animation: none !important;
+}
+
+/* Eliminar efectos de project-image-container */
+.projects-section .project-image-container::after,
+.projects-section .project-image-container::before,
+.projects-section .project-image-container:hover::after,
+.projects-section .project-image-container:hover::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Eliminar efectos de image-wrapper */
+.projects-section .image-wrapper::after,
+.projects-section .image-wrapper::before,
+.projects-section .image-wrapper:hover::after,
+.projects-section .image-wrapper:hover::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Eliminar efectos de slider-container */
+.projects-section .slider-container::after,
+.projects-section .slider-container::before,
+.projects-section .slider-container:hover::after,
+.projects-section .slider-container:hover::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Eliminar efectos de tech-scroll-item */
+.tech-scroll-item::after,
+.tech-scroll-item::before,
+.tech-scroll-item:hover::after,
+.tech-scroll-item:hover::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Eliminar efectos de project-card-container */
+.project-card-container::after,
+.project-card-container::before,
+.project-card-container:hover::after,
+.project-card-container:hover::before {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.hero-actions .action-button .button-icon {
+  width: 24px !important;
+  height: 24px !important;
+  color: white !important;
+  z-index: 2 !important;
+  position: relative !important;
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Ajustes para tablet */
+@media (max-width: 1024px) {
+  .hero-actions .action-button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .hero-actions .action-button .button-icon {
+    width: 20px !important;
+    height: 20px !important;
+  }
+}
+
+/* Ajustes para móvil */
+@media (max-width: 768px) {
+  .action-button:not(.hero-actions .action-button),
+  .github-button,
+  .demo-button,
+  .download-button,
+  .email-button,
+  .instagram-button,
+  .whatsapp-button,
+  .desktop-action-btn,
+  .desktop-action-btn.primary,
+  .desktop-action-btn.secondary {
+    padding: 10px 20px !important;
+    font-size: 0.85rem !important;
+  }
+  
+  .hero-actions .action-button {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .hero-actions .action-button .button-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  
+  .project-modal-button {
+    min-height: 80px !important;
+    max-width: 180px !important;
+    font-size: 0.75rem !important;
+  }
+  
+  .project-status-indicator {
+    font-size: 0.7rem !important;
+    padding: 3px 10px !important;
+    bottom: -25px !important;
+  }
+}
+
+/* ===== ACCESIBILIDAD ===== */
+
+/* Estados de focus */
+.action-button:not(.hero-actions .action-button):focus,
+.github-button:focus,
+.demo-button:focus,
+.download-button:focus,
+.email-button:focus,
+.instagram-button:focus,
+.whatsapp-button:focus,
+.desktop-action-btn:focus,
+.modal-action-button:focus,
+.certificate-action-button:focus,
+.details-toggle-button:focus,
+.project-modal-button:focus {
+  outline: 2px solid var(--button-hover) !important;
+  outline-offset: 2px !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .action-button:not(.hero-actions .action-button),
+  .github-button,
+  .demo-button,
+  .download-button,
+  .email-button,
+  .instagram-button,
+  .whatsapp-button,
+  .desktop-action-btn,
+  .modal-action-button,
+  .certificate-action-button,
+  .details-toggle-button,
+  .project-modal-button {
+    transition: none !important;
+    animation: none !important;
+  }
+  
+  .action-button:not(.hero-actions .action-button):hover,
+  .github-button:hover,
+  .demo-button:hover,
+  .download-button:hover,
+  .email-button:hover,
+  .instagram-button:hover,
+  .whatsapp-button:hover,
+  .desktop-action-btn:hover,
+  .modal-action-button:hover,
+  .certificate-action-button:hover,
+  .details-toggle-button:hover,
+  .project-modal-button:hover {
+    transform: none !important;
+  }
+}
+
+/* ===== ESTADOS ESPECIALES ===== */
+
+/* Botones deshabilitados */
+.action-button:not(.hero-actions .action-button):disabled,
+.github-button:disabled,
+.demo-button:disabled,
+.download-button:disabled,
+.email-button:disabled,
+.instagram-button:disabled,
+.whatsapp-button:disabled,
+.desktop-action-btn:disabled,
+.modal-action-button:disabled,
+.certificate-action-button:disabled,
+.details-toggle-button:disabled,
+.project-modal-button:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+/* Botones de carga */
+.action-button:not(.hero-actions .action-button).loading,
+.github-button.loading,
+.demo-button.loading,
+.download-button.loading,
+.email-button.loading,
+.instagram-button.loading,
+.whatsapp-button.loading,
+.desktop-action-btn.loading,
+.modal-action-button.loading,
+.certificate-action-button.loading,
+.details-toggle-button.loading,
+.project-modal-button.loading {
+  position: relative !important;
+  color: transparent !important;
+}
+
+.action-button:not(.hero-actions .action-button).loading::after,
+.github-button.loading::after,
+.demo-button.loading::after,
+.download-button.loading::after,
+.email-button.loading::after,
+.instagram-button.loading::after,
+.whatsapp-button.loading::after,
+.desktop-action-btn.loading::after,
+.modal-action-button.loading::after,
+.certificate-action-button.loading::after,
+.details-toggle-button.loading::after,
+.project-modal-button.loading::after {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid transparent !important;
+  border-top: 2px solid currentColor !important;
+  border-radius: 50% !important;
+  animation: spin 1s linear infinite !important;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}

@@ -10,10 +10,7 @@
         margin-right: 0;
     }
     
-    /* Hide modal in print */
-    .certificate-modal {
-        display: none !important;
-    }
+    /* Hide modals in print */
     
     .project-card-enhanced,
     .education-card-enhanced,
