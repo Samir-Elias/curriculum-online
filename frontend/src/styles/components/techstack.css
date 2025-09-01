@@ -24,7 +24,7 @@
   font-weight: 700 !important;
   color: white !important;
   text-align: center !important;
-  margin-bottom: 4rem !important;
+  margin-bottom: 2rem !important;
   line-height: 1.2 !important;
   text-shadow: none !important;
   position: relative !important;
@@ -865,7 +865,7 @@
   
   .carousel-container {
     height: 550px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   
   .carousel-button {
@@ -890,7 +890,7 @@
 @media (max-width: 480px) {
   .carousel-container {
     height: 520px;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   
   .carousel-button {

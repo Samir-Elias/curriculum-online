@@ -120,7 +120,7 @@
   gap: 20px;
   min-height: 400px;
   height: 80vh;
-  align-items: stretch;
+  align-items: stretch; /* Ya está en stretch, perfecto */
   overflow: visible;
   padding: 10px 0;
 }
@@ -176,7 +176,7 @@
   backdrop-filter: none;
   order: 1;
   padding-right: 15px;
-  justify-content: flex-start;
+  justify-content: space-between; /* Cambiar a space-between para distribuir el contenido */
 }
 
 .project-header {
@@ -230,7 +230,7 @@
   color: rgba(255, 255, 255, 0.9) !important;
   line-height: 1.6 !important;
   margin: 0 !important;
-  margin-bottom: 40px !important;
+  margin-bottom: 20px !important; /* Reducir margen inferior para aprovechar más espacio */
   font-weight: 400 !important;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
   white-space: normal !important;
@@ -257,7 +257,7 @@
   margin: 0;
   backdrop-filter: none;
   border: none;
-  margin-bottom: 40px;
+  margin-bottom: 20px; /* Reducir margen inferior para aprovechar más espacio */
   justify-content: center;
   align-items: center;
   order: 3 !important;
@@ -314,54 +314,11 @@
   border-radius: 0;
   border: none;
   backdrop-filter: none;
-  margin-bottom: 40px;
+  margin-bottom: 20px; /* Reducir margen inferior para aprovechar más espacio */
   order: 4 !important;
 }
 
-.action-button {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  border: 2px solid transparent;
-  flex: 1;
-  justify-content: center;
-  position: relative;
-}
-
-.github-button {
-  background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);
-  color: white;
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-.github-button:hover {
-  background: linear-gradient(135deg, #1a1e22 0%, #0d1117 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.demo-button {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(255, 237, 78, 0.1) 100%);
-  color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 215, 0, 0.3);
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
-}
-
-.demo-button:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+/* Los estilos de botones ahora están en button-effects.css */
 
 /* ===== BOTÓN DE DETALLES ===== */
 .details-toggle-button {
@@ -420,7 +377,7 @@
   transform: scale(1.05);
 }
 
-/* ===== CONTENEDOR DERECHO - CARD ===== */
+/* ===== CONTENEDOR DERECHO - CARD SIMPLE ===== */
 .project-card-container {
   position: relative;
   background: rgba(255, 255, 255, 0.05);
@@ -432,33 +389,52 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px;
-  height: 100%;
+  height: 100%; /* Ocupar toda la altura disponible */
   min-height: 500px;
   overflow: hidden;
   order: 2;
   gap: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  flex: 1; /* Ocupar todo el espacio disponible */
+}
+
+/* Efecto hover simple - solo líneas verdes */
+.project-card-container:hover {
+  border: 2px solid rgba(16, 185, 129, 0.8);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3), 
+    0 0 10px rgba(16, 185, 129, 0.4),
+    0 0 20px rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px);
 }
 
 /* ===== SECCIONES DEL CARD ===== */
 .project-carousel-section {
   width: 100%;
-  height: 60%;
+  height: auto; /* Cambiar a auto para permitir flexibilidad */
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  min-height: 250px; /* Reducir altura mínima */
+  max-height: 350px; /* Aumentar altura máxima para permitir más espacio */
+  background: transparent; /* Eliminar fondo */
+  padding: 0; /* Eliminar padding */
+  border: none; /* Eliminar borde */
 }
 
 .project-stack-section {
   width: 100%;
-  height: 40%;
+  height: 100%; /* Ocupar toda la altura disponible */
+  min-height: 350px; /* Aumentar altura mínima para más consistencia */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Alinear al inicio */
   align-items: center;
   flex-shrink: 0;
-  padding: 20px 0;
+  padding: 10px 0; /* Reducir padding para que se pegue más */
+  flex: 1; /* Ocupar todo el espacio disponible */
 }
 
 /* ===== IMAGEN DEL PROYECTO ===== */
@@ -466,20 +442,30 @@
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
+  border-radius: 0; /* Eliminar border-radius para que la imagen ocupe todo el espacio */
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 250px; /* Reducir altura mínima */
+  max-height: 350px; /* Aumentar altura máxima para permitir más espacio */
+  background: transparent; /* Eliminar fondo */
 }
 
 .project-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  background: transparent;
-  border-radius: 12px;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important; /* Cambiar a cover para rellenar todo el espacio */
+  object-position: center !important;
+  background: transparent; /* Eliminar fondo para que la imagen sea el fondo */
+  border-radius: 0; /* Eliminar border-radius para que la imagen ocupe todo el espacio */
+  min-width: 100% !important;
+  min-height: 100% !important;
+  /* Eliminar fondos adicionales */
+  background-color: transparent !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
 }
 
 /* ===== TECNOLOGÍAS ===== */
@@ -1125,9 +1111,24 @@
 
   .project-card-container {
     order: 1;
-    aspect-ratio: 16 / 9;
-    padding: 0;
-    height: 400px;
+    padding: 15px;
+    height: 100%; /* Ocupar toda la altura disponible */
+    min-height: 500px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-carousel-section {
+    height: auto !important; /* Cambiar a auto para permitir flexibilidad */
+    min-height: 250px !important; /* Reducir altura mínima */
+    max-height: 350px !important; /* Aumentar altura máxima para permitir más espacio */
+    flex-shrink: 0;
+  }
+
+  .project-stack-section {
+    height: 100%; /* Ocupar toda la altura disponible */
+    flex: 1;
+    min-height: 350px; /* Aumentar altura mínima para más consistencia */
   }
 
   .image-wrapper {

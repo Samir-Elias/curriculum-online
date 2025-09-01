@@ -1,0 +1,912 @@
+/* ==========================================================================
+   MOBILE PROJECTS UNIFIED - ARCHIVO ÚNICO PARA MÓVIL
+   ==========================================================================
+   
+   Este archivo unifica todos los estilos móviles de projects en un solo lugar.
+   Elimina duplicaciones y crea una vista móvil limpia de una sola card.
+   ========================================================================== */
+
+/* ==========================================================================
+   VISTA MÓVIL (< 768px) - UNA SOLA TARJETA VERTICAL
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* ===== SECCIÓN PRINCIPAL ===== */
+  .projects-section {
+    padding: 1rem !important;
+    background: transparent !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  /* ===== HEADER DE PROYECTOS - TÍTULO CENTRADO ===== */
+  .projects-header {
+    text-align: center !important;
+    margin-bottom: 1.5rem !important;
+    position: relative !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .projects-title {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin-bottom: 0.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .title-decoration {
+    color: #10b981 !important;
+    font-size: 0.875rem !important;
+    animation: pulse 2s infinite !important;
+  }
+
+  .title-accent {
+    color: #10b981 !important;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5) !important;
+  }
+
+  .projects-counter {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.25rem !important;
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 15px !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  /* ===== LAYOUT PRINCIPAL - UNA SOLA TARJETA ===== */
+  
+  /* Ocultar contenedor izquierdo en móvil */
+  .project-info-container {
+    display: none !important;
+  }
+
+  /* Ocultar layout de desktop en móvil */
+  .project-card-section {
+    display: none !important;
+  }
+
+  /* Mostrar layout móvil */
+  .project-card-container-mobile {
+    display: flex !important;
+  }
+
+  /* Layout vertical - una sola tarjeta */
+  .project-content-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    /* Override de grid para móvil */
+    grid-template-columns: none !important;
+    grid: none !important;
+    /* Prevenir scroll lateral */
+    overflow-x: hidden !important;
+  }
+
+  /* ===== NUEVA ESTRUCTURA MÓVIL SIMPLIFICADA ===== */
+  
+  .project-card-container-mobile {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+    background: rgba(45, 55, 72, 0.8) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  /* 1. Sección de imagen */
+  .mobile-image-section {
+    width: 100% !important;
+    height: 200px !important;
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    background: rgba(26, 32, 44, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .mobile-image-placeholder {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    font-size: 0.9rem !important;
+  }
+
+  /* 2. Sección de tecnologías */
+  .mobile-tech-section {
+    width: 100% !important;
+    padding: 1rem !important;
+    background: rgba(26, 32, 44, 0.3) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .mobile-tech-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 0 0.75rem 0 !important;
+    text-align: center !important;
+  }
+
+  .mobile-tech-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 0.5rem !important;
+    max-height: 180px !important;
+    overflow-y: auto !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .mobile-tech-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    padding: 0.75rem 0.5rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 6px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.2s ease !important;
+    min-height: 70px !important;
+  }
+
+  .mobile-tech-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .mobile-tech-icon {
+    width: 24px !important;
+    height: 24px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  .mobile-tech-name {
+    font-size: 0.7rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100% !important;
+  }
+
+  /* 3. Sección del botón (DEBAJO DE LOS ICONOS) */
+  .mobile-button-section {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding: 0.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .mobile-modal-button {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+  }
+
+  .mobile-modal-button:hover {
+    background: linear-gradient(135deg, #059669, #047857) !important;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  .mobile-modal-button:active {
+    transform: translateY(0) !important;
+  }
+
+  /* Scrollbar personalizado para el grid de tecnologías */
+  .mobile-tech-grid::-webkit-scrollbar {
+    width: 4px !important;
+  }
+
+  .mobile-tech-grid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 2px !important;
+  }
+
+  .mobile-tech-grid::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.5) !important;
+    border-radius: 2px !important;
+  }
+
+  .mobile-tech-grid::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.7) !important;
+  }
+
+  /* ===== SECCIÓN DE IMAGEN (ABAJO) - SIN BORDES NI CONTROLES ===== */
+  
+  .project-imageslider-section {
+    width: 100% !important;
+    height: 250px !important;
+    position: relative !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: transparent !important;
+    border: none !important;
+    margin-top: 1rem !important;
+    /* Prevenir scroll lateral */
+    box-sizing: border-box !important;
+  }
+
+  .image-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .project-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    transition: transform 0.3s ease !important;
+  }
+
+  .project-image:hover {
+    transform: scale(1.05) !important;
+  }
+
+  /* ===== SECCIÓN DE TÍTULO (ARRIBA) ===== */
+  
+  .project-title-section {
+    display: block !important;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+  }
+
+  .project-title-section .project-title {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: white !important;
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    text-align: center !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
+    width: 100% !important;
+  }
+
+  .project-title-section .project-title-accent {
+    color: #10b981 !important;
+    text-shadow: 0 0 10px rgba(16, 185, 129, 0.5) !important;
+  }
+
+  /* ===== SECCIÓN DE DESCRIPCIÓN (OPCIONAL) ===== */
+  
+  .project-description-section {
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  .project-description {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+
+  /* ===== LAYOUT VERTICAL - ICONOS HORIZONTALES (DEBAJO DEL TÍTULO) ===== */
+  
+  .project-tech-section {
+    margin-bottom: 1rem !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    width: 100% !important;
+    float: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .technologies-scroll-container {
+    position: relative !important;
+    overflow: visible !important;
+    width: 100% !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .technologies-scroll-grid {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0.5rem !important;
+    max-height: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+  }
+
+  .tech-scroll-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    padding: 0.375rem !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    backdrop-filter: none !important;
+    min-width: 40px !important;
+  }
+
+  .tech-scroll-item:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  .tech-scroll-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #10b981 !important;
+  }
+
+  .tech-scroll-name {
+    display: none !important;
+  }
+
+  /* ===== OCULTAR ICONOS NO DESEADOS ===== */
+  
+  .tech-scroll-item:has(svg[data-icon="search"]),
+  .tech-scroll-item:has(svg[data-icon="magnifying-glass"]),
+  .tech-scroll-item:has(svg[data-icon="eye"]),
+  .tech-scroll-item:has(svg[data-icon="external-link"]) {
+    display: none !important;
+  }
+
+  /* ===== SECCIÓN DE DETALLES - LAYOUT VERTICAL COMPLETO (DEBAJO DE LOS BOTONES) ===== */
+  
+  .project-modal-section {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    margin-bottom: 1rem !important;
+    width: 100% !important;
+    float: none !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    gap: 1rem !important;
+  }
+
+  /* ===== TÍTULO CENTRADO ===== */
+  
+  .modal-section-title {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+    margin-bottom: 0 !important;
+    width: 100% !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+  }
+
+  .modal-section-title::before {
+    content: "🔍" !important;
+    display: block !important;
+    font-size: 1.2rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .modal-section-title::after {
+    content: "Detalles del Proyecto" !important;
+    display: block !important;
+    font-size: 1rem !important;
+  }
+
+  .project-modal-button {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    width: auto !important;
+    max-width: 160px !important;
+    white-space: nowrap !important;
+    margin-top: 0 !important;
+  }
+
+  .project-modal-button:hover {
+    background: linear-gradient(135deg, #059669, #047857) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+  }
+
+  .project-modal-button:active {
+    transform: translateY(0) !important;
+  }
+
+  .project-modal-button .keyboard-hint {
+    position: absolute !important;
+    bottom: -1.5rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    font-size: 0.65rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    background: rgba(0, 0, 0, 0.7) !important;
+    padding: 0.25rem 0.5rem !important;
+    border-radius: 6px !important;
+    backdrop-filter: blur(10px) !important;
+    opacity: 1 !important;
+  }
+
+  /* ===== BOTONES DE ACCIÓN ADICIONALES (OPCIONALES) ===== */
+  
+  .project-actions {
+    display: flex !important;
+    gap: 0.5rem !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+    margin-top: 0.75rem !important;
+    width: 100% !important;
+  }
+
+  /* ===== IMAGE SLIDER MOBILE - SIN CONTROLES ===== */
+  
+  .image-slider {
+    width: 100% !important;
+    height: 100% !important;
+    position: relative !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .slider-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  .placeholder-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  .single-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+  }
+
+  /* ===== OCULTAR CONTROLES DEL SLIDER ===== */
+  
+  .slider-controls,
+  .slider-dots,
+  .slider-arrows,
+  .slider-indicators {
+    display: none !important;
+  }
+
+  /* ===== MODAL MOBILE ===== */
+  
+  .project-modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+    z-index: 1000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+  }
+
+  .modal-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: 90vh !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+    backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    overflow-y: auto !important;
+    padding: 1rem !important;
+  }
+
+  /* ===== FORZAR LAYOUT VERTICAL ===== */
+  
+  .project-main-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 1rem !important;
+    align-items: center !important;
+  }
+
+  .project-main-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* ===== CLEARFIX PARA EL LAYOUT 50/50 ===== */
+  
+  .project-tech-section::after,
+  .project-modal-section::after {
+    content: "" !important;
+    display: table !important;
+    clear: both !important;
+  }
+
+  /* Los estilos de botones ahora están en button-effects.css */
+}
+
+/* ==========================================================================
+   MÓVIL PEQUEÑO (< 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  /* ===== HEADER MÁS PEQUEÑO EN MÓVIL PEQUEÑO ===== */
+  
+  .projects-header {
+    margin-bottom: 1rem !important;
+  }
+
+  .projects-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .title-decoration {
+    font-size: 0.75rem !important;
+  }
+
+  .projects-counter {
+    font-size: 0.7rem !important;
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .project-card-container {
+    padding: 0.75rem !important;
+  }
+
+  .project-imageslider-section {
+    height: 200px !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .project-title-section .project-title {
+    font-size: 1.1rem !important;
+  }
+
+  .project-description {
+    font-size: 0.8rem !important;
+  }
+
+  .technologies-scroll-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.375rem !important;
+  }
+
+  .tech-scroll-item {
+    padding: 0.25rem !important;
+    min-width: 35px !important;
+  }
+
+  .tech-scroll-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .project-modal-button {
+    padding: 0.5rem 0.625rem !important;
+    font-size: 0.7rem !important;
+    max-width: 120px !important;
+  }
+}
+
+/* ==========================================================================
+   ASEGURAR QUE NO SE APLIQUE EN DESKTOP
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  /* ===== LAYOUT DE DESKTOP RESTAURADO ===== */
+  
+  /* Ocultar todos los estilos de móvil en desktop */
+  .project-title-section {
+    display: none !important;
+  }
+  
+  .project-info-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    width: 100% !important;
+  }
+  
+  .project-content-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3rem !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .project-card-container {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  /* ===== SECCIÓN DE INFORMACIÓN (IZQUIERDA) ===== */
+  .project-info-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  .project-title {
+    font-size: 2rem !important;
+    font-weight: 700 !important;
+    color: white !important;
+    margin: 0 !important;
+    line-height: 1.2 !important;
+  }
+
+  .project-title-accent {
+    color: #10b981 !important;
+  }
+
+  .project-description {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1rem !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+  }
+
+  /* ===== SECCIÓN DE IMAGEN Y TECNOLOGÍAS (DERECHA) ===== */
+  .project-card-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+
+  /* Imagen del proyecto */
+  .project-image-section {
+    width: 100% !important;
+    height: 300px !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: rgba(26, 32, 44, 0.5) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .project-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Grid de tecnologías con scroll */
+  .project-tech-section {
+    width: 100% !important;
+  }
+
+  .tech-grid-title {
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 0 1rem 0 !important;
+  }
+
+  .tech-grid-container {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.75rem !important;
+    max-height: 120px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 1rem !important;
+    background: rgba(26, 32, 44, 0.3) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    align-items: center !important;
+  }
+
+  .tech-grid-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.2s ease !important;
+    flex-shrink: 0 !important;
+    min-width: 80px !important;
+  }
+
+  .tech-grid-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  .tech-grid-icon {
+    width: 32px !important;
+    height: 32px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #10b981 !important;
+  }
+
+  .tech-grid-name {
+    font-size: 0.8rem !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100% !important;
+  }
+
+  /* Scrollbar personalizado para el grid horizontal */
+  .tech-grid-container::-webkit-scrollbar {
+    height: 6px !important;
+  }
+
+  .tech-grid-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 3px !important;
+  }
+
+  .tech-grid-container::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.5) !important;
+    border-radius: 3px !important;
+  }
+
+  .tech-grid-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.7) !important;
+  }
+
+  /* ===== SECCIÓN "MÁS DETALLES" (DEBAJO DEL GRID) ===== */
+  .project-details-section {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    padding: 1.5rem !important;
+    background: rgba(26, 32, 44, 0.3) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    margin-top: 1rem !important;
+  }
+
+  .details-title {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+
+  .details-button {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1.5rem !important;
+    background: linear-gradient(135deg, #10b981, #059669) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+  }
+
+  .details-button:hover {
+    background: linear-gradient(135deg, #059669, #047857) !important;
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4) !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* ===== MODAL DE DESKTOP ===== */
+  .project-modal {
+    padding: 2rem !important;
+  }
+
+  .project-modal > div {
+    max-width: 90vw !important;
+    max-height: 85vh !important;
+    padding: 2rem !important;
+  }
+
+  /* Mostrar badges en desktop */
+  .modal-title-meta.mobile-hidden {
+    display: flex !important;
+  }
+}
+

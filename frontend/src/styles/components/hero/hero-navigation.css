@@ -1,0 +1,165 @@
+/* ============================================================================
+   HERO NAVIGATION - NAVEGACIÓN
+   ============================================================================
+   
+   Este archivo contiene los estilos para la navegación del hero section
+   incluyendo los badges de navegación y sus efectos hover.
+   ============================================================================ */
+
+.navigation-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.navigation-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white !important;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.navigation-icon {
+  color: #10b981 !important;
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.6));
+}
+
+.navigation-subtitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9) !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  width: 100%;
+}
+
+.navigation-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-section-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  width: 100%;
+  max-width: 400px;
+}
+
+.nav-section-item:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.2);
+  transform: translateX(4px);
+}
+
+.nav-section-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.section-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.nav-section-content {
+  flex: 1;
+}
+
+.nav-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.nav-section-description {
+  font-size: 0.75rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.nav-section-arrow {
+  color: #64748b;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.nav-section-item:hover .nav-section-arrow {
+  transform: translateX(4px);
+}
+
+/* Textos flotantes integrados en navegación */
+.navigation-floating-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin-top: auto;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 1.25rem;
+}
+
+.nav-floating-text-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-floating-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 2rem;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.nav-floating-text:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.nav-floating-text-icon {
+  width: 1rem;
+  height: 1rem;
+  color: #10b981;
+}

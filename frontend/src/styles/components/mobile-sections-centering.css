@@ -1,0 +1,325 @@
+/* ==========================================================================
+   MOBILE SECTIONS CENTERING - SOLO MÓVIL
+   Archivo: src/styles/components/mobile-sections-centering.css
+   ========================================================================== */
+
+/* ==========================================================================
+   CENTRADO DE SECCIONES EN MÓVIL
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* ===== HERO SECTION - CENTRADO ===== */
+  .hero-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .hero-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ===== TECH STACK SECTION - CENTRADO ===== */
+  .tech-stack-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .tech-stack-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ===== PROJECTS SECTION - CENTRADO ===== */
+  .projects-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .projects-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ===== EDUCATION SECTION - CENTRADO ===== */
+  .education-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .education-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* ===== OBJECTIVE SECTION - CENTRADO ===== */
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 100vh !important;
+    padding: 1rem 0.75rem !important;
+  }
+
+  .objective-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   MODALES CENTRADOS EN MÓVIL
+   ========================================================================== */
+
+/* ===== MODAL CONTENT - CENTRADO INTERNO ===== */
+  .modal-content {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    height: 100% !important;
+    padding: 1rem !important;
+  }
+
+  .modal-header {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .modal-body {
+    width: 100% !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    overflow-y: auto !important;
+  }
+
+/* ==========================================================================
+   NAVEGACIÓN CORRECTA EN MÓVIL
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  /* ===== SCROLL TO SECTION - CENTRADO PERFECTO ===== */
+  .scroll-to-section {
+    scroll-margin-top: 0 !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  /* ===== ANCHOR POINTS - CENTRADOS ===== */
+  #hero {
+    scroll-margin-top: 0 !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  #tech-stack {
+    scroll-margin-top: 0 !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  #projects {
+    scroll-margin-top: 0 !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  #education {
+    scroll-margin-top: 0 !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  #objective {
+    scroll-margin-top: 0 !important;
+    scroll-padding-top: 0 !important;
+  }
+
+  /* ===== SMOOTH SCROLL - CENTRADO ===== */
+  html {
+    scroll-behavior: smooth !important;
+  }
+
+  /* ===== SCROLL INTO VIEW - CENTRADO ===== */
+  .scroll-into-view-center {
+    scroll-margin-top: 50vh !important;
+    scroll-padding-top: 50vh !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL PEQUEÑO - AJUSTES ADICIONALES
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  /* ===== PADDING REDUCIDO ===== */
+  .hero-section,
+  .tech-stack-section,
+  .projects-section,
+  .education-section,
+  .objective-section {
+    padding: 0.75rem 0.5rem !important;
+  }
+
+  /* ===== MODALES MÁS COMPACTOS ===== */
+  .project-modal-overlay,
+  .certificate-modal-overlay {
+    padding: 0.5rem !important;
+  }
+
+  .project-modal,
+  .certificate-modal {
+    max-height: 98vh !important;
+    border-radius: 0.75rem !important;
+  }
+
+  .modal-content {
+    padding: 0.75rem !important;
+  }
+
+  .modal-header {
+    padding: 0.75rem !important;
+  }
+
+  .modal-body {
+    padding: 0.75rem !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL MUY PEQUEÑO - AJUSTES FINALES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  /* ===== PADDING MÍNIMO ===== */
+  .hero-section,
+  .tech-stack-section,
+  .projects-section,
+  .education-section,
+  .objective-section {
+    padding: 0.5rem 0.25rem !important;
+  }
+
+  /* ===== MODALES SIN PADDING ===== */
+  .modal-content {
+    padding: 0.5rem !important;
+  }
+
+  .modal-header {
+    padding: 0.5rem !important;
+  }
+
+  .modal-body {
+    padding: 0.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   ASEGURAR QUE NO SE APLIQUE EN DESKTOP
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  /* ===== OCULTAR ESTILOS MÓVILES EN DESKTOP ===== */
+  .mobile-sections-centering {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   OPTIMIZACIONES PARA MEJOR CENTRADO
+   ========================================================================== */
+
+/* ===== ELIMINAR MÁRGENES INNECESARIOS ===== */
+@media (max-width: 767px) {
+  .hero-section,
+  .tech-stack-section,
+  .projects-section,
+  .education-section,
+  .objective-section {
+    margin: 0 !important;
+  }
+
+  .hero-container,
+  .tech-stack-container,
+  .projects-container,
+  .education-container,
+  .objective-container {
+    margin: 0 !important;
+  }
+}
+
+/* ===== ASEGURAR QUE EL CONTENIDO NO SE DESBORDE ===== */
+@media (max-width: 767px) {
+  .hero-section,
+  .tech-stack-section,
+  .projects-section,
+  .education-section,
+  .objective-section {
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .hero-container,
+  .tech-stack-container,
+  .projects-container,
+  .education-container,
+  .objective-container {
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+}
+
+/* ===== CENTRADO VERTICAL PERFECTO ===== */
+@media (max-width: 767px) {
+  .hero-section,
+  .tech-stack-section,
+  .projects-section,
+  .education-section,
+  .objective-section {
+    min-height: 100vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}

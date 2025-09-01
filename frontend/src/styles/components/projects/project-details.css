@@ -578,16 +578,17 @@
   .modal-card:nth-child(5) .vertical-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
     color: white;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     cursor: pointer;
     transition: all 0.3s ease;
-    padding: 20px 10px;
+    padding: 15px 8px;
     border: 2px solid rgba(102, 126, 234, 0.3);
-    border-radius: 15px;
+    border-radius: 12px;
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.05));
+    white-space: nowrap;
   }
   
   .modal-card:nth-child(5) .vertical-text:hover {
@@ -600,16 +601,16 @@
   /* Badge del número de imágenes */
   .modal-card:nth-child(5) .image-count-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 10px;
+    right: 10px;
     background: linear-gradient(135deg, #10b981, #059669);
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 700;
-    padding: 4px 8px;
-    border-radius: 12px;
-    min-width: 20px;
-    height: 20px;
+    padding: 3px 6px;
+    border-radius: 10px;
+    min-width: 18px;
+    height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;

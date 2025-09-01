@@ -15,9 +15,10 @@
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
-  /* Asegurar que el fondo se extienda más allá de los bordes para evitar líneas negras */
-  transform: scale(1.02);
-  transform-origin: center center;
+  /* Asegurar que el fondo se corte correctamente en los bordes */
+  clip-path: inset(0 0 0 0);
+  /* Prevenir que los elementos se extiendan más allá del contenedor */
+  contain: layout style paint;
 }
 
 /* Brillo que sigue el scroll */
@@ -39,10 +40,14 @@
   /* Evitar interferencia con otros elementos */
   pointer-events: none !important;
   z-index: 1;
+  /* Asegurar que los iconos se corten en los bordes */
+  overflow: hidden;
 }
 
 .icon-static-container {
   /* Contenedor simple para los iconos */
+  /* Asegurar que el contenido se corte si es necesario */
+  overflow: hidden;
 }
 
 .static-tech-icon:hover .icon-static-container {
@@ -61,6 +66,7 @@
 @media (max-width: 1024px) {
   .background-icons-container {
     background: #0f172a !important;
+    clip-path: inset(0 0 0 0);
   }
   
   .background-icons-container::before {
@@ -70,10 +76,12 @@
   .static-tech-icon {
     transform: scale(1.1);
     opacity: 0.5;
+    overflow: hidden;
   }
   
   .icon-static-container {
     filter: brightness(1.05) contrast(1.05);
+    overflow: hidden;
   }
 }
 
@@ -81,6 +89,7 @@
 @media (max-width: 768px) {
   .background-icons-container {
     background: #0f172a !important;
+    clip-path: inset(0 0 0 0);
   }
   
   .background-icons-container::before {
@@ -90,10 +99,12 @@
   .static-tech-icon {
     transform: scale(1.2);
     opacity: 0.6;
+    overflow: hidden;
   }
   
   .icon-static-container {
     filter: brightness(1.1) contrast(1.1);
+    overflow: hidden;
   }
 }
 
@@ -101,6 +112,7 @@
 @media (max-width: 480px) {
   .background-icons-container {
     background: #0f172a !important;
+    clip-path: inset(0 0 0 0);
   }
   
   .background-icons-container::before {
@@ -110,9 +122,11 @@
   .static-tech-icon {
     transform: scale(1.4);
     opacity: 0.7;
+    overflow: hidden;
   }
   
   .icon-static-container {
     filter: brightness(1.2) contrast(1.2);
+    overflow: hidden;
   }
 }

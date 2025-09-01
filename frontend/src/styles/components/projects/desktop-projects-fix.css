@@ -1,0 +1,274 @@
+/* ==========================================================================
+   DESKTOP PROJECTS FIX - LAYOUT CORRECTO
+   ========================================================================== */
+
+@media (min-width: 768px) {
+  /* ===== LAYOUT PRINCIPAL DESKTOP ===== */
+  
+  .project-content-wrapper {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4rem !important;
+    align-items: start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    padding: 2rem 0 !important;
+  }
+  
+  /* ===== CONTENEDOR IZQUIERDO - INFORMACIÓN ===== */
+  
+  .project-info-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2.5rem !important;
+    width: 100% !important;
+    padding: 1.5rem !important;
+  }
+
+  /* ===== HEADER DEL PROYECTO ===== */
+  
+  .project-header {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .project-title {
+    font-size: 2.5rem !important;
+    font-weight: 800 !important;
+    color: white !important;
+    margin: 0 0 1.5rem 0 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .project-title-accent {
+    color: #10b981 !important;
+    text-shadow: 0 0 20px rgba(16, 185, 129, 0.3) !important;
+  }
+
+  .project-description {
+    font-size: 1rem !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    line-height: 1.4 !important;
+    margin: 0 0 1rem 0 !important;
+    font-weight: 400 !important;
+    letter-spacing: 0.01em !important;
+  }
+
+  /* ===== META INFO ===== */
+  
+  .project-meta {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .meta-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 0.75rem 1.25rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+  }
+
+  /* ===== BOTONES DE ACCIÓN ===== */
+  
+  .project-actions {
+    display: flex !important;
+    gap: 1rem !important;
+    margin-top: 1rem !important;
+  }
+
+  .action-button {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 1rem 2rem !important;
+    background: transparent !important;
+    color: #10b981 !important;
+    border: 2px solid #10b981 !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+  }
+
+  .action-button:hover {
+    background: #10b981 !important;
+    color: white !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3) !important;
+  }
+
+  /* ===== CONTENEDOR DERECHO - CARD DEL PROYECTO ===== */
+  
+  .project-card-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .project-card-section {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  /* ===== SECCIÓN DE IMAGEN ===== */
+  
+  .project-image-section {
+    height: 300px !important;
+    border-radius: 16px !important;
+    background: transparent !important;
+    overflow: hidden !important;
+    margin-bottom: 1rem !important;
+  }
+
+  /* ===== SECCIÓN DE TECNOLOGÍAS ===== */
+  
+  .project-tech-section {
+    width: 100% !important;
+    flex-shrink: 0 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .tech-grid-title {
+    font-size: 1.3rem !important;
+    font-weight: 700 !important;
+    color: white !important;
+    margin: 0 0 1.5rem 0 !important;
+    text-align: center !important;
+  }
+
+  .tech-grid-container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+    max-height: 160px !important;
+    overflow-y: auto !important;
+    padding: 1rem !important;
+    background: rgba(26, 32, 44, 0.3) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .tech-grid-item {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+    min-height: 60px !important;
+  }
+
+  .tech-grid-item:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  .tech-grid-icon {
+    width: 28px !important;
+    height: 28px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #10b981 !important;
+    font-size: 1.2rem !important;
+  }
+
+  .tech-grid-name {
+    font-size: 0.8rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 100% !important;
+    font-weight: 500 !important;
+  }
+
+  /* Scrollbar personalizado para el grid vertical */
+  .tech-grid-container::-webkit-scrollbar {
+    width: 8px !important;
+  }
+
+  .tech-grid-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 4px !important;
+  }
+
+  .tech-grid-container::-webkit-scrollbar-thumb {
+    background: rgba(16, 185, 129, 0.5) !important;
+    border-radius: 4px !important;
+  }
+
+  .tech-grid-container::-webkit-scrollbar-thumb:hover {
+    background: rgba(16, 185, 129, 0.7) !important;
+  }
+
+  /* ===== BOTÓN DENTRO DE LA SECCIÓN DE TECNOLOGÍAS ===== */
+  
+  .tech-section-button {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 1rem !important;
+    width: 100% !important;
+  }
+
+  .details-button {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 1rem 2rem !important;
+    background: transparent !important;
+    color: #10b981 !important;
+    border: 2px solid #10b981 !important;
+    border-radius: 12px !important;
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    text-decoration: none !important;
+  }
+
+  .details-button:hover {
+    background: #10b981 !important;
+    color: white !important;
+    transform: translateY(-3px) !important;
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3) !important;
+  }
+
+  /* ===== SECCIÓN "MÁS DETALLES" ===== */
+  
+  .project-details-section {
+    display: none !important;
+  }
+
+  /* ===== OCULTAR LAYOUT MÓVIL EN DESKTOP ===== */
+  
+  .project-card-container-mobile {
+    display: none !important;
+  }
+
+  .project-title-section {
+    display: none !important;
+  }
+}
