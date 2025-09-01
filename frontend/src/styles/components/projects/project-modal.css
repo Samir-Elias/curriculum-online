@@ -16,7 +16,7 @@ body.modal-open {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5) !important;
+  background: rgba(0, 0, 0, 0.8) !important;
   backdrop-filter: blur(10px) !important;
   z-index: 9999;
   width: 100vw;
@@ -24,7 +24,7 @@ body.modal-open {
 }
 
 .project-modal {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 0;
   width: 100vw;
