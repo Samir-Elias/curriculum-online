@@ -491,10 +491,10 @@
   }
   
   .modal-card:nth-child(1) .modal-tech-item {
-    padding: 15px 20px;
+    padding: 8px 10px;
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.1));
     border: 1px solid rgba(102, 126, 234, 0.25);
-    border-radius: 12px;
+    border-radius: 8px;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
   }
@@ -601,21 +601,23 @@
   /* Badge del número de imágenes */
   .modal-card:nth-child(5) .image-count-badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: linear-gradient(135deg, #10b981, #059669);
     color: white;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     font-weight: 700;
-    padding: 3px 6px;
-    border-radius: 10px;
-    min-width: 18px;
-    height: 18px;
+    padding: 2px 4px;
+    border-radius: 8px;
+    min-width: 14px;
+    height: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 10;
   }
   
   /* Ajuste para la card central */

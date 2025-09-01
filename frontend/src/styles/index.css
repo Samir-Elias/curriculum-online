@@ -32,6 +32,7 @@
 @import "./components/projects/project-utilities.css";
 @import "./components/projects/mobile-projects-unified.css";
 @import "./components/projects/desktop-projects-fix.css";
+@import "./components/projects/mobile-project-modal.css";
 @import "./components/objective/objective-section.css";
 @import "./components/objective/objective-mobile.css";
 @import "./components/objective/objective-centered.css";

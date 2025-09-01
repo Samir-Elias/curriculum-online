@@ -1,3 +1,7 @@
+@import './styles/components/projects/project-modal.css';
+@import './styles/components/projects/project-details.css';
+@import './styles/components/projects/mobile-project-modal.css';
+
 .App {
     text-align: center;
 }

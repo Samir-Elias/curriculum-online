@@ -2,27 +2,61 @@
 
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, Github, Maximize2, Minimize2, ChevronLeft, ChevronRight } from "lucide-react";
 import { getSpriteTechIcon } from "../icons/TechIconSprite";
 import ImageSlider from "./ImageSlider";
+import MobileProjectModal from "./MobileProjectModal";
 
 const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, hasNextProject, hasPrevProject }) => {
   const [isImageExpanded, setIsImageExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [showImageSlider, setShowImageSlider] = useState(false);
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
   
+  // Estados para cards colapsables en móvil
+  const [expandedCards, setExpandedCards] = useState({
+    images: true,      // La primera card siempre expandida
+    description: false,
+    features: false,
+    challenges: false
+  });
+  
+  // Función para toggle de cards en móvil
+  const toggleCard = (cardKey) => {
+    setExpandedCards(prev => ({
+      ...prev,
+      [cardKey]: !prev[cardKey]
+    }));
+  };
+  
+  // Resetear estados cuando cambia el proyecto
+  React.useEffect(() => {
+    setExpandedCards({
+      images: true,
+      description: false,
+      features: false,
+      challenges: false
+    });
+  }, [project.title]);
+
   // Controlar el scroll del body cuando el modal está abierto
   React.useEffect(() => {
     if (isOpen) {
-      document.body.classList.add('modal-open');
+      // Bloquear scroll en mobile y desktop
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
-      document.body.classList.remove('modal-open');
+      // Restaurar scroll
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     }
 
     // Limpiar al desmontar
     return () => {
-      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
     };
   }, [isOpen]);
 
@@ -46,18 +80,25 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
       switch (event.key) {
         case 'Escape':
           if (showImageSlider) {
+            // Primera capa: Cerrar slider de imágenes móvil
             setShowImageSlider(false);
-          } else {
-            onClose();
+            return; // Salir para evitar que se evalúe isImageExpanded
           }
+          if (isImageExpanded) {
+            // Segunda capa: Cerrar modal expandido de imágenes
+            setIsImageExpanded(false);
+            return; // Salir para evitar que se cierre el modal principal
+          }
+          // Tercera capa: Cerrar modal principal
+          onClose();
           break;
         case 'ArrowLeft':
-          if (hasPrevProject && !showImageSlider) {
+          if (hasPrevProject && !showImageSlider && !isImageExpanded) {
             onPrevProject();
           }
           break;
         case 'ArrowRight':
-          if (hasNextProject && !showImageSlider) {
+          if (hasNextProject && !showImageSlider && !isImageExpanded) {
             onNextProject();
           }
           break;
@@ -73,7 +114,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [isOpen, onClose, showImageSlider, hasPrevProject, hasNextProject, onPrevProject, onNextProject]);
+  }, [isOpen, onClose, showImageSlider, isImageExpanded, hasPrevProject, hasNextProject, onPrevProject, onNextProject]);
 
 
   
@@ -81,7 +122,22 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
     return null;
   }
 
-  // Usar Portal para renderizar fuera del contenedor de ProjectsSection
+  // Si es móvil, usar el modal móvil separado
+  if (isMobile) {
+    return (
+      <MobileProjectModal
+        isOpen={isOpen}
+        onClose={onClose}
+        project={project}
+        onNextProject={onNextProject}
+        onPrevProject={onPrevProject}
+        hasNextProject={hasNextProject}
+        hasPrevProject={hasPrevProject}
+      />
+    );
+  }
+
+  // Usar Portal para renderizar fuera del contenedor de ProjectsSection (solo para PC)
   return createPortal(
     <>
       {/* Overlay con animación in/out */}
@@ -100,15 +156,12 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
       {/* Modal - Solo se anima al abrir/cerrar, no al cambiar proyectos */}
       <motion.div
         className={`project-modal ${isMobile ? 'mobile-modal' : ''}`}
-        initial={{ opacity: 0, scale: 0.8, y: 50 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.8, y: 50 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
         transition={{ 
-          duration: 0.4, 
-          ease: "easeOut",
-          type: "spring",
-          stiffness: 300,
-          damping: 30
+          duration: 0.3, 
+          ease: "easeOut"
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -161,8 +214,8 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                   <span className="meta-text">{project.role}</span>
                 </div>
                <div className="meta-item navigation-hint">
-                 <span className="meta-icon">⌨️</span>
-                 <span className="meta-text">← → para navegar</span>
+                 <span className="meta-icon">👆</span>
+                 <span className="meta-text">Swipe para navegar</span>
                </div>
               </div>
             </div>
@@ -191,10 +244,10 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
            </motion.button>
          </div>
 
-                                                     {/* Contenido de la modal */}
-          <div className="modal-content">
-
-                       {/* Sección expandida de imágenes y resultados - Solo visible cuando está expandida */}
+        {/* Contenido de la modal */}
+        <div className="modal-content">
+          {/* Sección expandida de imágenes y resultados - Solo visible cuando está expandida */}
+          <AnimatePresence>
             {isImageExpanded && (
               <motion.div 
                 className="modal-expanded-section"
@@ -209,6 +262,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                     className="expanded-image-card"
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -50 }}
                     transition={{ delay: 0.1 }}
                   >
                     <div className="card-header">
@@ -218,7 +272,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                         className="image-close-button"
                         onClick={() => setIsImageExpanded(false)}
                         whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
+                        whileTap={{ scale: 0.95 }}
                         title="Cerrar imágenes"
                       >
                         <Minimize2 size={20} />
@@ -246,6 +300,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                       className="expanded-results-card"
                       initial={{ opacity: 0, x: 50 }}
                       animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 50 }}
                       transition={{ delay: 0.2 }}
                     >
                       <div className="card-header">
@@ -260,6 +315,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                               className="result-item"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
+                              exit={{ opacity: 0, y: 20 }}
                               transition={{ delay: 0.3 + index * 0.1 }}
                             >
                               <div className="result-check">✓</div>
@@ -273,11 +329,12 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                 </div>
               </motion.div>
             )}
+          </AnimatePresence>
 
-                                                                                               {/* Contenido principal en cards centradas */}
-              <div className={`modal-cards-container ${isMobile ? 'mobile-cards-container' : ''}`}>
-                {!isMobile ? (
-                  <>
+          {/* Contenido principal en cards centradas */}
+          <div className={`modal-cards-container ${isMobile ? 'mobile-cards-container' : ''}`}>
+            {!isMobile ? (
+              <>
                                {/* Card 1: Stack Tecnológico (Solo badges, sin título) */}
                  <motion.div 
                    className="modal-card"
@@ -435,9 +492,27 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                  </motion.div>
                    </>
                  ) : (
-                   /* Layout móvil - Solo 3 cards principales */
+                   /* Layout móvil - Layout vertical optimizado */
                    <>
-                     {/* Card 1: Descripción del Proyecto */}
+                     {/* Card 1: ImageSlider */}
+                     {project.images && project.images.length > 0 && (
+                       <motion.div 
+                         className="modal-card mobile-card mobile-image-card"
+                         initial={{ opacity: 1, filter: 'blur(0px)' }}
+                         animate={{ opacity: 1, filter: 'blur(0px)' }}
+                         transition={{ duration: 0 }}
+                       >
+                         <div className="card-header">
+                           <span className="card-icon">🖼️</span>
+                           <h3 className="card-title">Imágenes del Proyecto</h3>
+                         </div>
+                         <div className="card-content">
+                           <ImageSlider images={project.images} />
+                         </div>
+                       </motion.div>
+                     )}
+
+                     {/* Card 2: Descripción del Proyecto */}
                      <motion.div 
                        className="modal-card mobile-card"
                        initial={{ opacity: 1, filter: 'blur(0px)' }}
@@ -463,7 +538,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                        </div>
                      </motion.div>
 
-                     {/* Card 2: Características Principales */}
+                     {/* Card 3: Características Principales */}
                      <motion.div 
                        className="modal-card mobile-card"
                        initial={{ opacity: 1, filter: 'blur(0px)' }}
@@ -490,7 +565,7 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                        </div>
                      </motion.div>
 
-                     {/* Card 3: Desafíos y Soluciones */}
+                     {/* Card 4: Desafíos y Soluciones */}
                      <motion.div 
                        className="modal-card mobile-card"
                        initial={{ opacity: 1, filter: 'blur(0px)' }}
@@ -531,58 +606,23 @@ const ProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, 
                          )}
                        </div>
                      </motion.div>
-
-                     {/* Botón para abrir imágenes */}
-                     {project.images && project.images.length > 0 && (
-                       <motion.div
-                         className="mobile-images-button-container"
-                         initial={{ opacity: 1, filter: 'blur(0px)' }}
-                         animate={{ opacity: 1, filter: 'blur(0px)' }}
-                         transition={{ duration: 0 }}
-                       >
-                         <button
-                           className="mobile-images-button"
-                           onClick={() => setShowImageSlider(true)}
-                         >
-                           <span className="button-icon">🖼️</span>
-                           <span className="button-text">Ver Imágenes ({project.images.length})</span>
-                         </button>
-                       </motion.div>
-                     )}
                    </>
                  )}
                            
            </div>
          </div>
 
-        {/* ImageSlider Modal para móvil */}
-        {isMobile && showImageSlider && project.images && project.images.length > 0 && (
-          <motion.div
-            className="mobile-image-slider-modal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="mobile-image-slider-overlay" onClick={() => setShowImageSlider(false)} />
-            <motion.div
-              className="mobile-image-slider-content"
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.8, y: 50 }}
-              transition={{ duration: 0.3 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                className="mobile-image-slider-close"
-                onClick={() => setShowImageSlider(false)}
-              >
-                ×
-              </button>
-              <ImageSlider images={project.images} />
-            </motion.div>
-          </motion.div>
-        )}
+         {/* Indicador de swipe vertical para móvil */}
+         {isMobile && (
+           <div className="mobile-swipe-indicator">
+             <div className="mobile-swipe-dot active"></div>
+             <div className="mobile-swipe-dot"></div>
+             <div className="mobile-swipe-dot"></div>
+             <div className="mobile-swipe-dot"></div>
+           </div>
+         )}
+
+
 
       </motion.div>
     </>,

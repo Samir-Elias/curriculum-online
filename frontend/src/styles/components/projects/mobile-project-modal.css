@@ -1,0 +1,290 @@
+/* Modal móvil con paleta de marca - Azul del background con acentos verdes */
+.mobile-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background: rgba(30, 41, 59, 0.9) !important; /* Azul del background */
+  z-index: 1000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 20px !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.mobile-modal-content {
+  background: rgba(30, 41, 59, 0.95) !important; /* Azul del background */
+  border-radius: 20px !important;
+  width: 100% !important;
+  max-width: 500px !important;
+  max-height: 90vh !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+  border: 2px solid rgba(34, 197, 94, 0.3) !important; /* Borde verde sutil */
+}
+
+.mobile-modal-header {
+  background: rgba(51, 65, 85, 0.95) !important; /* Azul más oscuro */
+  padding: 20px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 2px solid rgba(34, 197, 94, 0.4) !important; /* Borde verde */
+}
+
+.mobile-modal-title {
+  color: white !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  text-align: center !important;
+  flex: 1 !important;
+}
+
+.mobile-nav-button {
+  background: rgba(51, 65, 85, 0.8) !important; /* Azul del background */
+  border: 2px solid rgba(34, 197, 94, 0.4) !important; /* Borde verde */
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.mobile-nav-button:hover:not(:disabled) {
+  background: rgba(51, 65, 85, 0.9) !important;
+  border-color: rgba(34, 197, 94, 0.6) !important;
+}
+
+.mobile-nav-button:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+.mobile-close-button {
+  background: rgba(239, 68, 68, 0.2) !important;
+  border: 2px solid rgba(239, 68, 68, 0.3) !important;
+  border-radius: 50% !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.mobile-close-button:hover {
+  background: rgba(239, 68, 68, 0.3) !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+}
+
+.mobile-cards-wrapper {
+  padding: 20px !important;
+  overflow-y: auto !important;
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important; /* Espacio mínimo entre cards */
+  position: relative !important; /* Para posicionamiento del hint sticky */
+}
+
+.mobile-card {
+  background: rgba(51, 65, 85, 0.8) !important; /* Azul del background */
+  border-radius: 16px !important;
+  margin-bottom: 0 !important; /* Sin margen inferior */
+  border: 2px solid rgba(34, 197, 94, 0.3) !important; /* Borde verde */
+  overflow: hidden !important;
+  transition: all 0.2s ease !important;
+  position: relative !important;
+}
+
+.mobile-image-card {
+  min-height: auto !important; /* Altura automática cuando está colapsada */
+}
+
+.mobile-card .card-header {
+  padding: 16px 20px !important; /* Padding reducido para cards colapsadas */
+  background: rgba(71, 85, 105, 0.9) !important; /* Azul más oscuro */
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.2) !important;
+  min-height: 56px !important; /* Altura mínima fija para el header */
+  border-radius: 16px !important; /* Bordes redondeados como la card */
+}
+
+.mobile-card .card-header:hover {
+  background: rgba(71, 85, 105, 1) !important;
+}
+
+.mobile-card .card-header h3 {
+  color: white !important;
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  flex: 1 !important;
+}
+
+.mobile-card .card-header span:first-child {
+  font-size: 1.2rem !important;
+}
+
+.expand-icon {
+  color: rgba(34, 197, 94, 0.8) !important; /* Verde */
+  font-size: 0.9rem !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Contenido colapsable simple */
+.mobile-card .card-content {
+  padding: 20px !important;
+  color: #e2e8f0 !important;
+  line-height: 1.6 !important;
+  background: rgba(51, 65, 85, 0.6) !important; /* Azul más claro */
+  border-top: 1px solid rgba(34, 197, 94, 0.2) !important; /* Separador sutil */
+  max-height: 0 !important;
+  overflow: hidden !important;
+  transition: max-height 0.3s ease !important;
+  opacity: 0 !important;
+}
+
+/* Mostrar contenido cuando la card está expandida */
+.mobile-card.expanded .card-content {
+  max-height: 400px !important; /* Altura máxima fija */
+  opacity: 1 !important;
+  overflow-y: auto !important; /* Scroll vertical cuando es necesario */
+  scrollbar-width: thin !important; /* Scrollbar fino para Firefox */
+  scrollbar-color: rgba(34, 197, 94, 0.5) rgba(51, 65, 85, 0.3) !important; /* Colores del scrollbar */
+}
+
+/* Estilos del scrollbar para Webkit (Chrome, Safari, Edge) */
+.mobile-card.expanded .card-content::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+.mobile-card.expanded .card-content::-webkit-scrollbar-track {
+  background: rgba(51, 65, 85, 0.3) !important;
+  border-radius: 3px !important;
+}
+
+.mobile-card.expanded .card-content::-webkit-scrollbar-thumb {
+  background: rgba(34, 197, 94, 0.5) !important;
+  border-radius: 3px !important;
+}
+
+.mobile-card.expanded .card-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 197, 94, 0.7) !important;
+}
+
+.mobile-card .card-content p {
+  margin: 0 0 16px 0 !important;
+}
+
+.mobile-card .card-content h4 {
+  color: white !important;
+  margin: 16px 0 8px 0 !important;
+  font-size: 1rem !important;
+}
+
+.mobile-card .card-content ul {
+  margin: 0 !important;
+  padding-left: 20px !important;
+}
+
+.mobile-card .card-content li {
+  margin-bottom: 8px !important;
+}
+
+/* Estilos para la imagen del proyecto */
+.mobile-card .image-content {
+  background: transparent !important; /* Sin fondo */
+  border-top: none !important; /* Sin separador */
+  padding: 0 !important; /* Sin padding */
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.project-main-image {
+  width: 100% !important;
+  height: auto !important;
+  max-height: 300px !important;
+  object-fit: contain !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mobile-hint {
+  text-align: center !important;
+  color: rgba(34, 197, 94, 0.9) !important; /* Verde */
+  font-size: 0.9rem !important;
+  padding: 12px 16px !important;
+  background: rgba(51, 65, 85, 0.9) !important; /* Azul más opaco para mejor contraste */
+  border-radius: 12px !important;
+  border: 2px solid rgba(34, 197, 94, 0.4) !important; /* Borde verde */
+  margin-top: 8px !important; /* Espacio mínimo arriba */
+  position: sticky !important; /* Hacer sticky */
+  bottom: 0 !important; /* Pegado al fondo */
+  z-index: 10 !important; /* Por encima del contenido */
+  backdrop-filter: blur(10px) !important; /* Efecto de blur para mejor legibilidad */
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3) !important; /* Sombra superior */
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .mobile-modal-overlay {
+    padding: 10px !important;
+  }
+  
+  .mobile-modal-header {
+    padding: 15px !important;
+  }
+  
+  .mobile-modal-title {
+    font-size: 1rem !important;
+  }
+  
+  .mobile-cards-wrapper {
+    padding: 15px !important;
+    gap: 6px !important; /* Espacio aún menor en móviles */
+  }
+  
+  .mobile-card .card-header {
+    padding: 14px 16px !important;
+    min-height: 52px !important;
+  }
+  
+  .mobile-card .card-content {
+    padding: 15px !important;
+  }
+  
+  /* Ajustar altura máxima en móviles */
+  .mobile-card.expanded .card-content {
+    max-height: 300px !important; /* Altura menor en móviles */
+  }
+  
+  /* Ajustar imagen en móviles */
+  .project-main-image {
+    max-height: 250px !important; /* Altura menor en móviles */
+  }
+  
+  .mobile-hint {
+    padding: 10px 14px !important;
+    margin-top: 6px !important;
+    font-size: 0.85rem !important; /* Texto más pequeño en móviles */
+  }
+}

@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Linkedin } from 'lucide-react';
+import { useModal } from '../context/ModalContext';
 
 const LinkedInBadge = ({ personalInfo }) => {
+  const { isModalOpen } = useModal();
   const [isVisible, setIsVisible] = useState(false);
   const [isTextVisible, setIsTextVisible] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
@@ -61,6 +63,11 @@ const LinkedInBadge = ({ personalInfo }) => {
   const initials = personalInfo?.nombre 
     ? personalInfo.nombre.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase()
     : 'SS';
+
+  // No mostrar el badge si el modal está abierto
+  if (isModalOpen) {
+    return null;
+  }
 
   return (
     <>
