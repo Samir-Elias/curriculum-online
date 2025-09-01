@@ -157,13 +157,14 @@
 
   .tech-grid-container {
     display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    grid-template-rows: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-    height: 160px !important;
-    max-height: 160px !important;
-    overflow: hidden !important;
-    padding: 1.5rem !important;
+    grid-template-columns: repeat(3, 1fr) !important; /* Cambiar a 3 columnas para mostrar más tecnologías */
+    grid-auto-rows: 1fr !important; /* Filas automáticas para adaptarse al contenido */
+    gap: 0.75rem !important; /* Reducir gap para que quepan más elementos */
+    height: auto !important; /* Altura automática */
+    min-height: 160px !important; /* Altura mínima en lugar de fija */
+    max-height: 200px !important; /* Altura máxima aumentada */
+    overflow-y: auto !important; /* Scroll vertical cuando sea necesario */
+    padding: 1.25rem !important; /* Reducir padding para aprovechar espacio */
     background: rgba(26, 32, 44, 0.3) !important;
     border-radius: 12px !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -176,14 +177,16 @@
     align-items: center !important;
     justify-content: center !important;
     gap: 0.5rem !important;
-    padding: 0.75rem !important;
+    padding: 0.5rem !important; /* Reducir padding para elementos más compactos */
     background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 10px !important;
+    border-radius: 8px !important; /* Reducir border-radius */
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     transition: all 0.3s ease !important;
-    height: 60px !important;
+    height: 50px !important; /* Altura fija para simetría */
     width: 100% !important;
     box-sizing: border-box !important;
+    min-height: 50px !important; /* Altura mínima fija */
+    max-height: 50px !important; /* Altura máxima fija */
   }
 
   .tech-grid-item:hover {
@@ -193,17 +196,19 @@
   }
 
   .tech-grid-icon {
-    width: 28px !important;
-    height: 28px !important;
+    width: 24px !important; /* Tamaño fijo para simetría */
+    height: 24px !important; /* Tamaño fijo para simetría */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     color: #10b981 !important;
-    font-size: 1.2rem !important;
+    font-size: 1rem !important; /* Tamaño de fuente consistente */
+    min-width: 24px !important; /* Ancho mínimo fijo */
+    min-height: 24px !important; /* Alto mínimo fijo */
   }
 
   .tech-grid-name {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important; /* Tamaño de fuente más pequeño para consistencia */
     color: rgba(255, 255, 255, 0.9) !important;
     text-align: center !important;
     white-space: nowrap !important;
@@ -211,25 +216,33 @@
     text-overflow: ellipsis !important;
     max-width: 100% !important;
     font-weight: 500 !important;
+    line-height: 1.1 !important; /* Altura de línea controlada */
+    margin: 0 !important; /* Sin márgenes para simetría */
   }
 
   /* Scrollbar personalizado para el grid vertical */
   .tech-grid-container::-webkit-scrollbar {
-    width: 8px !important;
+    width: 6px !important; /* Scrollbar más delgado */
   }
 
   .tech-grid-container::-webkit-scrollbar-track {
     background: rgba(255, 255, 255, 0.05) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
   }
 
   .tech-grid-container::-webkit-scrollbar-thumb {
     background: rgba(16, 185, 129, 0.5) !important;
-    border-radius: 4px !important;
+    border-radius: 3px !important;
   }
 
   .tech-grid-container::-webkit-scrollbar-thumb:hover {
     background: rgba(16, 185, 129, 0.7) !important;
+  }
+
+  /* Scrollbar para Firefox */
+  .tech-grid-container {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(16, 185, 129, 0.5) rgba(255, 255, 255, 0.05) !important;
   }
 
   /* ===== BOTÓN DENTRO DE LA SECCIÓN DE TECNOLOGÍAS ===== */
@@ -237,8 +250,9 @@
   .tech-section-button {
     display: flex !important;
     justify-content: center !important;
-    margin-top: 2rem !important;
+    margin-top: 1rem !important; /* Reducir margen superior */
     width: 100% !important;
+    padding-bottom: 0.5rem !important; /* Agregar padding inferior */
   }
 
   .details-button {
