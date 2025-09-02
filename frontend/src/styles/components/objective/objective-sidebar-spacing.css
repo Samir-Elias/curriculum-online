@@ -1,0 +1,400 @@
+/* ==========================================================================
+   OBJECTIVE SIDEBAR CARDS - ESPACIADO INTERNO OPTIMIZADO
+   ========================================================================== */
+
+/* ==========================================================================
+   ESPACIADO GENERAL DE LAS SIDEBAR CARDS
+   ========================================================================== */
+
+.objective-sidebar-card {
+  /* Asegurar que el contenido interno respete el espacio */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  height: 100% !important;
+  min-height: 500px !important;
+}
+
+/* ==========================================================================
+   TÍTULOS DE LAS CARDS - ESPACIADO OPTIMIZADO
+   ========================================================================== */
+
+.sidebar-card-title {
+  /* Tamaño y peso del título */
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: white !important;
+  
+  /* Espaciado superior e inferior */
+  margin-top: 0 !important;
+  margin-bottom: 1.5rem !important;
+  padding: 0 !important;
+  
+  /* Alineación y distribución */
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  
+  /* Asegurar que no se desborde */
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.sidebar-icon {
+  /* Tamaño del icono */
+  width: 1.5rem !important;
+  height: 1.5rem !important;
+  color: #60a5fa !important;
+  
+  /* Asegurar que no se deforme */
+  flex-shrink: 0 !important;
+}
+
+/* ==========================================================================
+   CARD DE ESTADO - ESPACIADO INTERNO
+   ========================================================================== */
+
+.objective-sidebar-card.status-card {
+  /* Distribución del contenido */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Lista de modalidades */
+.modalities-list {
+  /* Espaciado entre elementos */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  
+  /* Distribuir el espacio disponible */
+  flex: 1 !important;
+  justify-content: flex-start !important;
+}
+
+.modality-item {
+  /* Espaciado interno de cada modalidad */
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important;
+  padding: 1.25rem !important;
+  
+  /* Estilo visual */
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  
+  /* Transición suave */
+  transition: all 0.3s ease !important;
+}
+
+.modality-item:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  transform: translateX(3px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.modality-icon {
+  /* Tamaño del icono */
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  color: #4ade80 !important;
+  flex-shrink: 0 !important;
+}
+
+.modality-text {
+  /* Texto de la modalidad */
+  font-size: 0.9rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 500 !important;
+  line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   CARD DE NIVELES - ESPACIADO INTERNO
+   ========================================================================== */
+
+.objective-sidebar-card.levels-card {
+  /* Distribución del contenido */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.5rem !important;
+}
+
+/* Lista de niveles */
+.levels-list {
+  /* Espaciado entre elementos */
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1rem !important;
+  
+  /* Distribuir el espacio disponible */
+  flex: 1 !important;
+  justify-content: flex-start !important;
+}
+
+.level-item {
+  /* Espaciado interno de cada nivel */
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.75rem !important;
+  padding: 1.25rem !important;
+  
+  /* Estilo visual */
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  
+  /* Transición suave */
+  transition: all 0.3s ease !important;
+}
+
+.level-item:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+  transform: translateX(3px) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.level-icon {
+  /* Tamaño del icono */
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+  color: #fbbf24 !important;
+  margin-top: 0.125rem !important;
+  flex-shrink: 0 !important;
+}
+
+.level-content {
+  /* Contenido del nivel */
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.level-title {
+  /* Título del nivel */
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  color: white !important;
+  margin-bottom: 0.25rem !important;
+  line-height: 1.3 !important;
+}
+
+.level-description {
+  /* Descripción del nivel */
+  font-size: 0.75rem !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  line-height: 1.4 !important;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN - AJUSTES POR BREAKPOINT
+   ========================================================================== */
+
+/* PC (1024px y superior) */
+@media (min-width: 1024px) {
+  .sidebar-card-title {
+    font-size: 1.375rem !important;
+    margin-bottom: 2rem !important;
+    gap: 1rem !important;
+  }
+  
+  .sidebar-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+  
+  .modality-item,
+  .level-item {
+    padding: 1.5rem !important;
+    gap: 1rem !important;
+  }
+  
+  .modality-text {
+    font-size: 1rem !important;
+  }
+  
+  .level-title {
+    font-size: 1rem !important;
+  }
+  
+  .level-description {
+    font-size: 0.8rem !important;
+  }
+}
+
+/* Pantallas muy grandes (1440px y superior) */
+@media (min-width: 1440px) {
+  .sidebar-card-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .sidebar-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+  
+  .modality-item,
+  .level-item {
+    padding: 1.75rem !important;
+  }
+  
+  .modality-text {
+    font-size: 1.1rem !important;
+  }
+  
+  .level-title {
+    font-size: 1.1rem !important;
+  }
+  
+  .level-description {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Pantallas medianas (1024px - 1439px) */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .sidebar-card-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+  
+  .modality-item,
+  .level-item {
+    padding: 1.25rem !important;
+  }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .sidebar-card-title {
+    font-size: 1.125rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .modality-item,
+  .level-item {
+    padding: 1.125rem !important;
+  }
+  
+  .modality-text {
+    font-size: 0.85rem !important;
+  }
+  
+  .level-title {
+    font-size: 0.85rem !important;
+  }
+  
+  .level-description {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* Móvil (hasta 767px) */
+@media (max-width: 767px) {
+  .sidebar-card-title {
+    font-size: 1rem !important;
+    margin-bottom: 1.25rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  .sidebar-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+  
+  .modality-item,
+  .level-item {
+    padding: 1rem !important;
+    gap: 0.5rem !important;
+  }
+  
+  .modality-text {
+    font-size: 0.8rem !important;
+  }
+  
+  .level-title {
+    font-size: 0.8rem !important;
+  }
+  
+  .level-description {
+    font-size: 0.65rem !important;
+  }
+}
+
+/* ==========================================================================
+   ANIMACIONES Y TRANSICIONES
+   ========================================================================== */
+
+.sidebar-card-title,
+.modality-item,
+.level-item {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* ==========================================================================
+   ESTADOS HOVER MEJORADOS
+   ========================================================================== */
+
+.modality-item:hover,
+.level-item:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* ==========================================================================
+   ESPACIADO CONSISTENTE
+   ========================================================================== */
+
+/* Asegurar que todas las cards tengan el mismo espaciado interno */
+.objective-sidebar-card > *:first-child {
+  margin-top: 0 !important;
+}
+
+.objective-sidebar-card > *:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Espaciado entre secciones internas */
+.objective-sidebar-card > * + * {
+  margin-top: 1.5rem !important;
+}
+
+/* ==========================================================================
+   ALINEACIÓN PERFECTA
+   ========================================================================== */
+
+/* Asegurar que los elementos estén perfectamente alineados */
+.modality-item,
+.level-item {
+  align-items: center !important;
+}
+
+/* Centrar el contenido de las cards */
+.objective-sidebar-card {
+  text-align: left !important;
+}
+
+/* ==========================================================================
+   OPTIMIZACIÓN DE ESPACIO
+   ========================================================================== */
+
+/* Aprovechar mejor el espacio disponible en las cards expandidas */
+.objective-sidebar-card {
+  padding: 2.5rem !important;
+}
+
+/* Distribuir el contenido de manera más eficiente */
+.modalities-list,
+.levels-list {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Asegurar que los elementos no se superpongan */
+.modality-item,
+.level-item {
+  position: relative !important;
+  z-index: 1 !important;
+}

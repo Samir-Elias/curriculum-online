@@ -1,0 +1,242 @@
+/* ==========================================================================
+   OBJECTIVE PROFESSIONAL LAYOUT - CARDS REORGANIZADAS
+   ========================================================================== */
+
+/* ==========================================================================
+   LAYOUT PARA PC - PRIMERA CARD ARRIBA, OTRAS DOS ABAJO
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Primera card (main card) - ARRIBA */
+  .objective-main-card {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 3.5rem !important;
+  }
+
+  /* Sidebar con las dos cards - ABAJO */
+  .objective-sidebar {
+    order: 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Cards individuales del sidebar */
+  .objective-sidebar-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    height: auto !important;
+    min-height: 500px !important;
+    padding: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  /* Card de estado */
+  .objective-sidebar-card.status-card {
+    justify-self: end !important;
+  }
+
+  /* Card de niveles */
+  .objective-sidebar-card.levels-card {
+    justify-self: start !important;
+  }
+}
+
+/* ==========================================================================
+   LAYOUT PARA PANTALLAS MUY GRANDES
+   ========================================================================== */
+
+@media (min-width: 1440px) {
+  .objective-content-grid {
+    max-width: 1200px !important;
+    gap: 4rem !important;
+  }
+
+  .objective-sidebar {
+    max-width: 100% !important;
+    gap: 3rem !important;
+  }
+
+  .objective-sidebar-card {
+    max-width: none !important;
+    padding: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .objective-main-card {
+    padding: 4rem !important;
+  }
+}
+
+/* ==========================================================================
+   LAYOUT PARA PANTALLAS MEDIANAS
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .objective-content-grid {
+    max-width: 1000px !important;
+    gap: 3rem !important;
+  }
+
+  .objective-sidebar {
+    max-width: 100% !important;
+    gap: 2rem !important;
+  }
+
+  .objective-sidebar-card {
+    max-width: none !important;
+    padding: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+
+  .objective-main-card {
+    padding: 3.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   LAYOUT PARA TABLET
+   ========================================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 800px !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-main-card {
+    order: 1 !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 3rem !important;
+  }
+
+  .objective-sidebar {
+    order: 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-sidebar-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    min-height: 450px !important;
+    padding: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   LAYOUT PARA MÓVIL
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    align-items: center !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 1rem !important;
+  }
+
+  .objective-main-card {
+    order: 1 !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 2.5rem !important;
+  }
+
+  .objective-sidebar {
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-sidebar-card {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 auto !important;
+    min-height: auto !important;
+    padding: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   ANIMACIONES Y TRANSICIONES
+   ========================================================================== */
+
+.objective-content-grid {
+  transition: all 0.3s ease-in-out !important;
+}
+
+.objective-main-card,
+.objective-sidebar,
+.objective-sidebar-card {
+  transition: all 0.3s ease-in-out !important;
+}
+
+/* ==========================================================================
+   ESPACIADO Y MARGENES
+   ========================================================================== */
+
+.objective-main-card {
+  margin-bottom: 0 !important;
+}
+
+.objective-sidebar {
+  margin-top: 0 !important;
+}
+
+/* ==========================================================================
+   ALINEACIÓN Y JUSTIFICACIÓN
+   ========================================================================== */
+
+.objective-content-grid {
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+
+.objective-sidebar {
+  justify-items: center !important;
+  align-items: stretch !important;
+}
+
+.objective-sidebar-card {
+  justify-self: center !important;
+  align-self: stretch !important;
+}

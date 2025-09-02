@@ -274,6 +274,47 @@
   outline-offset: 0 !important;
 }
 
+/* Colores específicos para botones del hero */
+.hero-actions .email-button {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+}
+
+.hero-actions .email-button:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af) !important;
+}
+
+.hero-actions .download-button {
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+}
+
+.hero-actions .download-button:hover {
+  background: linear-gradient(135deg, #059669, #047857) !important;
+}
+
+.hero-actions .instagram-button {
+  background: linear-gradient(135deg, #e91e63, #c2185b) !important;
+}
+
+.hero-actions .instagram-button:hover {
+  background: linear-gradient(135deg, #c2185b, #ad1457) !important;
+}
+
+.hero-actions .whatsapp-button {
+  background: linear-gradient(135deg, #25d366, #128c7e) !important;
+}
+
+.hero-actions .whatsapp-button:hover {
+  background: linear-gradient(135deg, #128c7e, #0d6e6b) !important;
+}
+
+.hero-actions .github-button {
+  background: linear-gradient(135deg, #333, #24292e) !important;
+}
+
+.hero-actions .github-button:hover {
+  background: linear-gradient(135deg, #24292e, #1b1f23) !important;
+}
+
 /* Eliminar efectos de focus en botones del hero */
 .hero-actions .action-button:focus,
 .hero-actions .action-button:focus-visible {

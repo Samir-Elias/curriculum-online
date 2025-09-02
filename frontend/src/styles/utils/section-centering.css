@@ -1,0 +1,384 @@
+/* ==========================================================================
+   CENTRADO DE SECCIONES EN PC - EXCEPTO PROYECTOS
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO SECTION - CENTRADO EN PC
+   ========================================================================== */
+
+/* PC (1024px y superior) */
+@media (min-width: 1024px) {
+  .hero-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 90vh !important;
+    padding: 0 !important;
+  }
+
+  .hero-container {
+    max-width: 1400px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-cards-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 2rem !important;
+    align-items: start !important;
+    justify-items: center !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-card {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ==========================================================================
+   TECHSTACK SECTION - CENTRADO EN PC
+   ========================================================================== */
+
+/* PC (1024px y superior) */
+@media (min-width: 1024px) {
+  .techstack-floating-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+  }
+
+  .techstack-floating-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .techstack-floating-title {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+  }
+
+  .techstack-carousel-container {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   EDUCATION SECTION - CENTRADO EN PC
+   ========================================================================== */
+
+/* PC (1024px y superior) */
+@media (min-width: 1024px) {
+  .education-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    padding: 1rem !important;
+  }
+
+  .education-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .education-header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    max-width: 800px !important;
+  }
+
+  .education-carousel-container {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   OBJECTIVE SECTION - CENTRADO EN PC
+   ========================================================================== */
+
+/* PC (1024px y superior) */
+@media (min-width: 1024px) {
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    padding: 1rem !important;
+  }
+
+  .objective-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .objective-header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    max-width: 800px !important;
+  }
+
+  .objective-content-grid {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center !important;
+  }
+
+  .objective-main-card {
+    width: 100% !important;
+    margin: 0 auto !important;
+    order: 1 !important;
+    padding: 2.5rem !important;
+  }
+
+  .objective-sidebar {
+    width: 100% !important;
+    margin: 0 auto !important;
+    order: 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
+  .objective-sidebar-card {
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   PROJECTS SECTION - NO CENTRAR (MANTENER LAYOUT ORIGINAL)
+   ========================================================================== */
+
+/* PC (1024px y superior) - Mantener el layout original */
+@media (min-width: 1024px) {
+  .projects-section {
+    /* No aplicar centrado - mantener layout original */
+    display: block !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 1rem !important;
+  }
+
+  .projects-container {
+    /* No centrar - mantener ancho completo */
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .project-carousel-container {
+    /* No centrar - mantener ancho completo */
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   FOOTER - CENTRADO EN PC
+   ========================================================================== */
+
+/* PC (1024px y superior) */
+@media (min-width: 1024px) {
+  .footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+  }
+
+  .footer-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+}
+
+/* ==========================================================================
+   AJUSTES ESPECÍFICOS PARA PANTALLAS MUY GRANDES
+   ========================================================================== */
+
+/* Pantallas muy grandes (1440px y superior) */
+@media (min-width: 1440px) {
+  .hero-container {
+    max-width: 1600px !important;
+  }
+
+  .techstack-floating-container,
+  .education-container,
+  .objective-container {
+    max-width: 1400px !important;
+  }
+
+  .hero-cards-layout {
+    max-width: 1600px !important;
+    gap: 3rem !important;
+  }
+
+  .hero-card {
+    max-width: 450px !important;
+  }
+
+  .objective-content-grid {
+    max-width: 1200px !important;
+    gap: 3rem !important;
+  }
+
+  .objective-sidebar {
+    max-width: 900px !important;
+    gap: 2rem !important;
+  }
+
+  .objective-sidebar-card {
+    max-width: 450px !important;
+    padding: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   AJUSTES PARA PANTALLAS MEDIANAS (1024px - 1439px)
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-container {
+    max-width: 1400px !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .techstack-floating-container,
+  .education-container,
+  .objective-container {
+    max-width: 1200px !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .hero-cards-layout {
+    gap: 1.5rem !important;
+  }
+
+  .hero-card {
+    max-width: 380px !important;
+  }
+}
+
+/* ==========================================================================
+   MANTENER RESPONSIVIDAD EN TABLET Y MÓVIL
+   ========================================================================== */
+
+/* Tablet (768px - 1023px) - Mantener centrado pero con ajustes */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-section,
+  .techstack-floating-section,
+  .education-section,
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    padding: 1rem !important;
+  }
+
+  .hero-container,
+  .techstack-floating-container,
+  .education-container,
+  .objective-container {
+    max-width: 800px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-cards-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-card {
+    max-width: 100% !important;
+  }
+}
+
+/* Móvil (hasta 767px) - Mantener centrado pero con ajustes */
+@media (max-width: 767px) {
+  .hero-section,
+  .techstack-floating-section,
+  .education-section,
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    padding: 0.75rem !important;
+  }
+
+  .hero-container,
+  .techstack-floating-container,
+  .education-container,
+  .objective-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .hero-cards-layout {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-card {
+    max-width: 100% !important;
+  }
+}

@@ -11,6 +11,8 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
   align-items: center;
   padding: 1.5rem;
   margin-bottom: 3rem;
+  width: 100%;
+  max-width: 100%;
 }
 
 .objective-container {
@@ -24,6 +26,7 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0 2rem;
 }
 
 /* ===== HEADER COMPACTO ===== */
@@ -72,7 +75,7 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
   .objective-content-grid {
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    gap: 3rem;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
@@ -84,13 +87,14 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
   .objective-main-card {
     width: 100%;
     max-width: 100%;
-    padding: 2.5rem;
+    padding: 3.5rem;
+    order: 1;
   }
   
   .objective-sidebar {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 3rem;
+    gap: 2rem;
     width: 100%;
     max-width: 100%;
     justify-content: center;
@@ -98,7 +102,7 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
     height: auto;
     min-height: 0;
     margin-bottom: 2rem;
-    align-items: stretch;
+    order: 2;
   }
   
   .objective-sidebar-card {
@@ -107,16 +111,18 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1.75rem;
-    padding-bottom: 2rem;
+    padding: 2.5rem;
+    padding-bottom: 2.5rem;
     overflow: visible;
+    max-width: none;
+    margin: 0 auto;
   }
   
   /* Asegurar que las cards tengan el mismo tamaño */
   .objective-sidebar-card.status-card,
   .objective-sidebar-card.levels-card {
     height: 100%;
-    min-height: 600px;
+    min-height: 500px;
     max-height: none;
     display: flex;
     flex-direction: column;
@@ -167,7 +173,7 @@ image.png/* ===== OBJECTIVE SECTION - REDISEÑO COMPACTO ===== */
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 3rem;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
   height: 100%;
   display: flex;

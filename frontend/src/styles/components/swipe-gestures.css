@@ -129,23 +129,13 @@
   animation: swipeRightHint 3s ease-in-out infinite !important;
 }
 
-/* Puntos de swipe en la parte inferior */
+/* Puntos de swipe en la parte inferior - OCULTOS */
 .swipe-dots {
-  position: absolute !important;
-  bottom: 1rem !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  display: flex !important;
-  gap: 0.25rem !important;
-  z-index: 5 !important;
+  display: none !important;
 }
 
 .swipe-dot {
-  width: 0.5rem !important;
-  height: 0.5rem !important;
-  border-radius: 50% !important;
-  background: rgba(255, 255, 255, 0.3) !important;
-  animation: swipeDotPulse 2s ease-in-out infinite !important;
+  display: none !important;
 }
 
 .swipe-dot:nth-child(2) {
@@ -171,8 +161,7 @@
 /* Mostrar indicadores solo en la primera visita */
 .swipe-gesture-indicator,
 .swipe-arrow-left,
-.swipe-arrow-right,
-.swipe-dots {
+.swipe-arrow-right {
   animation-duration: 3s !important;
   animation-iteration-count: 3 !important;
 }
@@ -196,8 +185,7 @@
   }
 
   .swipe-dot {
-    width: 0.375rem !important;
-    height: 0.375rem !important;
+    display: none !important;
   }
 }
 

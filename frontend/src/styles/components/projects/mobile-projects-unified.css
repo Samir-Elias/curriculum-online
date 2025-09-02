@@ -780,31 +780,35 @@
   }
 
   .tech-grid-container {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 0.75rem !important;
-    max-height: 120px !important;
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* 2 columnas para móvil */
+    gap: 0.5rem !important; /* Gap más pequeño para aprovechar espacio */
+    max-height: 200px !important; /* Altura máxima aumentada */
+    overflow-y: auto !important; /* Scroll vertical en lugar de horizontal */
+    overflow-x: hidden !important; /* Sin scroll horizontal */
     padding: 1rem !important;
     background: rgba(26, 32, 44, 0.3) !important;
     border-radius: 8px !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    align-items: center !important;
+    align-items: start !important; /* Alinear al inicio para mejor distribución */
   }
 
   .tech-grid-item {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    gap: 0.5rem !important;
-    padding: 0.75rem !important;
+    justify-content: center !important;
+    gap: 0.4rem !important; /* Gap más pequeño */
+    padding: 0.5rem !important; /* Padding más compacto */
     background: rgba(255, 255, 255, 0.05) !important;
     border-radius: 8px !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     transition: all 0.2s ease !important;
-    flex-shrink: 0 !important;
-    min-width: 80px !important;
+    height: 60px !important; /* Altura fija para simetría */
+    width: 100% !important; /* Ancho completo del grid */
+    min-height: 60px !important; /* Altura mínima fija */
+    max-height: 60px !important; /* Altura máxima fija */
+    box-sizing: border-box !important;
   }
 
   .tech-grid-item:hover {
@@ -813,27 +817,31 @@
   }
 
   .tech-grid-icon {
-    width: 32px !important;
-    height: 32px !important;
+    width: 24px !important; /* Tamaño más pequeño para simetría */
+    height: 24px !important; /* Tamaño más pequeño para simetría */
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     color: #10b981 !important;
+    min-width: 24px !important; /* Ancho mínimo fijo */
+    min-height: 24px !important; /* Alto mínimo fijo */
   }
 
   .tech-grid-name {
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important; /* Tamaño más pequeño para consistencia */
     color: rgba(255, 255, 255, 0.8) !important;
     text-align: center !important;
     white-space: nowrap !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
     max-width: 100% !important;
+    line-height: 1.1 !important; /* Altura de línea controlada */
+    margin: 0 !important; /* Sin márgenes para simetría */
   }
 
-  /* Scrollbar personalizado para el grid horizontal */
+  /* Scrollbar personalizado para el grid vertical */
   .tech-grid-container::-webkit-scrollbar {
-    height: 6px !important;
+    width: 6px !important; /* Cambiar de height a width para scroll vertical */
   }
 
   .tech-grid-container::-webkit-scrollbar-track {
@@ -848,6 +856,39 @@
 
   .tech-grid-container::-webkit-scrollbar-thumb:hover {
     background: rgba(16, 185, 129, 0.7) !important;
+  }
+
+  /* Scrollbar para Firefox */
+  .tech-grid-container {
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(16, 185, 129, 0.5) rgba(255, 255, 255, 0.05) !important;
+  }
+
+  /* ===== BREAKPOINT PARA PANTALLAS MUY PEQUEÑAS ===== */
+  @media (max-width: 480px) {
+    .tech-grid-container {
+      grid-template-columns: repeat(3, 1fr) !important; /* 3 columnas para pantallas muy pequeñas */
+      gap: 0.4rem !important; /* Gap aún más pequeño */
+      padding: 0.75rem !important; /* Padding reducido */
+    }
+
+    .tech-grid-item {
+      height: 50px !important; /* Altura más pequeña para pantallas muy pequeñas */
+      min-height: 50px !important;
+      max-height: 50px !important;
+      padding: 0.4rem !important; /* Padding más compacto */
+    }
+
+    .tech-grid-icon {
+      width: 20px !important; /* Iconos más pequeños */
+      height: 20px !important;
+      min-width: 20px !important;
+      min-height: 20px !important;
+    }
+
+    .tech-grid-name {
+      font-size: 0.65rem !important; /* Texto más pequeño */
+    }
   }
 
   /* ===== SECCIÓN "MÁS DETALLES" (DEBAJO DEL GRID) ===== */

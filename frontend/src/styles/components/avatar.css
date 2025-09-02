@@ -26,9 +26,13 @@
 .hero-avatar {
   border: 4px solid white;
   box-shadow: var(--shadow-lg);
+  border-radius: 50% !important;
+  overflow: hidden;
 }
 
 .hero-avatar:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
+  border-radius: 50% !important;
+  overflow: hidden;
 } 

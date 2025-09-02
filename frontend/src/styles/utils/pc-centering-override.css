@@ -1,0 +1,341 @@
+/* ==========================================================================
+   OVERRIDE PARA CENTRADO PERFECTO EN PC
+   ========================================================================== */
+
+/* ==========================================================================
+   HERO SECTION - OVERRIDE PARA PC
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .hero-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 90vh !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .hero-container {
+    max-width: 1400px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 2rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .hero-cards-layout {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 2rem !important;
+    align-items: start !important;
+    justify-items: center !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-card {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-card-left,
+  .hero-card-center,
+  .hero-card-right {
+    width: 100% !important;
+    max-width: 400px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ==========================================================================
+   TECHSTACK SECTION - OVERRIDE PARA PC
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .techstack-floating-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+  }
+
+  .techstack-floating-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 2rem !important;
+  }
+
+  .techstack-floating-title {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    max-width: 800px !important;
+  }
+
+  .techstack-carousel-container {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   EDUCATION SECTION - OVERRIDE PARA PC
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .education-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  .education-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 2rem !important;
+  }
+
+  .education-header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    max-width: 800px !important;
+  }
+
+  .education-carousel-container {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+/* ==========================================================================
+   OBJECTIVE SECTION - OVERRIDE PARA PC
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .objective-section {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 80vh !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 1rem !important;
+  }
+
+  .objective-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 2rem !important;
+  }
+
+  .objective-header {
+    text-align: center !important;
+    margin-bottom: 2rem !important;
+    width: 100% !important;
+    max-width: 800px !important;
+  }
+
+  .objective-content-grid {
+    width: 100% !important;
+    max-width: 1000px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center !important;
+  }
+
+  .objective-main-card {
+    width: 100% !important;
+    margin: 0 auto !important;
+    order: 1 !important;
+    padding: 2.5rem !important;
+  }
+
+  .objective-sidebar {
+    width: 100% !important;
+    margin: 0 auto !important;
+    order: 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.5rem !important;
+    max-width: 100% !important;
+  }
+
+  .objective-sidebar-card {
+    max-width: none !important;
+    margin: 0 auto !important;
+    padding: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   PROJECTS SECTION - NO CENTRAR EN PC
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .projects-section {
+    /* No aplicar centrado - mantener layout original */
+    display: block !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .projects-container {
+    /* No centrar - mantener ancho completo */
+    max-width: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .project-carousel-container {
+    /* No centrar - mantener ancho completo */
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+  }
+}
+
+/* ==========================================================================
+   FOOTER - CENTRADO EN PC
+   ========================================================================== */
+
+@media (min-width: 1024px) {
+  .footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .footer-container {
+    max-width: 1200px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    padding: 0 2rem !important;
+  }
+}
+
+/* ==========================================================================
+   AJUSTES PARA PANTALLAS MUY GRANDES
+   ========================================================================== */
+
+@media (min-width: 1440px) {
+  .hero-container {
+    max-width: 1600px !important;
+  }
+
+  .techstack-floating-container,
+  .education-container,
+  .objective-container {
+    max-width: 1400px !important;
+  }
+
+  .hero-cards-layout {
+    max-width: 1600px !important;
+    gap: 3rem !important;
+  }
+
+  .hero-card {
+    max-width: 450px !important;
+  }
+
+  .hero-card-left,
+  .hero-card-center,
+  .hero-card-right {
+    max-width: 450px !important;
+  }
+
+  .objective-content-grid {
+    max-width: 1200px !important;
+    gap: 3rem !important;
+  }
+
+  .objective-sidebar {
+    max-width: 900px !important;
+    gap: 2rem !important;
+  }
+
+  .objective-sidebar-card {
+    max-width: 450px !important;
+    padding: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   AJUSTES PARA PANTALLAS MEDIANAS
+   ========================================================================== */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .hero-container {
+    max-width: 1400px !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .techstack-floating-container,
+  .education-container,
+  .objective-container {
+    max-width: 1200px !important;
+    padding: 0 1.5rem !important;
+  }
+
+  .hero-cards-layout {
+    gap: 1.5rem !important;
+  }
+
+  .hero-card {
+    max-width: 380px !important;
+  }
+
+  .hero-card-left,
+  .hero-card-center,
+  .hero-card-right {
+    max-width: 380px !important;
+  }
+}

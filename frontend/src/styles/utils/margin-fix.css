@@ -1,0 +1,263 @@
+/* ==========================================================================
+   FIX PARA MARGEN DERECHO FIJO - LÍNEA VERTICAL
+   ========================================================================== */
+
+/* Reset completo para eliminar cualquier margen derecho */
+* {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* HTML y Body - Fix principal */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  /* Eliminar cualquier scrollbar que pueda causar el margen */
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  /* Fix específico para el margen derecho */
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+}
+
+/* Ocultar scrollbars en WebKit browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+}
+
+/* Root container */
+#root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* App container */
+.App {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Loading screen - Fix específico */
+.loading-screen,
+[style*="position: fixed"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Contenedor principal */
+.main-content-wrapper,
+.relative.min-h-screen {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Background animation container */
+.background-icons-container {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Fix para elementos con position absolute/fixed */
+[style*="position: absolute"],
+[style*="position: fixed"] {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  right: 0 !important;
+}
+
+/* Fix para contenedores de secciones */
+section,
+div[class*="section"],
+div[class*="container"] {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix específico para el loading screen */
+motion.div[style*="position: fixed"],
+.loading-screen-fixed {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Fix específico para la clase loading-screen-fixed */
+.loading-screen-fixed {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para el contenedor interno del loading screen */
+.loading-screen-fixed > * {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  right: 0 !important;
+  max-width: 100vw !important;
+}
+
+/* Fix para viewport en diferentes navegadores */
+@supports (-webkit-appearance: none) {
+  /* Safari y Chrome */
+  html, body {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@supports (-moz-appearance: none) {
+  /* Firefox */
+  html, body {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+/* Fix para dispositivos móviles */
+@media (max-width: 768px) {
+  html, body, #root, .App {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+  
+  .loading-screen,
+  [style*="position: fixed"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    right: 0 !important;
+  }
+}
+
+/* Fix para tablets */
+@media (min-width: 769px) and (max-width: 1024px) {
+  html, body, #root, .App {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* Fix para desktop */
+@media (min-width: 1025px) {
+  html, body, #root, .App {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* Fix para pantallas muy anchas */
+@media (min-width: 1920px) {
+  html, body, #root, .App {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* Fix específico para el problema de la línea vertical */
+html::after,
+body::after,
+#root::after,
+.App::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Eliminar cualquier pseudo-elemento que pueda estar causando el margen */
+*::after,
+*::before {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  right: 0 !important;
+}
+
+/* Fix para el loading screen específicamente */
+motion.div[style*="width: 100vw"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Asegurar que no haya elementos que se salgan del viewport */
+* {
+  box-sizing: border-box !important;
+  max-width: 100vw !important;
+}
+
+/* Fix para el problema específico del margen derecho */
+html, body, #root, .App, .main-content-wrapper {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+}
+
+/* Eliminar cualquier borde o outline que pueda estar causando la línea */
+* {
+  border-right: none !important;
+  outline: none !important;
+}
+
+/* Fix para el loading screen motion.div */
+motion.div {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+}
+
+/* Fix específico para el contenedor del loading screen */
+motion.div[style*="position: fixed"][style*="top: 0"][style*="left: 0"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}

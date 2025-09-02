@@ -15,6 +15,8 @@
   justify-content: center;
   background: transparent !important;
   z-index: 1;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Hero Container Principal */
@@ -26,22 +28,24 @@
   position: relative;
   background: transparent !important;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Hero Cards Layout - Escalera */
+/* Hero Cards Layout - Layout de tres columnas */
 .hero-cards-layout {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto;
   gap: 2rem;
   align-items: start;
-  padding: 0 1rem;
-  padding-top: 0.5rem;
-  margin-bottom: 1rem;
+  justify-items: center;
+  padding: 2rem 1rem;
   background: transparent !important;
   z-index: 3;
   width: 100%;
-  max-width: 100vw;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Hero Cards Base */
@@ -258,10 +262,7 @@
   background: #059669;
 }
 
-/* Nav Section Icon */
-.nav-section-icon {
-  background: linear-gradient(135deg, #10b981, #34d399);
-}
+/* Nav Section Icon - Definido en hero-navigation.css */
 
 /* Media Print */
 @media print .hero-section,

@@ -415,14 +415,7 @@ const TechStack = ({ tecnologiasCore, isVisible, containerVariants, itemVariants
               ))}
             </div>
 
-            {/* Puntos de swipe */}
-            {!hasInteracted && (
-              <div className="swipe-dots">
-                <div className="swipe-dot"></div>
-                <div className="swipe-dot"></div>
-                <div className="swipe-dot"></div>
-              </div>
-            )}
+
           </div>
         ) : (
           // Grid normal para desktop

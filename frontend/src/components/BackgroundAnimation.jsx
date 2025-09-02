@@ -120,17 +120,17 @@ const BackgroundIcons = ({ isMobile = false }) => {
         { id: 11, Icon: GeminiIcon, x: 12, y: 102, size: chatGptSize, speed: 0 },
         
         // Zigzag derecho - columna 2 (Iconos de tech)
-        { id: 12, Icon: MetaIcon, x: 88, y: 6, size: chatGptSize, speed: 0 },
-        { id: 13, Icon: NodeIcon, x: 97, y: 15, size: chatGptSize, speed: 0 },
-        { id: 14, Icon: JavaScriptIcon, x: 88, y: 24, size: chatGptSize, speed: 0 },
-        { id: 15, Icon: TypeScriptIcon, x: 97, y: 33, size: chatGptSize, speed: 0 },
-        { id: 16, Icon: ViteIcon, x: 88, y: 42, size: chatGptSize, speed: 0 },
-        { id: 17, Icon: FigmaIcon, x: 97, y: 51, size: chatGptSize, speed: 0 },
-        { id: 18, Icon: GitHubIcon, x: 88, y: 60, size: chatGptSize, speed: 0 },
-        { id: 19, Icon: PostgreSQLIcon, x: 97, y: 69, size: chatGptSize, speed: 0 },
-        { id: 20, Icon: JavaIcon, x: 88, y: 78, size: chatGptSize, speed: 0 },
-        { id: 21, Icon: SpringIcon, x: 97, y: 87, size: chatGptSize, speed: 0 },
-        { id: 22, Icon: PythonIcon, x: 88, y: 96, size: chatGptSize, speed: 0 }
+        { id: 12, Icon: MetaIcon, x: 75, y: 6, size: chatGptSize, speed: 0 },
+        { id: 13, Icon: NodeIcon, x: 82, y: 15, size: chatGptSize, speed: 0 },
+        { id: 14, Icon: JavaScriptIcon, x: 75, y: 24, size: chatGptSize, speed: 0 },
+        { id: 15, Icon: TypeScriptIcon, x: 82, y: 33, size: chatGptSize, speed: 0 },
+        { id: 16, Icon: ViteIcon, x: 75, y: 42, size: chatGptSize, speed: 0 },
+        { id: 17, Icon: FigmaIcon, x: 82, y: 51, size: chatGptSize, speed: 0 },
+        { id: 18, Icon: GitHubIcon, x: 75, y: 60, size: chatGptSize, speed: 0 },
+        { id: 19, Icon: PostgreSQLIcon, x: 82, y: 69, size: chatGptSize, speed: 0 },
+        { id: 20, Icon: JavaIcon, x: 75, y: 78, size: chatGptSize, speed: 0 },
+        { id: 21, Icon: SpringIcon, x: 82, y: 87, size: chatGptSize, speed: 0 },
+        { id: 22, Icon: PythonIcon, x: 75, y: 96, size: chatGptSize, speed: 0 }
       ];
     } else {
       // Configuración desktop - zigzag completo a lo largo de toda la página con máxima variedad
@@ -266,9 +266,9 @@ const BackgroundIcons = ({ isMobile = false }) => {
           clipPath: 'inset(0 0 0 0)'
         }}
       >
-        {floatingIcons.map((icon) => (
+        {floatingIcons.map((icon, index) => (
           <div
-            key={`bg-icon-${icon.id}-${icon.x}-${icon.y}`}
+            key={`bg-icon-${isLowPerformance ? 'low' : 'normal'}-${isMobileState ? 'mobile' : 'desktop'}-${icon.id}-${index}-${icon.Icon.name || icon.Icon.displayName || 'icon'}`}
             className="static-tech-icon"
             style={{
               position: 'absolute',

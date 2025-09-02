@@ -16,7 +16,7 @@
   z-index: 1;
 }
 
-/* Hero Card Left - Información Personal (Arriba Izquierda) */
+/* Hero Card Left - Información Personal (Izquierda) */
 .hero-card-left {
   display: flex;
   flex-direction: column;
@@ -27,6 +27,8 @@
   grid-row: 1;
   align-self: start;
   padding: 2rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .hero-content {
@@ -41,26 +43,27 @@
 .hero-card-center {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 2rem;
   position: relative;
   z-index: 10;
   grid-column: 2;
   grid-row: 1;
   align-self: start;
-  margin-top: -1.25rem;
-  padding: 2rem;
+  padding: 3rem 2.5rem;
+  width: 100%;
+  max-width: 450px;
 }
 
 .hero-navigation-content {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
   min-height: 600px;
   justify-content: flex-start;
-  padding-top: 0.25rem;
+  padding-top: 0.5rem;
 }
 
-/* Hero Card Right - Preview de Proyectos (Derecha Abajo) */
+/* Hero Card Right - Preview de Proyectos (Derecha) */
 .hero-card-right {
   display: flex;
   flex-direction: column;
@@ -70,10 +73,9 @@
   grid-column: 3;
   grid-row: 1;
   align-self: start;
-  margin-top: 0;
   padding: 2rem;
   width: 100%;
-  max-width: 100%;
+  max-width: 400px;
 }
 
 .hero-projects-preview {

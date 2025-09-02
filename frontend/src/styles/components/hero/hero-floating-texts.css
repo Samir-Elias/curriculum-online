@@ -23,27 +23,29 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   border-radius: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 0.875rem;
   font-weight: 500;
-  color: #64748b;
+  color: white;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .floating-text:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
   transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
 }
 
 .floating-text-icon {
-  width: 16px;
-  height: 16px;
-  color: #3b82f6;
+  width: 1rem;
+  height: 1rem;
+  color: #10b981;
 }

@@ -7,11 +7,10 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 50;
   pointer-events: none;
   overflow: hidden;
   background: #0f172a !important;
-  background-attachment: scroll !important;
   background-size: cover !important;
   background-position: center !important;
   background-repeat: no-repeat !important;
@@ -19,6 +18,10 @@
   clip-path: inset(0 0 0 0);
   /* Prevenir que los elementos se extiendan más allá del contenedor */
   contain: layout style paint;
+  /* Eliminar cualquier scroll invisible */
+  -webkit-overflow-scrolling: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Brillo que sigue el scroll */

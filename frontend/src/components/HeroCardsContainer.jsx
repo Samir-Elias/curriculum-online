@@ -31,9 +31,9 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
   const defaultPersonalInfo = {
     nombre: "Samir Elias Salatino",
     titulo: "Full-Stack + AI Specialist | Prompt Engineering Expert",
-    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y metodologías ágiles. Experiencia en metodologías ágiles y proyectos Full-Stack. Más interesado y certificado disponible en mi portafolio.",
+    bio: "Developer apasionado especializado en Backend con Java, Spring Framework y arquitecturas robustas. Experto en desarrollo asistido por IA y prompt engineering. Experiencia en metodologías ágiles y proyectos Full-Stack con productividad 10x usando herramientas modernas de IA.",
     ubicacion: "Mendoza, Argentina",
-    experiencia: "6+ años Developer Autodidacta",
+    experiencia: "6 años como Developer Autodidacta",
     email: "samir.elias.dev@gmail.com",
     github: "https://github.com/Samir-Elias",
     website: "https://portfolio.samir-elias.dev",
@@ -146,6 +146,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   <MateIcon width={120} height={120} />
                 </div>
               </motion.div>
+              
               <motion.div className="navigation-header" variants={variants}>
                 <h2 className="navigation-title">
                   <Zap className="navigation-icon" />
@@ -318,8 +319,6 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                   </div>
                 </div>
 
-
-
                 <div className="project-preview-item" onClick={(e) => {
                   e.stopPropagation();
                   openProjectModal(4); // Rick & Morty - índice 4
@@ -345,7 +344,7 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
                     <p className="project-preview-description">Desarrollo asistido con IA y prompt engineering</p>
                   </div>
                   <div className="project-preview-image">
-                    <img src="/images/Cv_2daFoto.png" alt="Portfolio React" />
+                    <img src="/images/PortfolioReact.png" alt="Portfolio React" />
                     <div className="project-preview-overlay">
                       <ExternalLink className="project-preview-link-icon" />
                     </div>
@@ -355,8 +354,6 @@ const HeroCardsContainer = ({ personalInfo = {}, itemVariants = {} }) => {
             </div>
           </motion.div>
         </div>
-
-
       </div>
     </div>
   )

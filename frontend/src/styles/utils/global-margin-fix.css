@@ -1,0 +1,652 @@
+/* ==========================================================================
+   FIX GLOBAL PARA MARGEN DERECHO - APLICACIÓN AGRESIVA
+   ========================================================================== */
+
+/* Reset global agresivo para márgenes derechos */
+*,
+*::before,
+*::after {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix específico para elementos que pueden causar el margen */
+html,
+body,
+#root,
+.App,
+div,
+section,
+article,
+aside,
+nav,
+header,
+footer,
+main {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  right: 0 !important;
+}
+
+/* Fix para elementos con position fixed/absolute */
+[style*="position: fixed"],
+[style*="position: absolute"],
+.position-fixed,
+.position-absolute {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  right: 0 !important;
+}
+
+/* Fix específico para el loading screen */
+.loading-screen,
+.loading-screen-fixed,
+[class*="loading"] {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Fix para motion.div del loading screen */
+motion.div {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  right: 0 !important;
+}
+
+/* Fix para el viewport completo */
+html,
+body {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para el root container */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para el App container */
+.App {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para contenedores principales */
+.main-content-wrapper,
+.relative.min-h-screen {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para el background animation */
+.background-icons-container {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
+}
+
+/* Fix para todas las secciones */
+section[id],
+div[id] {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para contenedores de proyectos */
+.projects-section,
+.project-container,
+.project-wrapper {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para el hero section */
+.hero-section,
+#hero {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para el tech stack */
+.tech-stack,
+#techstack {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para la educación */
+.education-section,
+#education {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para el objetivo */
+.objective-section,
+#objective {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para el footer */
+.footer,
+footer {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para contenedores de Tailwind */
+.container,
+.mx-auto,
+.px-4,
+.px-6,
+.px-8 {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para elementos flex */
+.flex,
+.flex-col,
+.flex-row,
+.items-center,
+.justify-center,
+.justify-between,
+.justify-start {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para elementos grid */
+.grid,
+.grid-cols-1,
+.grid-cols-2,
+.grid-cols-3,
+.grid-cols-4 {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para elementos de texto */
+h1, h2, h3, h4, h5, h6,
+p, span, a, div {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para imágenes */
+img, svg, picture {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+}
+
+/* Fix para botones */
+button, .btn, [class*="button"] {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para inputs y formularios */
+input, textarea, select, form {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para listas */
+ul, ol, li {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para tablas */
+table, th, td, tr {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para elementos de navegación */
+nav, .nav, .navigation {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para modales */
+.modal, .modal-overlay, .modal-content {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para tooltips */
+.tooltip, .tooltip-content {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para dropdowns */
+.dropdown, .dropdown-content {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para carousels y sliders */
+.carousel, .slider, .swiper {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para cards */
+.card, .card-content, .card-header, .card-footer {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+
+/* Fix para badges */
+.badge, .tag, .chip {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para avatars */
+.avatar, .avatar-image {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para iconos */
+.icon, .icon-container {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para animaciones */
+.animate, .animation, .motion {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para transiciones */
+.transition, .transition-all, .transition-transform {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para hover effects */
+.hover, .hover\:scale, .hover\:shadow {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para focus states */
+.focus, .focus\:outline, .focus\:ring {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para active states */
+.active, .active\:bg, .active\:text {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para disabled states */
+.disabled, .disabled\:opacity, .disabled\:cursor {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para loading states */
+.loading, .loading\:opacity, .loading\:cursor {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para error states */
+.error, .error\:border, .error\:text {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para success states */
+.success, .success\:border, .success\:text {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para warning states */
+.warning, .warning\:border, .warning\:text {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para info states */
+.info, .info\:border, .info\:text {
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fix para todos los breakpoints responsive */
+@media (max-width: 640px) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para orientación landscape */
+@media (orientation: landscape) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para orientación portrait */
+@media (orientation: portrait) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para dispositivos con mouse */
+@media (hover: hover) and (pointer: fine) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para modo oscuro */
+@media (prefers-color-scheme: dark) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para modo claro */
+@media (prefers-color-scheme: light) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para alto contraste */
+@media (prefers-contrast: high) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* Fix para impresión */
+@media print {
+  * {
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    border-right: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+}

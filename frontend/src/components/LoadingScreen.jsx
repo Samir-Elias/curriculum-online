@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import MateIcon from './MateIcon';
-import FallingIconsAnimation from './FallingIconsAnimation';
 import BackgroundIcons from './BackgroundAnimation';
 
 const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
@@ -93,6 +92,7 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
     <AnimatePresence>
       {showLoading && isLoading && (
         <motion.div
+          className="loading-screen-fixed"
           style={{
             position: 'fixed',
             top: 0,
@@ -110,7 +110,9 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
             zIndex: 9999,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            marginRight: 0,
+            paddingRight: 0
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -125,8 +127,8 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
             }
           }}
         >
-          {/* BackgroundIcons solo en móviles */}
-          {isMobile && <BackgroundIcons isMobile={isMobile} />}
+          {/* BackgroundIcons para todos los dispositivos (estático) */}
+          <BackgroundIcons isMobile={isMobile} />
           
                         {/* CONTENEDOR FLEXBOX PRINCIPAL */}
             <motion.div
@@ -156,8 +158,7 @@ const LoadingScreen = ({ onLoadingComplete, showLoading }) => {
                 filter: { duration: 1, ease: "easeInOut" }
               }}
             >
-                {/* ANIMACIÓN DE ICONOS CAYENDO - Solo en desktop */}
-                <FallingIconsAnimation isAnimating={isLoading} />
+                {/* Iconos estáticos de fondo para todos los dispositivos */}
 
 
 

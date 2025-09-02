@@ -26,6 +26,10 @@ import { Button } from "./ui/button"
 import "../styles/components/objective/objective-section.css"
 import "../styles/components/objective/objective-mobile.css"
 import "../styles/components/objective/objective-centered.css"
+import "../styles/components/objective/objective-layout.css"
+import "../styles/components/objective/objective-sidebar-spacing.css"
+import "../styles/components/objective/objective-main-card-spacing.css"
+import "../styles/components/objective/objective-mobile-fixed.css"
 
 const ObjectiveSection = ({
   objetivoProfesional,
@@ -88,7 +92,8 @@ const ObjectiveSection = ({
                 Mi Propuesta de Valor
               </h4>
               <div className="objective-value-grid">
-                <div className="objective-value-item">
+                {/* Badge principal con borde de colores - más grande */}
+                <div className="objective-value-item main-value-item">
                   <div className="value-icon-container">
                     <TrendingUp className="value-icon" />
                   </div>
@@ -97,7 +102,8 @@ const ObjectiveSection = ({
                     <div className="value-description">Proyectos reales y aprendizaje continuo</div>
                   </div>
                 </div>
-                <div className="objective-value-item">
+                {/* 4 badges pequeños en grid 2x2 */}
+                <div className="objective-value-item small-value-item">
                   <div className="value-icon-container">
                     <Code className="value-icon" />
                   </div>
@@ -106,7 +112,7 @@ const ObjectiveSection = ({
                     <div className="value-description">Backend robusto y escalable</div>
                   </div>
                 </div>
-                <div className="objective-value-item">
+                <div className="objective-value-item small-value-item">
                   <div className="value-icon-container">
                     <Star className="value-icon" />
                   </div>
@@ -115,7 +121,7 @@ const ObjectiveSection = ({
                     <div className="value-description">Desarrollo asistido por inteligencia artificial</div>
                   </div>
                 </div>
-                <div className="objective-value-item">
+                <div className="objective-value-item small-value-item">
                   <div className="value-icon-container">
                     <Users className="value-icon" />
                   </div>
@@ -124,7 +130,7 @@ const ObjectiveSection = ({
                     <div className="value-description">Trabajo en equipo y entregas iterativas</div>
                   </div>
                 </div>
-                <div className="objective-value-item">
+                <div className="objective-value-item small-value-item">
                   <div className="value-icon-container">
                     <Zap className="value-icon" />
                   </div>
@@ -137,7 +143,7 @@ const ObjectiveSection = ({
             </div>
 
             {/* Call to Action - Movido a la card izquierda */}
-            <div className="objective-cta-section">
+            <div className="objective-cta-section mobile-hidden">
               <h4 className="objective-section-title">
                 <Heart className="section-icon" />
                 ¿Interesado en trabajar juntos?

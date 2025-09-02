@@ -91,72 +91,129 @@
     margin-bottom: 0 !important;
   }
 
-  /* Propuesta de valor compacta - Badges como modalidades */
+  /* Propuesta de valor reorganizada - Badge principal arriba, 4 pequeños debajo */
   .objective-value-section {
     margin-bottom: 1rem !important;
   }
 
   .objective-value-grid {
     display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
   }
 
-  .objective-value-item {
-    padding: 0.25rem 0.5rem !important;
-    gap: 0.25rem !important;
-    border-radius: 6px !important;
+  /* Badge principal - más grande con borde de colores */
+  .objective-value-item.main-value-item {
+    padding: 0.75rem 1rem !important;
+    gap: 0.5rem !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 2px solid rgba(34, 197, 94, 0.6) !important; /* Borde verde de marca */
+    display: flex !important;
+    align-items: center !important;
+    font-size: 0.75rem !important;
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.2) !important; /* Brillo verde sutil */
+  }
+
+  .objective-value-item.main-value-item .value-icon-container {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    min-width: 1.5rem !important;
+  }
+
+  .objective-value-item.main-value-item .value-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+    color: rgba(34, 197, 94, 0.8) !important; /* Icono verde */
+  }
+
+  .objective-value-item.main-value-item .value-title {
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.125rem !important;
+    line-height: 1.2 !important;
+    color: white !important;
+  }
+
+  .objective-value-item.main-value-item .value-description {
+    display: block !important;
+    font-size: 0.625rem !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Grid de 4 badges pequeños */
+  .objective-value-item.small-value-item {
+    padding: 0.375rem 0.75rem !important;
+    gap: 0.375rem !important;
+    border-radius: 8px !important;
     background: rgba(255, 255, 255, 0.05) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     display: flex !important;
     align-items: center !important;
     font-size: 0.625rem !important;
+    flex: 1 !important;
+    min-width: calc(50% - 0.25rem) !important;
   }
 
-  .value-icon-container {
+  /* Grid 2x2 para los badges pequeños */
+  .objective-value-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  /* El badge principal ocupa todo el ancho */
+  .objective-value-item.main-value-item {
+    grid-column: 1 / -1 !important;
+  }
+
+  /* Los 4 badges pequeños se distribuyen en 2x2 */
+  .objective-value-item.small-value-item:nth-child(2) {
+    grid-column: 1 / 2 !important;
+    grid-row: 2 / 3 !important;
+  }
+
+  .objective-value-item.small-value-item:nth-child(3) {
+    grid-column: 2 / 3 !important;
+    grid-row: 2 / 3 !important;
+  }
+
+  .objective-value-item.small-value-item:nth-child(4) {
+    grid-column: 1 / 2 !important;
+    grid-row: 3 / 4 !important;
+  }
+
+  .objective-value-item.small-value-item:nth-child(5) {
+    grid-column: 2 / 3 !important;
+    grid-row: 3 / 4 !important;
+  }
+
+  .objective-value-item.small-value-item .value-icon-container {
     width: 1rem !important;
     height: 1rem !important;
     min-width: 1rem !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
   }
 
-  .value-icon {
+  .objective-value-item.small-value-item .value-icon {
     width: 0.5rem !important;
     height: 0.5rem !important;
   }
 
-  .value-title {
+  .objective-value-item.small-value-item .value-title {
     font-size: 0.625rem !important;
     font-weight: 500 !important;
     margin-bottom: 0 !important;
     line-height: 1.2 !important;
   }
 
-  .value-description {
+  .objective-value-item.small-value-item .value-description {
     display: none !important;
   }
 
-  /* CTA simplificado */
-  .objective-cta-section {
-    margin-bottom: 0 !important;
-  }
-
-  .objective-cta-actions {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-  }
-
-  .objective-cta-button {
-    font-size: 0.75rem !important;
-    padding: 0.5rem 1rem !important;
-    height: auto !important;
-  }
-
-  .objective-cta-button .w-4 {
-    width: 0.875rem !important;
-    height: 0.875rem !important;
+  /* Ocultar sección CTA en móvil */
+  .objective-cta-section.mobile-hidden {
+    display: none !important;
   }
 
   /* ===== SIDEBAR MÓVIL - CARD INTEGRADA ===== */
@@ -240,7 +297,7 @@
   .objective-sidebar-card.levels-card {
     order: 3 !important;
     display: block !important;
-    max-height: 200px !important;
+    max-height: 250px !important; /* Más altura para mostrar más niveles */
     overflow: hidden !important;
   }
 
@@ -256,7 +313,7 @@
   }
 
   .objective-sidebar-card.levels-card .levels-list {
-    max-height: 140px !important;
+    max-height: 180px !important; /* Más altura para la lista scrolleable */
     overflow-y: auto !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
@@ -275,9 +332,9 @@
     border-radius: 2px !important;
   }
 
-  /* Mostrar solo 2 niveles de interés */
-  .objective-sidebar-card.levels-card .level-item:nth-child(n+3) {
-    display: none !important;
+  /* Mostrar todos los niveles de interés - se pueden scrollear */
+  .objective-sidebar-card.levels-card .level-item {
+    display: block !important;
   }
 
   .objective-sidebar-card.levels-card .level-item {
@@ -306,7 +363,7 @@
     color: rgba(255, 255, 255, 0.7) !important;
   }
 
-  /* Indicador de swipe vertical */
+  /* Indicador de swipe vertical sticky */
   .objective-sidebar-card.levels-card .levels-list::after {
     content: '↓ Desliza para ver más' !important;
     display: block !important;
@@ -316,6 +373,11 @@
     padding: 0.5rem !important;
     margin-top: 0.5rem !important;
     border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    background: rgba(51, 65, 85, 0.95) !important; /* Fondo para que se vea bien */
+    z-index: 5 !important; /* Por encima del contenido */
+    backdrop-filter: blur(5px) !important; /* Efecto de blur sutil */
   }
 }
 
@@ -330,26 +392,27 @@
     font-size: 1.125rem !important;
   }
 
-  .objective-value-item {
+  /* Ajustar badges pequeños en móviles muy pequeños */
+  .objective-value-item.small-value-item {
     padding: 0.25rem 0.5rem !important;
     font-size: 0.6rem !important;
   }
 
-  .objective-value-item .value-icon {
+  .objective-value-item.small-value-item .value-icon {
     width: 0.5rem !important;
     height: 0.5rem !important;
   }
 
-  .objective-value-item .value-title {
+  .objective-value-item.small-value-item .value-title {
     font-size: 0.6rem !important;
   }
 
   .objective-sidebar-card.levels-card {
-    max-height: 180px !important;
+    max-height: 220px !important;
   }
 
   .objective-sidebar-card.levels-card .levels-list {
-    max-height: 120px !important;
+    max-height: 160px !important;
   }
 }
 
@@ -364,25 +427,26 @@
     font-size: 1rem !important;
   }
 
-  .objective-value-item {
+  /* Ajustar badges pequeños en móviles muy pequeños */
+  .objective-value-item.small-value-item {
     padding: 0.25rem 0.5rem !important;
     font-size: 0.55rem !important;
   }
 
-  .objective-value-item .value-icon {
+  .objective-value-item.small-value-item .value-icon {
     width: 0.5rem !important;
     height: 0.5rem !important;
   }
 
-  .objective-value-item .value-title {
+  .objective-value-item.small-value-item .value-title {
     font-size: 0.55rem !important;
   }
 
   .objective-sidebar-card.levels-card {
-    max-height: 160px !important;
+    max-height: 200px !important;
   }
 
   .objective-sidebar-card.levels-card .levels-list {
-    max-height: 100px !important;
+    max-height: 140px !important;
   }
 }

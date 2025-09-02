@@ -1,0 +1,890 @@
+/* ==========================================================================
+   OBJECTIVE SECTION - VISTA MÓVIL COMPLETAMENTE ARREGLADA
+   ========================================================================== */
+
+/* ==========================================================================
+   OVERRIDE COMPLETO PARA MÓVIL - ARREGLANDO TODOS LOS PROBLEMAS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  /* ==========================================================================
+     CONTENEDOR PRINCIPAL - LAYOUT MÓVIL PERFECTO
+     ========================================================================== */
+  
+  .objective-section {
+    padding: 1rem !important;
+    margin-bottom: 2rem !important;
+    min-height: auto !important;
+  }
+
+  .objective-container {
+    padding: 0 !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-header {
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+  }
+
+  .objective-title {
+    font-size: 1.75rem !important;
+    gap: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+    justify-content: center !important;
+  }
+
+  .objective-title-icon {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .objective-subtitle {
+    font-size: 1rem !important;
+    margin-bottom: 0 !important;
+    text-align: center !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* ==========================================================================
+     GRID PRINCIPAL - UNA COLUMNA PERFECTA
+     ========================================================================== */
+  
+  .objective-content-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* ==========================================================================
+     CARD PRINCIPAL - OPTIMIZADA PARA MÓVIL
+     ========================================================================== */
+  
+  .objective-main-card {
+    order: 1 !important;
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Header de la card principal */
+  .objective-card-header {
+    flex-direction: column !important;
+    gap: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .objective-card-title {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3 !important;
+    text-align: left !important;
+  }
+
+  .objective-card-subtitle {
+    font-size: 0.95rem !important;
+    margin-bottom: 0 !important;
+    line-height: 1.4 !important;
+    text-align: left !important;
+  }
+
+  .objective-status-badge {
+    align-self: flex-start !important;
+    font-size: 0.8rem !important;
+    padding: 0.75rem 1.25rem !important;
+    gap: 0.5rem !important;
+    border-radius: 20px !important;
+  }
+
+  .objective-status-badge .status-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  /* ==========================================================================
+     SECCIONES INTERNAS - ESPACIADO PERFECTO
+     ========================================================================== */
+  
+  .objective-description-section {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .objective-section-title {
+    font-size: 1.125rem !important;
+    margin-bottom: 1rem !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+  }
+
+  .objective-section-title .section-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .objective-description {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 0 !important;
+    text-align: left !important;
+  }
+
+  /* ==========================================================================
+     GRID DE VALOR - REORGANIZADO PARA MÓVIL
+     ========================================================================== */
+  
+  .objective-value-section {
+    margin-bottom: 1.5rem !important;
+  }
+
+  .objective-value-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  /* Badge principal - destacado */
+  .objective-value-item:nth-child(1) {
+    grid-column: 1 / -1 !important;
+    padding: 1.25rem !important;
+    gap: 1rem !important;
+    background: rgba(34, 197, 94, 0.1) !important;
+    border: 2px solid rgba(34, 197, 94, 0.3) !important;
+    border-radius: 16px !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-icon-container {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    background: rgba(34, 197, 94, 0.2) !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+    color: #4ade80 !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-title {
+    font-size: 1.125rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    line-height: 1.3 !important;
+    color: white !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-description {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  /* Grid 2x2 para los badges secundarios */
+  .objective-value-item:nth-child(2),
+  .objective-value-item:nth-child(3) {
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 12px !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-icon-container,
+  .objective-value-item:nth-child(3) .value-icon-container {
+    width: 2rem !important;
+    height: 2rem !important;
+    background: rgba(96, 165, 250, 0.15) !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-icon,
+  .objective-value-item:nth-child(3) .value-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+    color: #60a5fa !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-title,
+  .objective-value-item:nth-child(3) .value-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.3 !important;
+    color: white !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-description,
+  .objective-value-item:nth-child(3) .value-description {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  /* ==========================================================================
+     SIDEBAR CARDS - OPTIMIZADAS PARA MÓVIL
+     ========================================================================== */
+  
+  .objective-sidebar {
+    order: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* ==========================================================================
+     CARD DE ESTADO - INTEGRADA CON MODALIDADES
+     ========================================================================== */
+  
+  .objective-sidebar-card.status-card {
+    order: 1 !important;
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  .objective-sidebar-card.status-card .sidebar-card-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+    gap: 0.75rem !important;
+    color: white !important;
+    font-weight: 700 !important;
+  }
+
+  .objective-sidebar-card.status-card .sidebar-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    color: #60a5fa !important;
+  }
+
+  /* Lista de modalidades integrada */
+  .objective-sidebar-card.status-card .modalities-integrated {
+    margin-top: 1.5rem !important;
+    padding-top: 1.5rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-card-title {
+    font-size: 1.125rem !important;
+    margin-bottom: 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modalities-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-item {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-item:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    transform: translateX(3px) !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+    color: #4ade80 !important;
+    flex-shrink: 0 !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-text {
+    font-size: 0.9rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+  }
+
+  /* ==========================================================================
+     CARD DE NIVELES - SCROLL VERTICAL PERFECTO
+     ========================================================================== */
+  
+  .objective-sidebar-card.levels-card {
+    order: 2 !important;
+    padding: 1.5rem !important;
+    border-radius: 20px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    max-height: 300px !important;
+    overflow: hidden !important;
+  }
+
+  .objective-sidebar-card.levels-card .sidebar-card-title {
+    font-size: 1.25rem !important;
+    margin-bottom: 1.5rem !important;
+    gap: 0.75rem !important;
+    color: white !important;
+    font-weight: 700 !important;
+  }
+
+  .objective-sidebar-card.levels-card .sidebar-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    color: #60a5fa !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list {
+    max-height: 220px !important;
+    overflow-y: auto !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: rgba(255, 255, 255, 0.3) transparent !important;
+    padding-right: 0.5rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list::-webkit-scrollbar {
+    width: 4px !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list::-webkit-scrollbar-track {
+    background: transparent !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 2px !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-item {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+    margin-bottom: 0.75rem !important;
+    border-radius: 12px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all 0.3s ease !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-item:hover {
+    background: rgba(255, 255, 255, 0.12) !important;
+    transform: translateX(3px) !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-item:last-child {
+    margin-bottom: 0 !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+    color: #fbbf24 !important;
+    margin-top: 0.125rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-content {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-title {
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    color: white !important;
+    margin-bottom: 0.25rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-description {
+    font-size: 0.8rem !important;
+    line-height: 1.4 !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+  /* Indicador de scroll */
+  .objective-sidebar-card.levels-card .levels-list::after {
+    content: '↓ Desliza para ver más niveles' !important;
+    display: block !important;
+    text-align: center !important;
+    font-size: 0.75rem !important;
+    color: rgba(255, 255, 255, 0.6) !important;
+    padding: 1rem !important;
+    margin-top: 0.5rem !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: rgba(51, 65, 85, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 0 0 12px 12px !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL PEQUEÑO - AJUSTES ADICIONALES
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .objective-section {
+    padding: 0.75rem !important;
+  }
+
+  .objective-header {
+    margin-bottom: 1.25rem !important;
+  }
+
+  .objective-title {
+    font-size: 1.5rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-title-icon {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+
+  .objective-subtitle {
+    font-size: 0.9rem !important;
+  }
+
+  .objective-content-grid {
+    gap: 1.25rem !important;
+  }
+
+  .objective-main-card {
+    padding: 1.25rem !important;
+  }
+
+  .objective-card-header {
+    gap: 0.75rem !important;
+    margin-bottom: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .objective-card-title {
+    font-size: 1.375rem !important;
+  }
+
+  .objective-card-subtitle {
+    font-size: 0.875rem !important;
+  }
+
+  .objective-status-badge {
+    font-size: 0.75rem !important;
+    padding: 0.625rem 1rem !important;
+  }
+
+  .objective-status-badge .status-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-section-title {
+    font-size: 1rem !important;
+    margin-bottom: 0.875rem !important;
+  }
+
+  .objective-section-title .section-icon {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+  }
+
+  .objective-description {
+    font-size: 0.875rem !important;
+  }
+
+  .objective-value-item:nth-child(1) {
+    padding: 1rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-icon-container {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-title {
+    font-size: 1rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-description {
+    font-size: 0.8rem !important;
+  }
+
+  .objective-value-item:nth-child(2),
+  .objective-value-item:nth-child(3) {
+    padding: 0.875rem !important;
+    gap: 0.625rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-icon-container,
+  .objective-value-item:nth-child(3) .value-icon-container {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-icon,
+  .objective-value-item:nth-child(3) .value-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-title,
+  .objective-value-item:nth-child(3) .value-title {
+    font-size: 0.9rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-description,
+  .objective-value-item:nth-child(3) .value-description {
+    font-size: 0.75rem !important;
+  }
+
+  .objective-sidebar {
+    gap: 1.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card,
+  .objective-sidebar-card.levels-card {
+    padding: 1.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card .sidebar-card-title,
+  .objective-sidebar-card.levels-card .sidebar-card-title {
+    font-size: 1.125rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card .sidebar-icon,
+  .objective-sidebar-card.levels-card .sidebar-icon {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated {
+    margin-top: 1.25rem !important;
+    padding-top: 1.25rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-card-title {
+    font-size: 1rem !important;
+    margin-bottom: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-icon {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-item {
+    padding: 0.875rem !important;
+    gap: 0.625rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-text {
+    font-size: 0.8rem !important;
+  }
+
+  .objective-sidebar-card.levels-card {
+    max-height: 280px !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list {
+    max-height: 200px !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-item {
+    padding: 0.875rem !important;
+    gap: 0.625rem !important;
+    margin-bottom: 0.625rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-title {
+    font-size: 0.875rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-description {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL MUY PEQUEÑO - AJUSTES FINALES
+   ========================================================================== */
+
+@media (max-width: 360px) {
+  .objective-section {
+    padding: 0.5rem !important;
+  }
+
+  .objective-header {
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-title {
+    font-size: 1.375rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-title-icon {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .objective-subtitle {
+    font-size: 0.85rem !important;
+  }
+
+  .objective-content-grid {
+    gap: 1rem !important;
+  }
+
+  .objective-main-card {
+    padding: 1rem !important;
+  }
+
+  .objective-card-header {
+    gap: 0.625rem !important;
+    margin-bottom: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+
+  .objective-card-title {
+    font-size: 1.25rem !important;
+  }
+
+  .objective-card-subtitle {
+    font-size: 0.8rem !important;
+  }
+
+  .objective-status-badge {
+    font-size: 0.7rem !important;
+    padding: 0.5rem 0.875rem !important;
+  }
+
+  .objective-status-badge .status-icon {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+
+  .objective-section-title {
+    font-size: 0.95rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .objective-section-title .section-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  .objective-description {
+    font-size: 0.8rem !important;
+  }
+
+  .objective-value-item:nth-child(1) {
+    padding: 0.875rem !important;
+    gap: 0.625rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-icon-container {
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-icon {
+    width: 0.875rem !important;
+    height: 0.875rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-title {
+    font-size: 0.9rem !important;
+  }
+
+  .objective-value-item:nth-child(1) .value-description {
+    font-size: 0.75rem !important;
+  }
+
+  .objective-value-item:nth-child(2),
+  .objective-value-item:nth-child(3) {
+    padding: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-icon-container,
+  .objective-value-item:nth-child(3) .value-icon-container {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-icon,
+  .objective-value-item:nth-child(3) .value-icon {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-title,
+  .objective-value-item:nth-child(3) .value-title {
+    font-size: 0.8rem !important;
+  }
+
+  .objective-value-item:nth-child(2) .value-description,
+  .objective-value-item:nth-child(3) .value-description {
+    font-size: 0.7rem !important;
+  }
+
+  .objective-sidebar {
+    gap: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card,
+  .objective-sidebar-card.levels-card {
+    padding: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card .sidebar-card-title,
+  .objective-sidebar-card.levels-card .sidebar-card-title {
+    font-size: 1rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card .sidebar-icon,
+  .objective-sidebar-card.levels-card .sidebar-icon {
+    width: 1.125rem !important;
+    height: 1.125rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated {
+    margin-top: 1rem !important;
+    padding-top: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-card-title {
+    font-size: 0.9rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .sidebar-icon {
+    width: 1rem !important;
+    height: 1rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-item {
+    padding: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-icon {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+
+  .objective-sidebar-card.status-card .modalities-integrated .modality-text {
+    font-size: 0.75rem !important;
+  }
+
+  .objective-sidebar-card.levels-card {
+    max-height: 260px !important;
+  }
+
+  .objective-sidebar-card.levels-card .levels-list {
+    max-height: 180px !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-item {
+    padding: 0.75rem !important;
+    gap: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-icon {
+    width: 0.75rem !important;
+    height: 0.75rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-title {
+    font-size: 0.8rem !important;
+  }
+
+  .objective-sidebar-card.levels-card .level-description {
+    font-size: 0.7rem !important;
+  }
+}
+
+/* ==========================================================================
+   ANIMACIONES Y TRANSICIONES PARA MÓVIL
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .objective-main-card,
+  .objective-sidebar-card,
+  .objective-value-item,
+  .modality-item,
+  .level-item {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+  .objective-value-item:hover,
+  .modality-item:hover,
+  .level-item:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+/* ==========================================================================
+   SCROLL SUAVE PARA MÓVIL
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .objective-sidebar-card.levels-card .levels-list {
+    scroll-behavior: smooth !important;
+  }
+}
+
+/* ==========================================================================
+   TOUCH OPTIMIZATION PARA MÓVIL
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .objective-value-item,
+  .modality-item,
+  .level-item {
+    -webkit-tap-highlight-color: transparent !important;
+    touch-action: manipulation !important;
+  }
+}

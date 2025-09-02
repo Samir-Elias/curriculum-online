@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import { Badge } from "./ui/badge"
 import ImageSlider from "./ImageSlider"
+import MobileEducationModal from "./MobileEducationModal"
 import "../styles/components/education/education-section.css"
 
 const EducationSection = ({ formacionTecnica, isVisible, containerVariants, itemVariants, expandedEducation, setExpandedEducation }) => {
@@ -29,6 +30,7 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
   const [touchStart, setTouchStart] = useState(null)
   const [touchEnd, setTouchEnd] = useState(null)
   const [showSwipeHint, setShowSwipeHint] = useState(true)
+  const [isMobile, setIsMobile] = useState(false)
   const educationSectionRef = useRef(null)
 
   // Navigation functions
@@ -51,6 +53,18 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
     }
     setTimeout(() => setIsTransitioning(false), 300)
   }, [formacionTecnica.length, isTransitioning])
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
 
   // Keyboard navigation
   useEffect(() => {
@@ -412,9 +426,9 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
         </div>
       </motion.section>
 
-      {/* Modal Unificado de Educación y Certificados */}
+      {/* Modal Unificado de Educación y Certificados - Solo Desktop */}
       <AnimatePresence>
-        {isModalOpen && (
+        {isModalOpen && !isMobile && (
           <motion.div
             className="education-modal-overlay"
             initial={{ opacity: 0 }}
@@ -553,6 +567,17 @@ const EducationSection = ({ formacionTecnica, isVisible, containerVariants, item
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Modal Móvil de Educación */}
+      <MobileEducationModal
+        isOpen={isModalOpen && isMobile}
+        onClose={closeModal}
+        education={currentFormacion}
+        onNextEducation={nextEducationInModal}
+        onPrevEducation={prevEducationInModal}
+        hasNextEducation={currentEducation < formacionTecnica.length - 1}
+        hasPrevEducation={currentEducation > 0}
+      />
     </>
   )
 }

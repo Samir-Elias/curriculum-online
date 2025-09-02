@@ -11,6 +11,11 @@ html.loading {
   max-width: 100vw !important;
   margin: 0 !important;
   padding: 0 !important;
+  /* Fix específico para margen derecho */
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
 }
 
 /* Asegurar que el root container no interfiera */
@@ -19,6 +24,13 @@ html.loading {
   height: 100vh !important;
   width: 100vw !important;
   max-width: 100vw !important;
+  /* Fix específico para margen derecho */
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
 }
 
 /* Reset completo para la pantalla de carga */
@@ -161,6 +173,16 @@ html.loading {
   position: fixed !important;
   z-index: 99999 !important;
   isolation: isolate !important;
+  /* Fix específico para margen derecho */
+  margin: 0 !important;
+  padding: 0 !important;
+  margin-right: 0 !important;
+  padding-right: 0 !important;
+  border-right: none !important;
+  outline: none !important;
+  right: 0 !important;
+  width: 100vw !important;
+  max-width: 100vw !important;
 }
 
 /* Fix para Safari iOS */
