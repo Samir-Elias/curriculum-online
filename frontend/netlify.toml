@@ -2,6 +2,28 @@
   publish = "build"
   command = "npm run build"
 
+[[plugins]]
+  package = "netlify-plugin-lighthouse"
+  
+  [plugins.inputs]
+    # Configuración de Lighthouse
+    performance_budget_cpu_slowdown_multiplier = 4
+    performance_budget_network_throttling = "3G"
+    
+    # URLs a auditar (puedes agregar más)
+    audit_on = ["production"]
+    
+    # Configuración de reportes
+    upload_results = true
+    assert_thresholds = true
+    
+    # Umbrales mínimos (opcional)
+    [plugins.inputs.thresholds]
+      performance = 90
+      accessibility = 90
+      best-practices = 90
+      seo = 90
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
