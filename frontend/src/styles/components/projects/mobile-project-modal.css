@@ -10,7 +10,9 @@
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  padding: 20px !important;
+  padding: 12px !important;
+  padding-top: max(12px, env(safe-area-inset-top)) !important;
+  padding-bottom: max(12px, env(safe-area-inset-bottom)) !important;
   backdrop-filter: blur(10px) !important;
 }
 
@@ -19,7 +21,7 @@
   border-radius: 20px !important;
   width: 100% !important;
   max-width: 500px !important;
-  max-height: 90vh !important;
+  max-height: calc(100dvh - 24px) !important;
   overflow: hidden !important;
   display: flex !important;
   flex-direction: column !important;
@@ -29,20 +31,25 @@
 
 .mobile-modal-header {
   background: rgba(51, 65, 85, 0.95) !important; /* Azul más oscuro */
-  padding: 20px !important;
+  padding: 14px 16px !important;
   display: flex !important;
   align-items: center !important;
-  justify-content: space-between !important;
+  gap: 10px !important;
   border-bottom: 2px solid rgba(34, 197, 94, 0.4) !important; /* Borde verde */
 }
 
 .mobile-modal-title {
   color: white !important;
-  font-size: 1.2rem !important;
+  font-size: 1.1rem !important;
   font-weight: 600 !important;
   margin: 0 !important;
   text-align: center !important;
-  flex: 1 !important;
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  padding: 0 4px !important;
 }
 
 .mobile-nav-button {
@@ -51,12 +58,15 @@
   border-radius: 50% !important;
   width: 40px !important;
   height: 40px !important;
+  min-width: 40px !important;
+  flex-shrink: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   color: white !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
+  padding: 0 !important;
 }
 
 .mobile-nav-button:hover:not(:disabled) {
@@ -75,14 +85,18 @@
   border-radius: 50% !important;
   width: 40px !important;
   height: 40px !important;
+  min-width: 40px !important;
+  flex-shrink: 0 !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   color: white !important;
   font-size: 1.5rem !important;
+  line-height: 1 !important;
   font-weight: bold !important;
   cursor: pointer !important;
   transition: all 0.2s ease !important;
+  padding: 0 !important;
 }
 
 .mobile-close-button:hover {
@@ -164,7 +178,7 @@
 
 /* Mostrar contenido cuando la card está expandida */
 .mobile-card.expanded .card-content {
-  max-height: 400px !important; /* Altura máxima fija */
+  max-height: 70dvh !important; /* Cap generoso basado en viewport dinámico */
   opacity: 1 !important;
   overflow-y: auto !important; /* Scroll vertical cuando es necesario */
   scrollbar-width: thin !important; /* Scrollbar fino para Firefox */
@@ -274,7 +288,7 @@
   
   /* Ajustar altura máxima en móviles */
   .mobile-card.expanded .card-content {
-    max-height: 300px !important; /* Altura menor en móviles */
+    max-height: 65dvh !important; /* Altura menor en móviles */
   }
   
   /* Ajustar imagen en móviles */

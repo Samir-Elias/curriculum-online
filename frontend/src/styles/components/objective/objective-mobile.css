@@ -37,8 +37,8 @@
   .objective-main-card {
     padding: 1.25rem !important;
     border-radius: 16px !important;
-    max-height: 70vh !important;
-    overflow: hidden !important;
+    max-height: none !important;
+    overflow: visible !important;
   }
 
   /* Header de la card principal */
@@ -385,7 +385,7 @@
 @media (max-width: 480px) {
   .objective-main-card {
     padding: 1rem !important;
-    max-height: 65vh !important;
+    max-height: none !important;
   }
 
   .objective-card-title {
@@ -420,7 +420,7 @@
 @media (max-width: 360px) {
   .objective-main-card {
     padding: 0.875rem !important;
-    max-height: 60vh !important;
+    max-height: none !important;
   }
 
   .objective-card-title {

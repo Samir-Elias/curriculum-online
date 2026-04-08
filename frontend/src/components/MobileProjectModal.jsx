@@ -2,9 +2,7 @@
 
 import React, { useState } from "react";
 import { createPortal } from "react-dom";
-import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import ImageSlider from "./ImageSlider";
 
 const MobileProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevProject, hasNextProject, hasPrevProject }) => {
   const [expandedCards, setExpandedCards] = useState({
@@ -28,7 +26,7 @@ const MobileProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevPro
       features: false,
       challenges: false
     });
-  }, [project.title]);
+  }, [project?.title]);
 
   React.useEffect(() => {
     if (isOpen) {
@@ -53,36 +51,39 @@ const MobileProjectModal = ({ isOpen, onClose, project, onNextProject, onPrevPro
       <div className="mobile-modal-content" onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="mobile-modal-header">
-          <button 
+          <button
+            className="mobile-close-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+
+          <button
             className="mobile-nav-button"
             onClick={(e) => {
               e.stopPropagation();
               onPrevProject();
             }}
             disabled={!hasPrevProject}
+            aria-label="Anterior"
           >
             <ChevronLeft size={24} />
           </button>
-          
+
           <h2 className="mobile-modal-title">{project.title}</h2>
-          
-          <button 
-            className="mobile-close-button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-          >
-            ×
-          </button>
-          
-          <button 
+
+          <button
             className="mobile-nav-button"
             onClick={(e) => {
               e.stopPropagation();
               onNextProject();
             }}
             disabled={!hasNextProject}
+            aria-label="Siguiente"
           >
             <ChevronRight size={24} />
           </button>

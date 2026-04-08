@@ -13,7 +13,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 100vh !important;
+    min-height: 100dvh !important;
     padding: 1rem 0.75rem !important;
   }
 
@@ -32,8 +32,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 100vh !important;
-    padding: 1rem 0.75rem !important;
+    min-height: auto !important;
+    padding: 2rem 0.75rem !important;
   }
 
   .tech-stack-container {
@@ -51,8 +51,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 100vh !important;
-    padding: 1rem 0.75rem !important;
+    min-height: auto !important;
+    padding: 2rem 0.75rem !important;
   }
 
   .projects-container {
@@ -70,8 +70,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 100vh !important;
-    padding: 1rem 0.75rem !important;
+    min-height: auto !important;
+    padding: 2rem 0.75rem !important;
   }
 
   .education-container {
@@ -89,8 +89,8 @@
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    min-height: 100vh !important;
-    padding: 1rem 0.75rem !important;
+    min-height: auto !important;
+    padding: 2rem 0.75rem !important;
   }
 
   .objective-container {
@@ -102,20 +102,16 @@
     align-items: center !important;
     justify-content: center !important;
   }
-}
 
-/* ==========================================================================
-   MODALES CENTRADOS EN MÓVIL
-   ========================================================================== */
-
-/* ===== MODAL CONTENT - CENTRADO INTERNO ===== */
+  /* ==========================================================================
+     MODALES CENTRADOS EN MÓVIL
+     ========================================================================== */
   .modal-content {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: flex-start !important;
     width: 100% !important;
-    height: 100% !important;
     padding: 1rem !important;
   }
 
@@ -133,11 +129,12 @@
     flex: 1 !important;
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
     padding: 1rem !important;
     overflow-y: auto !important;
   }
+}
 
 /* ==========================================================================
    NAVEGACIÓN CORRECTA EN MÓVIL
@@ -208,9 +205,9 @@
   }
 
   .project-modal {
-    width: 100vw !important;
-    height: 100vh !important;
-    max-height: 100vh !important;
+    width: 100% !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
     border-radius: 0 !important;
   }
 
@@ -252,6 +249,26 @@
 
   .modal-body {
     padding: 0.5rem !important;
+  }
+}
+
+/* ==========================================================================
+   MÓVIL EXTREMO (iPhone SE 1st gen / 320px)
+   ========================================================================== */
+
+@media (max-width: 320px) {
+  .hero-section,
+  .tech-stack-section,
+  .projects-section,
+  .education-section,
+  .objective-section {
+    padding: 0.375rem 0.125rem !important;
+  }
+
+  /* Permitir que todos los contenedores de texto envuelvan correctamente */
+  h1, h2, h3, h4, p, span {
+    word-break: break-word !important;
+    overflow-wrap: anywhere !important;
   }
 }
 

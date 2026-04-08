@@ -7,8 +7,8 @@ body.loading,
 html.loading {
   overflow: hidden !important;
   height: 100vh !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   /* Fix específico para margen derecho */
@@ -22,8 +22,8 @@ html.loading {
 #root.loading {
   overflow: hidden !important;
   height: 100vh !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
   /* Fix específico para margen derecho */
   margin: 0 !important;
   padding: 0 !important;
@@ -181,8 +181,8 @@ html.loading {
   border-right: none !important;
   outline: none !important;
   right: 0 !important;
-  width: 100vw !important;
-  max-width: 100vw !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 /* Fix para Safari iOS */

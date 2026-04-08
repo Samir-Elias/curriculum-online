@@ -57,7 +57,7 @@ const MobileEducationModal = ({ isOpen, onClose, education, onNextEducation, onP
       competencies: false,
       certifications: false
     });
-  }, [education.titulo]);
+  }, [education?.titulo]);
 
   React.useEffect(() => {
     if (isOpen) {
@@ -82,36 +82,39 @@ const MobileEducationModal = ({ isOpen, onClose, education, onNextEducation, onP
       <div className="mobile-modal-content" ref={modalContentRef} onClick={(e) => e.stopPropagation()}>
         {/* Header */}
         <div className="mobile-modal-header">
-          <button 
+          <button
+            className="mobile-close-button"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClose();
+            }}
+            aria-label="Cerrar"
+          >
+            ×
+          </button>
+
+          <button
             className="mobile-nav-button"
             onClick={(e) => {
               e.stopPropagation();
               onPrevEducation();
             }}
             disabled={!hasPrevEducation}
+            aria-label="Anterior"
           >
             <ChevronLeft size={24} />
           </button>
-          
+
           <h2 className="mobile-modal-title">{education.titulo}</h2>
-          
-          <button 
-            className="mobile-close-button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onClose();
-            }}
-          >
-            ×
-          </button>
-          
-          <button 
+
+          <button
             className="mobile-nav-button"
             onClick={(e) => {
               e.stopPropagation();
               onNextEducation();
             }}
             disabled={!hasNextEducation}
+            aria-label="Siguiente"
           >
             <ChevronRight size={24} />
           </button>
